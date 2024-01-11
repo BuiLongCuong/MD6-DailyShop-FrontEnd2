@@ -1,0 +1,6 @@
+.main-body-bottom{
+    width: 100%;
+    height: calc(70% - 4px - 8px);
+    border: 1px solid red;
+    margin-top: 3px;
+}
