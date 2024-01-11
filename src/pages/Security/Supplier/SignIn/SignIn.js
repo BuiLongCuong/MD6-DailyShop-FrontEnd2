@@ -102,12 +102,12 @@ export default function SignIn() {
                                             </Formik>
                                         </div>
                                         <div className="forgot">
-                                            <div className="forgot-password">
-                                                <span>Quên Mật Khẩu</span>
-                                            </div>
-                                            <div className="SMS">
-                                                <span>Đăng nhập với SMS</span>
-                                            </div>
+                                            {/*<div className="forgot-password">*/}
+                                            {/*    <span>Quên Mật Khẩu</span>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="SMS">*/}
+                                            {/*    <span>Đăng nhập với SMS</span>*/}
+                                            {/*</div>*/}
                                         </div>
                                         <div className="and">
                                             <div className="hr">

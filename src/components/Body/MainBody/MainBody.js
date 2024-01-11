@@ -1,6 +1,7 @@
 import "./MainBody.css"
-import {Outlet} from "react-router-dom";
 import MainBodyAbove from "../MainBodyAbove/MainBodyAbove";
+import {Outlet} from "react-router-dom";
+
 export default function MainBody(){
     return(
         <>
