@@ -43,7 +43,7 @@ export default function Header() {
                 <div className="main">
                     <div className="main-left">
                         <div className="logo">
-                            <img src="../../public/img.png" alt=""/>
+                            {/*<img src="" alt=""/>*/}
                         </div>
                     </div>
                     <div className="main-center">
