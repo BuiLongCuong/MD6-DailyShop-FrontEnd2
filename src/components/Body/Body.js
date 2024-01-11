@@ -1,4 +1,3 @@
-
 import "./Body.css"
 import MainBody from "./MainBody/MainBody";
 import BodyAds from "./BodyAds/BodyAds";

@@ -9,7 +9,7 @@ export default function MainBodyAbove(){
                         <Carousel.Item>
                             <img
                                 src="https://img.lazcdn.com/g/ff/kf/S37b1d4e85fcd4862a73b078de1038f0c8.jpg_720x720q80.jpg_.webp"
-                                alt=""/>
+                                alt="" />
                             <Carousel.Caption>
                                 <h3>First slide label</h3>
                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
