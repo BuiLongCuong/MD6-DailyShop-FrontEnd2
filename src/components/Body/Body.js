@@ -1,7 +1,7 @@
-import BodySideBar from "./BodySideBar";
-import BodyAds from "./BodyAds";
-import MainBody from "./MainBody";
 import "./Body.css"
+import MainBody from "./MainBody/MainBody";
+import BodyAds from "./BodyAds/BodyAds";
+import BodySideBar from "./BodySideBar/BodySideBar";
 export default function Body(){
     return(
         <>
