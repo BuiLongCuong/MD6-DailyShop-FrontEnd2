@@ -1,0 +1,40 @@
+.footer-cover {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0.9;
+    background-color: #61dafb;
+    margin-top: 2px;
+
+}
+.footer{
+    width: 1170px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 250px;
+    /*border: 1px solid black;*/
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+}
+.footer-left-side{
+    width: 20%;
+    height: 100%;
+
+}
+.footer-center-left{
+    width: 20%;
+    height: 100%;
+
+}
+.footer-center-right{
+    width: 20%;
+    height: 100%;
+
+}
+.footer-right-side{
+    width: 20%;
+    height: 100%;
+
+}
+
