@@ -132,7 +132,7 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
-                <div className="footer"></div>
+                <div className="footerRegister"></div>
             </div>
         </>
     )

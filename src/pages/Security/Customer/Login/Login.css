@@ -19,11 +19,11 @@
     background-color: #e7403a;
 }
 
-/*.footer {*/
-/*    height: 48px;*/
-/*    width: 100%;*/
-/*    background-color: blueviolet;*/
-/*}*/
+.footerLogin {
+    height: 48px;
+    width: 100%;
+    /*background-color: blueviolet;*/
+}
 
 .headerLogin .headerDetail {
     width: 1153px;
@@ -87,13 +87,14 @@
     justify-content: center;
 }
 
-.intro {
+.introLogin {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: #222222;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
-    margin-top: 31.6px;
+    margin-top: 21.6px;
+    margin-bottom: 15px;
 }
 
 .usernameLogin {
@@ -101,7 +102,7 @@
     /*justify-content: center;*/
     margin-top: 20px;
     border-radius: 5px 5px 5px 5px;
-    margin-left: 30px;
+    margin-left: 38px;
 }
 
 .passwordLogin {
@@ -109,7 +110,7 @@
     /*justify-content: center;*/
     margin-top: 20px;
     border-radius: 5px 5px 5px 5px;
-    margin-left: 30px;
+    margin-left: 38px;
 }
 
 .main1 .content .background {
@@ -117,6 +118,7 @@
     width: 560px;
     background-color: orange;
     margin-left: 200px;
+    margin-top: 60px;
 }
 
 .main1 .content .background img {
@@ -130,20 +132,23 @@
     background-color: white;
     margin-left: 220px;
     border-radius: 5px 5px 5px 5px;
+    margin-top: 60px;
 }
 
 .row2 .usernameLogin input {
     height: 40px;
-    width: 338px;
+    width: 300px;
     padding-left: 20px;
     border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
 }
 
 .row2 .passwordLogin input {
     height: 40px;
-    width: 338px;
+    width: 300px;
     padding-left: 20px;
     border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
 }
 
 .row2 .usernameLogin .validate p {
@@ -155,7 +160,7 @@
 
 
 .buttonLogin {
-    /*margin-top: 20px;*/
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     border: none;
@@ -262,7 +267,7 @@
     line-height: 17px;
     color: #ee4d2d;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
-    margin-top: 4.5px;
+    margin-top: 1px;
     padding-left: 6px;
 }
 

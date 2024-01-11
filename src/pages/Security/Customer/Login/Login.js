@@ -66,7 +66,7 @@ export default function Login() {
                     </div>
                     <div className="Login">
                         <div className="row1">
-                            <div className="intro">
+                            <div className="introLogin">
                                 <p>Đăng nhập</p>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-                <div className="footer"></div>
+                <div className="footerLogin"></div>
             </div>
         </>
     )
