@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import './Register.css'
+import {register} from "../../../../redux/service/customerService";
 
 export default function Register() {
     const registerSchema = Yup.object().shape({

@@ -1,4 +1,4 @@
-import "./Header.css"
+import "./HeaderSupplier.css"
 import {FaFacebook} from "react-icons/fa";
 import {FaInstagram} from "react-icons/fa6";
 import {FaXTwitter} from "react-icons/fa6";
@@ -7,9 +7,8 @@ import {IoMailUnreadOutline} from "react-icons/io5";
 import {FiShoppingCart} from "react-icons/fi";
 import {Link} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
-
-export default function Header() {
-    return (
+export default function HeaderSupplier(){
+    return(
         <>
             <div className="header">
                 <div className="header-top">
@@ -18,7 +17,7 @@ export default function Header() {
                             <ul>
                                 <li><IoMailUnreadOutline/>dailyshop@gmail.com</li>
                                 <li>Support diliver</li>
-                                <li><Link to={"/signUp"}>Kênh người bán</Link></li>
+                                <li><Link to={"#"}>Chủ shop : </Link></li>
 
                             </ul>
                         </div>
@@ -30,7 +29,7 @@ export default function Header() {
                                 <li><Link to={"#"}><FaRegUser/></Link>
                                     {/*<span style={{color: 'black'}}>Đăng Nhập</span>?*/}
                                 </li>
-                                <li className={"signIn"}><Link to={"/login"}>Đăng Nhập</Link></li>
+                                <li className={"signIn"}><Link to={"#"}>Ten chu shop</Link></li>
 
                             </ul>
                         </div>
@@ -68,7 +67,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

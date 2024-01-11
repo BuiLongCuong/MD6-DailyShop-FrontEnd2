@@ -1,0 +1,8 @@
+.main-body {
+    width: 60%;
+    height: 1000px;
+
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+
+}

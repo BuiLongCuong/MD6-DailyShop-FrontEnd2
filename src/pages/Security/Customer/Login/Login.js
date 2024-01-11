@@ -34,7 +34,7 @@ export default function Login() {
                 alert("Tài khoản không tồn tại");
                 localStorage.clear();
             } else {
-                console.log("Đăng nhập thành công");
+                navigate("")
             }
         }else {
             console.log("Không tìm thấy thông tin người dùng trong localStorage");
