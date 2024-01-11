@@ -1,21 +1,22 @@
+import {Route, Routes} from "react-router-dom";
+import Login from "./pages/Security/Customer/Login/Login";
+import Register from "./pages/Security/Customer/Register/Register";
+import SignIn from "./pages/Security/Supplier/SignIn/SignIn";
+import SignUp from "./pages/Security/Supplier/SignUp/SignUp";
+import HomeSimple from "./pages/HomeSimple";
+import ListProduct from "./pages/products/ListProduct/ListProduct";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path={'/'} element={<HomeSimple/>}>
+            <Route path={"login"} element={<Login/>}/>
+            <Route path={"register"} element={<Register/>}/>
+            <Route path={"signIn"} element={<SignIn/>}/>
+            <Route path={"signUp"} element={<SignUp/>}/>
+        </Route>
+          <Route path={"customer"} element={<ListProduct/>}/>
+      </Routes>
   );
 }
 
