@@ -138,7 +138,7 @@
     width: 100%;
     height: 60px;
     padding-left: 10px;
-    margin-bottom: -10px;
+    margin-bottom: 5px;
 }
 
 .register-signup .forme {
@@ -150,7 +150,7 @@
 .forme .text5 {
     width: 100%;
     height: 160px;
-    padding-left: 38px;
+    padding-left: 68px;
 }
 
 .text5 .input1 {
@@ -188,10 +188,10 @@
 .btn{
     margin-top: 35px;
     width: 340px;
-    height: 40px;
+    height: 53px;
     /*display: flex;*/
     /*justify-content: center;*/
-    margin-left: 5px;
+    margin-left: -28px;
 }
 .btn button{
     width: 100%;
@@ -258,7 +258,7 @@
 .forme .text6 {
     width: 100%;
     height: 180px;
-    padding-left: 38px;
+    padding-left: 68px;
 }
 .footer-signup {
     height: 550px;
@@ -694,7 +694,7 @@
     line-height: 17px;
     color: #ee4d2d;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
-    margin-top: 1px;
+    margin-top: 4.5px;
     padding-left: 6px;
 }
 

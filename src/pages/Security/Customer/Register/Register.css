@@ -100,7 +100,7 @@
     color: #222222;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
     margin-top: 28.6px;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
 }
 
 .acc {
@@ -113,12 +113,12 @@
     margin-top: 20px;
 }
 .usernameOfRegister {
-    margin-left: 35px;
+    margin-left: 45px;
     margin-bottom: 20px;
 }
 
 .passwordOfRegister {
-    margin-left: 35px;
+    margin-left: 45px;
 }
 .name {
     /*display: flex;*/
@@ -307,7 +307,7 @@ input {
     line-height: 17px;
     color: #ee4d2d;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
-    margin-top: 1px;
+    margin-top: 3.5px;
     padding-left: 6px;
 }
 
@@ -460,7 +460,7 @@ input {
     /*display: flex;*/
     /*justify-content: center;*/
     margin-top: 20px;
-    margin-left: 35px;
+    margin-left: 45px;
 }
 .row2 .email input {
     height: 40px;
@@ -472,7 +472,7 @@ input {
     /*display: flex;*/
     /*justify-content: center;*/
     margin-top: 20px;
-    margin-left: 35px;
+    margin-left: 45px;
 }
 .row2 .confirmPassword input {
     height: 40px;
