@@ -1,7 +1,7 @@
 import axios, {get} from "axios";
 
 export function getAxios() {
-    const currentUser = JSON.parse(localStorage.getItem("currentCustomer"));
+    const currentUser = JSON.parse(localStorage.getItem("currentSupplier"));
     if (currentUser){
         return axios.create({
             baseURL: "http://localhost:8088",

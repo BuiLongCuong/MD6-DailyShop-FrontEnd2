@@ -5,6 +5,7 @@ import SignIn from "./pages/Security/Supplier/SignIn/SignIn";
 import SignUp from "./pages/Security/Supplier/SignUp/SignUp";
 import HomeSimple from "./pages/HomeSimple";
 import ListProduct from "./pages/products/ListProduct/ListProduct";
+import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path={"signIn"} element={<SignIn/>}/>
           <Route path={"signUp"} element={<SignUp/>}/>
           <Route path={"customer"} element={<ListProduct/>}/>
+          <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
       </Routes>
   );
 }
