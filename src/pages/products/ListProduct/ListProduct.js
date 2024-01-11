@@ -5,7 +5,7 @@ import {getAllByIdUser} from "../../../redux/service/productService";
 
 
 export default function ListProduct() {
-    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
+    const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
         console.log(products.list)
@@ -25,7 +25,7 @@ export default function ListProduct() {
                     <th>StockQuantity</th>
                     <th>Category</th>
                     <th>Ảnh</th>
-                    <th>Action</th>
+                    <th colSpan={2}>Action</th>
                 </tr>
                 {
                     listProducts.map((products) =>

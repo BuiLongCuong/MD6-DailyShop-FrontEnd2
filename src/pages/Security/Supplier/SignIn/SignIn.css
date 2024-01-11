@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+}
+
+.headerSignIn {
+    height: 82px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    -moz-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    z-index: 9999;
+    position: fixed;
+}
+
+.headerSignIn .navbar {
+    width: 1153px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+
+}
+
+.navbar .left {
+    width: 500px;
+    height: 100%;
+    display: flex;
+}
+
+.left .user {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user span {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 25px;
+    color: #222222;
+    margin-left: 10px;
+}
+
+.left .logo {
+    width: 140px;
+    height: 100%;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.navbar .right {
+    width: 120px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.right span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+}
+
+.contentSignIn {
+    height: 800px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contentSignIn .body {
+    width: 1050px;
+    height: 100%;
+    /*background-color: orange;*/
+    display: flex;
+}
+
+.body .banner {
+    width: 430px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner .content-banner {
+    height: 330px;
+    width: 100%;
+}
+
+.content-banner .text {
+    height: 35px;
+    width: 100%;
+}
+
+.text span {
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+    font-size: 32px;
+    line-height: 57px;
+    color: #ee4d2d;
+}
+
+.content-banner .text1 {
+    width: 90%;
+    height: 35px;
+    margin-top: 20px;
+
+}
+
+.text1 span {
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #666666;
+}
+
+.content-banner .logo {
+    margin-top: 20px;
+    width: 411px;
+    height: 215px;
+    background-color: #ee4d2d;
+}
+
+.content-banner .logo image {
+    width: 100%;
+    height: 100%;
+}
+
+.body .login {
+    width: 570px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.login .form-login {
+    width: 410px;
+    height: 470px;
+    -webkit-box-shadow: 0 0 10px 5px rgba(199,195,199,1);
+    -moz-box-shadow: 0 0 10px 5px rgba(199,195,199,1);
+    box-shadow: 0 0 10px 5px rgba(199,195,199,1)
+    /*z-index: 9999;*/
+    /*position: fixed;*/
+}
+
+.form-login .header-login {
+    width: 100%;
+}
+
+.header-login .token-login {
+    width: 100%;
+    padding-left: 15px;
+    padding-top: 30px;
+}
+
+.token-login .text-login {
+    width: 120px;
+    height: 100%;
+}
+
+.token-login .text-login {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #222222;
+}
+
+.form-login .content-login {
+    height: 330px;
+    width: 100%;
+    /*background-color: blue;*/
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.content-login .body-login {
+    height: 300px;
+    width: 90%;
+}
+
+.body-login .input {
+    height: 180px;
+    width: 100%;
+}
+
+.input .input-username {
+    padding-top: 8px;
+    width: 100%;
+    height: 60px;
+    /*display: flex;*/
+    /*align-items: center;*/
+}
+
+.input .input-password {
+    padding-top: 8px;
+    width: 100%;
+    height: 60px;
+}
+
+.input-username .username {
+    padding-left: 15px;
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .14);
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, .02);
+}
+
+.input-password .password {
+    padding-left: 15px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .14);
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, .02);
+}
+
+.input .button {
+    margin-top: 60px;
+    width: 100%;
+    height: 40px;
+    background-color: #f3826c;
+    display: flex;
+    border: 0 solid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    -webkit-appearance: button;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+}
+
+.errUsername, .errPassword {
+    margin-top: 5px;
+    color: red;
+    font-size: 12px;
+}
+
+.errPassword {
+    margin-top: 1px;
+    color: red;
+    font-size: 12px;
+}
+
+.body-login .forgot {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forgot .forgot-password {
+    width: 120px;
+    height: 15px;
+}
+
+.forgot .SMS {
+    width: 125px;
+    height: 15px;
+}
+
+.forgot-password span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #0055aa;
+}
+
+.SMS span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #0055aa;
+}
+
+.body-login .and {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    margin-top: -12px;
+}
+
+.and .or {
+    width: 55px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.or span {
+    color: #cccccc;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+}
+
+.and .hr, .and .hr2 {
+    width: 155px;
+    height: 30px;
+
+}
+
+.hr div, .hr2 div {
+    margin-top: 8px;
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.body-login .Oauth {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Oauth .google {
+    width: 350px;
+    height: 45px;
+    /*display: flex;*/
+}
+
+.google .icon-gg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dbdbdb;
+
+}
+
+.icon-gg button {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .26);
+    background-color: #fff;
+    color: rgba(0, 0, 0, .87);
+    padding: 0 2px;
+    border-radius: 2px;
+    font-size: .875rem;
+}
+
+.icon-gg span {
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+
+.form-login .register {
+    width: 70px;
+    height: 70px;
+    /*background-color: #222222;*/
+}
+
+
+.transferToSignUp {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.signUp {
+    display: flex;
+    margin-top: 20px;
+}
+
+.transferToSignUp .signUp p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+    margin-top: 1px;
+    padding-left: 6px;
+}
+
+
+
+
+.otherSignIn {
+    display: flex;
+    justify-content: center;
+    width: 370px;
+    border: 1px solid rgba(0, 0, 0, .26);
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 10px;
+}
+
+
+.otherSignIn .signInGoogle button {
+    width: 100%;
+    height: 38px;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.otherSignIn .signInGoogle {
+    width: 100%;
+}
+
+
+.otherSignIn .press{
+    width: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
+    margin-top: 12px;
+}
+
+.otherSignIn .icon {
+    margin-top: 7px;
+}
+
+@keyframes changeColor {
+    0% {background-color: #ee4d2d}
+    50% {background-color: #f3826c}
+    100% {background-color: #ee4d2d}
+}
+
+.signInGoogle button:focus{
+    animation: changeColor 1s;
+}
+.otherSignIn .signInGoogle button:focus{
+    animation: changeColor 1s;
+}
+
+/*.footer {*/
+/*    height: 100px;*/
+/*    width: 100%;*/
+/*    background-color: cadetblue;*/
+/*    display: flex;*/
+/*}*/
+
+
+
+
+

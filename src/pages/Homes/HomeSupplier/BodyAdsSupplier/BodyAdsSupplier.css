@@ -1,0 +1,15 @@
+.ads {
+    width: calc(20% - 6px);
+    height: 100%;
+
+}
+
+.ads-above {
+    width: 100%;
+    height: 40%;
+
+}
+
+.ads-above > img {
+    padding: 2px;
+}

@@ -1,0 +1,711 @@
+
+.header-signup {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    -moz-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    z-index: 9999;
+    position: fixed;
+    background-color: white;
+}
+
+.header-signup .navbar-signup {
+    height: 100%;
+    width: 1150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-signup .left-signup {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-signup .logo-signup {
+    width: 140px;
+    height: 100%;
+}
+
+.left-signup .text-signup {
+
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 3px;
+    margin-left: -15px;
+}
+
+.text-signup span {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #222222;
+    margin-left: 25px;
+    padding-top: 20px;
+
+}
+
+.navbar-signup .right-signup {
+    width: 120px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.right span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+}
+
+.body-signup {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    /*background-image: url("https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9ff6617feef144e41cf859e6fc534be2.png");*/
+    /*background-size: cover; !* hoặc contain tùy thuộc vào yêu cầu của bạn *!*/
+    /*background-position: center;*/
+    justify-content: center;
+}
+
+.body-signup .content-signup {
+    height: 100%;
+    width: 1040px;
+    display: flex;
+    margin-top: 100px;
+}
+
+.content-signup .textarea-signup {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textarea-signup .form-text-signup {
+    height: 340px;
+    width: 405px;
+
+}
+
+.form-text-signup .shoppe-signup {
+    width: 405px;
+    height: 35px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    color: #ee4d2d;
+}
+
+.form-text-signup .supplier-signup {
+    width: 405px;
+    height: 90px;
+    font-weight: 500;
+    color: #ee4d2d;
+    margin-top: 4px;
+    font-size: 2.25rem;
+    line-height: 2.625rem;
+    margin-bottom: 10px;
+}
+
+
+.form-login-signup {
+    padding-left: 80px;
+}
+
+.form-login-signup .register-signup {
+    width: 420px;
+    height: 580px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 19px;
+
+}
+
+.register-signup .text-signup {
+    padding-top: 15px;
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+}
+
+.register-signup .forme {
+    width: 100%;
+    height: 375px;
+    padding-top: 5px;
+}
+
+.forme .text5 {
+    width: 100%;
+    height: 160px;
+    padding-left: 38px;
+}
+
+.text5 .input1 {
+    width: 80%;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.8);
+    height: 35%;
+    margin-bottom: 8px;
+}
+
+.left-signup .logo-signup img {
+    width: 100%;
+    height: 100%;
+}
+
+.account-signup {
+    width: 100%;
+    height: 45px;
+    padding-left: 10px;
+    border: 1px solid #dbdbdb;
+    flex: 1;
+    flex-shrink: 0;
+    filter: none;
+}
+
+.text5 .input2 {
+    width: 80%;
+    height: 35%;
+    padding-top: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.btn{
+    margin-top: 35px;
+    width: 340px;
+    height: 40px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-left: 5px;
+}
+.btn button{
+    width: 100%;
+    height: 100%;
+    background-color: #ee4d2d;
+    color: #fef9f7;
+    border: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.text6 .input3 {
+    width: 80%;
+    height: 40%;
+    flex: 1;
+    flex-shrink: 0;
+    filter: none;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 5px;
+}
+
+.text6 .input4 {
+    padding-top: 5px;
+    width: 80%;
+    height: 40px;
+    flex: 1;
+    flex-shrink: 0;
+    filter: none;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.8);
+
+}
+
+.confirm-signup {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #dbdbdb;
+    padding-left: 10px;
+}
+
+.password-signup {
+    width: 100%;
+    height: 45px;
+
+    padding-left: 10px;
+    border: 1px solid #dbdbdb;
+    flex: 1;
+    flex-shrink: 0;
+    filter: none;
+}
+
+.email-signup {
+    width: 100%;
+    height: 45px;
+    padding-left: 10px;
+    border: 1px solid #dbdbdb;
+    flex: 1;
+    flex-shrink: 0;
+    filter: none;
+}
+
+.forme .text6 {
+    width: 100%;
+    height: 180px;
+    padding-left: 38px;
+}
+.footer-signup {
+    height: 550px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.footer-signup .mkt-signup {
+    width: 940px;
+    height: 530px;
+
+}
+
+.mkt-signup .daily-signup {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.daily-signup .header-signUp {
+    /*width: 430px;*/
+    height: 72px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.mkt-signup .body-signup {
+    height: 450px;
+    width: 940px;
+    display: block;
+}
+
+.body-signup .navbar-signup {
+    height: 220px;
+    width: 940px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-signup .col1-signup {
+    width: 255px;
+    height: 188px;
+}
+
+.col1-signup .fr-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fr-signup .image-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 45%;
+    height: 60px;
+
+}
+
+.image-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col1-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col1-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.navbar-signup .col2-signup {
+    width: 255px;
+    height: 188px;
+}
+
+.col2-signup .fr-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fr-signup .images-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 45%;
+    height: 60px;
+
+}
+
+.images-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col2-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col2-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.navbar-signup .col3-signup {
+    width: 255px;
+    height: 188px;
+}
+
+.col3-signup .fr-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fr-signup .img-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 45%;
+    height: 60px;
+
+}
+
+.img-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col3-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col3-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.body-signup .contents-signup {
+    background-color: white;
+    height: 220px;
+    width: 940px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contents-signup .col4-signup {
+    width: 255px;
+    height: 188px;
+}
+
+.col4-signup .frs-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frs-signup .img-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 40%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.img-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col4-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col4-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+
+.contents-signup .col5-signup {
+    width: 255px;
+    height: 188px;
+
+}
+
+.col5-signup .fre-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fre-signup .imge-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 40%;
+    height: 60px;
+
+}
+
+.imge-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col5-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col5-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.contents-signup .col6-signup {
+    width: 255px;
+    height: 188px;
+
+}
+
+.col6-signup .f-signup {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-signup .in-signup {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    width: 40%;
+    height: 60px;
+
+}
+
+.in-signup img {
+    width: 80%;
+    height: 100%;
+}
+
+.col6-signup .mkt-signup {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.col6-signup .ship-signup {
+    margin-left: 10px;
+    width: 100%;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.account-signup-err {
+    margin-top: 3px;
+    color: red;
+}
+
+.password-signup-err {
+    margin-top: 3px;
+    color: red;
+}
+
+.confirm-signup-err {
+    margin-top: 3px;
+    color: red;
+}
+
+.email-signup-err {
+    margin-top: 3px;
+    color: red;
+}
+
+.noteSignUp {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.otherSignUp {
+    display: flex;
+    justify-content: center;
+    width: 315px;
+    border: 1px solid rgba(0, 0, 0, .26);
+    margin-left: 52px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.otherSignUp .signUpGoogle button {
+    width: 100%;
+    height: 38px;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.otherSignUp .signUpGoogle {
+    width: 100%;
+}
+
+
+.otherSignUp .press{
+    width: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
+    margin-top: 12px;
+}
+
+.otherSignUp .icon {
+    margin-top: 7px;
+}
+
+
+.transferToSignIn {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.signIn {
+    display: flex;
+    margin-top: 20px;
+}
+
+.transferToSignIn .signIn p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+    margin-top: 1px;
+    padding-left: 6px;
+}
+
+@keyframes changeColor {
+    0% {background-color: #ee4d2d}
+    50% {background-color: #f3826c}
+    100% {background-color: #ee4d2d}
+}
+
+.signUpGoogle button:focus{
+    animation: changeColor 1s;
+}
+.otherSignUp .signUpGoogle button:focus{
+    animation: changeColor 1s;
+}

@@ -1,0 +1,114 @@
+.side-bar {
+    width: 20%;
+    height: 100%
+    /*border: 1px solid black;*/
+}
+
+.side-bar-above {
+    width: 100%;
+    height: 40%;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.side-bar-above-left {
+    width: 25%;
+    height: 100%;
+    background-color: darkcyan;
+}
+
+.side-bar-above-right {
+    width: 70%;
+    height: 100%;
+}
+
+.side-bar-above-right > ul > li {
+    list-style: none;
+}
+
+.side-bar-bottom {
+    width: 100%;
+    height: calc(50% - 4px - 8px);
+    padding: 2px;
+
+
+}
+.side-bar-bottom .card-title{
+    width: 100%;
+    height: 55px;
+}
+.side-bar-bottom .card{
+    width: 100%;
+    height: 200px;
+    display: flex;
+
+}
+
+.visa {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -768px -768px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+}
+
+.master-card {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -329px -768px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+
+}
+
+.jcb {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -282px -828px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+
+}
+
+.cash-on-diliver {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -209px -829px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+}
+
+.napas {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -574px -830px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+}
+
+.zalo-pay {
+    background-image: url("https://lzd-img-global.slatic.net/g/tps/tfs/TB1dFECEMTqK1RjSZPhXXXfOFXa-986-931.png");
+    background-position: -938px -527px;
+    width: 53px;
+    height: 39px;
+    margin: 0 5px 0 5px;
+}
+
+.main-body {
+    width: 60%;
+    height: 1000px;
+
+    box-sizing: border-box;
+
+}
+
+.main-body-above {
+    width: 100%;
+    height: 30%;
+    padding: 5px;
+    display: flex;
+    /*border: 1px solid black;*/
+    box-sizing: border-box;
+}
