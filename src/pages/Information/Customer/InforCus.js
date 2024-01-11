@@ -1,4 +1,5 @@
 import {Field, Form, Formik} from "formik";
+import './InforCus.css'
 
 export function InformationCustomer() {
 
