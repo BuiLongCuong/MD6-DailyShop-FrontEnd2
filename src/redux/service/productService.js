@@ -2,6 +2,20 @@ import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {getAxios} from "./axios/getAxios";
 
+export const getAll = createAsyncThunk(
+    'products/getAll',
+    async () => {
+        let res = await getAxios().get("/suppliers/getAllProduct");
+        return res.data;
+    }
+)
+export const getProductById = createAsyncThunk(
+    'products/getProductById',
+    async (idProduct) =>{
+        let res = await getAxios().get("/suppliers/findProductById/" + idProduct);
+        return res.data;
+    }
+)
 export const getAllByIdUser = createAsyncThunk(
     'products/getAllByIdUser',
     async (id) => {
@@ -40,7 +54,7 @@ export const UpdateService = createAsyncThunk(
 export const Delete = createAsyncThunk(
     'products/delete',
     async (id) => {
-        await axios.delete("http://localhost:3000/products/" + id)
+        await getAxios().delete("/suppliers/deleteProduct/" + id)
         return id
     }
 )
