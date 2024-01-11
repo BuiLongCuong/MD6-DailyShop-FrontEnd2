@@ -1,0 +1,528 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 83px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    height: 698px;
+    width: 100%;
+    background-color: #ee4d2d;
+}
+
+.footer {
+    height: 50px;
+    width: 100%;
+    background-color: white;
+}
+
+.header .headerDetail {
+    width: 1153px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .headerDetail .left {
+    height: 100%;
+    width: 265px;
+    display: flex;
+    justify-items: center;
+}
+
+.header .headerDetail .right {
+    height: 100%;
+    width: 115px;
+}
+
+.header .headerDetail .left .logo {
+    height: 100%;
+    width: 220px;
+    background-color: crimson;
+}
+
+.header .headerDetail .left .logo img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.header .headerDetail .left .title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #222222;
+    margin-top: 30px;
+    margin-left: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+    width: 190px;
+}
+
+.header .headerDetail .right p {
+    margin-top: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+}
+
+.main2 .content .register {
+    width: 400px;
+    height: 575px;
+    background-color: white;
+    margin-left: 220px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.main2 .content {
+    display: flex;;
+    align-items: center;
+}
+
+.row1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.intro {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #222222;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+    margin-top: 31.6px;
+
+}
+
+.acc {
+    display: flex;
+    justify-content: space-around;
+}
+.infoPer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.usernameOfRegister {
+    margin-left: 35px;
+}
+
+.passwordOfRegister {
+    margin-left: 35px;
+}
+.name {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 35px;
+}
+
+/*.row2 .name .validate p {*/
+/*    font-size: 12px;*/
+/*}*/
+
+/*.row2 .address .validate p {*/
+/*    font-size: 12px;*/
+/*}*/
+
+.row2 .email .validate p {
+    font-size: 12px;
+}
+
+.row2 .confirmPassword .validate p {
+    font-size: 12px;
+}
+
+.row2 .usernameOfRegister .validate p {
+    font-size: 12px;
+}
+
+.row2 .passwordOfRegister .validate p {
+    font-size: 12px;
+}
+
+/*.row2 .usernameRegister .validate p {*/
+/*    font-size: 12px;*/
+/*}*/
+
+/*.row2 .passwordRegister .validate p {*/
+/*    font-size: 12px;*/
+/*}*/
+
+.address {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.row2 .acc .usernameRegister input {
+    width: 140px;
+    margin-left: 20px;
+}
+
+.row2 .acc .passwordRegister input {
+    width: 140px;
+    margin-right: 20px;
+}
+
+.row2 .infoPer .phone input {
+    width: 140px;
+    margin-left: 20px;
+}
+
+.row2 .infoPer .birthday input {
+    width: 140px;
+    margin-right: 20px;
+}
+
+
+input {
+    height: 40px;
+    width: 329px;
+    padding-left: 20px;
+    border: 1px solid #dbdbdb;
+}
+
+.button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+
+.row2 .button button {
+    width: 339px;
+    height: 38px;
+    background-color: #ee4d2d;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+}
+
+@keyframes changeColor {
+    0% {background-color: #ee4d2d}
+    50% {background-color: #f3826c}
+    100% {background-color: #ee4d2d}
+}
+
+.registerGoogle button:focus{
+    animation: changeColor 1s;
+}
+.other .registerGoogle button:focus{
+    animation: changeColor 1s;
+}
+
+.note {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+.col1, .col3 {
+    border-top: 1px solid #dbdbdb;
+    width: 145px;
+    margin-top: 6px;
+}
+
+.col2 {
+    padding: 0 5px;
+    font-size: 12px;
+    color: #cccccc;
+    font-weight: 400;
+}
+
+.other {
+    display: flex;
+    justify-content: center;
+    width: 339px;
+    border: 1px solid rgba(0, 0, 0, .26);
+    margin-left: 30px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.other .registerGoogle button {
+    width: 100%;
+    height: 38px;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.other .registerGoogle {
+    width: 100%;
+}
+
+
+.other .press{
+    width: 50px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
+    margin-top: 12px;
+}
+
+.other .icon {
+    margin-top: 7px;
+}
+
+.row3 {
+    width: 100%;
+    height: 50px;
+    /*background-color: orange;*/
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    margin-top: 20px;
+}
+
+.row3 .login p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+    margin-top: 4.5px;
+    padding-left: 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.headerRegister {
+    height: 83px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+    position: fixed;
+    background-color: white;
+}
+
+.content {
+    height: 698px;
+    width: 100%;
+    background-color: #e7403a;
+}
+
+.footer {
+    height: 50px;
+    width: 100%;
+    background-color: white;
+}
+
+.headerRegister .headerDetail {
+    width: 1153px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerRegister .headerDetail .left {
+    height: 100%;
+    width: 265px;
+    display: flex;
+    justify-items: center;
+}
+
+.headerRegister .headerDetail .right {
+    height: 100%;
+    width: 115px;
+}
+
+
+
+.headerRegister .headerDetail .left .title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29.5px;
+    color: #222222;
+    margin-top: 30px;
+    margin-left: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+}
+
+.headerRegister .headerDetail .right p {
+    margin-top: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ee4d2d;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+}
+
+.main2 .content .background {
+    height:560px;
+    width: 560px;
+    background-color: orange;
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+
+.main2 .content .background img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.main2 .content {
+    display: flex;;
+    align-items: center;
+    height: 800px;
+}
+
+.row1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -5px;
+}
+
+.intro {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #222222;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+    margin-top: 31.6px;
+
+}
+
+.acc {
+    display: flex;
+    justify-content: space-around;
+}
+.infoPer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+
+
+
+.row2 .acc .usernameRegister input {
+    width: 160px;
+    margin-left: 30px;
+    border: 1px solid #dbdbdb;
+}
+
+.row2 .acc .passwordRegister input {
+    width: 160px;
+    margin-right: 30px;
+    border: 1px solid #dbdbdb;
+}
+
+.row2 .infoPer .phone input {
+    width: 160px;
+    margin-left: 30px;
+}
+
+.row2 .infoPer .birthday input {
+    width: 160px;
+    margin-right: 30px;
+}
+
+
+.row2 .name input {
+    height: 40px;
+    width: 328px;
+    padding-left: 20px;
+}
+
+.row2 .address input {
+    height: 40px;
+    width: 328px;
+    padding-left: 20px;
+}
+
+.email {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
+    margin-left: 35px;
+}
+.row2 .email input {
+    height: 40px;
+    width: 328px;
+    padding-left: 20px;
+}
+
+.confirmPassword {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
+    margin-left: 35px;
+}
+.row2 .confirmPassword input {
+    height: 40px;
+    width: 328px;
+    padding-left: 20px;
+}
+
+.buttonRegister {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+
+.row2 .buttonRegister button {
+    width: 339px;
+    height: 38px;
+    background-color: #ee4d2d;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+}
+
+
+
+
+.col1, .col3 {
+    border-top: 1px solid #dbdbdb;
+    width: 145px;
+    margin-top: 6px;
+}
+
+.col2 {
+    padding: 0 5px;
+    font-size: 12px;
+    color: #cccccc;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
