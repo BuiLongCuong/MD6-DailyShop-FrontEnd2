@@ -8,6 +8,7 @@ import ListProduct from "./pages/products/ListProduct/ListProduct";
 import HomeSupplier from "./pages/Homes/HomeSupplier/HomeSupplier";
 import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
 import {InformationCustomer} from "./pages/Information/Customer/InforCus";
+import AddProduct from "./pages/products/AddProduct/AddProduct";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
           <Route path={"information"} element={<InformationCustomer/>}/>
+          <Route path={"add"} element={<AddProduct/>}/>
       </Routes>
   );
 }
