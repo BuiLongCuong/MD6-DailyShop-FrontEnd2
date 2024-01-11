@@ -42,7 +42,7 @@ export default function HeaderSupplier(){
                 <div className="main">
                     <div className="main-left">
                         <div className="logo">
-                            <img src="../../public/img.png" alt=""/>
+                            {/*<img src="../../public/img.png" alt=""/>*/}
                         </div>
                     </div>
                     <div className="main-center">
