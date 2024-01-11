@@ -16,7 +16,7 @@ function App() {
           <Route path={"register"} element={<Register/>}/>
           <Route path={"signIn"} element={<SignIn/>}/>
           <Route path={"signUp"} element={<SignUp/>}/>
-          <Route path={"customer"} element={<ListProduct/>}/>
+          <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
       </Routes>
   );
