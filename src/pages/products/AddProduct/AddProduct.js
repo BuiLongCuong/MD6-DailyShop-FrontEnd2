@@ -137,7 +137,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: 1
+                            id: ''
                         },
                         account: {
                             id: accountSupplier.id
