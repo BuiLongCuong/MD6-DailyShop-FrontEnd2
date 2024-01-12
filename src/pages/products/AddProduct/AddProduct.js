@@ -9,7 +9,7 @@ import {add} from "../../../redux/service/productService";
 import {getAllCategories} from "../../../redux/service/categoryService";
 
 function AddProduct() {
-    const accountSupplier = JSON.parse(localStorage.getItem("currentCustomer"))
+    const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
@@ -24,7 +24,10 @@ function AddProduct() {
     const Create = (value) => {
         value.photo = photo;
         try {
-            dispatch(add(value)).unwarp()
+            dispatch(add(value)).then(()=>{
+                navigate("/supplier/products")
+
+            })
         } catch (e) {
         }
     }
