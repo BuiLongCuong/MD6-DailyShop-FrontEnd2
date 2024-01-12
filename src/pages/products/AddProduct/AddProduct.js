@@ -11,6 +11,7 @@ import "./AddProduct.css"
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
+    console.log(accountSupplier)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
@@ -140,7 +141,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: 1
+                            id: ""
                         },
                         account: {
                             id: accountSupplier.id
@@ -174,7 +175,7 @@ function AddProduct() {
                                     {
                                         photo.length < 6 && (
                                             <div className="imageContainer">
-                                                <input
+                                                <Field
                                                     name="photo.photoName"
                                                     type="file"
                                                     multiple

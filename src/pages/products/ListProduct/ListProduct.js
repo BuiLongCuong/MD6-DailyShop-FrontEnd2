@@ -34,7 +34,7 @@ export default function ListProduct() {
                     <th colSpan={2}>Action</th>
                 </tr>
                 {
-                    listProducts.map((products) =>
+                    listProducts && listProducts.map((products) =>
                         (
                             <>
                                 <tr>
