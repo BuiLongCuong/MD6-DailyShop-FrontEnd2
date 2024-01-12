@@ -1,7 +1,32 @@
 import {Field, Form, Formik} from "formik";
 import './InforCus.css'
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {findByAccountId, editCustomer} from "../../../redux/service/customerService";
+
 
 export function InformationCustomer() {
+    const dispatch = useDispatch()
+    const navigate = useDispatch();
+
+    const customer = useSelector(state => state.customer)
+
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
+
+    useEffect(() => {
+        dispatch(findByAccountId(currentCustomer.id))
+    }, []);
+
+    const EditCustomer = (values) => {
+        values.account = currentCustomer
+        dispatch(editCustomer(values)).then (() => {
+            // navigate("")
+            console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
+        })
+    }
+
+    const [photo, setPhoto] = useState([]);
+
 
     return (
         <>
@@ -13,7 +38,7 @@ export function InformationCustomer() {
                         </div>
                         <div className="title">
                             <div className="detail">
-                                <p>Thông tin của tôi</p>
+                                <p>Thông tin của khách hàng</p>
                             </div>
                         </div>
                     </div>
@@ -23,19 +48,15 @@ export function InformationCustomer() {
                         </div>
                     </div>
                 </div>
-                <div className="bodyInfo">
-                    <div className="contentInfo">
-                        <Formik initialValues={
-                            {
-                                customerName: '',
-                                address: '',
-                                phone: '',
-                                dateOfBirth: ''
-                            }
-                        } onSubmit={(values) => {
-                            console.log(values)
-                        }}>
-                            <Form>
+                <Formik initialValues={
+                    {
+                        customer
+                    }
+                } onSubmit={EditCustomer}>
+                    <Form>
+                        <div className="bodyInfo">
+                            <div className="contentInfo">
+
                                 <div className="infoDetails">
                                     <div className="infoName">
                                         <div className="noteName">
@@ -102,12 +123,17 @@ export function InformationCustomer() {
                                     </div>
                                 </div>
                                 <div className="imageCustomer">
-                                    avatar
+                                    <div className="avatarOfCus">
+                                        <img src="" alt=""/>
+                                    </div>
+                                    <div className="chooseAvtCus">
+                                        <Field  type="file" name="imageSupplier" placeholder={"Nhập số điện thoại"}/>
+                                    </div>
                                 </div>
-                            </Form>
-                        </Formik>
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </Form>
+                </Formik>
             </div>
         </>
     )
