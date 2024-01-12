@@ -10,7 +10,7 @@ export default function Login() {
         account: Yup.string()
             .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
             .max(50, 'Tên tài khoản quá dài (tối đa 50 ký tự)!')
-            .matches(/^[a-zA-Z_]+$/, 'Tên tài khoản không được chứa ký tự đặc biệt hoặc có dấu!')
+            .matches(/^[a-zA-Z0-9_]+$/, 'Tên tài khoản không được chứa ký tự số đặc biệt hoặc có dấu!')
             .required('Vui lòng nhập đủ thông tin!'),
         password: Yup.string()
             .min(5, 'Mật khẩu quá ngắn (tối thiểu 5 ký tự)!')
@@ -34,7 +34,6 @@ export default function Login() {
                 alert("Tài khoản không tồn tại");
                 localStorage.clear();
             } else {
-                navigate("")
             }
         }else {
             console.log("Không tìm thấy thông tin người dùng trong localStorage");

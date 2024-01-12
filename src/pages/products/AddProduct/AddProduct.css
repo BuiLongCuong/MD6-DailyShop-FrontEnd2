@@ -1,0 +1,172 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/*.mainAddPr {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+
+/*}*/
+
+.headerAddPr {
+    height: 83px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    -moz-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+}
+
+.headerAddPr .headerDetailAddPr {
+    width: 1153px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerAddPr .headerDetailAddPr .leftHeader {
+    height: 100%;
+    width: 190px;
+    display: flex;
+    justify-items: center;
+    margin-left: -130px;
+}
+
+.headerAddPr .headerDetailAddPr .leftHeader .logoHeader {
+    height: 100%;
+    width: 220px;
+    /*background-color: crimson;*/
+}
+
+.headerAddPr .headerDetailAddPr .leftHeader .logoHeader img {
+    height: 100%;
+    width: 133px;
+}
+
+.headerAddPr .headerDetailAddPr .leftHeader .titleAdd p{
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 30px;
+    color: #222222;
+    margin-top: 30px;
+    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
+    width: 230px;
+}
+
+
+.frame {
+    width: 1200px;
+    height: 508px;
+    /*background-color: #ee4d2d;*/
+    display: flex;
+    flex-direction: row;
+    margin-top: 45px;
+    margin-left: 160px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
+}
+
+.image {
+    width: 741px;
+    height:100%;
+    /*background-color: #0055aa;*/
+    border-right: 1px solid #dbdbdb;
+}
+
+.infoProduct {
+    width: 535px;
+    height: 100%;
+    /*background-color: cadetblue;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nameProduct {
+    margin-top: 20px;
+}
+
+.descriptionProduct {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+.priceProduct {
+    margin-top: 10px;
+}
+.quantityProduct {
+    margin-top: 10px;
+}
+.categoryProduct {
+    margin-top: 10px;
+    width: 328px;
+    height: 38.4px;
+    margin-left: 20px;
+}
+
+.addProduct {
+    width: 395px;
+    height: 45px;
+    margin-top: 25px
+}
+
+.addProduct button{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    background-color: #e7403a;
+    color: white;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+    padding-left: 20px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.contentProduct {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*.descriptionDetail {*/
+/*    margin-left: 10px;*/
+/*}*/
+
+
+.imageContainer {
+    position: relative;
+    display: inline-block;
+    margin: 7px;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #4f5052;
+    color: #a8abaf;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+    border-radius: 10px 10px 10px 10px;
+    font-weight: 400;
+    font-size:12px;
+    line-height: 16px;
+    font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;;
+}
+
+.imageContainer:hover .deleteButton {
+    display: block;
+}
+
+.chooseImage {
+    border: none;
+}
