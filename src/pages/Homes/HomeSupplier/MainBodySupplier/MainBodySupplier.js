@@ -15,8 +15,6 @@ export default function MainBodySupplier(){
                            + Thêm mới sản phẩm
                         </button>
                     </Link>
-
-
             </div>
         </>
     )
