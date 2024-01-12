@@ -27,11 +27,32 @@ export default function SignIn() {
     const handleSubmit = (values) => {
         console.log("Nhà cung cấp đăng nhập thành công")
         dispatch(signIn(values)).then(() => {
-            navigate("/supplier")
+            checkRoleForSupplier()
         })
-
-
     };
+
+    const checkRoleForSupplier = () => {
+        const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
+
+        if (currentSupplier && currentSupplier.roles && currentSupplier.roles.length > 0) {
+            const isCustomerOrAdmin = currentSupplier.roles.some(role => role.authority === "ROLE_CUSTOMER" || role.authority === "ROLE_ADMIN");
+            if (isCustomerOrAdmin) {
+                alert("Tài khoản không tồn tại");
+                localStorage.clear();
+
+            } else {
+                console.log("Đăng nhập thành công");
+                if (currentSupplier.checkProfile === false) {
+                    navigate("/informationSupp");
+                } else {
+                    navigate("/supplier")
+                }
+            }
+        }else {
+            console.log("Không tìm thấy thông tin người dùng trong localStorage");
+        }
+    }
+
 
 
     return (

@@ -9,6 +9,7 @@ import HomeSupplier from "./pages/Homes/HomeSupplier/HomeSupplier";
 import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
 import {InformationCustomer} from "./pages/Information/Customer/InforCus";
 import AddProduct from "./pages/products/AddProduct/AddProduct";
+import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
           <Route path={"information"} element={<InformationCustomer/>}/>
           <Route path={"add"} element={<AddProduct/>}/>
+          <Route path={"informationCus"} element={<InformationCustomer/>}/>
+          <Route path={"informationSupp"} element={<InformationSupplier/>}/>
       </Routes>
   );
 }

@@ -1,7 +1,10 @@
 import {Field, Form, Formik} from "formik";
 import './InforCus.css'
+import {useState} from "react";
 
 export function InformationCustomer() {
+    const [photo, setPhoto] = useState([]);
+
 
     return (
         <>
@@ -23,19 +26,21 @@ export function InformationCustomer() {
                         </div>
                     </div>
                 </div>
-                <div className="bodyInfo">
-                    <div className="contentInfo">
-                        <Formik initialValues={
-                            {
-                                customerName: '',
-                                address: '',
-                                phone: '',
-                                dateOfBirth: ''
-                            }
-                        } onSubmit={(values) => {
-                            console.log(values)
-                        }}>
-                            <Form>
+                <Formik initialValues={
+                    {
+                        customerName: '',
+                        address: '',
+                        phone: '',
+                        dateOfBirth: '',
+                        imageCustomer : ''
+                    }
+                } onSubmit={(values) => {
+                    console.log(values)
+                }}>
+                    <Form>
+                        <div className="bodyInfo">
+                            <div className="contentInfo">
+
                                 <div className="infoDetails">
                                     <div className="infoName">
                                         <div className="noteName">
@@ -102,12 +107,17 @@ export function InformationCustomer() {
                                     </div>
                                 </div>
                                 <div className="imageCustomer">
-                                    avatar
+                                    <div className="avatarOfGuy">
+                                        <img src="" alt=""/>
+                                    </div>
+                                    <div className="chooseAvt">
+
+                                    </div>
                                 </div>
-                            </Form>
-                        </Formik>
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </Form>
+                </Formik>
             </div>
         </>
     )
