@@ -7,7 +7,8 @@ export default function MainBodySupplier(){
         <>
             <div className="main-body">
                 <MainBodyAboveSupplier/>
-                <MainBodyBottomSupplier/>
+                {/*<MainBodyBottomSupplier/>*/}
+                <Outlet/>
             </div>
         </>
     )
