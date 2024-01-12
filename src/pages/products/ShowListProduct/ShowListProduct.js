@@ -21,33 +21,33 @@ export default function ShowListProduct(){
 
             <div className="main-body-showListProduct">
                 <div className="content-cover-showListProduct">
-                    {/*{*/}
-                    {/*    listProducts.map((products) =>(*/}
-                    {/*            <>*/}
-                    {/*                <div className="display-content-showListProduct">*/}
-                    {/*                    <Card style={{width: '18rem'}}>*/}
-                    {/*                        {*/}
-                    {/*                            listProducts.photo.map((photo) =>(*/}
-                    {/*                                <Card.Img variant="top"*/}
-                    {/*                                          src={photo.photoName} alt="" style={{width: "100px"}}/>*/}
-                    {/*                            ))*/}
-                    {/*                        }*/}
+                    {
+                        listProducts.map((products) =>(
+                                <>
+                                    <div className="display-content-showListProduct">
+                                        <Card style={{width: '18rem'}}>
+                                            {
+                                                listProducts.photo.map((photo) =>(
+                                                    <Card.Img variant="top"
+                                                              src={photo.photoName} alt="" style={{width: "100px"}}/>
+                                                ))
+                                            }
 
-                    {/*                        <Card.Body>*/}
-                    {/*                            <Card.Title>{products.productName}</Card.Title>*/}
-                    {/*                            <Card.Text>{products.price}</Card.Text>*/}
-                    {/*                            <Link to={"/supplier/products/detail/" + products.productID}>*/}
-                    {/*                                <Button >Chi tiết</Button>*/}
-                    {/*                            </Link>*/}
+                                            <Card.Body>
+                                                <Card.Title>{products.productName}</Card.Title>
+                                                <Card.Text>{products.price}</Card.Text>
+                                                <Link to={"/supplier/products/detail/" + products.productID}>
+                                                    <Button >Chi tiết</Button>
+                                                </Link>
 
-                    {/*                        </Card.Body>*/}
-                    {/*                    </Card>*/}
-                    {/*                </div>*/}
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
 
-                    {/*            </>*/}
-                    {/*        )*/}
-                    {/*    )*/}
-                    {/*}*/}
+                                </>
+                            )
+                        )
+                    }
 
 
                 </div>
