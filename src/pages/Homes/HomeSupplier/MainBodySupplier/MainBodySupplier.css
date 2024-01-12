@@ -1,8 +1,26 @@
-.main-body {
-    width: 60%;
+.main-body-supplier {
+    width: 80%;
     height: 1000px;
 
     box-sizing: border-box;
     /*border: 1px solid red;*/
+
+}
+
+.add-product{
+    width: 180px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    position:fixed;
+    left: 80px;
+    top: 320px;
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+
+
 
 }
