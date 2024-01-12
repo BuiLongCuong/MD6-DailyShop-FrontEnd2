@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
-import {getAllByIdUser} from "../../../redux/service/productService";
+import {Delete, getAllByIdUser} from "../../../redux/service/productService";
 
 
 export default function ListProduct() {
@@ -14,6 +14,12 @@ export default function ListProduct() {
     useEffect(() => {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
+    const remove = (id) => {
+        dispatch(Delete(id)).then(() => {
+            alert("Xóa thành công dmm")
+            dispatch(getAllByIdUser(currentCustomer.id))
+        })
+    }
     return (
         <>
             <table border={1}>
@@ -28,7 +34,7 @@ export default function ListProduct() {
                     <th colSpan={2}>Action</th>
                 </tr>
                 {
-                    listProducts.map((products) =>
+                    listProducts && listProducts.map((products) =>
                         (
                             <>
                                 <tr>
@@ -52,7 +58,10 @@ export default function ListProduct() {
                                             <button>Sửa</button>
                                         </Link>
                                     </td>
-                                    <td>Xóa</td>
+                                    <td onClick={() => {
+                                        remove(products.productID)
+                                    }}>Xóa
+                                    </td>
                                 </tr>
                             </>
                         ))

@@ -11,6 +11,7 @@ import "./AddProduct.css"
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
+    console.log(accountSupplier)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
@@ -25,7 +26,10 @@ function AddProduct() {
     const Create = (value) => {
         value.photo = photo;
         try {
-            dispatch(add(value)).unwarp()
+            dispatch(add(value)).then(()=>{
+                navigate("/supplier/products")
+
+            })
         } catch (e) {
         }
     }
@@ -137,7 +141,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: ''
+                            id: ""
                         },
                         account: {
                             id: accountSupplier.id
@@ -171,7 +175,7 @@ function AddProduct() {
                                     {
                                         photo.length < 6 && (
                                             <div className="imageContainer">
-                                                <input
+                                                <Field
                                                     name="photo.photoName"
                                                     type="file"
                                                     multiple

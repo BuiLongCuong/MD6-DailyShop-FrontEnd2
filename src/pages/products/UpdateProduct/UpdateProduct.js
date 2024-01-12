@@ -27,11 +27,9 @@ export function UpdateProduct() {
 
     const Update = (values) => {
         let productEdit = {...values}
-        if (photoUpload.length !== 0) {
             productEdit.photo = photoUpload
             dispatch(UpdateService(productEdit))
-            navigate("/list")
-        }
+        navigate("/supplier/products")
     }
     const handleChange = (e) => {
         const files = e.target.files
