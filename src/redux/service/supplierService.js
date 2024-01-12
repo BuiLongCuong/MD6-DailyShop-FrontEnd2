@@ -19,7 +19,6 @@ export const editSupplier = createAsyncThunk(
         const res = await getAxios().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
         console.log(res.data)
         return res.data;
-
     }
 )
 

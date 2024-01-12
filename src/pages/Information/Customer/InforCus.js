@@ -1,8 +1,30 @@
 import {Field, Form, Formik} from "formik";
 import './InforCus.css'
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {findByAccountId, editCustomer} from "../../../redux/service/customerService";
+
 
 export function InformationCustomer() {
+    const dispatch = useDispatch()
+    const navigate = useDispatch();
+
+    const customer = useSelector(state => state.customer)
+
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
+
+    useEffect(() => {
+        dispatch(findByAccountId(currentCustomer.id))
+    }, []);
+
+    const EditCustomer = (values) => {
+        values.account = currentCustomer
+        dispatch(editCustomer(values)).then (() => {
+            // navigate("")
+            console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
+        })
+    }
+
     const [photo, setPhoto] = useState([]);
 
 
@@ -16,7 +38,7 @@ export function InformationCustomer() {
                         </div>
                         <div className="title">
                             <div className="detail">
-                                <p>Thông tin của tôi</p>
+                                <p>Thông tin của khách hàng</p>
                             </div>
                         </div>
                     </div>
@@ -28,15 +50,9 @@ export function InformationCustomer() {
                 </div>
                 <Formik initialValues={
                     {
-                        customerName: '',
-                        address: '',
-                        phone: '',
-                        dateOfBirth: '',
-                        imageCustomer : ''
+                        customer
                     }
-                } onSubmit={(values) => {
-                    console.log(values)
-                }}>
+                } onSubmit={EditCustomer}>
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
@@ -107,11 +123,11 @@ export function InformationCustomer() {
                                     </div>
                                 </div>
                                 <div className="imageCustomer">
-                                    <div className="avatarOfGuy">
+                                    <div className="avatarOfCus">
                                         <img src="" alt=""/>
                                     </div>
-                                    <div className="chooseAvt">
-
+                                    <div className="chooseAvtCus">
+                                        <Field  type="file" name="imageSupplier" placeholder={"Nhập số điện thoại"}/>
                                     </div>
                                 </div>
                             </div>

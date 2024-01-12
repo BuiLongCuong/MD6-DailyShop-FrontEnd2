@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {editSupplier, findByAccountId} from "../../../redux/service/supplierService";
 import {Field, Form, Formik} from "formik";
+import './InforSupp.css'
 
 export function InformationSupplier(){
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export function InformationSupplier(){
                         </div>
                         <div className="title">
                             <div className="detail">
-                                <p>Thông tin của tôi</p>
+                                <p>Thông tin của nhà cung cấp</p>
                             </div>
                         </div>
                     </div>
@@ -53,21 +54,20 @@ export function InformationSupplier(){
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
-
                                 <div className="infoDetails">
-                                    <div className="infoNameSupp">
-                                        <div className="noteNameSupp">
+                                    <div className="infoContactName">
+                                        <div className="noteContactName">
                                             <p>Tên liên hệ:</p>
                                         </div>
-                                        <div className="nameSupp">
+                                        <div className="nameContactName">
                                             <Field type="text" name="contactName" placeholder={"Nhập tên liên hệ"}/>
                                         </div>
                                     </div>
-                                    <div className="infoName">
-                                        <div className="noteName">
+                                    <div className="infoNameSupp">
+                                        <div className="noteNameSupp">
                                             <p>Tên người bán:</p>
                                         </div>
-                                        <div className="name">
+                                        <div className="nameSupp">
                                             <Field type="text" name="supplierName" placeholder={"Nhập họ và tên"}/>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@ export function InformationSupplier(){
                                             <p>Địa chỉ:</p>
                                         </div>
                                         <div className="address">
-                                            <Field type="text" name="address" placeholder={"Địa chỉ chi tiết"}/>
+                                            <Field type="text" name="specificAddress" placeholder={"Địa chỉ chi tiết"}/>
                                         </div>
                                     </div>
                                     <div className="infoPhone">
@@ -119,12 +119,12 @@ export function InformationSupplier(){
                                         </div>
                                     </div>
                                 </div>
-                                <div className="imageCustomer">
-                                    <div className="avatarOfGuy">
-                                        <img src={currentSupplier.imageSupplier} alt=""/>
+                                <div className="imageSupp">
+                                    <div className="avatarOfSupp">
+                                        <img src="" alt=""/>
                                     </div>
-                                    <div className="chooseAvt">
-
+                                    <div className="chooseAvtSupp">
+                                        <Field  type="file" name="imageSupplier" placeholder={"Nhập số điện thoại"}/>
                                     </div>
                                 </div>
                             </div>

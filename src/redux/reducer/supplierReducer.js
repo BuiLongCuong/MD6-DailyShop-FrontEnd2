@@ -18,8 +18,8 @@ const userSlice = createSlice({
             localStorage.setItem("currentSupplier", JSON.stringify(payload))
             state.currentSupplier = payload;
         })
-        builder.addCase(editSupplier.fulfilled, (state, action) => {
-            state.supplierInfoDetail = action.payload.data
+        builder.addCase(editSupplier.fulfilled, (state, {payload}) => {
+            state.supplierInfoDetail = payload.data
             state.supplierInfoDetail = state.supplierSignInFirst
         })
         builder.addCase(findByAccountId.fulfilled, (state, {payload}) => {

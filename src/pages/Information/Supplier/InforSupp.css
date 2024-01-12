@@ -92,21 +92,50 @@
 }
 
 
-.infoNameSupp {
+.infoContactName {
     display: flex;
     flex-direction: row;
-    margin-left: 80px;
+    margin-left: 63px;
     align-items: center;
     border: none;
 }
-.infoNameSupp .noteNameSupp {
-    margin-right: 10px;
+.infoContactName .noteContactName {
+    margin-right: 44px;
     margin-top: 33px;
+    margin-left: -34px;
+}
+
+.infoContactName .nameContactName {
+    width: 383px;
+    height:30px;
+    margin-top: 20px;
+}
+
+.infoContactName .nameContactName input{
+    width: 100%;
+    height:100%;
+    padding-left: 12px;
+    border: 0.5px solid #dbdbdb;
+}
+
+
+.infoNameSupp {
+    display: flex;
+    flex-direction: row;
+    margin-left: 3px;
+    align-items: center;
+    border: none;
+    margin-bottom: 16px;
+}
+.infoNameSupp .noteNameSupp {
+    margin-right: 44px;
+    margin-top: 10px;
 }
 
 .infoNameSupp .nameSupp {
     width: 383px;
     height:30px;
+    margin-top: -5px;
 }
 
 .infoNameSupp .nameSupp input{
@@ -125,7 +154,7 @@
 }
 .infoAddress .noteAddress {
     margin-right: 10px;
-    margin-left: -21.5px;
+    margin-left: -20.5px;
     /*margin-bottom: -32px;*/
     margin-top: -60px;
 }
@@ -152,14 +181,14 @@
 }
 .infoPhone .notePhone {
     margin-right: 10px;
-    margin-left: -60px;
+    margin-left: -65px;
     margin-bottom: -12px;
 }
 
 .infoPhone .phone {
     width: 383px;
     height:30px;
-    margin-left: 30px;
+    margin-left: 34px;
 }
 
 .infoPhone .phone input{
@@ -264,24 +293,33 @@ input {
     width: 381px;
 }
 
-.imageCustomer {
+
+
+.imageSupp {
     height: 250px;
     width: 250px;
-    background-color: #ee4d2d;
+    /*background-color: #ee4d2d;*/
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     margin-bottom: 45px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.avatarOfGuy {
+.avatarOfSupp {
     height: 170px;
     width: 170px;
-    background-color: #f3826c;
+    /*background-color: #1d1d1d;*/
     margin-top: 20px;
     border-radius: 50%;
+    border: 1px solid #dbdbdb;
 }
 
-.imageCustomer .avatarOf img{
+.imageSupp .avatarOfSupp img{
     width:100%;
     height:100%;
+    border-radius: 50%;
+}
+.chooseAvtSupp {
+    margin-top: 10px;
 }
