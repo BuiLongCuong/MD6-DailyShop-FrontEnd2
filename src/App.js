@@ -24,7 +24,7 @@ function App() {
           <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
           <Route path={"information"} element={<InformationCustomer/>}/>
-          <Route path={"/add"} element={<AddProduct/>}></Route>
+          <Route path={"add"} element={<AddProduct/>}/>
       </Routes>
   );
 }

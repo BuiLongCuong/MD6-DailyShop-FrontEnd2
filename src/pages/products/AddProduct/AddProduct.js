@@ -7,6 +7,7 @@ import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {v4} from "uuid";
 import {add} from "../../../redux/service/productService";
 import {getAllCategories} from "../../../redux/service/categoryService";
+import "./AddProduct.css"
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
