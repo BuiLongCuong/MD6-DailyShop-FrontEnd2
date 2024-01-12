@@ -12,9 +12,9 @@ export default function BodySideBarSupplier(){
                         <ul>
                             <li><Link to={"#"}>Vận chuyển</Link></li>
                             <li><Link to={"#"}>Quản lý đơn hàng</Link></li>
-                            <li><Link to={"#"}>Quản lý sản phẩm</Link></li>
-                            {/*<li><Link to={"#"}>Thực phẩm tươi</Link></li>*/}
-                            {/*<li><Link to={"#"}>Du lịch</Link></li>*/}
+                            <li><Link to={"#"}>Tất cả sản phẩm</Link></li>
+                            <li><Link to={"#"}>Sản phẩm vi phạm</Link></li>
+                            <li><Link to={"#"}>Kênh marketing</Link></li>
                             {/*<li><Link to={"#"}>Phụ kiện nữ giới</Link></li>*/}
                             {/*<li><Link to={"#"}>Phụ kiện trẻ em</Link></li>*/}
                             {/*<li><Link to={"#"}>Phụ kiện nam giới</Link></li>*/}
