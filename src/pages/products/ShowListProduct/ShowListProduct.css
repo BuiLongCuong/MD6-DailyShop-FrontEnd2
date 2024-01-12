@@ -1,4 +1,4 @@
-.main-body-bottom{
+.main-body-showListProduct{
     width: 100%;
     height: calc(70% - 4px - 8px);
 
@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     box-sizing: border-box;
 }
-.main-body-bottom .content-cover{
+.main-body-showListProduct .content-cover-showListProduct{
     width: 100%;
     height: calc(100% - 30px - 5px);
     margin-bottom: 5px;
@@ -21,7 +21,7 @@
     box-sizing: border-box;
 
 }
-.main-body-bottom .display-content{
+.main-body-showListProduct .display-content-showListProduct{
     width: calc(100% / 4);
     height: calc(100% / 3 - 25px);
     border: 1px solid blue;

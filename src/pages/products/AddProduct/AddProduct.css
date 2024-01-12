@@ -32,6 +32,7 @@
     width: 190px;
     display: flex;
     justify-items: center;
+    margin-left: -130px;
 }
 
 .headerAddPr .headerDetailAddPr .leftHeader .logoHeader {
@@ -47,11 +48,10 @@
 
 .headerAddPr .headerDetailAddPr .leftHeader .titleAdd p{
     font-weight: 400;
-    font-size: 24px;
-    line-height: 27px;
+    font-size: 21px;
+    line-height: 30px;
     color: #222222;
     margin-top: 30px;
-    margin-leftHeader: 5px;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
     width: 230px;
 }
@@ -59,7 +59,7 @@
 
 .frame {
     width: 1200px;
-    height: 564px;
+    height: 508px;
     /*background-color: #ee4d2d;*/
     display: flex;
     flex-direction: row;
@@ -69,16 +69,16 @@
 }
 
 .image {
-    width: 665px;
+    width: 741px;
     height:100%;
     /*background-color: #0055aa;*/
-    border-right: 1px solid #666666;
+    border-right: 1px solid #dbdbdb;
 }
 
 .infoProduct {
     width: 535px;
     height: 100%;
-    background-color: cadetblue;
+    /*background-color: cadetblue;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,7 +90,7 @@
 
 .descriptionProduct {
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 .priceProduct {
     margin-top: 10px;
@@ -102,12 +102,13 @@
     margin-top: 10px;
     width: 328px;
     height: 38.4px;
+    margin-left: 20px;
 }
 
 .addProduct {
     width: 395px;
     height: 45px;
-    margin-top: 30px
+    margin-top: 25px
 }
 
 .addProduct button{
@@ -137,3 +138,35 @@ textarea {
 /*.descriptionDetail {*/
 /*    margin-left: 10px;*/
 /*}*/
+
+
+.imageContainer {
+    position: relative;
+    display: inline-block;
+    margin: 7px;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #4f5052;
+    color: #a8abaf;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+    border-radius: 10px 10px 10px 10px;
+    font-weight: 400;
+    font-size:12px;
+    line-height: 16px;
+    font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;;
+}
+
+.imageContainer:hover .deleteButton {
+    display: block;
+}
+
+.chooseImage {
+    border: none;
+}

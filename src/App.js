@@ -9,6 +9,8 @@ import HomeSupplier from "./pages/Homes/HomeSupplier/HomeSupplier";
 import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
 import {InformationCustomer} from "./pages/Information/Customer/InforCus";
 import AddProduct from "./pages/products/AddProduct/AddProduct";
+import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
+import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 
 function App() {
   return (
@@ -20,7 +22,11 @@ function App() {
           <Route path={"signIn"} element={<SignIn/>}/>
           <Route path={"signUp"} element={<SignUp/>}/>
           <Route path={"customer"} element={<ListProduct/>}/>
-          <Route path={"supplier"} element={<HomeSupplier/>}/>
+
+          <Route path={"supplier"} element={<HomeSupplier/>}>
+              <Route path={"showListProducts"} element = {<ShowListProduct/>}/>
+              <Route path={"products/detail/:id"} element={<DetailProduct/>}/>
+          </Route>
           <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
           <Route path={"information"} element={<InformationCustomer/>}/>
