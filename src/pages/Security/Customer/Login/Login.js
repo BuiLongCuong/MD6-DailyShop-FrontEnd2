@@ -4,8 +4,11 @@ import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {login} from "../../../../redux/service/customerService";
 import * as Yup from "yup";
+import {useState} from "react";
+import * as React from "react";
 
 export default function Login() {
+    const [isShowPassword, setIsShowPassword] = useState();
     const loginSchema = Yup.object().shape({
         account: Yup.string()
             .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
@@ -22,27 +25,30 @@ export default function Login() {
     const navigate = useNavigate();
     const checkRole = () => {
         const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
-        //
-        // if (currentCustomer === undefined) {
-        //     alert("Tài khoản không tồn tại");
-        //     return;
-        // }
+
+        if (currentCustomer === undefined) {
+            alert("Tài khoản không tồn tại");
+            return;
+        }
 
         if (currentCustomer && currentCustomer.roles && currentCustomer.roles.length > 0) {
             const isSupplierOrAdmin = currentCustomer.roles.some(role => role.authority === "ROLE_SUPPLIER" || role.authority === "ROLE_ADMIN");
             if (isSupplierOrAdmin) {
                 alert("Tài khoản không tồn tại");
                 localStorage.clear();
+
             } else {
                 console.log("Đăng nhập thành công")
+
                 if(currentCustomer.checkProfile === false) {
                     navigate("/informationCus")
                 }else {
-                    // navigate("")
-                    console.log("Chuyển đến giao diện của người dùng")
+                    navigate("/supplier")
+                    // console.log("Chuyển đến giao diện của người dùng")
                 }
             }
         }else {
+
             console.log("Không tìm thấy thông tin người dùng trong localStorage");
         }
     }
@@ -88,10 +94,10 @@ export default function Login() {
                                 dispatch(login(values)).then((res) => {
                                     console.log(res);
                                     checkRole()
-                                    // console.log("đăng nhập thành công")
                                 })
                             }}
                                     validationSchema={loginSchema}
+                                    enableReinitialize={true}
                             >
                                 <Form>
                                     <div className="usernameLogin">
@@ -101,7 +107,8 @@ export default function Login() {
                                         </div>
                                     </div>
                                     <div className="passwordLogin">
-                                        <Field type="password" name="password" placeholder="Mật khẩu"/>
+                                        <Field type={isShowPassword ? "text" : "password"} name="password" placeholder="Mật khẩu" />
+                                        <i className={isShowPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowPassword(!isShowPassword)}></i>
                                         <div className="validate">
                                             <p style={{color: "red"}}> <ErrorMessage name={"password"}/></p>
                                         </div>

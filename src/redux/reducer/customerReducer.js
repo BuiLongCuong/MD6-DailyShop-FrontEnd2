@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {editCustomer, findByAccountId, login} from "../service/customerService";
+import {editCustomer, findCustomerByAccountId, login} from "../service/customerService";
 
 const initialState = {
     currentCustomer : JSON.parse(localStorage.getItem("currentCustomer")),
@@ -22,7 +22,7 @@ const userSlice = createSlice ({
             state.customerInfoDetail = payload.data;
             state.customerInfoDetail = state.customerLoginFirst
         })
-        builder.addCase(findByAccountId.fulfilled, (state, {payload}) => {
+        builder.addCase(findCustomerByAccountId.fulfilled, (state, {payload}) => {
             state.customerLoginFirst = payload.data
         })
     }

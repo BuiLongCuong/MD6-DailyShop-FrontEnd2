@@ -5,8 +5,13 @@ import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import './Register.css'
 import {register} from "../../../../redux/service/customerService";
+import {useState} from "react";
+import * as React from "react";
 
 export default function Register() {
+    const navigate = useNavigate();
+    const [isShowPassword, setIsShowPassword] = useState();
+    const [isShowConfirmPassword, setIsShowConfirmPassword] = useState();
     const registerSchema = Yup.object().shape({
         account: Yup.string()
             .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
@@ -17,6 +22,7 @@ export default function Register() {
             .min(5, 'Mật khẩu quá ngắn (tối thiểu 5 ký tự)!')
             .max(50, 'Mật khẩu quá dài (tối đa 50 ký tự)!')
             .matches(/^[a-zA-Z0-9_]+$/, 'Mật khẩu không được chứa ký tự đặc biệt hoặc có dấu!')
+
             .required('Vui lòng nhập đủ thông tin!'),
         email: Yup.string()
             .email('Email không hợp lệ!')
@@ -26,8 +32,7 @@ export default function Register() {
             .required('Vui lòng nhập đủ thông tin!'),
     });
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+
 
     return (
         <>
@@ -83,7 +88,8 @@ export default function Register() {
                                         </div>
                                     </div>
                                     <div className="passwordOfRegister">
-                                        <Field name={"password"} type="password" placeholder="Mật khẩu"/>
+                                        <Field name={"password"} type={isShowPassword ? "text" : "password"} placeholder="Mật khẩu" />
+                                        <i className={isShowPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowPassword(!isShowPassword)}></i>
                                         <div className="validate">
                                             <p style={{color: "red"}}><ErrorMessage name={"password"}/></p>
                                         </div>
@@ -96,8 +102,9 @@ export default function Register() {
                                     </div>
 
                                     <div className="confirmPassword">
-                                        <Field name={"confirmPassword"} type="password"
+                                        <Field name={"confirmPassword"} type={isShowConfirmPassword ? "text" : "password"}
                                                placeholder="Nhập lại mật khẩu"/>
+                                        <i className={isShowConfirmPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}></i>
                                         <div className="validate">
                                             <p style={{color: "red"}}><ErrorMessage name={"confirmPassword"}/></p>
                                         </div>

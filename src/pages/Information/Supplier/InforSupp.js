@@ -1,11 +1,15 @@
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
-import {editSupplier, findByAccountId} from "../../../redux/service/supplierService";
+import React, {useEffect, useState} from "react";
+import {editSupplier, findSupplierByAccountId} from "../../../redux/service/supplierService";
 import {Field, Form, Formik} from "formik";
 import './InforSupp.css'
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../../firebase/firebase";
+import {v4} from "uuid";
 
 export function InformationSupplier(){
+    const [photo, setPhoto] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -15,7 +19,7 @@ export function InformationSupplier(){
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
 
     useEffect(() => {
-        dispatch(findByAccountId(currentSupplier.id))
+        dispatch(findSupplierByAccountId(currentSupplier.id))
     }, [])
 
     const EditSupplier = (values) => {
@@ -24,6 +28,19 @@ export function InformationSupplier(){
             navigate("/suppliers")
         })
     }
+
+    const handleChange1 = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            const photoRef = ref(storage, `image/${file.name + v4()}`);
+            uploadBytes(photoRef, file).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setPhoto([{ photoName: url }]);
+                });
+            });
+        }
+    };
 
 
     return(
@@ -121,10 +138,23 @@ export function InformationSupplier(){
                                 </div>
                                 <div className="imageSupp">
                                     <div className="avatarOfSupp">
-                                        <img src="" alt=""/>
+                                        {
+                                            photo.map((p, index) => (
+                                                <div key={index} className="imageContainer">
+                                                    <img src={p.photoName} alt="" style={{ border: "50%"}}/>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                     <div className="chooseAvtSupp">
-                                        <Field  type="file" name="imageSupplier" placeholder={"Nhập số điện thoại"}/>
+                                        <Field
+                                            nameClass="choose"
+                                            name="imageSupplier"
+                                            type="file"
+                                            multiple
+                                            onChange={handleChange1}
+                                            placeholder="Enter Photo"
+                                        />
                                     </div>
                                 </div>
                             </div>

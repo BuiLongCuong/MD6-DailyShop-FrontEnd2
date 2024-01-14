@@ -15,7 +15,27 @@ function AddProduct() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
+    const [stockQuantity1, setStockQuantity1] = useState('');
+    const [stockQuantity2, setStockQuantity2] = useState('');
 
+    const handleStockQuantityChange1 = (e) => {
+        const inputValue = e.target.value;
+        // Kiểm tra nếu giá trị là một số và lớn hơn 0
+        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
+            setStockQuantity1(inputValue);
+        }else {
+            setStockQuantity1(''); // Nếu không hợp lệ, đặt giá trị thành trống
+        }
+    };
+    const handleStockQuantityChange2 = (e) => {
+        const inputValue = e.target.value;
+        // Kiểm tra nếu giá trị là một số và lớn hơn 0
+        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
+            setStockQuantity2(inputValue);
+        }else {
+            setStockQuantity2(''); // Nếu không hợp lệ, đặt giá trị thành trống
+        }
+    };
 
     useEffect(() => {
         dispatch(getAllCategories())
@@ -27,8 +47,7 @@ function AddProduct() {
         value.photo = photo;
         try {
             dispatch(add(value)).then(()=>{
-                navigate("/supplier/products")
-
+                navigate("/supplier")
             })
         } catch (e) {
         }
@@ -53,6 +72,9 @@ function AddProduct() {
             });
         }
     };
+
+
+
     // const handleChange = (e) => {
     //     const files = e.target.files;
     //     for (let i = 0; i < files.length; i++) {
@@ -105,6 +127,21 @@ function AddProduct() {
                 } onSubmit={Create}
                 >
                     <Form>
+
+                        {
+                            photo.length < 6 && (
+                                <div className="imageContainer">
+                                    <Field
+                                        nameClass="choose"
+                                        name="photo.photoName"
+                                        type="file"
+                                        multiple
+                                        onChange={handleChange}
+                                        placeholder="Enter Photo"
+                                    />
+                                </div>
+                            )
+                        }
                         <div className="frame">
                             <div className="image">
                                 {/*<Field nameClass={"chooseImage"} name={"photo.photoName"} type={"file"} multiple onChange={handleChange}*/}
@@ -116,28 +153,15 @@ function AddProduct() {
                                 {/*        </>*/}
                                 {/*    ))*/}
                                 {/*}*/}
+
                                 <div className="listImage">
                                     {
                                         photo.map((p, index) => (
                                             <div key={index} className="imageContainer">
-                                                <img src={p.photoName} alt="" style={{ width: "218px", height: "218px" }} />
+                                                <img src={p.photoName} alt="" style={{ width: "242px", height: "242px" }} />
                                                 <button className="deleteButton" onClick={() => handleDeleteImage(index)}>X</button>
                                             </div>
                                         ))
-                                    }
-
-                                    {
-                                        photo.length < 6 && (
-                                            <div className="imageContainer">
-                                                <Field
-                                                    name="photo.photoName"
-                                                    type="file"
-                                                    multiple
-                                                    onChange={handleChange}
-                                                    placeholder="Enter Photo"
-                                                />
-                                            </div>
-                                        )
                                     }
                                 </div>
                             </div>
@@ -148,7 +172,7 @@ function AddProduct() {
                                             Nhập tên :
                                         </div>
                                         <div className="nameDetail">
-                                            <Field name={"productName"} placeholder={"Enter ProductName"}/>
+                                            <Field name={"productName"} placeholder={"Tên sản phẩm"}/>
                                         </div>
                                     </div>
                                     <div className="descriptionProduct">
@@ -157,7 +181,7 @@ function AddProduct() {
                                         </div>
                                         <div className="descriptionDetail">
                                             <Field as="textarea" cols={39} rows={4} name={"description"}
-                                                   placeholder={"Enter Description"}/>
+                                                   placeholder={"Mô tả sản phẩm"}/>
                                         </div>
                                     </div>
                                     <div className="priceProduct">
@@ -165,7 +189,8 @@ function AddProduct() {
                                             Giá (VNĐ) :
                                         </div>
                                         <div className="priceDetail">
-                                            <Field name={"price"} type={"number"} placeholder={" Enter Price"}/>
+                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"} value={stockQuantity1}
+                                                   onChange={handleStockQuantityChange1}/>
                                         </div>
                                     </div>
                                     <div className="quantityProduct">
@@ -174,7 +199,8 @@ function AddProduct() {
                                         </div>
                                         <div className="quantityDetail">
                                             <Field name={"stockQuantity"} type={"number"}
-                                                   placeholder={" Enter StockQuantity"}/>
+                                                   placeholder={"Nhập số lượng lớn hơn 0"} value={stockQuantity2}
+                                                   onChange={handleStockQuantityChange2}/>
                                         </div>
                                     </div>
                                     <div className="categoryProduct">

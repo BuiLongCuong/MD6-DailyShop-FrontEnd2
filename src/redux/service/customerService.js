@@ -23,7 +23,7 @@ export const editCustomer = createAsyncThunk(
     }
 )
 
-export const findByAccountId = createAsyncThunk(
+export const findCustomerByAccountId = createAsyncThunk(
     'customer/findByAccountId',
     async (id) => {
         const res = await getAxios().get("/customer/findByAccountId/" + id);

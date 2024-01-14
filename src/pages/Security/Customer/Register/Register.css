@@ -118,7 +118,13 @@
 }
 
 .passwordOfRegister {
+    position: relative;
     margin-left: 45px;
+}
+.passwordOfRegister i {
+    position: absolute;
+    top:12px;
+    right: 55px;
 }
 .name {
     /*display: flex;*/
@@ -471,8 +477,14 @@ input {
 .confirmPassword {
     /*display: flex;*/
     /*justify-content: center;*/
+    position: relative;
     margin-top: 20px;
     margin-left: 45px;
+}
+.confirmPassword i {
+    position: absolute;
+    top: 12px;
+    right: 55px
 }
 .row2 .confirmPassword input {
     height: 40px;

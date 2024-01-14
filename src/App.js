@@ -26,9 +26,10 @@ function App() {
           <Route path={"supplier"} element={<HomeSupplier/>}/>
           <Route path={"/supplier/products/detail/:id"} element={<DetailProduct/>}/>
           <Route path={"supplier/products"} element={<ListProduct/>}/>
-          <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
+          <Route path={"edit/:id"} element={<UpdateProduct/>}/>
           <Route path={"information"} element={<InformationCustomer/>}/>
           <Route path={"add"} element={<AddProduct/>}/>
+          <Route path={"update"} element={<UpdateProduct/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
       </Routes>

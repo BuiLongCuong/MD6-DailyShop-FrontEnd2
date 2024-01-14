@@ -10,7 +10,7 @@ export default function MainBodySupplier(){
             <div className="main-body-supplier">
                 <MainBodyAboveSupplier/>
 
-                    <Link to={"#"}>
+                    <Link to={"/add"}>
                         <button className={"add-product"}>
                            + Thêm mới sản phẩm
                         </button>

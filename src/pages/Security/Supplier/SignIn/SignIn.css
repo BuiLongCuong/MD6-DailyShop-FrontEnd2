@@ -209,9 +209,16 @@
 }
 
 .input .input-password {
+    position: relative;
     padding-top: 8px;
     width: 100%;
     height: 60px;
+}
+
+.input .input-password i {
+    position: absolute;
+    top: 65px;
+    right: 12px;
 }
 
 .input-username .username {
@@ -463,12 +470,8 @@
     animation: changeColor 1s;
 }
 
-/*.footer {*/
-/*    height: 100px;*/
-/*    width: 100%;*/
-/*    background-color: cadetblue;*/
-/*    display: flex;*/
-/*}*/
+
+
 
 
 

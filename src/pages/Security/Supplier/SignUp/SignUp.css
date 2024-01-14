@@ -178,6 +178,7 @@
 }
 
 .text5 .input2 {
+    position: relative;
     width: 80%;
     height: 35%;
     padding-top: 20px;
@@ -203,6 +204,7 @@
 }
 
 .text6 .input3 {
+    position: relative;
     width: 80%;
     height: 40%;
     flex: 1;
@@ -709,4 +711,15 @@
 }
 .otherSignUp .signUpGoogle button:focus{
     animation: changeColor 1s;
+}
+
+.text5 .input2 i {
+    position: absolute;
+    top: 36px;
+    right:9px;
+}
+.text6 .input3 i {
+    position: absolute;
+    top: 16px;
+    right:9px;
 }

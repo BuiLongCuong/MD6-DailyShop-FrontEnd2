@@ -2,7 +2,7 @@ import {Field, Form, Formik} from "formik";
 import './InforCus.css'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findByAccountId, editCustomer} from "../../../redux/service/customerService";
+import {editCustomer, findCustomerByAccountId} from "../../../redux/service/customerService";
 
 
 export function InformationCustomer() {
@@ -14,7 +14,7 @@ export function InformationCustomer() {
     const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
 
     useEffect(() => {
-        dispatch(findByAccountId(currentCustomer.id))
+        dispatch(findCustomerByAccountId(currentCustomer.id))
     }, []);
 
     const EditCustomer = (values) => {
