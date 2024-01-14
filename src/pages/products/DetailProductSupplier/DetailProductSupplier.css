@@ -1,0 +1,17 @@
+.add-product-supplier{
+    width: 180px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px solid green;*/
+    position:fixed;
+    right: 10px;
+    top: 300px;
+    background-color: red;
+    border-radius: 15px;
+    color: white;
+}
+.add-product-supplier:hover{
+    opacity: 0.9;
+}
