@@ -8,7 +8,6 @@ export default function BodySupplier(){
             <div className="bodySupplier">
                 <BodySideBarSupplier/>
                 <MainBodySupplier/>
-
             </div>
         </>
     )
