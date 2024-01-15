@@ -59,9 +59,9 @@ export default function ShowListProduct() {
                     )
                 )
             }
-            {
-                listProducts && listProducts.map((products) =>(
-                    <>
+
+
+
                         <div className="content-product">
                             <div className="search">
                                 A
@@ -85,33 +85,37 @@ export default function ShowListProduct() {
                                             <div className="quantity-he center"> Kho hàng</div>
                                             <div className="action center">Thao tác</div>
                                         </div>
-                                        <div className="main-table">
-                                            <div className="check-he ma"><input type="checkbox"/></div>
-                                            <div className="name-he name-ma ma">
-                                                <img
-                                                    src= {products.photo[0].photoName}
-                                                    alt=""/>
-                                                <div className="name-p">{products.productName}</div>
-                                            </div>
-                                            <div className="cate-he ma">{products.category.name}</div>
-                                            <div className="price-he ma">
-                                               $ {products.price}
-                                            </div>
-                                            <div className="quantity-he ma">{products.stockQuantity}</div>
-                                            <div className="action ma">
-                                                <Link to={"/add"}>Thêm sản phẩm</Link>
-                                                <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
-                                                <Link to={"/supplier/products/detail/" + products.productID}>Xem chi tiết</Link>
-                                            </div>
-                                        </div>
+
+                                        {listProducts && listProducts.map((products) =>(
+                                            <>
+                                                <div className="main-table">
+                                                    <div className="check-he ma"><input type="checkbox"/></div>
+                                                    <div className="name-he name-ma ma">
+                                                        <img
+                                                            src={products.photo[0].photoName}
+                                                            alt=""/>
+                                                        <div className="name-p">{products.productName}</div>
+                                                    </div>
+                                                    <div className="cate-he ma">{products.category.name}</div>
+                                                    <div className="price-he ma">
+                                                        $ {products.price}
+                                                    </div>
+                                                    <div className="quantity-he ma">{products.stockQuantity}</div>
+                                                    <div className="action ma">
+                                                        <Link to={"/add"}>Thêm sản phẩm</Link>
+                                                        <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
+                                                        <Link to={"/supplier/products/detail/" + products.productID}>Xem
+                                                            chi tiết</Link>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        ))}
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </>
 
-                ))
-            }
 
         </>
     )
