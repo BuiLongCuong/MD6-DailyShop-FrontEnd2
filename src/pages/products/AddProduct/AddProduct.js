@@ -38,10 +38,11 @@ function AddProduct() {
     const categories = useSelector(({categories}) => {
         return categories.list
     })
-    const Create = (value) => {
-        value.photo = photo;
+    const Create = (values) => {
+        values.photo = photo;
+        console.log(values)
         try {
-            dispatch(add(value)).then(() => {
+            dispatch(add(values)).then(()=>{
                 navigate("/supplier")
             })
         } catch (e) {
@@ -67,6 +68,7 @@ function AddProduct() {
             });
         }
     };
+
 
 
     // const handleChange = (e) => {
@@ -111,7 +113,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: ""
+                            id: 1
                         },
                         account: {
                             id: accountSupplier.id
