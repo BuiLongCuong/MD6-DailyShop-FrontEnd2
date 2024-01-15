@@ -15,14 +15,16 @@ export default function ListProduct() {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
     const remove = (id) => {
-        dispatch(Delete(id)).then(() => {
-            alert("Xóa thành công dmm")
-            dispatch(getAllByIdUser(currentCustomer.id))
-        })
+        const userConfirmed = window.confirm('Are you sure you want to delete?');
+        if (userConfirmed){
+            dispatch(Delete(id)).then(() => {
+                dispatch(getAllByIdUser(currentCustomer.id))
+            })
+        }
     }
     return (
         <>
-            <table border={1}>
+            <table className="table table-sm">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
@@ -45,22 +47,21 @@ export default function ListProduct() {
                                     <td>{products.stockQuantity}</td>
                                     <td>{products.category.name}</td>
                                     <td>
-                                        {
-                                            products.photo.map((photo) => (
-                                                <>
-                                                    <img src={photo.photoName} alt="" style={{width: "100px"}}/>
-                                                </>
-                                            ))
-                                        }
+
+                                        {products.photo && products.photo.length > 0 && (
+                                            <img src={products.photo[0].photoName} alt=""
+                                                 style={{width: "100px"}}/>
+                                        )}
                                     </td>
                                     <td>
                                         <Link to={"/edit/" + products.productID}>
                                             <button>Sửa</button>
                                         </Link>
                                     </td>
-                                    <td onClick={() => {
-                                        remove(products.productID)
-                                    }}>Xóa
+                                    <td >
+                                        <button onClick={() => {
+                                            remove(products.productID)
+                                        }}>Xóa</button>
                                     </td>
                                 </tr>
                             </>
@@ -70,3 +71,4 @@ export default function ListProduct() {
         </>
     )
 }
+

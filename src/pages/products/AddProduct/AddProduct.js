@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {Field, Form, Formik} from "formik";
+import {Link, useNavigate} from "react-router-dom";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useEffect, useState} from "react";
 import {storage} from "../../../firebase/firebase";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
@@ -8,6 +8,8 @@ import {v4} from "uuid";
 import {add} from "../../../redux/service/productService";
 import {getAllCategories} from "../../../redux/service/categoryService";
 import "./AddProduct.css"
+import * as Yup from "yup";
+import * as React from "react";
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
@@ -16,6 +18,19 @@ function AddProduct() {
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
 
+    const addSchema = Yup.object().shape({
+        price: Yup.number()
+            .positive('Giá sản phẩm phải lớn hơn 0!')
+            .required('Vui lòng nhập đủ thông tin!'),
+        stockQuantity: Yup.number()
+            .positive('Số lượng sản phẩm phải lớn hơn 0!')
+            .integer('Số lượng là số nguyên!')
+            .required('Vui lòng nhập đủ thông tin!'),
+        productName: Yup.string()
+            .required('Vui lòng nhập đủ thông tin!'),
+        description: Yup.string()
+            .required('Vui lòng nhập đủ thông tin!'),
+    });
 
     useEffect(() => {
         dispatch(getAllCategories())
@@ -23,12 +38,12 @@ function AddProduct() {
     const categories = useSelector(({categories}) => {
         return categories.list
     })
-    const Create = (value) => {
-        value.photo = photo;
+    const Create = (values) => {
+        values.photo = photo;
+        console.log(values)
         try {
-            dispatch(add(value)).then(()=>{
-                navigate("/supplier/products")
-
+            dispatch(add(values)).then(()=>{
+                navigate("/supplier")
             })
         } catch (e) {
         }
@@ -48,11 +63,14 @@ function AddProduct() {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
             uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhoto((prev) => [...prev, { photoName: url }]);
+                    setPhoto((prev) => [...prev, {photoName: url}]);
                 });
             });
         }
     };
+
+
+
     // const handleChange = (e) => {
     //     const files = e.target.files;
     //     for (let i = 0; i < files.length; i++) {
@@ -95,7 +113,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: ""
+                            id: 1
                         },
                         account: {
                             id: accountSupplier.id
@@ -103,8 +121,24 @@ function AddProduct() {
 
                     }
                 } onSubmit={Create}
+                        validationSchema={addSchema}
                 >
                     <Form>
+
+                        {
+                            photo.length < 6 && (
+                                <div className="imageContainer">
+                                    <Field
+                                        nameClass="choose"
+                                        name="photo.photoName"
+                                        type="file"
+                                        multiple
+                                        onChange={handleChange}
+                                        placeholder="Enter Photo"
+                                    />
+                                </div>
+                            )
+                        }
                         <div className="frame">
                             <div className="image">
                                 {/*<Field nameClass={"chooseImage"} name={"photo.photoName"} type={"file"} multiple onChange={handleChange}*/}
@@ -116,28 +150,18 @@ function AddProduct() {
                                 {/*        </>*/}
                                 {/*    ))*/}
                                 {/*}*/}
+
                                 <div className="listImage">
                                     {
                                         photo.map((p, index) => (
                                             <div key={index} className="imageContainer">
-                                                <img src={p.photoName} alt="" style={{ width: "218px", height: "218px" }} />
-                                                <button className="deleteButton" onClick={() => handleDeleteImage(index)}>X</button>
+                                                <img src={p.photoName} alt=""
+                                                     style={{width: "242px", height: "242px"}}/>
+                                                <button className="deleteButton"
+                                                        onClick={() => handleDeleteImage(index)}>X
+                                                </button>
                                             </div>
                                         ))
-                                    }
-
-                                    {
-                                        photo.length < 6 && (
-                                            <div className="imageContainer">
-                                                <Field
-                                                    name="photo.photoName"
-                                                    type="file"
-                                                    multiple
-                                                    onChange={handleChange}
-                                                    placeholder="Enter Photo"
-                                                />
-                                            </div>
-                                        )
                                     }
                                 </div>
                             </div>
@@ -148,7 +172,10 @@ function AddProduct() {
                                             Nhập tên :
                                         </div>
                                         <div className="nameDetail">
-                                            <Field name={"productName"} placeholder={"Enter ProductName"}/>
+                                            <Field name={"productName"} placeholder={"Tên sản phẩm"}/>
+                                            <div className="validateNamePro">
+                                                <p style={{color: "red"}}><ErrorMessage name={"productName"}/></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="descriptionProduct">
@@ -156,8 +183,11 @@ function AddProduct() {
                                             Mô tả :
                                         </div>
                                         <div className="descriptionDetail">
-                                            <Field as="textarea" cols={39} rows={4} name={"description"}
-                                                   placeholder={"Enter Description"}/>
+                                            <Field as="textarea" cols={39} rows={3} name={"description"}
+                                                   placeholder={"Mô tả sản phẩm"}/>
+                                            <div className="validateDescription">
+                                                <p style={{color: "red"}}><ErrorMessage name={"description"}/></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="priceProduct">
@@ -165,8 +195,12 @@ function AddProduct() {
                                             Giá (VNĐ) :
                                         </div>
                                         <div className="priceDetail">
-                                            <Field name={"price"} type={"number"} placeholder={" Enter Price"}/>
+                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"}/>
+                                            <div className="validatePrice">
+                                                <p style={{color: "red"}}><ErrorMessage name={"price"}/></p>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div className="quantityProduct">
                                         <div className="label4">
@@ -174,8 +208,12 @@ function AddProduct() {
                                         </div>
                                         <div className="quantityDetail">
                                             <Field name={"stockQuantity"} type={"number"}
-                                                   placeholder={" Enter StockQuantity"}/>
+                                                   placeholder={"Nhập số lượng lớn hơn 0"}/>
+                                            <div className="validateQuantity">
+                                                <p style={{color: "red"}}><ErrorMessage name={"stockQuantity"}/></p>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div className="categoryProduct">
                                         <div className="label5">
@@ -192,7 +230,14 @@ function AddProduct() {
                                         </Field>
                                     </div>
                                     <div className="addProduct">
-                                        <button type={"submit"}>Thêm</button>
+                                        <div className="cancel">
+                                            <Link to={"/supplier/products"}>
+                                                <button>Quay về</button>
+                                            </Link>
+                                        </div>
+                                        <div className="add">
+                                            <button type={"submit"}>Thêm</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

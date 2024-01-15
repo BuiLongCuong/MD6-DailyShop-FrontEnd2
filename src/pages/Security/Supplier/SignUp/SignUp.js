@@ -4,11 +4,15 @@ import './SignUp.css'
 import {Link, useNavigate} from "react-router-dom";
 import * as Yup from "yup";
 import {signUp} from "../../../../redux/service/supplierService";
+import {getAxios} from "../../../../redux/service/axios/getAxios";
+import {useState} from "react";
 
 
 
 export default function SignUp() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [isShowPassword, setIsShowPassword] = useState();
+    const [isShowConfirmPassword, setIsShowConfirmPassword] = useState();
     const signUpSchema = Yup.object().shape({
         account: Yup.string()
             .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
@@ -27,12 +31,40 @@ export default function SignUp() {
             .oneOf([Yup.ref('password'), null], 'Xác nhận mật khẩu không khớp!')
             .required('Vui lòng nhập đủ thông tin!'),
     });
-    const handleSubmit = async (values) => {
-        console.log(values)
-        await signUp(values)
-        navigate("/signIn")
-    };
 
+    // Hàm kiểm tra email đã tồn tại hay chưa
+    // const checkEmailExist = async (email) => {
+    //     try {
+    //         // Gọi API endpoint để kiểm tra email
+    //         const response = await getAxios().get(`suppliers/check-email?email=${email}`);
+    //
+    //         // Kiểm tra xem email đã tồn tại hay không
+    //         // Nếu response.data.emailExist === true, tức là email đã tồn tại
+    //         // Ngược lại, nếu response.data.emailExist === false, tức là email không tồn tại
+    //         return response.data.emailExist;
+    //     } catch (error) {
+    //         // Xử lý lỗi nếu có
+    //         console.error('Lỗi khi kiểm tra email:', error);
+    //         // Trả về false nếu có lỗi (bạn có thể xử lý tùy ý)
+    //         return false;
+    //     }
+    // };
+
+    const handleSubmit = async (values) => {
+        // const isEmailExist = await checkEmailExist(values.email);
+        // if (isEmailExist) {
+        //     alert('Email đã tồn tại!');
+        // }else {
+        //     await signUp(values).then (() => {
+        //         navigate('/signIn');
+        //     });
+        //
+        // }
+        
+        signUp(values).then (() => {
+            navigate('/signIn');
+        });
+    };
     return (
         <>
             <div className="cont">
@@ -111,18 +143,19 @@ export default function SignUp() {
                                                         name={"account"}/></div>
                                                 </div>
                                                 <div className="input2">
-                                                    <Field type="password" className={"password-signup"}
+                                                    <Field type={isShowPassword ? "text" : "password"} className={"password-signup"}
                                                            name={"password"}
                                                            placeholder={"Mật Khẩu"}/>
-
+                                                    <i className={isShowPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowPassword(!isShowPassword)}></i>
                                                     <div className={"password-signup-err"}><ErrorMessage
                                                         name={"password"}/></div>
                                                 </div>
                                             </div>
                                             <div className="text6">
                                                 <div className="input3">
-                                                    <Field type="password" className={"confirm-signup"}
-                                                           name={"confirmPassword"} placeholder={"Nhập lại mật khẩu"}/>
+                                                    <Field type={isShowConfirmPassword ? "text" : "password"} className={"confirm-signup"}
+                                                           name={"confirmPassword"} placeholder={"Nhập lại mật khẩu"} />
+                                                    <i className={isShowConfirmPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}></i>
                                                     <div className={"confirm-signup-err"}><ErrorMessage
                                                         name={"confirmPassword"}/></div>
                                                 </div>

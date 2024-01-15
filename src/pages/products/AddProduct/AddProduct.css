@@ -58,18 +58,18 @@
 
 
 .frame {
-    width: 1200px;
-    height: 508px;
+    width: 1258px;
+    height: 513px;
     /*background-color: #ee4d2d;*/
     display: flex;
     flex-direction: row;
     margin-top: 45px;
-    margin-left: 160px;
+    margin-left: 135px;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
 }
 
 .image {
-    width: 741px;
+    width: 841px;
     height:100%;
     /*background-color: #0055aa;*/
     border-right: 1px solid #dbdbdb;
@@ -96,10 +96,10 @@
     margin-top: 10px;
 }
 .quantityProduct {
-    margin-top: 10px;
+    /*margin-top: 2px;*/
 }
 .categoryProduct {
-    margin-top: 10px;
+    margin-top: -8px;
     width: 328px;
     height: 38.4px;
     margin-left: 20px;
@@ -108,16 +108,28 @@
 .addProduct {
     width: 395px;
     height: 45px;
-    margin-top: 25px
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.addProduct button{
-    width: 100%;
+.addProduct .add button{
+    width: 190px;
     height: 100%;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid #dbdbdb;
     background-color: #e7403a;
     color: white;
+}
+
+.addProduct .cancel button{
+    width: 190px;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    background-color: wheat;
+    color: black;
 }
 
 textarea {
@@ -170,3 +182,51 @@ textarea {
 .chooseImage {
     border: none;
 }
+
+.choose {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+textarea {
+    border: 1px solid #dbdbdb;
+}
+
+.validatePrice p{
+    font-size: 12px;
+}
+
+.validateQuantity p{
+    font-size: 12px;
+}
+
+.validateNamePro p{
+    font-size: 12px;
+}
+
+.validateDescription p{
+    font-size: 12px;
+}
+
+.validatePrice {
+    height: 15px;
+}
+
+.validateQuantity {
+    height: 15px;
+}
+.priceDetail {
+    height: 57px;
+}
+.quantityDetail {
+    height: 65px;
+}
+.nameDetail {
+    height: 48px;
+}
+.descriptionProduct {
+    height: 112px;
+}
+
+

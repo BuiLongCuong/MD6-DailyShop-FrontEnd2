@@ -107,9 +107,15 @@
 .passwordLogin {
     /*display: flex;*/
     /*justify-content: center;*/
+    position: relative;
     margin-top: 20px;
     border-radius: 5px 5px 5px 5px;
     margin-left: 48px;
+}
+.passwordLogin i {
+    position: absolute;
+    top: 13px;
+    right: 62px;
 }
 
 .main1 .content .background {

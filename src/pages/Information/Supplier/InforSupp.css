@@ -154,14 +154,15 @@
 }
 .infoAddress .noteAddress {
     margin-right: 10px;
-    margin-left: -20.5px;
-    /*margin-bottom: -32px;*/
-    margin-top: -60px;
+    margin-left: -68.5px;
+    /* margin-bottom: -32px; */
+    margin-top: -63px;
 }
 
 .infoAddress .address {
     width: 383px;
     height:30px;
+    margin-left: 82px;
 }
 
 .infoAddress .address input{
@@ -289,7 +290,6 @@ input {
     display: flex;
     flex-direction: row;
     margin-left: 153px;
-    justify-content: space-around;
     width: 381px;
 }
 
@@ -322,4 +322,8 @@ input {
 }
 .chooseAvtSupp {
     margin-top: 10px;
+}
+.select1 select, .select2 select, .select3 select{
+    width: 176px;
+    margin-right: 5px;
 }

@@ -4,10 +4,13 @@ import {useDispatch, useSelector} from "react-redux";
 import './SignIn.css'
 import * as Yup from "yup";
 import {signIn} from "../../../../redux/service/supplierService";
+import {useState} from "react";
+import * as React from "react";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isShowPassword, setIsShowPassword] = useState();
     const supplier = useSelector(({supplier}) => {
         // console.log(supplier.currentSupplier)
         return supplier.currentSupplier
@@ -33,7 +36,6 @@ export default function SignIn() {
 
     const checkRoleForSupplier = () => {
         const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-
         if (currentSupplier && currentSupplier.roles && currentSupplier.roles.length > 0) {
             const isCustomerOrAdmin = currentSupplier.roles.some(role => role.authority === "ROLE_CUSTOMER" || role.authority === "ROLE_ADMIN");
             if (isCustomerOrAdmin) {
@@ -115,14 +117,14 @@ export default function SignIn() {
                                                         </div>
                                                     </div>
                                                     <div className="input-password">
-                                                        <Field className="password" type={"password"} name={"password"}
+                                                        <Field className="password" type={isShowPassword ? "text" : "password"} name={"password"}
                                                                placeholder="Mật khẩu"/>
+                                                        <i className={isShowPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setIsShowPassword(!isShowPassword)}></i>
                                                         <div className={"errPassword"}><ErrorMessage name={"password"}/>
                                                         </div>
                                                     </div>
 
-                                                    <button className="button" type="submit">
-                                                        Đăng Nhập
+                                                    <button className="button" type="submit">Đăng Nhập
                                                     </button>
                                                 </Form>
                                             </Formik>

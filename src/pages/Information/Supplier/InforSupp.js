@@ -1,29 +1,69 @@
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect} from "react";
-import {editSupplier, findByAccountId} from "../../../redux/service/supplierService";
+import React, {useEffect, useState} from "react";
+import {editSupplier, findSupplierByAccountId} from "../../../redux/service/supplierService";
 import {Field, Form, Formik} from "formik";
 import './InforSupp.css'
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../../firebase/firebase";
+import {v4} from "uuid";
+import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 
 export function InformationSupplier(){
+    const [photo, setPhoto] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier =useSelector(state => state.supplier.supplierSignInFirst)
 
+    const provinces = useSelector(state => {
+        return state.address.listProvince
+    });
+    const districts = useSelector(state => state.address.listDistrict);
+    const wards = useSelector(state => state.address.listWard);
+
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
 
     useEffect(() => {
-        dispatch(findByAccountId(currentSupplier.id))
+        dispatch(findSupplierByAccountId(currentSupplier.id))
     }, [])
+
+    useEffect(() => {
+        dispatch(getAllProvince())
+
+    }, [])
+
+
+    const getDistricts =(event)=>{
+        console.log(event.target.value)
+        dispatch(getAllDistrict(event.target.value))
+    }
+
+    const getWards =(event)=>{
+        console.log(event.target.value)
+        dispatch(getAllWard(event.target.value))
+    }
 
     const EditSupplier = (values) => {
         values.account = currentSupplier
         dispatch(editSupplier(values)).then(() => {
-            navigate("/suppliers")
+            navigate("/supplier")
         })
     }
+
+    const handleChange1 = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            const photoRef = ref(storage, `image/${file.name + v4()}`);
+            uploadBytes(photoRef, file).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setPhoto([{ photoName: url }]);
+                });
+            });
+        }
+    };
 
 
     return(
@@ -73,25 +113,53 @@ export function InformationSupplier(){
                                     </div>
                                     <div className="addressDetail">
                                         <div className="select1">
-                                            <select name="" id="">
-                                                <option value="">Hà Nội</option>
-                                                <option value="">HCM</option>
-                                                <option value="">Đà Nẵng</option>
-                                            </select>
+                                            <Field
+                                                name={"province.id"}
+                                                as={"select"}
+                                                onChange={getDistricts}
+                                            >
+                                                <option value="" selected={true}>Chọn Tỉnh/Thành phố</option>
+                                                {
+                                                    provinces.map((province) => {
+                                                        return <>
+                                                            <option key={province.id} value={province.id}>
+                                                                {province.provinceName}
+                                                            </option>
+                                                        </>
+                                                    })
+                                                }
+                                            </Field>
                                         </div>
                                         <div className="select2">
-                                            <select name="" id="">
-                                                <option value="">Đông Anh</option>
-                                                <option value="">Quận 12</option>
-                                                <option value="">ABC</option>
-                                            </select>
+                                            <Field
+                                                as={"select"}
+                                                name={"district.id"}
+                                                onChange={getWards}
+                                            >
+                                                <option value="" selected={true}>Chọn Quận/Huyện</option>
+                                                {
+                                                    districts.map((district) => {
+                                                        return <>
+                                                            <option value={district.id}>{district.districtName}</option>
+                                                        </>
+                                                    })
+                                                }
+                                            </Field>
                                         </div>
                                         <div className="select3">
-                                            <select name="" id="">
-                                                <option value="">ABC</option>
-                                                <option value="">ABC</option>
-                                                <option value="">ABC</option>
-                                            </select>
+                                            <Field
+                                                as={"select"}
+                                                name={"ward.id"}
+                                            >
+                                                <option value="" selected={true}>Chọn Phường/Xã</option>
+                                                {
+                                                    wards.map((ward) => {
+                                                        return <>
+                                                            <option value={ward.id}>{ward.wardName}</option>
+                                                        </>
+                                                    })
+                                                }
+                                            </Field>
                                         </div>
                                     </div>
                                     <div className="infoAddress">
@@ -121,10 +189,23 @@ export function InformationSupplier(){
                                 </div>
                                 <div className="imageSupp">
                                     <div className="avatarOfSupp">
-                                        <img src="" alt=""/>
+                                        {
+                                            photo.map((p, index) => (
+                                                <div key={index} className="imageContainer">
+                                                    <img src={p.photoName} alt="" style={{ border: "50%"}}/>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                     <div className="chooseAvtSupp">
-                                        <Field  type="file" name="imageSupplier" placeholder={"Nhập số điện thoại"}/>
+                                        <Field
+                                            nameClass="choose"
+                                            name="imageSupplier"
+                                            type="file"
+                                            multiple
+                                            onChange={handleChange1}
+                                            placeholder="Enter Photo"
+                                        />
                                     </div>
                                 </div>
                             </div>
