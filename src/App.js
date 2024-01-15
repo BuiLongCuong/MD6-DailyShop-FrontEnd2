@@ -11,6 +11,7 @@ import {InformationCustomer} from "./pages/Information/Customer/InforCus";
 import AddProduct from "./pages/products/AddProduct/AddProduct";
 import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
 import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
+import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
 import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
 
 function App() {
@@ -24,11 +25,12 @@ function App() {
           <Route path={"signUp"} element={<SignUp/>}/>
           <Route path={"customer"} element={<ListProduct/>}/>
           <Route path={"supplier"} element={<HomeSupplier/>}/>
-          <Route path={"/supplier/products/detail/:id"} element={<DetailProduct/>}/>
+          <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
           <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}></Route>
           <Route path={"information"} element={<InformationCustomer/>}/>
           <Route path={"add"} element={<AddProduct/>}/>
+          <Route path={"detail"} element={<DetailProductSupplier/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
       </Routes>
