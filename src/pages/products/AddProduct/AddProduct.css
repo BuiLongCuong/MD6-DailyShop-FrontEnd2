@@ -96,7 +96,7 @@
     margin-top: 10px;
 }
 .quantityProduct {
-    margin-top: 24px;
+    /*margin-top: 2px;*/
 }
 .categoryProduct {
     margin-top: -8px;
@@ -108,16 +108,28 @@
 .addProduct {
     width: 395px;
     height: 45px;
-    margin-top: 25px
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.addProduct button{
-    width: 100%;
+.addProduct .add button{
+    width: 190px;
     height: 100%;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid #dbdbdb;
     background-color: #e7403a;
     color: white;
+}
+
+.addProduct .cancel button{
+    width: 190px;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    background-color: wheat;
+    color: black;
 }
 
 textarea {
@@ -185,10 +197,36 @@ textarea {
     font-size: 12px;
 }
 
-.validatePrice {
-    /*margin-bottom: -24px;*/
-    /*height: 15px;*/
-}
 .validateQuantity p{
     font-size: 12px;
 }
+
+.validateNamePro p{
+    font-size: 12px;
+}
+
+.validateDescription p{
+    font-size: 12px;
+}
+
+.validatePrice {
+    height: 15px;
+}
+
+.validateQuantity {
+    height: 15px;
+}
+.priceDetail {
+    height: 57px;
+}
+.quantityDetail {
+    height: 65px;
+}
+.nameDetail {
+    height: 48px;
+}
+.descriptionProduct {
+    height: 112px;
+}
+
+

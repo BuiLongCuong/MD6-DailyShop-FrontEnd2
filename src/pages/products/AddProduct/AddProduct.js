@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useEffect, useState} from "react";
 import {storage} from "../../../firebase/firebase";
@@ -26,7 +26,11 @@ function AddProduct() {
         stockQuantity: Yup.number()
             .positive('Số tài khoản phải lớn hơn 0!')
             .integer('Số tài khoản phải là số nguyên!')
-            .required('Vui lòng nhập đủ thông tin!')
+            .required('Vui lòng nhập đủ thông tin!'),
+        productName: Yup.string()
+            .required('Vui lòng nhập đủ thông tin!'),
+        description: Yup.string()
+            .required('Vui lòng nhập đủ thông tin!'),
     });
 
     useEffect(() => {
@@ -168,6 +172,9 @@ function AddProduct() {
                                         </div>
                                         <div className="nameDetail">
                                             <Field name={"productName"} placeholder={"Tên sản phẩm"}/>
+                                            <div className="validateNamePro">
+                                                <p style={{color: "red"}}><ErrorMessage name={"productName"}/></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="descriptionProduct">
@@ -175,8 +182,11 @@ function AddProduct() {
                                             Mô tả :
                                         </div>
                                         <div className="descriptionDetail">
-                                            <Field as="textarea" cols={39} rows={4} name={"description"}
+                                            <Field as="textarea" cols={39} rows={3} name={"description"}
                                                    placeholder={"Mô tả sản phẩm"}/>
+                                            <div className="validateDescription">
+                                                <p style={{color: "red"}}><ErrorMessage name={"description"}/></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="priceProduct">
@@ -186,7 +196,7 @@ function AddProduct() {
                                         <div className="priceDetail">
                                             <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"}/>
                                             <div className="validatePrice">
-                                                <p style={{color: "red"}}> <ErrorMessage name={"price"}/></p>
+                                                <p style={{color: "red"}}><ErrorMessage name={"price"}/></p>
                                             </div>
                                         </div>
 
@@ -198,10 +208,11 @@ function AddProduct() {
                                         <div className="quantityDetail">
                                             <Field name={"stockQuantity"} type={"number"}
                                                    placeholder={"Nhập số lượng lớn hơn 0"}/>
+                                            <div className="validateQuantity">
+                                                <p style={{color: "red"}}><ErrorMessage name={"stockQuantity"}/></p>
+                                            </div>
                                         </div>
-                                        <div className="validateQuantity">
-                                            <p style={{color: "red"}}> <ErrorMessage name={"stockQuantity"}/></p>
-                                        </div>
+
                                     </div>
                                     <div className="categoryProduct">
                                         <div className="label5">
@@ -218,7 +229,14 @@ function AddProduct() {
                                         </Field>
                                     </div>
                                     <div className="addProduct">
-                                        <button type={"submit"}>Thêm</button>
+                                        <div className="cancel">
+                                            <Link to={"/supplier"}>
+                                                <button>Quay về</button>
+                                            </Link>
+                                        </div>
+                                        <div className="add">
+                                            <button type={"submit"}>Thêm</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
