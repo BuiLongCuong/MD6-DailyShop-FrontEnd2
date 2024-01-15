@@ -14,18 +14,25 @@ export function UpdateProduct() {
     const {id} = useParams()
     const dispatch = useDispatch()
     const [photoUpload, setPhotoUpload] = useState([])
+    const [fetched, setFetched] = useState(false);
     const categories = useSelector(({categories}) => {
         return categories.list
     })
     const product = useSelector(({products}) => {
         return products.productEdit
     })
+        console.log(product)
 
     useEffect(() => {
-        dispatch(getAllCategories())
-        dispatch(updateForm(id)).then(() => {
-            setPhotoUpload(product.photo)
-        })
+        const fetchData = async () => {
+            await dispatch(updateForm(id))
+            await dispatch(getAllCategories())
+            await setPhotoUpload(product.photo)
+            console.log(photoUpload)
+            setFetched(true)
+        }
+
+        fetchData();
     }, []);
 
     const Update = (values) => {
@@ -56,43 +63,6 @@ export function UpdateProduct() {
     return (
         <>
 
-            {/*<Formik initialValues={product*/}
-            {/*} onSubmit={Update}*/}
-            {/*        enableReinitialize={true}>*/}
-            {/*    <Form>*/}
-            {/*        <Field name={"productName"}></Field>*/}
-            {/*        <Field name={"description"}></Field>*/}
-            {/*        <Field name={"price"}></Field>*/}
-            {/*        <Field name={"stockQuantity"}></Field>*/}
-            {/*        <Field name={"category.id"} as={"select"}>*/}
-            {/*            {*/}
-            {/*                categories.map((category) => {*/}
-            {/*                    return <>*/}
-            {/*                        <option value={category.id}>{category.name}</option>*/}
-            {/*                    </>*/}
-            {/*                })*/}
-            {/*            }*/}
-            {/*        </Field>*/}
-            {/*        <Field name={"photo.photoName"} type={"file"} multiple onChange={handleChange}/>*/}
-            {/*        {*/}
-            {/*            product.photo && product.photo.map((photo) => {*/}
-            {/*                return (*/}
-            {/*                    <>*/}
-            {/*                        <img src={photo.photoName} alt=""/>*/}
-            {/*                    </>*/}
-            {/*                )*/}
-            {/*            })*/}
-            {/*        }*/}
-            {/*        {*/}
-            {/*            photoUpload.map(p => (*/}
-            {/*                <>*/}
-            {/*                    <img src={p.photoName} alt=""/></>*/}
-            {/*            ))*/}
-            {/*        }*/}
-            {/*        <button>Sửa</button>*/}
-            {/*    </Form>*/}
-
-            {/*</Formik>*/}
 
             <div className="mainAddPr">
                 <div className="headerAddPr">
@@ -116,7 +86,7 @@ export function UpdateProduct() {
                     <Form>
 
                         {
-                            photoUpload && photoUpload.length < 6 && (
+                            (
                                 <div className="imageContainer">
                                     <Field
                                         nameClass="choose"
@@ -143,7 +113,7 @@ export function UpdateProduct() {
 
                                 <div className="listImage">
                                     {
-                                        photoUpload && photoUpload.map((p, index) => (
+                                        fetched && photoUpload?.map((p, index) => (
                                             <div key={index} className="imageContainer">
                                                 <img src={p.photoName} alt=""
                                                      style={{width: "242px", height: "242px"}}/>
