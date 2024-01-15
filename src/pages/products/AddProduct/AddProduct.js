@@ -231,7 +231,7 @@ function AddProduct() {
                                     </div>
                                     <div className="addProduct">
                                         <div className="cancel">
-                                            <Link to={"/supplier"}>
+                                            <Link to={"/supplier/products"}>
                                                 <button>Quay về</button>
                                             </Link>
                                         </div>
