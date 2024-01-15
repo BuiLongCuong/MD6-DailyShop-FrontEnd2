@@ -20,12 +20,11 @@ function AddProduct() {
 
     const addSchema = Yup.object().shape({
         price: Yup.number()
-            .positive('Số tài khoản phải lớn hơn 0!')
-            .integer('Số tài khoản phải là số nguyên!')
+            .positive('Giá sản phẩm phải lớn hơn 0!')
             .required('Vui lòng nhập đủ thông tin!'),
         stockQuantity: Yup.number()
-            .positive('Số tài khoản phải lớn hơn 0!')
-            .integer('Số tài khoản phải là số nguyên!')
+            .positive('Số lượng sản phẩm phải lớn hơn 0!')
+            .integer('Số lượng là số nguyên!')
             .required('Vui lòng nhập đủ thông tin!'),
         productName: Yup.string()
             .required('Vui lòng nhập đủ thông tin!'),

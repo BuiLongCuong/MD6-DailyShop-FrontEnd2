@@ -20,7 +20,7 @@ export function InformationCustomer() {
     const EditCustomer = (values) => {
         values.account = currentCustomer
         dispatch(editCustomer(values)).then (() => {
-            // navigate("")
+            navigate("/suppliers")
             console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
         })
     }
