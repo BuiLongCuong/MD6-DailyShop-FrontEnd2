@@ -96,10 +96,10 @@
     margin-top: 10px;
 }
 .quantityProduct {
-    margin-top: 10px;
+    margin-top: 24px;
 }
 .categoryProduct {
-    margin-top: 10px;
+    margin-top: -8px;
     width: 328px;
     height: 38.4px;
     margin-left: 20px;
@@ -179,4 +179,16 @@ textarea {
 }
 textarea {
     border: 1px solid #dbdbdb;
+}
+
+.validatePrice p{
+    font-size: 12px;
+}
+
+.validatePrice {
+    /*margin-bottom: -24px;*/
+    /*height: 15px;*/
+}
+.validateQuantity p{
+    font-size: 12px;
 }

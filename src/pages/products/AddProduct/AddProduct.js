@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useEffect, useState} from "react";
 import {storage} from "../../../firebase/firebase";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
@@ -8,6 +8,8 @@ import {v4} from "uuid";
 import {add} from "../../../redux/service/productService";
 import {getAllCategories} from "../../../redux/service/categoryService";
 import "./AddProduct.css"
+import * as Yup from "yup";
+import * as React from "react";
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
@@ -15,27 +17,17 @@ function AddProduct() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState([]);
-    const [stockQuantity1, setStockQuantity1] = useState('');
-    const [stockQuantity2, setStockQuantity2] = useState('');
 
-    const handleStockQuantityChange1 = (e) => {
-        const inputValue = e.target.value;
-        // Kiểm tra nếu giá trị là một số và lớn hơn 0
-        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
-            setStockQuantity1(inputValue);
-        }else {
-            setStockQuantity1(''); // Nếu không hợp lệ, đặt giá trị thành trống
-        }
-    };
-    const handleStockQuantityChange2 = (e) => {
-        const inputValue = e.target.value;
-        // Kiểm tra nếu giá trị là một số và lớn hơn 0
-        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
-            setStockQuantity2(inputValue);
-        }else {
-            setStockQuantity2(''); // Nếu không hợp lệ, đặt giá trị thành trống
-        }
-    };
+    const addSchema = Yup.object().shape({
+        price: Yup.number()
+            .positive('Số tài khoản phải lớn hơn 0!')
+            .integer('Số tài khoản phải là số nguyên!')
+            .required('Vui lòng nhập đủ thông tin!'),
+        stockQuantity: Yup.number()
+            .positive('Số tài khoản phải lớn hơn 0!')
+            .integer('Số tài khoản phải là số nguyên!')
+            .required('Vui lòng nhập đủ thông tin!')
+    });
 
     useEffect(() => {
         dispatch(getAllCategories())
@@ -46,7 +38,7 @@ function AddProduct() {
     const Create = (value) => {
         value.photo = photo;
         try {
-            dispatch(add(value)).then(()=>{
+            dispatch(add(value)).then(() => {
                 navigate("/supplier")
             })
         } catch (e) {
@@ -67,12 +59,11 @@ function AddProduct() {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
             uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhoto((prev) => [...prev, { photoName: url }]);
+                    setPhoto((prev) => [...prev, {photoName: url}]);
                 });
             });
         }
     };
-
 
 
     // const handleChange = (e) => {
@@ -125,6 +116,7 @@ function AddProduct() {
 
                     }
                 } onSubmit={Create}
+                        validationSchema={addSchema}
                 >
                     <Form>
 
@@ -158,8 +150,11 @@ function AddProduct() {
                                     {
                                         photo.map((p, index) => (
                                             <div key={index} className="imageContainer">
-                                                <img src={p.photoName} alt="" style={{ width: "242px", height: "242px" }} />
-                                                <button className="deleteButton" onClick={() => handleDeleteImage(index)}>X</button>
+                                                <img src={p.photoName} alt=""
+                                                     style={{width: "242px", height: "242px"}}/>
+                                                <button className="deleteButton"
+                                                        onClick={() => handleDeleteImage(index)}>X
+                                                </button>
                                             </div>
                                         ))
                                     }
@@ -189,9 +184,12 @@ function AddProduct() {
                                             Giá (VNĐ) :
                                         </div>
                                         <div className="priceDetail">
-                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"} value={stockQuantity1}
-                                                   onChange={handleStockQuantityChange1}/>
+                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"}/>
+                                            <div className="validatePrice">
+                                                <p style={{color: "red"}}> <ErrorMessage name={"price"}/></p>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div className="quantityProduct">
                                         <div className="label4">
@@ -199,8 +197,10 @@ function AddProduct() {
                                         </div>
                                         <div className="quantityDetail">
                                             <Field name={"stockQuantity"} type={"number"}
-                                                   placeholder={"Nhập số lượng lớn hơn 0"} value={stockQuantity2}
-                                                   onChange={handleStockQuantityChange2}/>
+                                                   placeholder={"Nhập số lượng lớn hơn 0"}/>
+                                        </div>
+                                        <div className="validateQuantity">
+                                            <p style={{color: "red"}}> <ErrorMessage name={"stockQuantity"}/></p>
                                         </div>
                                     </div>
                                     <div className="categoryProduct">
