@@ -1,5 +1,6 @@
 import "./MainBodySupplier.css"
 import ShowListProduct from "../../../products/ShowListProduct/ShowListProduct";
+import {Outlet} from "react-router-dom";
 
 
 
@@ -8,7 +9,8 @@ export default function MainBodySupplier(){
         <>
             <div className="main-body-supplier">
                 <div className="content-supplier">
-                    <ShowListProduct/>
+                    <Outlet/>
+                    {/*<ShowListProduct/>*/}
                 </div>
             </div>
         </>

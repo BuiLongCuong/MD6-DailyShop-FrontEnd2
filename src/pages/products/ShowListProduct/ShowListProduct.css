@@ -23,7 +23,7 @@
 .table-product {
     width: 100%;
     border: 1px solid #d3d1d1;
-    padding: 10px 0;
+    margin-top: 10px;
 }
 
 .table-product .header-table {
@@ -98,6 +98,21 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
+}
+
+.nav-bar-product {
+    position: relative;
+}
+.nav-bar-product button {
+    position: absolute;
+    top: -9px;
+    right: 0;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+
+.title-product {
+    height: 32px;
 }
 
 

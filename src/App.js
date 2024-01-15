@@ -23,16 +23,18 @@ function App() {
           <Route path={"register"} element={<Register/>}/>
           <Route path={"signIn"} element={<SignIn/>}/>
           <Route path={"signUp"} element={<SignUp/>}/>
-          <Route path={"customer"} element={<ListProduct/>}/>
-          <Route path={"supplier"} element={<HomeSupplier/>}/>
           <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
-          <Route path={"supplier/products"} element={<ListProduct/>}/>
-          <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-          <Route path={"add"} element={<AddProduct/>}/>
-          {/*<Route path={"update"} element={<UpdateProduct/>}/>*/}
-          <Route path={"detail"} element={<DetailProductSupplier/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+
+
+        <Route path={"supplier"} element={<HomeSupplier/>}>
+          <Route path={"products"} element={<ShowListProduct/>}/>
+          <Route path={"add"} element={<AddProduct/>}/>
+          <Route path={"edit/:id"} element={<UpdateProduct/>}/>
+          <Route path={"detail"} element={<DetailProductSupplier/>}/>
+        </Route>
+
       </Routes>
   );
 }

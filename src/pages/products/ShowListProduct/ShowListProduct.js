@@ -68,10 +68,14 @@ export default function ShowListProduct() {
                             </div>
                             <div className="products">
                                 <div className="nav-bar-product">
-                                    Nav bar
+                                    <Link to={"/add"}>
+                                        <button className={"add-product-supplier"}>
+                                            + Thêm mới sản phẩm
+                                        </button>
+                                    </Link>
                                 </div>
                                 <div className="title-product">
-                                    Titel
+                                    1 sản phẩm
                                 </div>
                                 <div className="list-product">
                                     <div className="table-product">
@@ -102,10 +106,12 @@ export default function ShowListProduct() {
                                                     </div>
                                                     <div className="quantity-he ma">{products.stockQuantity}</div>
                                                     <div className="action ma">
-                                                        <Link to={"/add"}>Thêm sản phẩm</Link>
                                                         <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
+                                                        &nbsp; &nbsp;
                                                         <Link to={"/supplier/products/detail/" + products.productID}>Xem
                                                             chi tiết</Link>
+                                                        &nbsp; &nbsp;
+                                                        <Link to={"/edit/" + products.productID}>Xóa</Link>
                                                     </div>
                                                 </div>
                                             </>
