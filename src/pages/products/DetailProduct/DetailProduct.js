@@ -22,14 +22,13 @@ export default function DetailProduct(){
             <h3>Mô tả : {product.description}</h3>
             <h3>Giá cả : {product.price}</h3>
             <h3>Số lượng trong kho : {product.stockQuantity}</h3>
-            {
-                product.photo.map((photo) => (
+            {product.photo && product.photo.map((photo) => (
                     <>
                         <img src={photo.photoName} alt="" style={{width: "100px"}}/>
                     </>
                 ))
             }
-            <Link to={'/supplier/showListProducts'}>
+            <Link to={'/supplier'}>
                 <button className="back-button" type='button'>Back</button>
             </Link>
 

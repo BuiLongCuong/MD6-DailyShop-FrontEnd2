@@ -19,8 +19,8 @@ const userSlice = createSlice({
             state.currentSupplier = payload;
         })
         builder.addCase(editSupplier.fulfilled, (state, {payload}) => {
-            state.supplierInfoDetail = payload.data
             state.supplierInfoDetail = state.supplierSignInFirst
+            state.supplierInfoDetail = payload.data
         })
         builder.addCase(findSupplierByAccountId.fulfilled, (state, {payload}) => {
             state.supplierSignInFirst = payload.data;

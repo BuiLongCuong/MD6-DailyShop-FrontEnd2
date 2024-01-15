@@ -2,7 +2,10 @@
     width: 100%;
     height: 1000px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
+    position: relative;
+    margin-top: 56px;
     /*border: 1px solid black;*/
+    background-color: #f6f6f6;
 }

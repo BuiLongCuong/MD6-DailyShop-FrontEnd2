@@ -1,0 +1,15 @@
+.body-sidebar-detail-product-supplier{
+    width: 20%;
+    height: 100%;
+    /*border: 1px solid black;*/
+    box-sizing: border-box;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+
+}
+.body-sidebar-detail-product-supplier img{
+    height: calc(100% /5);
+    padding: 4px;
+    margin-right: 4px;
+}

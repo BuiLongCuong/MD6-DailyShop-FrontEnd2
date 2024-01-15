@@ -1,39 +1,119 @@
-.main-body-showListProduct{
-    width: 100%;
-    height: calc(70% - 4px - 8px);
+.content-product {
+    background-color: #f6f6f6;
+}
 
-    margin-top: 3px;
+.content-product .search {
+    height: 190px;
+    background-color: white;
+    -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+}
+
+.content-product .products {
+    height: 1000px;
+    background-color: white;
+    margin-top: 20px;
+    -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    padding: 20px 20px;
+}
+
+.table-product {
+    width: 100%;
+    border: 1px solid #d3d1d1;
+    margin-top: 10px;
+}
+
+.table-product .header-table {
+    height: 80px;
+    background-color: #f6f6f6;
     display: flex;
-    justify-content: flex-start;
-    align-content: space-around;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-
 }
-.main-body-showListProduct .content-cover-showListProduct{
-    width: 100%;
-    height: calc(100% - 30px - 5px);
-    margin-bottom: 5px;
-    margin-top: 3px;
+
+.table-product .main-table {
     display: flex;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
+}
+
+.check-he {
+    width: 5%;
+    padding: 20px;
+}
+
+.name-he {
+    width: 30%;
+}
+
+.cate-he {
+    width: 20%;
+}
+
+.price-he {
+    width: 20%;
+}
+
+.quantity-he {
+    width: 5%;
+}
+
+.action {
+    width: 20%;
+    justify-content: center;
+    display: flex;
+}
+
+.center {
     box-sizing: border-box;
+    padding-top: 20px;
+    padding-left: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #595d62;
+}
+
+.name-ma {
+    display: flex;
 
 }
-.main-body-showListProduct .display-content-showListProduct{
-    width: calc(100% / 4);
-    height: calc(100% / 3 - 25px);
-    border: 1px solid blue;
-    background-color: yellow;
-    padding: 5px ;
 
-
+.ma {
+    padding: 10px 0;
+    font-size: 14px;
 
 }
-.pagination{
-    width: 100%;
-    height: 30px;
-
+.check-he input {
+    width: 15px;
+    height: 15px;
 }
+
+.name-ma img {
+    width: 50px;
+    height: 50px;
+}
+
+.name-p {
+    box-sizing: border-box;
+    padding: 5px 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.nav-bar-product {
+    position: relative;
+}
+.nav-bar-product button {
+    position: absolute;
+    top: -9px;
+    right: 0;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+
+.title-product {
+    height: 32px;
+}
+
+
+
