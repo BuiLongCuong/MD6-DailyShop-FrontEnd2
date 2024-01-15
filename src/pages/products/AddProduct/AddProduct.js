@@ -18,24 +18,24 @@ function AddProduct() {
     const [stockQuantity1, setStockQuantity1] = useState('');
     const [stockQuantity2, setStockQuantity2] = useState('');
 
-    const handleStockQuantityChange1 = (e) => {
-        const inputValue = e.target.value;
-        // Kiểm tra nếu giá trị là một số và lớn hơn 0
-        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
-            setStockQuantity1(inputValue);
-        }else {
-            setStockQuantity1(''); // Nếu không hợp lệ, đặt giá trị thành trống
-        }
-    };
-    const handleStockQuantityChange2 = (e) => {
-        const inputValue = e.target.value;
-        // Kiểm tra nếu giá trị là một số và lớn hơn 0
-        if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
-            setStockQuantity2(inputValue);
-        }else {
-            setStockQuantity2(''); // Nếu không hợp lệ, đặt giá trị thành trống
-        }
-    };
+    // const handleStockQuantityChange1 = (e) => {
+    //     const inputValue = e.target.value;
+    //     // Kiểm tra nếu giá trị là một số và lớn hơn 0
+    //     if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
+    //         setStockQuantity1(inputValue);
+    //     }else {
+    //         setStockQuantity1(''); // Nếu không hợp lệ, đặt giá trị thành trống
+    //     }
+    // };
+    // const handleStockQuantityChange2 = (e) => {
+    //     const inputValue = e.target.value;
+    //     // Kiểm tra nếu giá trị là một số và lớn hơn 0
+    //     if (!isNaN(inputValue) && parseInt(inputValue, 10) > 0) {
+    //         setStockQuantity2(inputValue);
+    //     }else {
+    //         setStockQuantity2(''); // Nếu không hợp lệ, đặt giá trị thành trống
+    //     }
+    // };
 
     useEffect(() => {
         dispatch(getAllCategories())
@@ -43,10 +43,11 @@ function AddProduct() {
     const categories = useSelector(({categories}) => {
         return categories.list
     })
-    const Create = (value) => {
-        value.photo = photo;
+    const Create = (values) => {
+        values.photo = photo;
+        console.log(values)
         try {
-            dispatch(add(value)).then(()=>{
+            dispatch(add(values)).then(()=>{
                 navigate("/supplier")
             })
         } catch (e) {
@@ -117,7 +118,7 @@ function AddProduct() {
                         price: '',
                         stockQuantity: '',
                         category: {
-                            id: ""
+                            id: 1
                         },
                         account: {
                             id: accountSupplier.id
@@ -189,8 +190,7 @@ function AddProduct() {
                                             Giá (VNĐ) :
                                         </div>
                                         <div className="priceDetail">
-                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"} value={stockQuantity1}
-                                                   onChange={handleStockQuantityChange1}/>
+                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"}/>
                                         </div>
                                     </div>
                                     <div className="quantityProduct">
@@ -199,8 +199,7 @@ function AddProduct() {
                                         </div>
                                         <div className="quantityDetail">
                                             <Field name={"stockQuantity"} type={"number"}
-                                                   placeholder={"Nhập số lượng lớn hơn 0"} value={stockQuantity2}
-                                                   onChange={handleStockQuantityChange2}/>
+                                                   placeholder={"Nhập số lượng lớn hơn 0"} />
                                         </div>
                                     </div>
                                     <div className="categoryProduct">
