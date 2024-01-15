@@ -10,7 +10,7 @@ export default function DetailProductSupplier(){
         <>
             <HeaderSupplier/>
             <BodyDetailProductSupplierCover/>
-            <Link to={"#"}>
+            <Link to={"/add"}>
                 <button className={"add-product-supplier"}>
                     + Thêm mới sản phẩm
                 </button>

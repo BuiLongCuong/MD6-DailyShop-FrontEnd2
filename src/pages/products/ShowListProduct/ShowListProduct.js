@@ -59,46 +59,60 @@ export default function ShowListProduct() {
                     )
                 )
             }
-            <div className="content-product">
-                <div className="search">
-                    A
-                </div>
-                <div className="products">
-                    <div className="nav-bar-product">
-                        Nav bar
-                    </div>
-                    <div className="title-product">
-                        Titel
-                    </div>
-                    <div className="list-product">
-                        <div className="table-product">
-                            <div className="header-table">
-                                <div className="check-he center"><input type="checkbox"/></div>
-                                <div className="name-he center">Tên sản phẩm</div>
-                                <div className="cate-he center">Loại sản phẩm</div>
-                                <div className="price-he center">
-                                    Giá
-                                </div>
-                                <div className="quantity-he center"> Kho hàng</div>
-                                <div className="action center">Thao tác</div>
+            {
+                listProducts && listProducts.map((products) =>(
+                    <>
+                        <div className="content-product">
+                            <div className="search">
+                                A
                             </div>
-                            <div className="main-table">
-                                <div className="check-he ma"><input type="checkbox"/></div>
-                                <div className="name-he name-ma ma">
-                                    <img src="https://icdn.24h.com.vn/upload/3-2023/images/2023-07-09/Than-hinh-muot-muon-muot-cua-gai-xinh-xu-Han-co-trieu-fan-han-kyung-1688907525-217-width1440height1728.jpeg" alt=""/>
-                                    <div className="name-p">Quần áo trẻ em</div>
+                            <div className="products">
+                                <div className="nav-bar-product">
+                                    Nav bar
                                 </div>
-                                <div className="cate-he ma">Quần áo</div>
-                                <div className="price-he ma">
-                                    100.000
+                                <div className="title-product">
+                                    Titel
                                 </div>
-                                <div className="quantity-he ma">1</div>
-                                <div className="action ma">Thao tác</div>
+                                <div className="list-product">
+                                    <div className="table-product">
+                                        <div className="header-table">
+                                            <div className="check-he center"><input type="checkbox"/></div>
+                                            <div className="name-he center">Tên sản phẩm</div>
+                                            <div className="cate-he center">Loại sản phẩm</div>
+                                            <div className="price-he center">
+                                                Giá
+                                            </div>
+                                            <div className="quantity-he center"> Kho hàng</div>
+                                            <div className="action center">Thao tác</div>
+                                        </div>
+                                        <div className="main-table">
+                                            <div className="check-he ma"><input type="checkbox"/></div>
+                                            <div className="name-he name-ma ma">
+                                                <img
+                                                    src= {products.photo[0].photoName}
+                                                    alt=""/>
+                                                <div className="name-p">{products.productName}</div>
+                                            </div>
+                                            <div className="cate-he ma">{products.category.name}</div>
+                                            <div className="price-he ma">
+                                               $ {products.price}
+                                            </div>
+                                            <div className="quantity-he ma">{products.stockQuantity}</div>
+                                            <div className="action ma">
+                                                <Link to={"/add"}>Thêm sản phẩm</Link>
+                                                <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
+                                                <Link to={"/supplier/products/detail/" + products.productID}>Xem chi tiết</Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </>
+
+                ))
+            }
+
         </>
     )
 }
