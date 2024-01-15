@@ -91,7 +91,7 @@ export default function MainBodyAboveDetailProductSupplier() {
                                         Trang chủ
                                     </button>
                                 </Link>
-                                <Link to={"/edit/" + products.productID}>
+                                <Link to={"/edit/" + product?.productID}>
                                     <button type="button" className="btn">Chinh sua</button>
                                 </Link>
                             </div>

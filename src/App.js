@@ -28,7 +28,6 @@ function App() {
           <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
           <Route path={"supplier/products"} element={<ListProduct/>}/>
           <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-          <Route path={"information"} element={<InformationCustomer/>}/>
           <Route path={"add"} element={<AddProduct/>}/>
           {/*<Route path={"update"} element={<UpdateProduct/>}/>*/}
           <Route path={"detail"} element={<DetailProductSupplier/>}/>
