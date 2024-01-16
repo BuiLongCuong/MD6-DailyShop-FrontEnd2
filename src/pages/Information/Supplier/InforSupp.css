@@ -1,329 +1,189 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+/*body {*/
+/*    background-color: #f6f6f6;*/
+/*}*/
+
 .headerInfo {
     height: 56px;
     /*background-color: #ee4d2d;*/
     display: flex;
     justify-content: space-between;
-    -webkit-box-shadow: 0px 5px 3px 0.5px rgba(199,189,199,1);
-    -moz-box-shadow: 0px 5px 3px 0.5px rgba(199,189,199,1);
-    box-shadow: 0px 5px 3px 0.5px rgba(199,189,199,1);
+    -webkit-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    -moz-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
 }
+
 .bodyInfo {
     display: flex;
-    justify-content: center;
     background-color: #f6f6f6;
+    min-height: 800px;
+    justify-content: center;
 }
 
 .headerInfo .left {
-    width: 440px;
-    height: 100%;
-    /*background-color: blue;*/
+    margin-left: 50px;
     display: flex;
-    justify-content: flex-start;
-    margin-left: 10px;
-}
-
-.headerInfo .right {
-    width: 180px;
-    height: 100%;
-    /*background-color: brown;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.headerInfo .left .logo {
-    width: 130px;
-    height: 100%;
-    background-color: black;
-}
-
-.headerInfo .left .logo img {
-    width: 100%;
-    height: 100%;
 }
 
 .headerInfo .left .title {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 
-.headerInfo .left .title .detail {
+.headerInfo .left .title p {
     font-weight: 500;
-    font-size: 20px;
-    color: #1d1d1d;
-    margin-top: 17px;
-}
-.headerInfo .right .account p {
-    font-weight: 400;
-    font-size: 16px;
-    color: #333333;
+    font-size: 18px;
+    line-height: 22px;
 }
 
-.headerInfo .right .account {
-    margin-top: 15px
-}
-
-.main3 .bodyInfo .contentInfo {
-    width: 1044px;
-    height: 474px;
-    background-color: #ffffff;
-    margin-top: 50px;
+.headerInfo .right {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    /*border: 1px solid black;*/
-    flex-direction: row;
-    -webkit-box-shadow: 0px 0px 3px 0.5px rgba(199,189,199,1);
-    -moz-box-shadow: 0px 0px 3px 0.5px rgba(199,189,199,1);
-    box-shadow: 0px 0px 3px 0.5px rgba(199,189,199,1);
+    align-items: flex-end;
 }
 
-.main3 .bodyInfo .contentInfo .infoDetails {
-    width: 644px;
-    height: 300px;
-    /*background-color: white;*/
-    /*border: 1px solid black;*/
-    margin-bottom: 25px;
-
-}
-
-
-.infoContactName {
-    display: flex;
-    flex-direction: row;
-    margin-left: 63px;
-    align-items: center;
-    border: none;
-}
-.infoContactName .noteContactName {
-    margin-right: 44px;
-    margin-top: 33px;
-    margin-left: -34px;
-}
-
-.infoContactName .nameContactName {
-    width: 383px;
-    height:30px;
-    margin-top: 20px;
-}
-
-.infoContactName .nameContactName input{
-    width: 100%;
-    height:100%;
-    padding-left: 12px;
-    border: 0.5px solid #dbdbdb;
-}
-
-
-.infoNameSupp {
-    display: flex;
-    flex-direction: row;
-    margin-left: 3px;
-    align-items: center;
-    border: none;
-    margin-bottom: 16px;
-}
-.infoNameSupp .noteNameSupp {
-    margin-right: 44px;
-    margin-top: 10px;
-}
-
-.infoNameSupp .nameSupp {
-    width: 383px;
-    height:30px;
-    margin-top: -5px;
-}
-
-.infoNameSupp .nameSupp input{
-    width: 100%;
-    height:100%;
-    padding-left: 12px;
-    border: 0.5px solid #dbdbdb;
-}
-
-
-.infoAddress {
-    display: flex;
-    flex-direction: row;
-    margin-left: 80px;
-    align-items: center;
-}
-.infoAddress .noteAddress {
-    margin-right: 10px;
-    margin-left: -68.5px;
-    /* margin-bottom: -32px; */
-    margin-top: -63px;
-}
-
-.infoAddress .address {
-    width: 383px;
-    height:30px;
-    margin-left: 82px;
-}
-
-.infoAddress .address input{
-    width: 100%;
-    height:100%;
-    padding-left: 12px;
-    border: 0.5px solid #dbdbdb;
-}
-
-
-.infoPhone {
-    display: flex;
-    flex-direction: row;
-    margin-left: 80px;
-    align-items: center;
-    margin-top: 30px;
-}
-.infoPhone .notePhone {
-    margin-right: 10px;
-    margin-left: -65px;
-    margin-bottom: -12px;
-}
-
-.infoPhone .phone {
-    width: 383px;
-    height:30px;
-    margin-left: 34px;
-}
-
-.infoPhone .phone input{
-    width: 100%;
-    height:100%;
-    padding-left: 12px;
-    border: 0.5px solid #dbdbdb;
-}
-
-
-
-.infoBirthday {
-    display: flex;
-    flex-direction: row;
-    margin-left: 80px;
-    align-items: center;
-    margin-top: 30px;
-}
-.infoBirthday .noteBirthday {
-    margin-right: 10px;
-    margin-left: -40px;
-    margin-bottom: -12px;
-}
-
-.infoBirthday .birthday {
-    width: 383px;
-    height:30px;
-    margin-left: 32.5px;
-}
-
-.infoBirthday .birthday input{
-    width: 100%;
-    height:100%;
-    padding-left: 12px;
-    border: 0.5px solid #dbdbdb;
-}
-
-input {
-    border-radius: 5px 5px 5px 5px;
-    border: 1px solid #dbdbdb;
-}
-
-
-.decision {
-    width: 644px;
-    height: 50px;
-    /*background-color: orangered;*/
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.decision .save {
-    width: 92px;
-    height: 38px;
-
-}
-
-.save button {
-    width: 100%;
-    height: 100%;
-    background-color: #ee4d2d;
-    border: 0.5px solid;
-    border-radius: 5px 5px 5px 5px;
+.headerInfo .right p {
     font-weight: 500;
-    font-size: 14px;
-    color: #ffffff;
+    font-size: 15px;
+    line-height: 22px;
 }
 
-.decision .cancel {
-    width: 72px;
-    height: 38px;
-    margin-right: 10px;
-}
-
-.cancel button {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px 5px 5px 5px;
-    font-weight: 500;
-    font-size: 14px;
+.contentInfo {
+    width: 1290px;
     background-color: white;
-    border: 0.5px solid #dbdbdb;
-}
-
-@keyframes changeColor {
-    0% {background-color: #ee4d2d}
-    50% {background-color: #f3826c}
-    100% {background-color: #ee4d2d}
-}
-
-.decision .save button:focus{
-    animation: changeColor 1s;
-}
-
-.addressDetail {
+    margin-top: 20px;
     display: flex;
-    flex-direction: row;
-    margin-left: 153px;
-    width: 381px;
+    height: 700px;
+    -webkit-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    -moz-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
 }
 
-
-
-.imageSupp {
-    height: 250px;
-    width: 250px;
-    /*background-color: #ee4d2d;*/
+.contentInfo .infoDetails {
+    width: 70%;
     display: flex;
-    /*justify-content: center;*/
-    margin-bottom: 45px;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.contentInfo .imageSupp {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoDetails .item {
+    display: flex;
+    padding: 20px;
+}
+
+.item .title {
+    width: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.item .input {
+    display: flex;
+    flex-grow: 1;
+    width: 450px;
+    height: 45px;
+}
+
+.item .input input {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px;
+}
+
+
+select {
+    border: 1px solid #dbdbdb;
+    width: 190px;
+    height: 42.5px;
+    border-radius: 5px 5px;
+}
+
+.select {
+    padding: 0 5px;
+}
+
+.input .select:first-child {
+    padding-left: 0;
 }
 
 .avatarOfSupp {
-    height: 170px;
-    width: 170px;
-    /*background-color: #1d1d1d;*/
-    margin-top: 20px;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
     border-radius: 50%;
-    border: 1px solid #dbdbdb;
+    border: 1px solid darkred;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.imageSupp .avatarOfSupp img{
-    width:100%;
-    height:100%;
+.avatarOfSupp img {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
 }
+
+.chooseAvtSupp input {
+    border: none;
+}
+
 .chooseAvtSupp {
-    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
 }
-.select1 select, .select2 select, .select3 select{
-    width: 176px;
-    margin-right: 5px;
+
+.input .cancel {
+    width: 120px;
+    height: 40px;
 }
+
+.input .cancel button {
+    width: 100%;
+    height: 100%;
+    background-color: #ee4d2d;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333333
+}
+
+.input .save {
+    width: 120px;
+    height: 40px;
+}
+
+.input .save button {
+    width: 100%;
+    height: 100%;
+    background-color: #ee4d2d;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.decision {
+    width: 308px;
+    display: flex;
+    justify-content: space-around;
+}
+
+Link {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+

@@ -13,8 +13,15 @@ import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
 import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
 import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
+import {useEffect} from "react";
+import {getCurrentSupplierDetails} from "./redux/service/supplierService";
+import {useDispatch} from "react-redux";
 
 function App() {
+    const dispatch =useDispatch()
+    // useEffect(() => {
+    //     dispatch(getCurrentSupplierDetails())
+    // }, []);
   return (
       <Routes>
         <Route path={'/'} element={<HomeSimple/>}>

@@ -17,7 +17,7 @@
 }
 
 .headerSignIn .navbar {
-    width: 1153px;
+    width: 1500px;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@
 }
 
 .left .user {
-    width: 200px;
+    width: 222px;
     height: 100%;
     display: flex;
     align-items: center;

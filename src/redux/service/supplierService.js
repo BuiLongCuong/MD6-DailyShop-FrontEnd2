@@ -17,7 +17,6 @@ export const editSupplier = createAsyncThunk(
     'supplier/editSupplier',
     async (supplierEdit) => {
         const res = await getAxios().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
-        console.log(res.data)
         return res.data;
     }
 )
@@ -26,6 +25,13 @@ export const findSupplierByAccountId = createAsyncThunk(
     'supplier/findByAccountId',
     async (id) => {
         const res = await getAxios().get("/suppliers/findByAccountId/" + id);
+        return res.data;
+    }
+)
+export const getCurrentSupplierDetails= createAsyncThunk(
+"CURRENT_SUPPLIER_DETAILS",
+    async () => {
+        const res = await getAxios().get("/suppliers/current");
         return res.data;
     }
 )
