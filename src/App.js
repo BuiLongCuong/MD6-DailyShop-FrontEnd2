@@ -35,7 +35,7 @@ function App() {
           <Route path={"edit/:id"} element={<UpdateProduct/>}/>
           <Route path={"detail"} element={<DetailProductSupplier/>}/>
         </Route>
-          <Route path={"home"} element={<HomeCustomer/>}/>
+          <Route path={"customer"} element={<HomeCustomer/>}/>
 
       </Routes>
   );
