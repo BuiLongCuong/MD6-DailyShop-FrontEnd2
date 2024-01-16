@@ -2,10 +2,10 @@ import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {getAxios} from "./axios/getAxios";
 
-export const getAll = createAsyncThunk(
-    'products/getAll',
+export const getAllProductWithoutLogin = createAsyncThunk(
+    'products/getAllProductWithoutLogin',
     async () => {
-        let res = await getAxios().get("/suppliers/getAllProduct");
+        let res = await getAxios().get("/getAllProduct");
         return res.data;
     }
 )
