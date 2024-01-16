@@ -1,0 +1,9 @@
+.show-list-product-customer{
+    width: 100%;
+    height: calc(100% - 70px);
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    margin-top: 5px;
+}
