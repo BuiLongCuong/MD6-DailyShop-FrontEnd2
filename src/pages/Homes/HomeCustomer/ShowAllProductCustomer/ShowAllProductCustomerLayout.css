@@ -13,4 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /*position: sticky;*/
+    /*top: 120px;*/
+    /*z-index: 101;*/
 }

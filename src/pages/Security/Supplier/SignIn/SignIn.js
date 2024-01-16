@@ -47,7 +47,7 @@ export default function SignIn() {
                 if (currentSupplier.checkProfile === false) {
                     navigate("/informationSupp");
                 } else {
-                    navigate("/supplier")
+                    navigate("/supplier/products")
                 }
             }
         }else {

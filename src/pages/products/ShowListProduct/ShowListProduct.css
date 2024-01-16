@@ -3,11 +3,13 @@
 }
 
 .content-product .search {
-    height: 190px;
+    height: 100px;
     background-color: white;
     -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    display: flex;
+    justify-content: center;
 }
 
 .content-product .products {
@@ -38,7 +40,9 @@
 
 .check-he {
     width: 5%;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .name-he {
@@ -64,9 +68,9 @@
 }
 
 .center {
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
-    padding-top: 20px;
-    padding-left: 5px;
     font-size: 16px;
     line-height: 24px;
     color: #595d62;
@@ -115,5 +119,20 @@
     height: 32px;
 }
 
+.search {
+
+}
+.iconSearch {
+    width: 100px;
+    height: 40px;
+}
+.search .iconSearch input{
+    border-radius: 5px 5px 5px 5px !important;
+}
+.iconSearch button {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dbdbdb;
+}
 
 

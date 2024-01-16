@@ -2,13 +2,21 @@ import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {getAxios} from "./axios/getAxios";
 
-export const getAll = createAsyncThunk(
-    'products/getAll',
+export const getAllProductWithoutLogin = createAsyncThunk(
+    'products/getAllProductWithoutLogin',
+    async () => {
+        let res = await getAxios().get("/getAllProduct");
+        return res.data;
+    }
+)
+export const getAllProduct = createAsyncThunk(
+    'products/getAllProduct',
     async () => {
         let res = await getAxios().get("/customer/getAllProduct");
         return res.data;
     }
 )
+
 export const getProductById = createAsyncThunk(
     'products/getProductById',
     async (idProduct) =>{
@@ -21,14 +29,6 @@ export const getAllByIdUser = createAsyncThunk(
     async (id) => {
         let res = await getAxios().get("/suppliers/getProductByAccountId/" + id)
         return res.data
-    }
-)
-
-export const getAllWithoutLogin = createAsyncThunk(
-    'products/getAllWithoutLogin',
-    async () => {
-        let res = await getAxios().get("/getAllProduct");
-        return res.data;
     }
 )
 

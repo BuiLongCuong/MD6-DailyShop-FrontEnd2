@@ -3,21 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getAllByIdUser} from "../../../redux/service/productService";
 import Card from "react-bootstrap/Card";
-
-import * as React from 'react';
+import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-// import Button from "react-bootstrap/Button";
-// import EditIcon from "@mui/icons-material/Edit";
-// import DeleteIcon from "@mui/icons-material/Delete";
-// import {DataGrid} from "@mui/x-data-grid";
-// import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export default function ShowListProduct() {
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
-        console.log(products.listByAccountId)
-        return products.listByAccountId
+        return products.list
     })
     useEffect(() => {
         dispatch(getAllByIdUser(currentSupplier.id))
@@ -25,9 +18,9 @@ export default function ShowListProduct() {
 
     return (
         <>
-            {/*{*/}
-            {/*    listProducts && listProducts.map((products) => (*/}
-            {/*            <>*/}
+            {
+                listProducts && listProducts.map((products) => (
+                        <>
                             {/*/!*<div className="display-content-showListProduct">*!/*/}
                             {/*/!*    <div className="card-image-product">*!/*/}
                             {/*        <Card >*/}
@@ -61,17 +54,23 @@ export default function ShowListProduct() {
                             {/*    /!*</div>*!/*/}
                             {/*</div>*/}
 
-            {/*            </>*/}
-            {/*        )*/}
-            {/*    )*/}
-            {/*}*/}
+                        </>
+                    )
+                )
+            }
 
 
 
                         <div className="content-product">
                             <div className="search">
-                                A
+                                <div className="inputSearch">
+                                    <input type="text"/>
+                                </div>
+                                <div className="iconSearch">
+                                    <button><i className="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
                             </div>
+
                             <div className="products">
                                 <div className="nav-bar-product">
                                     <Link to={"/add"}>
@@ -81,7 +80,7 @@ export default function ShowListProduct() {
                                     </Link>
                                 </div>
                                 <div className="title-product">
-                                    1 sản phẩm
+                                    Tất cả các sản phẩm: {listProducts.length}
                                 </div>
                                 <div className="list-product">
                                     <div className="table-product">

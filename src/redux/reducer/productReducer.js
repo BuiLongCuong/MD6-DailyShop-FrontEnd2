@@ -2,8 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     add,
     Delete,
-    getAll,
-    getAllByIdUser, getAllWithoutLogin,
+
+    getAllByIdUser, getAllProduct, getAllProductWithoutLogin,
     getProductById,
     search,
     updateForm,
@@ -12,8 +12,6 @@ import {
 
 const initialState = {
     list: [],
-    listWithoutLogin: [],
-    listByAccountId: [],
     productEdit:{
 
     }
@@ -23,17 +21,18 @@ const productSlice = createSlice({
     name: 'products',
     initialState,
     extraReducers: builder => {
-        builder.addCase(getAll.fulfilled,(state,{payload}) =>{
-            state.list = payload;
+
+        builder.addCase(getAllProductWithoutLogin.fulfilled,(state,{payload}) => {
+            state.list = payload ;
         })
-        builder.addCase(getAllWithoutLogin.fulfilled,(state,{payload}) =>{
-            state.listWithoutLogin = payload;
+        builder.addCase(getAllProduct.fulfilled,(state,{payload}) =>{
+            state.list = payload;
         })
         builder.addCase(getProductById.fulfilled,(state,{payload}) =>{
             state.productEdit = payload;
         })
         builder.addCase(getAllByIdUser.fulfilled, (state, {payload}) => {
-            state.listByAccountId = payload;
+            state.list = payload;
         })
         builder.addCase(add.fulfilled, (state, {payload}) => {
             console.log(payload)

@@ -12,9 +12,17 @@ import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
 import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
 import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
+import {useEffect} from "react";
+import {getCurrentSupplierDetails} from "./redux/service/supplierService";
+import {useDispatch} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
+import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 
 function App() {
+    const dispatch =useDispatch()
+    // useEffect(() => {
+    //     dispatch(getCurrentSupplierDetails())
+    // }, []);
   return (
       <Routes>
         <Route path={'/'} element={<HomeSimple/>}>
@@ -28,16 +36,18 @@ function App() {
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
 
 
-        <Route path={"supplier"} element={<HomeSupplier/>}>
-          <Route path={"products"} element={<ShowListProduct/>}/>
-          <Route path={"add"} element={<AddProduct/>}/>
-          <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-          <Route path={"detail"} element={<DetailProductSupplier/>}/>
-        </Route>
-          <Route path={"customer"} element={<HomeCustomer/>}/>
+            <Route path={"supplier"} element={<HomeSupplier/>}>
+                <Route path={"products"} element={<ShowListProduct/>}/>
+                <Route path={"add"} element={<AddProduct/>}/>
+                <Route path={"edit/:id"} element={<UpdateProduct/>}/>
+                <Route path={"detail"} element={<DetailProductSupplier/>}/>
+            </Route>
+            <Route path={"customer"} element={<HomeCustomer/>}/>
+            <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
 
-      </Routes>
-  );
+
+        </Routes>
+    );
 }
 
 export default App;

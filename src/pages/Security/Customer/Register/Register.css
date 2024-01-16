@@ -197,7 +197,7 @@
 input {
     height: 40px;
     width: 310px;
-    padding-left: 20px;
+    padding: 0 20px;
     border: 1px solid #dbdbdb;
 }
 
@@ -345,7 +345,7 @@ input {
 }
 
 .headerRegister .headerDetail {
-    width: 1153px;
+    width: 1500px;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -489,7 +489,7 @@ input {
 .row2 .confirmPassword input {
     height: 40px;
     width: 310px;
-    padding-left: 20px;
+    padding: 0 20px;
 }
 
 .buttonRegister {
