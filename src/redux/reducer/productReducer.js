@@ -3,7 +3,7 @@ import {
     add,
     Delete,
     getAll,
-    getAllByIdUser,
+    getAllByIdUser, getAllProduct,
     getProductById,
     search,
     updateForm,
@@ -23,6 +23,9 @@ const productSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(getAll.fulfilled,(state,{payload}) =>{
             state.list = payload;
+        })
+        builder.addCase(getAllProduct.fulfilled,(state,{payload}) =>{
+            state.productEdit = payload;
         })
         builder.addCase(getProductById.fulfilled,(state,{payload}) =>{
             state.productEdit = payload;
