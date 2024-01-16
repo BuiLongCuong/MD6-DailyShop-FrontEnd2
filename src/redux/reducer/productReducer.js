@@ -3,7 +3,7 @@ import {
     add,
     Delete,
     getAll,
-    getAllByIdUser,
+    getAllByIdUser, getAllWithoutLogin,
     getProductById,
     search,
     updateForm,
@@ -12,6 +12,7 @@ import {
 
 const initialState = {
     list: [],
+    listWithoutLogin: [],
     listByAccountId: [],
     productEdit:{
 
@@ -24,6 +25,9 @@ const productSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(getAll.fulfilled,(state,{payload}) =>{
             state.list = payload;
+        })
+        builder.addCase(getAllWithoutLogin.fulfilled,(state,{payload}) =>{
+            state.listWithoutLogin = payload;
         })
         builder.addCase(getProductById.fulfilled,(state,{payload}) =>{
             state.productEdit = payload;

@@ -5,7 +5,7 @@ import {getAxios} from "./axios/getAxios";
 export const getAll = createAsyncThunk(
     'products/getAll',
     async () => {
-        let res = await getAxios().get("/suppliers/getAllProduct");
+        let res = await getAxios().get("/customer/getAllProduct");
         return res.data;
     }
 )
@@ -21,6 +21,14 @@ export const getAllByIdUser = createAsyncThunk(
     async (id) => {
         let res = await getAxios().get("/suppliers/getProductByAccountId/" + id)
         return res.data
+    }
+)
+
+export const getAllWithoutLogin = createAsyncThunk(
+    'products/getAllWithoutLogin',
+    async () => {
+        let res = await getAxios().get("/getAllProduct");
+        return res.data;
     }
 )
 

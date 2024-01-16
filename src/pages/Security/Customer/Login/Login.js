@@ -43,7 +43,7 @@ export default function Login() {
                 if(currentCustomer.checkProfile === false) {
                     navigate("/informationCus")
                 }else {
-                    navigate("/supplier")
+                    navigate("/customer")
                     // console.log("Chuyển đến giao diện của người dùng")
                 }
             }
