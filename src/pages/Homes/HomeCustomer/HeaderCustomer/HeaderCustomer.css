@@ -86,8 +86,7 @@
 
     li:last-child {
         cursor: pointer;
-        margin-left: 10px;
-
+        margin-left: -20px;
         span {
             font-size: 13px;
             margin-left: 5px;
@@ -98,7 +97,15 @@
 
 }
 
+.acc {
+    display: flex;
+    justify-content: center;
+}
 
+li button {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
+}
 
 .main-header-customer {
     width: 100%;

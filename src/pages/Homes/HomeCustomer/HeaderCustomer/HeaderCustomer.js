@@ -8,8 +8,21 @@ import {FiShoppingCart} from "react-icons/fi";
 import {Link} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentCustomerDetails} from "../../../../redux/service/customerService";
 
 export default function HeaderCustomer() {
+    const dispatch = useDispatch()
+    const customer = useSelector(state => state.customer.currentCustomerDetails)
+
+    const logOut = () => {
+        localStorage.clear()
+    }
+
+    useEffect(() => {
+        dispatch(getCurrentCustomerDetails())
+    }, []);
     return (
         <>
             <>
@@ -30,11 +43,18 @@ export default function HeaderCustomer() {
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
                                     <li><Link to={"#"}><FaInstagram/></Link></li>
                                     <li><Link to={"#"}><FaXTwitter/></Link></li>
+                                    <div className="acc">
                                     <li><Link to={"#"}><FaRegUser/></Link></li>
                                     {/*<li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>*/}
-                                    <li><span><Link to={"/login"}>UserName</Link></span></li>
-
-
+                                    <li><span><Link to={"/login"}>
+                                        {
+                                            customer.customerName
+                                        }
+                                    </Link></span></li>
+                                    </div>
+                                    <li><Link to={"/login"}>
+                                        <button onClick={logOut}>Log out</button></Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

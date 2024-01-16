@@ -10,12 +10,12 @@ export default function ShowListProduct() {
     const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
-        console.log(products.list)
         return products.list
     })
     useEffect(() => {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
+
 
     return (
         <>
@@ -64,8 +64,14 @@ export default function ShowListProduct() {
 
                         <div className="content-product">
                             <div className="search">
-                                A
+                                <div className="inputSearch">
+                                    <input type="text"/>
+                                </div>
+                                <div className="iconSearch">
+                                    <button><i className="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
                             </div>
+
                             <div className="products">
                                 <div className="nav-bar-product">
                                     <Link to={"/add"}>
@@ -75,7 +81,7 @@ export default function ShowListProduct() {
                                     </Link>
                                 </div>
                                 <div className="title-product">
-                                    1 sản phẩm
+                                    Tất cả các sản phẩm: {listProducts.length}
                                 </div>
                                 <div className="list-product">
                                     <div className="table-product">

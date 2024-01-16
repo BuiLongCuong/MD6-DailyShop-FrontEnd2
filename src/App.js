@@ -13,21 +13,28 @@ import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
 import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
 import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
+import {useEffect} from "react";
+import {getCurrentSupplierDetails} from "./redux/service/supplierService";
+import {useDispatch} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 
 function App() {
-    return (
-        <Routes>
-            <Route path={'/'} element={<HomeSimple/>}>
-            </Route>
-            <Route path={"login"} element={<Login/>}/>
-            <Route path={"register"} element={<Register/>}/>
-            <Route path={"signIn"} element={<SignIn/>}/>
-            <Route path={"signUp"} element={<SignUp/>}/>
-            <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
-            <Route path={"informationCus"} element={<InformationCustomer/>}/>
-            <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+    const dispatch =useDispatch()
+    // useEffect(() => {
+    //     dispatch(getCurrentSupplierDetails())
+    // }, []);
+  return (
+      <Routes>
+        <Route path={'/'} element={<HomeSimple/>}>
+        </Route>
+          <Route path={"login"} element={<Login/>}/>
+          <Route path={"register"} element={<Register/>}/>
+          <Route path={"signIn"} element={<SignIn/>}/>
+          <Route path={"signUp"} element={<SignUp/>}/>
+          <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
+          <Route path={"informationCus"} element={<InformationCustomer/>}/>
+          <Route path={"informationSupp"} element={<InformationSupplier/>}/>
 
 
             <Route path={"supplier"} element={<HomeSupplier/>}>
