@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {editSupplier, findSupplierByAccountId, getCurrentSupplierDetails} from "../../../redux/service/supplierService";
+import {editSupplier, getCurrentSupplierDetails} from "../../../redux/service/supplierService";
 import {Field, Form, Formik} from "formik";
 import './InforSupp.css'
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
@@ -17,12 +17,12 @@ export function InformationSupplier() {
     // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier = useSelector(state => state.supplier.currentSupplierDetails)
     const [photo, setPhoto] = useState("");
-    console.log(photo)
-    const provinces = useSelector(state => {
-        return state.address.listProvince
-    });
+
+
+    const provinces = useSelector(state => {return state.address.listProvince});
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
+
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
 
     useEffect(() => {
@@ -210,14 +210,6 @@ export function InformationSupplier() {
                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}
-
-                                            {/*{*/}
-                                            {/*    photo.map((p, index) => (*/}
-                                            {/*        <div key={index} className="imageContainer">*/}
-                                            {/*            <img src={p.photoName} alt="" style={{border: "50%"}}/>*/}
-                                            {/*        </div>*/}
-                                            {/*    ))*/}
-                                            {/*}*/}
                                         </div>
                                         <div className="chooseAvtSupp">
                                             <input

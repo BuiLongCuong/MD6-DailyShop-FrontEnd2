@@ -1,8 +1,9 @@
 import {Field, Form, Formik} from "formik";
+import {useNavigate} from "react-router-dom";
 import './InforCus.css'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editCustomer, findCustomerByAccountId} from "../../../redux/service/customerService";
+import {editCustomer, getCurrentCustomerDetails} from "../../../redux/service/customerService";
 import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../../firebase/firebase";
@@ -11,20 +12,19 @@ import {v4} from "uuid";
 
 export function InformationCustomer() {
     const dispatch = useDispatch()
-    const navigate = useDispatch();
+    const navigate = useNavigate();
 
-    const customer = useSelector(state => state.customer)
+    const customer = useSelector(state => state.customer.currentCustomerDetails)
+    const [image, setImage] = useState("");
 
-    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
 
-    const provinces = useSelector(state => {
-        return state.address.listProvince
-    });
+    const provinces = useSelector(state => {return state.address.listProvince});
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
     useEffect(() => {
-        dispatch(findCustomerByAccountId(currentCustomer.id))
+        dispatch(getCurrentCustomerDetails())
     }, []);
 
     useEffect(() => {
@@ -42,14 +42,15 @@ export function InformationCustomer() {
     }
 
     const EditCustomer = (values) => {
-        values.account = currentCustomer
+        values.account = currentCustomer;
+        values.imageCustomer = image;
         dispatch(editCustomer(values)).then (() => {
-            navigate("/supplier")
+            navigate("/customer")
             console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
         })
     }
 
-    const [photo, setPhoto] = useState([]);
+
 
     const handleChange2 = (e) => {
         const file = e.target.files[0];
@@ -57,7 +58,7 @@ export function InformationCustomer() {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
             uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhoto([{photoName: url}]);
+                    setImage(url);
                 });
             });
         }
@@ -100,7 +101,7 @@ export function InformationCustomer() {
                                         <div className="item">
                                             <div className={"title"}>Họ và tên:</div>
                                             <div className="input">
-                                                <Field type="text" name="contactName" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="text" name="customerName" placeholder={"Nhập họ và tên"}/>
                                             </div>
                                         </div>
                                         <div className="item">
@@ -202,30 +203,19 @@ export function InformationCustomer() {
                                 <div className="imageSupp">
                                     <div>
                                         <div className="avatarOfSupp">
-
-                                            {currentCustomer.imageCustomer ? (
-                                                photo.map((p, index) => (
-                                                    <div key={index} className="imageContainer">
-                                                        <img src={p.photoName} alt="" style={{border: "50%"}}/>
-                                                    </div>
-                                                ))
+                                            {(image) ? (
+                                                <div className="imageContainer">
+                                                    <img src={image ?? ''} alt="" style={{border: "50%"}}/>
+                                                </div>
                                             ) : (
-                                                <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"} alt="Default Avatar" style={{border: "50%"}} />
+                                                <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
+                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}
-
-                                            {/*{*/}
-                                            {/*    photo.map((p, index) => (*/}
-                                            {/*        <div key={index} className="imageContainer">*/}
-                                            {/*            <img src={p.photoName} alt="" style={{border: "50%"}}/>*/}
-                                            {/*        </div>*/}
-                                            {/*    ))*/}
-                                            {/*}*/}
                                         </div>
                                         <div className="chooseAvtSupp">
-                                            <Field
-                                                nameClass="choose"
-                                                name="imageSupplier"
+                                            <input
+                                                name="imageCustomer"
                                                 type="file"
                                                 multiple
                                                 onChange={handleChange2}

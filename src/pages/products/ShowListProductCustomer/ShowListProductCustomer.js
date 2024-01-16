@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {getAllProduct} from "../../../redux/service/productService";
 export default function ShowListProductCustomer(){
-    const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
         console.log(products.list)
@@ -13,6 +13,8 @@ export default function ShowListProductCustomer(){
     useEffect(() => {
         dispatch(getAllProduct(currentCustomer.id))
     }, []);
+
+
     return(
         <>
 
