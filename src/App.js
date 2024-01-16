@@ -14,6 +14,7 @@ import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
 import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
+import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 
 function App() {
     return (
@@ -36,6 +37,8 @@ function App() {
                 <Route path={"detail"} element={<DetailProductSupplier/>}/>
             </Route>
             <Route path={"customer"} element={<HomeCustomer/>}/>
+            <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
+
 
         </Routes>
     );

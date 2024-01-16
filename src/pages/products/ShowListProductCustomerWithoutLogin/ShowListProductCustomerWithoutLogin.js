@@ -14,40 +14,39 @@ export default function ShowListProductCustomerWithoutLogin(){
     }, []);
     return(
         <>
-            <div className="show-list-product-customer">
+            <div className="show-list-product-customer-without-login">
                 {listProducts && listProducts.map((products) => (
                         <>
+                            {/*<Link to={"/customer/products/detail/" + products.productID}>*/}
+                                <Link to={"/customer/products/detail/" + products.productID} className="card-detail-show-product-cover-without-login">
+                                    <div className="card-detail-show-product-without-login">
+                                        <div className="card-detail-show-product-image-without-login">
+                                            <img
+                                                src={products.photo[0].photoName}
+                                                alt=""/>
+                                        </div>
+                                        <div className="card-detail-show-product-info-without-login">
+                                            <div className="card-detail-show-product-name-without-login">
+                                                {products.productName}, {products.category.name}
+                                            </div>
+                                            <div className="card-detail-show-product-blank-without-login">
 
-                            <div className="card-detail-show-product-cover">
-                                <div className="card-detail-show-product">
-                                    <div className="card-detail-show-product-image">
-                                        <img
-                                            src={products.photo[0].photoName}
-                                            alt=""/>
+                                            </div>
+                                            <div className="card-detail-show-product-price-without-login">
+                                                <span style={{color: "red"}}>Giá : $ {products.price}</span>
+                                            </div>
+
+
+                                        </div>
                                     </div>
-                                    <div className="card-detail-show-product-info">
-                                        <div className="card-detail-show-product-name">
-                                            {products.category.name}, {products.category.name}
-                                        </div>
-                                        <div className="card-detail-show-product-blank">
-
-                                        </div>
-                                        <div className="card-detail-show-product-price">
-                                            $ {products.price}
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
+                                </Link>
+                            {/*</Link>*/}
 
 
                         </>
                     )
                 )}
             </div>
-
-
 
 
         </>
