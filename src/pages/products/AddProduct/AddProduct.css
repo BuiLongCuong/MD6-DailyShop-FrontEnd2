@@ -3,162 +3,131 @@
     margin: 0;
 }
 
-/*.mainAddPr {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-
-/*}*/
-
-.headerAddPr {
-    height: 83px;
-    width: 100%;
+.mainAddPr {
+    height: 100%;
     display: flex;
     justify-content: center;
-    -webkit-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
-    -moz-box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
-    box-shadow: 0 7px 5px 0 rgb(242, 242, 242);
+    align-items: center;
+
 }
 
-.headerAddPr .headerDetailAddPr {
-    width: 1153px;
+.body-add {
+    width: 950px;
+    height: 700px;
+    display: flex;
+}
+
+.form-image {
+    width: 50%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.form-input {
+    width: 50%;
     height: 100%;
     display: flex;
-    justify-content: space-between;
-}
-
-.headerAddPr .headerDetailAddPr .leftHeader {
-    height: 100%;
-    width: 190px;
-    display: flex;
-    justify-items: center;
-    margin-left: -130px;
-}
-
-.headerAddPr .headerDetailAddPr .leftHeader .logoHeader {
-    height: 100%;
-    width: 220px;
-    /*background-color: crimson;*/
-}
-
-.headerAddPr .headerDetailAddPr .leftHeader .logoHeader img {
-    height: 100%;
-    width: 133px;
-}
-
-.headerAddPr .headerDetailAddPr .leftHeader .titleAdd p{
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 30px;
-    color: #222222;
-    margin-top: 30px;
-    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
-    width: 230px;
-}
-
-
-.frame {
-    width: 1258px;
-    height: 513px;
-    /*background-color: #ee4d2d;*/
-    display: flex;
-    flex-direction: row;
-    margin-top: 45px;
-    margin-left: 135px;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
-}
-
-.image {
-    width: 841px;
-    height:100%;
-    /*background-color: #0055aa;*/
-    border-right: 1px solid #dbdbdb;
-}
-
-.infoProduct {
-    width: 535px;
-    height: 100%;
-    /*background-color: cadetblue;*/
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.nameProduct {
-    margin-top: 20px;
-}
-
-.descriptionProduct {
-    margin-top: 10px;
-    margin-left: 40px;
-}
-.priceProduct {
-    margin-top: 10px;
-}
-.quantityProduct {
-    /*margin-top: 2px;*/
-}
-.categoryProduct {
-    margin-top: -8px;
-    width: 328px;
-    height: 38.4px;
-    margin-left: 20px;
-}
-
-.addProduct {
-    width: 395px;
-    height: 45px;
-    margin-top: 25px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.addProduct .add button{
-    width: 190px;
-    height: 100%;
-    border-radius: 5px 5px 5px 5px;
-    border: 1px solid #dbdbdb;
-    background-color: #e7403a;
-    color: white;
-}
-
-.addProduct .cancel button{
-    width: 190px;
-    height: 100%;
-    border-radius: 5px 5px 5px 5px;
-    border: 1px solid #dbdbdb;
-    background-color: wheat;
-    color: black;
-}
-
-textarea {
-    overflow: auto;
-    resize: vertical;
-    padding-left: 20px;
-    border-radius: 5px 5px 5px 5px;
-}
-
-.contentProduct {
+.file {
     width: 100%;
-    height: 100%;
+    height: 10%;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    padding-left: 28px;
+    object-fit: cover;
+    overflow: hidden;
+    padding-top: 20px;
 }
 
-/*.descriptionDetail {*/
-/*    margin-left: 10px;*/
-/*}*/
+.select-category {
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #d3d1d1;
+}
 
+.upload {
+    width: 330px;
+    object-fit: cover;
+    border: 0;
+}
 
 .imageContainer {
     position: relative;
     display: inline-block;
     margin: 7px;
+    overflow: hidden;
 }
 
-.deleteButton {
+.list-image {
+    padding-top: 20px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .14);
+
+}
+
+.img {
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.infoProducts {
+    height: 600px;
+    width: 335px;
+}
+
+.name-product {
+    height: 88px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.description-product {
+    height: 88px;
+    width: 100%;
+    padding-top: 27px;
+    border-radius: 2px;
+
+}
+
+.price-product {
+    height: 88px;
+    width: 100%;
+    padding-top: 64px;
+}
+
+
+.create-product {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 120px;
+}
+
+.add {
+    width: 330px;
+    height: 60px;
+    padding-top: 5px;
+}
+
+.delete-Button {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -175,58 +144,83 @@ textarea {
     font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;;
 }
 
-.imageContainer:hover .deleteButton {
+.imageContainer:hover .delete-Button {
     display: block;
 }
 
-.chooseImage {
-    border: none;
+.save {
+    width: 310px;
+    height: 45px;
+    background-color: red;
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    padding-top: 2px;
 }
 
-.choose {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-textarea {
-    border: 1px solid #dbdbdb;
+.label {
+    width: 330px;
+    height: 24px;
 }
 
-.validatePrice p{
-    font-size: 12px;
+.productName {
+    width: 330px;
+    height: 64px;
 }
 
-.validateQuantity p{
-    font-size: 12px;
+.label-des {
+    width: 330px;
+    height: 24px;
 }
 
-.validateNamePro p{
-    font-size: 12px;
+.description {
+    width: 330px;
+    height: 64px;
 }
 
-.validateDescription p{
-    font-size: 12px;
-}
-
-.validatePrice {
-    height: 15px;
-}
-
-.validateQuantity {
-    height: 15px;
-}
-.priceDetail {
-    height: 57px;
-}
-.quantityDetail {
-    height: 65px;
-}
-.nameDetail {
-    height: 48px;
-}
-.descriptionProduct {
-    height: 112px;
+.textarea {
+    width: 310px;
+    padding: 5px;
+    padding-left: 20px;
+    border: 1px solid #d3d1d1;
 }
 
 
+.label-price {
+    width: 330px;
+    height: 24px;
+}
+
+.price {
+    width: 330px;
+    height: 64px;
+}
+
+.quantity-product {
+    height: 88px;
+    width: 100%;
+    padding-top: 80px;
+
+}
+
+.label-quantity {
+    width: 330px;
+    height: 24px;
+}
+
+.quantity {
+    width: 330px;
+    height: 64px;
+}
+
+.category-product {
+    height: 80px;
+    width: 100%;
+    padding-top: 95px;
+
+}
+
+.label-category {
+    width: 330px;
+    height: 24px;
+}

@@ -37,13 +37,10 @@ export function UpdateProduct() {
     });
 
     useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(getAllCategories());
-            await dispatch(updateForm(id));
-            setPhotoUpload(product.photo);
-        };
-
-        fetchData();
+        dispatch(getAllCategories());
+        dispatch(updateForm(id)).then(({payload}) => {
+            setPhotoUpload(payload.photo);
+        });
     }, []);
 
     const Update = (values) => {
@@ -65,7 +62,7 @@ export function UpdateProduct() {
             const photoRef = ref(storage, `image/${file.name + v4()}`)
             uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhotoUpload((prev) => [...prev, {photoName: url}]);
+                    setPhotoUpload((state) => [...state, {photoName: url}]);
                 });
             });
         }
@@ -79,141 +76,93 @@ export function UpdateProduct() {
 
     return (
         <>
+
             <div className="mainAddPr">
-                <div className="headerAddPr">
-                    <div className="headerDetailAddPr">
-                        <div className="leftHeader">
-                            <div className="logoHeader">
-                                <img src="/images/img_8.png"
-                                     alt=""/>
-                            </div>
-                            <div className="titleAdd">
-                                <p>Thêm mới sản phẩm</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <Formik initialValues={
-                    product
-                } onSubmit={Update}
+                <Formik initialValues={product} onSubmit={Update}
                         validationSchema={updateSchema}
-                        enableReinitialize={true}
-                >
+                        enableReinitialize={true}>
                     <Form>
+                        <div className="body-add">
+                            <div className="form-image">
 
-                        {
-                            photoUpload && photoUpload.length < 6 && (
-                                <div className="imageContainer">
-                                    <Field
-                                        nameClass="choose"
-                                        name="photo.photoName"
-                                        type="file"
-                                        multiple
-                                        onChange={handleChange}
-                                        placeholder="Enter Photo"
-                                    />
+                                <div className="list-image">
+                                    <div className="img">
+                                        {
+                                            photoUpload && photoUpload.map((p, index) => (
+                                                <div key={index} className={"imageContainer"}>
+                                                    <img src={p.photoName} style={{width: "128px", height: "130px"}}
+                                                         alt=""/>
+                                                    <button className={"delete-Button"} type={"button"} onClick={() => {
+                                                        handleDeleteImage(index)
+                                                    }}>X
+                                                    </button>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
-                            )
-                        }
-                        <div className="frame">
-                            <div className="image">
-                                {/*<Field nameClass={"chooseImage"} name={"photo.photoName"} type={"file"} multiple onChange={handleChange}*/}
-                                {/*       placeholder={" Enter Photo"}/>*/}
-                                {/*{*/}
-                                {/*    photo.map(p => (*/}
-                                {/*        <>*/}
-                                {/*            <img src={p.photoName} alt="" style={{width: "150px", height: "150px"}}/>*/}
-                                {/*        </>*/}
-                                {/*    ))*/}
-                                {/*}*/}
-
-                                <div className="listImage">
-                                    {
-                                        photoUpload && photoUpload.map((p, index) => (
-                                            <div key={index} className="imageContainer">
-                                                <img src={p.photoName} alt=""
-                                                     style={{width: "242px", height: "242px"}}/>
-                                                <button type={"button"} className="deleteButton"
-                                                        onClick={() => handleDeleteImage(index)}>X
-                                                </button>
-                                            </div>
-                                        ))
-                                    }
+                                <div className="file">
+                                    <Field type={"file"} className={"upload"} multiple name={"photo.photoName"}
+                                           onChange={handleChange}/>
                                 </div>
-
                             </div>
-                            <div className="infoProduct">
-                                <div className="contentProduct">
-                                    <div className="nameProduct">
-                                        <div className="label1">
-                                            Nhập tên :
-                                        </div>
-                                        <div className="nameDetail">
-                                            <Field name={"productName"} placeholder={"Tên sản phẩm"}/>
-                                            <div className="validateNamePro">
-                                                <p style={{color: "red"}}><ErrorMessage name={"productName"}/></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="descriptionProduct">
-                                        <div className="label2">
-                                            Mô tả :
-                                        </div>
-                                        <div className="descriptionDetail">
-                                            <Field as="textarea" cols={39} rows={3} name={"description"}
-                                                   placeholder={"Mô tả sản phẩm"}/>
-                                            <div className="validateDescription">
-                                                <p style={{color: "red"}}><ErrorMessage name={"description"}/></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="priceProduct">
-                                        <div className="label3">
-                                            Giá (VNĐ) :
-                                        </div>
-                                        <div className="priceDetail">
-                                            <Field name={"price"} type={"number"} placeholder={"Nhập giá lớn hơn 0"}/>
-                                            <div className="validatePrice">
-                                                <p style={{color: "red"}}><ErrorMessage name={"price"}/></p>
-                                            </div>
-                                        </div>
+                            <div className="form-input">
 
-                                    </div>
-                                    <div className="quantityProduct">
-                                        <div className="label4">
-                                            Số lượng :
+                                <div className="infoProducts">
+                                    <div className="name-product">
+                                        <div className="label">Nhập Tên :</div>
+                                        <div className="productName">
+                                            <Field name={"productName"} placeholder={"Tên Sản Phẩm"}></Field>
+                                            <div className="validateNameProduct">
+                                                <p style={{color: "red", fontSize: "14px", paddingTop: "5px"}}><ErrorMessage
+                                                    name={"productName"}/></p>
+                                            </div>
                                         </div>
-                                        <div className="quantityDetail">
+                                    </div>
+                                    <div className="description-product">
+                                        <div className="label-des">Mô Tả :</div>
+                                        <div className="description">
+                                            <Field name={"description"} as={"textarea"} placeholder={"Mô Tả"}  className={"textarea"}></Field>
+                                            <p style={{color: "red", fontSize: "14px"}}><ErrorMessage
+                                                name={"description"}/></p>
+                                        </div>
+                                    </div>
+                                    <div className="price-product">
+                                        <div className="label-price">
+                                            Giá Tiền(VND):
+                                        </div>
+                                        <div className="price">
+                                            <Field name={"price"} type={"number"} placeholder={"Giá Tiền"}></Field>
+                                            <p style={{color: "red", fontSize: "14px", paddingTop: "5px"}}><ErrorMessage name={"price"}/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="quantity-product">
+                                        <div className="label-quantity">
+                                            Số Lượng Sản Phẩm:
+                                        </div>
+                                        <div className="quantity">
                                             <Field name={"stockQuantity"} type={"number"}
-                                                   placeholder={"Nhập số lượng lớn hơn 0"}/>
-                                            <div className="validateQuantity">
-                                                <p style={{color: "red"}}><ErrorMessage name={"stockQuantity"}/></p>
-                                            </div>
+                                                   placeholder={"Số Lượng Sản Phẩm"}></Field>
+                                            <p style={{color: "red", fontSize: "14px", paddingTop: "5px"}}><ErrorMessage
+                                                name={"stockQuantity"}/></p>
                                         </div>
-
                                     </div>
-                                    <div className="categoryProduct">
-                                        <div className="label5">
-                                            Loại sản phẩm :
-                                        </div>
-                                        <Field name={"category.id"} as={"select"}>
+                                    <div className="category-product">
+                                        <div className="label-category">Loại Sản Phẩm</div>
+                                        <Field name={"category.id"} as={"select"} className={"select-category"}>
                                             {
-                                                categories.map((category) => {
-                                                    return <>
+                                                categories.map(category => (
+                                                    <>
                                                         <option value={category.id}>{category.name}</option>
                                                     </>
-                                                })
+                                                ))
                                             }
                                         </Field>
                                     </div>
-                                    <div className="addProduct">
-                                        <div className="cancel">
-                                            <Link to={"/supplier/products"}>
-                                                <button>Quay về</button>
-                                            </Link>
-                                        </div>
+                                    <div className="create-product">
                                         <div className="add">
-                                            <button type={"submit"}>Sửa</button>
+                                            <button type={"submit"} className={"save"}>Sửa</button>
                                         </div>
                                     </div>
                                 </div>

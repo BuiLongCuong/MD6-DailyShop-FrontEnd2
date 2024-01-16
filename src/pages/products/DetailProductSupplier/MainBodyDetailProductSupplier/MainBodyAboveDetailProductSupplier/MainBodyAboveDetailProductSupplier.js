@@ -14,13 +14,12 @@ export default function MainBodyAboveDetailProductSupplier() {
     })
 
     useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(getProductById(id)).unwrap();
-            setActiveImg(product.photo[0].photoName)
+        const fetchData = () => {
+            dispatch(getProductById(id)).then(({payload}) => {
+                setActiveImg(payload.photo[0].photoName)
+            });
         }
         fetchData();
-
-
     }, []);
 
     return (
@@ -33,7 +32,6 @@ export default function MainBodyAboveDetailProductSupplier() {
                             <div className="img-display">
                                 <div className="img-showcase">
                                     <img src={activeImg} alt=" "/>
-
                                 </div>
                             </div>
                             <div className="img-select">
@@ -67,13 +65,8 @@ export default function MainBodyAboveDetailProductSupplier() {
 
                             <div className="product-detail">
                                 <h2>Mô tả sản phẩm: </h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora
-                                    fuga
-                                    tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at
-                                    sequi ipsa!</p>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis
-                                    eius.
-                                    Dignissimos, labore suscipit. Unde.</p>
+                                <p> {product?.description}</p>
+
                                 <ul>
                                     <li>Color: <span>Đa dạng</span></li>
                                     <li>Available: <span>in stock</span></li>
@@ -92,7 +85,7 @@ export default function MainBodyAboveDetailProductSupplier() {
                                     </button>
                                 </Link>
                                 <Link to={"/edit/" + product?.productID}>
-                                    <button type="button" className="btn">Chinh sua</button>
+                                    <button type="button" className="btn">Chỉnh sửa</button>
                                 </Link>
                             </div>
 
