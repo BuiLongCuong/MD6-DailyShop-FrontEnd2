@@ -16,29 +16,29 @@ import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 
 function App() {
-  return (
-      <Routes>
-        <Route path={'/'} element={<HomeSimple/>}>
-        </Route>
-          <Route path={"login"} element={<Login/>}/>
-          <Route path={"register"} element={<Register/>}/>
-          <Route path={"signIn"} element={<SignIn/>}/>
-          <Route path={"signUp"} element={<SignUp/>}/>
-          <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
-          <Route path={"informationCus"} element={<InformationCustomer/>}/>
-          <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+    return (
+        <Routes>
+            <Route path={'/'} element={<HomeSimple/>}>
+            </Route>
+            <Route path={"login"} element={<Login/>}/>
+            <Route path={"register"} element={<Register/>}/>
+            <Route path={"signIn"} element={<SignIn/>}/>
+            <Route path={"signUp"} element={<SignUp/>}/>
+            <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
+            <Route path={"informationCus"} element={<InformationCustomer/>}/>
+            <Route path={"informationSupp"} element={<InformationSupplier/>}/>
 
 
-        <Route path={"supplier"} element={<HomeSupplier/>}>
-          <Route path={"products"} element={<ShowListProduct/>}/>
-          <Route path={"add"} element={<AddProduct/>}/>
-          <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-          <Route path={"detail"} element={<DetailProductSupplier/>}/>
-        </Route>
-          <Route path={"customer"} element={<HomeCustomer/>}/>
+            <Route path={"supplier"} element={<HomeSupplier/>}>
+                <Route path={"products"} element={<ShowListProduct/>}/>
+                <Route path={"add"} element={<AddProduct/>}/>
+                <Route path={"edit/:id"} element={<UpdateProduct/>}/>
+                <Route path={"detail"} element={<DetailProductSupplier/>}/>
+            </Route>
+            <Route path={"customer"} element={<HomeCustomer/>}/>
 
-      </Routes>
-  );
+        </Routes>
+    );
 }
 
 export default App;

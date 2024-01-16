@@ -70,8 +70,6 @@ export default function HeaderCustomer() {
                         </div>
                     </div>
                 </div>
-
-
             </>
         </>
     )
