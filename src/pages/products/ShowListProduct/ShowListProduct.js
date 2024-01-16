@@ -3,25 +3,31 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getAllByIdUser} from "../../../redux/service/productService";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+
+import * as React from 'react';
 import {Link} from "react-router-dom";
+// import Button from "react-bootstrap/Button";
+// import EditIcon from "@mui/icons-material/Edit";
+// import DeleteIcon from "@mui/icons-material/Delete";
+// import {DataGrid} from "@mui/x-data-grid";
+// import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export default function ShowListProduct() {
-    const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
+    const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
-        console.log(products.list)
-        return products.list
+        console.log(products.listByAccountId)
+        return products.listByAccountId
     })
     useEffect(() => {
-        dispatch(getAllByIdUser(currentCustomer.id))
+        dispatch(getAllByIdUser(currentSupplier.id))
     }, []);
 
     return (
         <>
-            {
-                listProducts && listProducts.map((products) => (
-                        <>
+            {/*{*/}
+            {/*    listProducts && listProducts.map((products) => (*/}
+            {/*            <>*/}
                             {/*/!*<div className="display-content-showListProduct">*!/*/}
                             {/*/!*    <div className="card-image-product">*!/*/}
                             {/*        <Card >*/}
@@ -55,10 +61,10 @@ export default function ShowListProduct() {
                             {/*    /!*</div>*!/*/}
                             {/*</div>*/}
 
-                        </>
-                    )
-                )
-            }
+            {/*            </>*/}
+            {/*        )*/}
+            {/*    )*/}
+            {/*}*/}
 
 
 
@@ -123,6 +129,77 @@ export default function ShowListProduct() {
                         </div>
 
 
+
+            {/*<DataGrid*/}
+            {/*    rows={listProducts && listProducts.map(item => (*/}
+            {/*        {*/}
+            {/*            productID: item.productID,*/}
+            {/*            // photo:*/}
+            {/*            //     (*/}
+            {/*            //         item.photo && item.photo.length > 0 && <img src={item.photo[0].photoName} alt="" style={{width: "100px"}}/>*/}
+            {/*            //     ),*/}
+            {/*            productName: item.productName,*/}
+            {/*            price: item.price,*/}
+            {/*            stockQuantity: item.stockQuantity,*/}
+            {/*            category: item.category.name,*/}
+
+
+            {/*        }*/}
+            {/*    ))}*/}
+            {/*    columns={[*/}
+            {/*        { field: 'productID', headerName: '#', width: 200 },*/}
+            {/*        // { field: 'photo',*/}
+            {/*        //     headerName: 'Photo',*/}
+            {/*        //     width: 130,*/}
+            {/*        // },*/}
+            {/*        { field: 'productName', headerName: 'Name', width: 200 },*/}
+            {/*        { field: 'price', headerName: 'Price', width: 170 },*/}
+            {/*        {*/}
+            {/*            field: 'stockQuantity',*/}
+            {/*            headerName: 'Stock quantity',*/}
+            {/*            // type: 'number',*/}
+            {/*            width: 150,*/}
+            {/*        },*/}
+            {/*        { field: 'category', headerName: 'Category', width: 130 },*/}
+
+            {/*        {*/}
+            {/*            field: 'action',*/}
+            {/*            headerName: 'Action',*/}
+            {/*            headerAlign: 'center',*/}
+            {/*            width: 200,*/}
+            {/*            align: 'center',*/}
+            {/*            renderCell: (params) => {*/}
+            {/*                return (*/}
+            {/*                    <>*/}
+            {/*                        /!*{listProducts && listProducts.map(item1 => (*!/*/}
+
+            {/*                        /!*)}*!/*/}
+            {/*                        <Button aria-label="edit">*/}
+            {/*                            /!*<Link to={`/edit/${params.row.id}`}>*!/*/}
+            {/*                                <EditIcon color="action" />*/}
+            {/*                            /!*</Link>*!/*/}
+            {/*                        </Button>*/}
+            {/*                        <Button aria-label="delete"><DeleteIcon color="action" /></Button>*/}
+            {/*                        <Button aria-label="view">*/}
+            {/*                            /!*<Link to={`/edit/${params.row.id}`}>*!/*/}
+            {/*                                <VisibilityIcon color="action" />*/}
+            {/*                            /!*</Link>*!/*/}
+            {/*                        </Button>*/}
+            {/*                    </>*/}
+            {/*                )*/}
+            {/*            }*/}
+            {/*        },*/}
+            {/*    ]}*/}
+            {/*    initialState={{*/}
+            {/*        pagination: {*/}
+            {/*            paginationModel: { page: 0, pageSize: 5 },*/}
+            {/*        },*/}
+            {/*    }}*/}
+            {/*    pageSizeOptions={[5, 10]}*/}
+            {/*    checkboxSelection*/}
+            {/*/>*/}
+
+
         </>
-    )
+    );
 }

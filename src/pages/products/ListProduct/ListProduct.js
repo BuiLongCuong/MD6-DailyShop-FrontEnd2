@@ -3,7 +3,6 @@ import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {Delete, getAllByIdUser} from "../../../redux/service/productService";
 
-
 export default function ListProduct() {
     const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
@@ -70,5 +69,7 @@ export default function ListProduct() {
             </table>
         </>
     )
+
+
 }
 

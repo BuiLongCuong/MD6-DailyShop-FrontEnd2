@@ -4,7 +4,6 @@ import Register from "./pages/Security/Customer/Register/Register";
 import SignIn from "./pages/Security/Supplier/SignIn/SignIn";
 import SignUp from "./pages/Security/Supplier/SignUp/SignUp";
 import HomeSimple from "./pages/HomeSimple";
-import ListProduct from "./pages/products/ListProduct/ListProduct";
 import HomeSupplier from "./pages/Homes/HomeSupplier/HomeSupplier";
 import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
 import {InformationCustomer} from "./pages/Information/Customer/InforCus";

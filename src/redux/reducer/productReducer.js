@@ -12,6 +12,7 @@ import {
 
 const initialState = {
     list: [],
+    listByAccountId: [],
     productEdit:{
 
     }
@@ -28,7 +29,7 @@ const productSlice = createSlice({
             state.productEdit = payload;
         })
         builder.addCase(getAllByIdUser.fulfilled, (state, {payload}) => {
-            state.list = payload;
+            state.listByAccountId = payload;
         })
         builder.addCase(add.fulfilled, (state, {payload}) => {
             console.log(payload)
