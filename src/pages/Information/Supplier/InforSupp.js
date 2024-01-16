@@ -16,16 +16,14 @@ export function InformationSupplier() {
 
     // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier = useSelector(state => state.supplier.currentSupplierDetails)
-    const [photo, setPhoto] = useState(supplier.imageSupplier);
-    console.log("photo",photo)
+    const [photo, setPhoto] = useState("");
+    console.log(photo)
     const provinces = useSelector(state => {
         return state.address.listProvince
     });
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
-
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-    console.log(supplier)
 
     useEffect(() => {
         dispatch(getCurrentSupplierDetails())
@@ -36,31 +34,29 @@ export function InformationSupplier() {
     }, [])
 
     const getDistricts = (event) => {
-        console.log(event.target.value)
         dispatch(getAllDistrict(event.target.value))
     }
 
     const getWards = (event) => {
-        console.log(event.target.value)
         dispatch(getAllWard(event.target.value))
     }
 
     const EditSupplier = (values) => {
-        console.log("values",values)
-        values.account = currentSupplier
+        values.account = currentSupplier;
+        values.imageSupplier = photo;
+        console.log(values)
         dispatch(editSupplier(values)).then(() => {
             navigate("/supplier/products")
         })
     }
 
-    const handleChange1 =async (e) => {
+    const handleChange1 = async (e) => {
         const file = e.target.files[0];
         if (file) {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
-         await   uploadBytes(photoRef, file).then((snapshot) => {
+            await uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    console.log("url",url)
-                    setPhoto((prev)=>({...prev,photoName: url}));
+                    setPhoto(url);
                 });
             });
         }
@@ -205,20 +201,15 @@ export function InformationSupplier() {
                                 <div className="imageSupp">
                                     <div>
                                         <div className="avatarOfSupp">
-                                            {photo &&
-                                                (supplier.imageSupplier) ? (
+                                            {(photo) ? (
+                                                <div className="imageContainer">
+                                                    <img src={photo ?? ''} alt="" style={{border: "50%"}}/>
+                                                </div>
+                                            ) : (
+                                                <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
+                                                    alt="Default Avatar" style={{border: "50%"}}/>
 
-                                                        <div  className="imageContainer">
-                                                            <img src={photo.photoName ?? ''} alt="" style={{border: "50%"}}/>
-                                                        </div>
-
-                                                ) : (
-
-                                                            <img
-                                                                src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
-                                                                alt="Default Avatar" style={{border: "50%"}}/>
-
-                                                )}
+                                            )}
 
                                             {/*{*/}
                                             {/*    photo.map((p, index) => (*/}
@@ -229,8 +220,7 @@ export function InformationSupplier() {
                                             {/*}*/}
                                         </div>
                                         <div className="chooseAvtSupp">
-                                            <Field
-                                                nameClass="choose"
+                                            <input
                                                 name="imageSupplier"
                                                 type="file"
                                                 multiple

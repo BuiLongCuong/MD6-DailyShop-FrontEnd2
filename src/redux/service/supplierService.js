@@ -16,8 +16,14 @@ export const signIn = createAsyncThunk(
 export const editSupplier = createAsyncThunk(
     'supplier/editSupplier',
     async (supplierEdit) => {
-        const res = await getAxios().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
-        return res.data;
+        try {
+            console.log(supplierEdit)
+            const res = await getAxios().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
+            return res.data;
+        } catch (e) {
+            console.log(e)
+        }
+
     }
 )
 
