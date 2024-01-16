@@ -64,10 +64,12 @@ export default function ShowListProduct() {
 
                         <div className="content-product">
                             <div className="search">
-                                <div className="col1">
-
+                                <div className="inputSearch">
+                                    <input type="text"/>
                                 </div>
-                                <div className="col2"></div>
+                                <div className="iconSearch">
+                                    <button><i className="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
                             </div>
 
                             <div className="products">
