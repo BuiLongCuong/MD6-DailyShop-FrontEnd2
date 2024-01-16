@@ -10,13 +10,14 @@ import {v4} from "uuid";
 import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 
 export function InformationSupplier() {
-    const [photo, setPhoto] = useState([]);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier = useSelector(state => state.supplier.currentSupplierDetails)
-
+    const [photo, setPhoto] = useState(supplier.imageSupplier);
+    console.log("photo",photo)
     const provinces = useSelector(state => {
         return state.address.listProvince
     });
@@ -24,12 +25,11 @@ export function InformationSupplier() {
     const wards = useSelector(state => state.address.listWard);
 
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-
-    console.log(currentSupplier)
+    console.log(supplier)
 
     useEffect(() => {
         dispatch(getCurrentSupplierDetails())
-    },[])
+    }, []);
 
     useEffect(() => {
         dispatch(getAllProvince())
@@ -46,19 +46,21 @@ export function InformationSupplier() {
     }
 
     const EditSupplier = (values) => {
+        console.log("values",values)
         values.account = currentSupplier
         dispatch(editSupplier(values)).then(() => {
-            navigate("/supplier")
+            navigate("/supplier/products")
         })
     }
 
-    const handleChange1 = (e) => {
+    const handleChange1 =async (e) => {
         const file = e.target.files[0];
         if (file) {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
-            uploadBytes(photoRef, file).then((snapshot) => {
+         await   uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhoto([{photoName: url}]);
+                    console.log("url",url)
+                    setPhoto((prev)=>({...prev,photoName: url}));
                 });
             });
         }
@@ -81,7 +83,7 @@ export function InformationSupplier() {
                         <div className="account">
                             <p><i className="fa-solid fa-user"></i>
                                 {
-                                    currentSupplier.supplierName
+                                    currentSupplier.account
                                 }
                             </p>
                         </div>
@@ -144,7 +146,8 @@ export function InformationSupplier() {
                                                         {
                                                             districts.map((district) => {
                                                                 return <>
-                                                                    <option value={district.id}>{district.districtName}</option>
+                                                                    <option
+                                                                        value={district.id}>{district.districtName}</option>
                                                                 </>
                                                             })
                                                         }
@@ -188,12 +191,12 @@ export function InformationSupplier() {
                                             </div>
                                             <div className="input">
                                                 <div className="decision">
-                                                <div className="cancel">
-                                                    <button type={"submit"}>Hủy</button>
-                                                </div>
-                                                <div className="save">
-                                                    <button type={"submit"}>Lưu</button>
-                                                </div>
+                                                    <div className="cancel">
+                                                        <button type={"submit"}>Hủy</button>
+                                                    </div>
+                                                    <div className="save">
+                                                        <button type={"submit"}>Lưu</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,14 +205,18 @@ export function InformationSupplier() {
                                 <div className="imageSupp">
                                     <div>
                                         <div className="avatarOfSupp">
-                                                {currentSupplier.imageSupplier ? (
-                                                    photo.map((p, index) => (
-                                                        <div key={index} className="imageContainer">
-                                                            <img src={p.photoName} alt="" style={{border: "50%"}}/>
+                                            {photo &&
+                                                (supplier.imageSupplier) ? (
+
+                                                        <div  className="imageContainer">
+                                                            <img src={photo.photoName ?? ''} alt="" style={{border: "50%"}}/>
                                                         </div>
-                                                    ))
+
                                                 ) : (
-                                                        <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"} alt="Default Avatar" style={{border: "50%"}} />
+
+                                                            <img
+                                                                src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
+                                                                alt="Default Avatar" style={{border: "50%"}}/>
 
                                                 )}
 

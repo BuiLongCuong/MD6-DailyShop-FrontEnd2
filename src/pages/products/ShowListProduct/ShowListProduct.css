@@ -8,6 +8,8 @@
     -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    display: flex;
+    justify-content: center;
 }
 
 .content-product .products {

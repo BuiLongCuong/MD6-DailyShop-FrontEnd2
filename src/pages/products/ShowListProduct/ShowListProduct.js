@@ -64,8 +64,12 @@ export default function ShowListProduct() {
 
                         <div className="content-product">
                             <div className="search">
-                                A
+                                <div className="col1">
+
+                                </div>
+                                <div className="col2"></div>
                             </div>
+
                             <div className="products">
                                 <div className="nav-bar-product">
                                     <Link to={"/add"}>
