@@ -14,7 +14,8 @@ export function getAxios() {
             baseURL: "http://localhost:8088",
             headers: {"Authorization": `Bearer ${currentSupplier.accessToken}`}
         })
-    }else if (currentCustomer) {
+    }else
+        if (currentCustomer) {
         return axios.create({
             baseURL: "http://localhost:8088",
             headers: {"Authorization": `Bearer ${currentCustomer.accessToken}`}

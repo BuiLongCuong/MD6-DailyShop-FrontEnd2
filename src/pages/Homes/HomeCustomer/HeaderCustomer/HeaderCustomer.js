@@ -14,7 +14,8 @@ import {getCurrentCustomerDetails} from "../../../../redux/service/customerServi
 
 export default function HeaderCustomer() {
     const dispatch = useDispatch()
-    const customer = useSelector(state => state.customer.currentCustomerDetails)
+    const customer = useSelector(state => state.customer.currentCustomerDetails);
+    console.log(customer)
 
     const logOut = () => {
         localStorage.clear()
@@ -48,7 +49,7 @@ export default function HeaderCustomer() {
                                     {/*<li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>*/}
                                     <li><span><Link to={"/login"}>
                                         {
-                                            customer.customerName
+                                            customer?.customerName
                                         }
                                     </Link></span></li>
                                     </div>
