@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
 
         try {
             console.log(customer)
-            const res = await getAxios().post("login", customer)
+            const res = await getAxios().post("/login", customer)
             return res.data
         }catch (e) {
             console.log(e)

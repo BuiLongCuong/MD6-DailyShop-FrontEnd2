@@ -165,7 +165,7 @@ export function InformationCustomer() {
                                             </div>
                                             <div className="input">
                                                 <Field type="text" name="specificAddress"
-                                                       placeholder={"Địa chỉ chi tiết..."}/>
+                                                       placeholder={"Số nhà, tên đường, thôn, xóm, làng, ấp..."}/>
                                             </div>
                                         </div>
                                         <div className="item">

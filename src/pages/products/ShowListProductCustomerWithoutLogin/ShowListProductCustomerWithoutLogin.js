@@ -2,7 +2,7 @@ import "./ShowListProductCustomerWithoutLogin.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getAllProduct, getAllProductWithoutLogin} from "../../../redux/service/productService";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 export default function ShowListProductCustomerWithoutLogin(){
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
@@ -22,7 +22,7 @@ export default function ShowListProductCustomerWithoutLogin(){
                                     <div className="card-detail-show-product-without-login">
                                         <div className="card-detail-show-product-image-without-login">
                                             <img
-                                                src={products.photo[0].photoName}
+                                                src={products.photo[0]?.photoName}
                                                 alt=""/>
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">

@@ -17,6 +17,7 @@ import {getCurrentSupplierDetails} from "./redux/service/supplierService";
 import {useDispatch} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
+import ListOrder from "./pages/order/ListOrder";
 
 function App() {
     const dispatch =useDispatch()
@@ -44,6 +45,7 @@ function App() {
             </Route>
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
+            <Route path={"order"} element={<ListOrder/>}/>
 
 
         </Routes>

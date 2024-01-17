@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
+import {Formik} from "formik";
+import {addProductToOrders} from "../../../../../../redux/service/orderService";
 
 export default function DetailMainBodyShowProductCustomer(){
     const [activeImg, setActiveImg] = useState(null);
@@ -13,6 +15,10 @@ export default function DetailMainBodyShowProductCustomer(){
         return products.productEdit;
     })
 
+    const [quantity, setQuantity] = useState(1);
+
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
+
     useEffect(() => {
         const fetchData = () => {
             dispatch(getProductById(id)).then(({payload}) => {
@@ -21,6 +27,15 @@ export default function DetailMainBodyShowProductCustomer(){
         }
         fetchData();
     }, []);
+
+    const handleQuantityChange = (e) => {
+        const newQuantity = parseInt(e.target.value, 10);
+        setQuantity(newQuantity);
+    }
+
+    const addOrder = () => {
+        dispatch(addProductToOrders(product, quantity))
+    }
     return(
         <>
             <div className="detail-main-body-show-product-customer">
@@ -34,7 +49,7 @@ export default function DetailMainBodyShowProductCustomer(){
                                     </div>
                                 </div>
                                 <div className="img-select">
-                                    {product.photo?.map(image => (<div className="img-item">
+                                    {product.photo.map(image => (<div className="img-item">
 
                                         <img key={image.photoID}
                                              src={image.photoName}
@@ -76,10 +91,10 @@ export default function DetailMainBodyShowProductCustomer(){
                                 </div>
 
                                 <div className="purchase-info">
-                                    <input type="number" min="0" value="1"/>
+                                    <input type="number" min="1" value={quantity} onChange={handleQuantityChange}/>
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
-                                            <button type="button" className="btn">
+                                            <button type="button" className="btn" onClick={addOrder}>
                                                 Thêm vào giỏ hàng
                                             </button>
                                         </Link>
