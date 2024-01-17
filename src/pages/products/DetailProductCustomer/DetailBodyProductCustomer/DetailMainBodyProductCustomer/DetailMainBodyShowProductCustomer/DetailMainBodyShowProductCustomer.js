@@ -10,6 +10,7 @@ export default function DetailMainBodyShowProductCustomer(){
     const dispatch = useDispatch();
 
     const product = useSelector(({products}) => {
+        
         return products.productEdit;
     })
 
@@ -80,7 +81,7 @@ export default function DetailMainBodyShowProductCustomer(){
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
                                             <button type="button" className="btn">
-                                                Thêm vào giỏ hàng
+                                                <i className="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
                                             </button>
                                         </Link>
                                         <Link to={"#"}>
