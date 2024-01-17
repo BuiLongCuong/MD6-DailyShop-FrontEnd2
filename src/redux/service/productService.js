@@ -74,3 +74,10 @@ export const search = createAsyncThunk(
         return listProduct.data
     }
 )
+export const findAllByCategoryId = createAsyncThunk(
+    'product/findAllById',
+    async (id) => {
+        const res = await getAxios().get("/category/" + id)
+        return res.data
+    }
+)

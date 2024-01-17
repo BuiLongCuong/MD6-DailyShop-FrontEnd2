@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
     add,
-    Delete,
+    Delete, findAllByCategoryId,
 
     getAllByIdUser, getAllProduct, getAllProductWithoutLogin,
     getProductById,
@@ -56,6 +56,9 @@ const productSlice = createSlice({
             }
         })
         builder.addCase(search.fulfilled,(state,{payload})=>{
+            state.list = payload
+        })
+        builder.addCase(findAllByCategoryId.fulfilled, (state, {payload}) => {
             state.list = payload
         })
 
