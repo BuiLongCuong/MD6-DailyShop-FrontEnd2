@@ -2,6 +2,7 @@ import "./BodyCustomer.css"
 import Carousel from "react-bootstrap/Carousel";
 import ShowCategoryProductCustomer from "../ShowCategoryProductCustomer/ShowCategoryProductCustomer";
 import ShowAllProductCustomerLayout from "../ShowAllProductCustomer/ShowAllProductCustomerLayout";
+import {Outlet} from "react-router-dom";
 export default function BodyCustomer(){
     return(
         <>
@@ -57,10 +58,9 @@ export default function BodyCustomer(){
 
                     </div>
                 </div>
+                <Outlet/>
                 <ShowCategoryProductCustomer/>
                 <ShowAllProductCustomerLayout/>
-
-
             </div>
         </>
     )

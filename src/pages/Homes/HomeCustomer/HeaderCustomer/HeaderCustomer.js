@@ -18,7 +18,7 @@ export default function HeaderCustomer() {
     console.log(customer)
 
     const logOut = () => {
-        localStorage.clear()
+        localStorage.removeItem("currentCustomer")
     }
 
     useEffect(() => {
