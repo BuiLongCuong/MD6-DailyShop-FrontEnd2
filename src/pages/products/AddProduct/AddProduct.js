@@ -42,7 +42,7 @@ function AddProduct() {
         values.photo = photo;
         try {
             dispatch(add(values)).then(()=>{
-                navigate("/supplier")
+                navigate("/supplier/products")
             })
         } catch (e) {
             console.log(e)

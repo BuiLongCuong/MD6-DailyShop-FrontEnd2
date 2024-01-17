@@ -98,7 +98,7 @@ export function InformationSupplier() {
                                         <div className="item">
                                             <div className={"title"}>Tên shop:</div>
                                             <div className="input">
-                                                <Field type="text" name="contactName" placeholder={"Nhập tên shop"}/>
+                                                <Field type="text" name="supplierName" placeholder={"Nhập tên shop"}/>
                                             </div>
                                         </div>
                                         <div className="item">
@@ -106,7 +106,7 @@ export function InformationSupplier() {
                                                 Tên người bán:
                                             </div>
                                             <div className="input">
-                                                <Field type="text" name="supplierName" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="text" name="contactName" placeholder={"Nhập họ và tên"}/>
                                             </div>
                                         </div>
                                         <div className="item">

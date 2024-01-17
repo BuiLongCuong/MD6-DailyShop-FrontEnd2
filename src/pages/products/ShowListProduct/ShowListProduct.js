@@ -1,12 +1,31 @@
 import "./ShowListProduct.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {getAllByIdUser} from "../../../redux/service/productService";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import {useEffect, useState} from "react";
+import {Delete, getAllByIdUser} from "../../../redux/service/productService";
+// import Card from "react-bootstrap/Card";
+// import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
 
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 export default function ShowListProduct() {
+    const [open, setOpen] = useState(false);
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
@@ -15,6 +34,20 @@ export default function ShowListProduct() {
     useEffect(() => {
         dispatch(getAllByIdUser(currentSupplier.id))
     }, []);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const deleteProduct = () => {
+        dispatch(Delete()).then(() => {
+            setOpen(false);
+        })
+    };
 
     return (
         <>
@@ -73,7 +106,7 @@ export default function ShowListProduct() {
 
                             <div className="products">
                                 <div className="nav-bar-product">
-                                    <Link to={"/add"}>
+                                    <Link to={"/supplier/add"}>
                                         <button className={"add-product-supplier"}>
                                             + Thêm mới sản phẩm
                                         </button>
@@ -101,7 +134,7 @@ export default function ShowListProduct() {
                                                     <div className="check-he ma"><input type="checkbox"/></div>
                                                     <div className="name-he name-ma ma">
                                                         <img
-                                                            src={products.photo[0].photoName}
+                                                            src={products.photo[0]?.photoName}
                                                             alt=""/>
                                                         <div className="name-p">{products.productName}</div>
                                                     </div>
@@ -111,12 +144,13 @@ export default function ShowListProduct() {
                                                     </div>
                                                     <div className="quantity-he ma">{products.stockQuantity}</div>
                                                     <div className="action ma">
-                                                        <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
+                                                        <Link to={"/supplier/edit/" + products.productID}>Chỉnh sửa </Link>
                                                         &nbsp; &nbsp;
                                                         <Link to={"/supplier/products/detail/" + products.productID}>Xem
                                                             chi tiết</Link>
                                                         &nbsp; &nbsp;
-                                                        <Link to={"/edit/" + products.productID}>Xóa</Link>
+                                                        {/*<Link to={"/edit/" + products.productID}>Xóa</Link>*/}
+                                                        <Button onClick={handleOpen}>Xóa</Button>
                                                     </div>
                                                 </div>
                                             </>
@@ -128,76 +162,24 @@ export default function ShowListProduct() {
                         </div>
 
 
-
-            {/*<DataGrid*/}
-            {/*    rows={listProducts && listProducts.map(item => (*/}
-            {/*        {*/}
-            {/*            productID: item.productID,*/}
-            {/*            // photo:*/}
-            {/*            //     (*/}
-            {/*            //         item.photo && item.photo.length > 0 && <img src={item.photo[0].photoName} alt="" style={{width: "100px"}}/>*/}
-            {/*            //     ),*/}
-            {/*            productName: item.productName,*/}
-            {/*            price: item.price,*/}
-            {/*            stockQuantity: item.stockQuantity,*/}
-            {/*            category: item.category.name,*/}
-
-
-            {/*        }*/}
-            {/*    ))}*/}
-            {/*    columns={[*/}
-            {/*        { field: 'productID', headerName: '#', width: 200 },*/}
-            {/*        // { field: 'photo',*/}
-            {/*        //     headerName: 'Photo',*/}
-            {/*        //     width: 130,*/}
-            {/*        // },*/}
-            {/*        { field: 'productName', headerName: 'Name', width: 200 },*/}
-            {/*        { field: 'price', headerName: 'Price', width: 170 },*/}
-            {/*        {*/}
-            {/*            field: 'stockQuantity',*/}
-            {/*            headerName: 'Stock quantity',*/}
-            {/*            // type: 'number',*/}
-            {/*            width: 150,*/}
-            {/*        },*/}
-            {/*        { field: 'category', headerName: 'Category', width: 130 },*/}
-
-            {/*        {*/}
-            {/*            field: 'action',*/}
-            {/*            headerName: 'Action',*/}
-            {/*            headerAlign: 'center',*/}
-            {/*            width: 200,*/}
-            {/*            align: 'center',*/}
-            {/*            renderCell: (params) => {*/}
-            {/*                return (*/}
-            {/*                    <>*/}
-            {/*                        /!*{listProducts && listProducts.map(item1 => (*!/*/}
-
-            {/*                        /!*)}*!/*/}
-            {/*                        <Button aria-label="edit">*/}
-            {/*                            /!*<Link to={`/edit/${params.row.id}`}>*!/*/}
-            {/*                                <EditIcon color="action" />*/}
-            {/*                            /!*</Link>*!/*/}
-            {/*                        </Button>*/}
-            {/*                        <Button aria-label="delete"><DeleteIcon color="action" /></Button>*/}
-            {/*                        <Button aria-label="view">*/}
-            {/*                            /!*<Link to={`/edit/${params.row.id}`}>*!/*/}
-            {/*                                <VisibilityIcon color="action" />*/}
-            {/*                            /!*</Link>*!/*/}
-            {/*                        </Button>*/}
-            {/*                    </>*/}
-            {/*                )*/}
-            {/*            }*/}
-            {/*        },*/}
-            {/*    ]}*/}
-            {/*    initialState={{*/}
-            {/*        pagination: {*/}
-            {/*            paginationModel: { page: 0, pageSize: 5 },*/}
-            {/*        },*/}
-            {/*    }}*/}
-            {/*    pageSizeOptions={[5, 10]}*/}
-            {/*    checkboxSelection*/}
-            {/*/>*/}
-
+            {/*Hiển thị modal hỏi trước khi xóa*/}
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-title" variant="h6" component="h2">
+                        Xóa một sản phẩm khỏi danh sách.
+                    </Typography>
+                    <Typography id="modal-description" sx={{ mt: 2 }}>
+                        Bạn có chắc chắn muốn xóa sản phẩm này không ???
+                    </Typography>
+                    <Button onClick={deleteProduct}>Yes</Button>
+                    <Button onClick={handleClose}>No</Button>
+                </Box>
+            </Modal>
 
         </>
     );
