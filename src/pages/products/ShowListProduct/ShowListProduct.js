@@ -16,7 +16,6 @@ export default function ShowListProduct() {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
 
-
     return (
         <>
             {
@@ -74,7 +73,7 @@ export default function ShowListProduct() {
 
                             <div className="products">
                                 <div className="nav-bar-product">
-                                    <Link to={"/add"}>
+                                    <Link to={"/supplier/add"}>
                                         <button className={"add-product-supplier"}>
                                             + Thêm mới sản phẩm
                                         </button>
@@ -112,9 +111,9 @@ export default function ShowListProduct() {
                                                     </div>
                                                     <div className="quantity-he ma">{products.stockQuantity}</div>
                                                     <div className="action ma">
-                                                        <Link to={"/edit/" + products.productID}>Chỉnh sửa </Link>
+                                                        <Link to={"/supplier/edit/" + products.productID}>Chỉnh sửa </Link>
                                                         &nbsp; &nbsp;
-                                                        <Link to={"/supplier/products/detail/" + products.productID}>Xem
+                                                        <Link to={"/supplier/detail/" + products.productID}>Xem
                                                             chi tiết</Link>
                                                         &nbsp; &nbsp;
                                                         <Link to={"/edit/" + products.productID}>Xóa</Link>

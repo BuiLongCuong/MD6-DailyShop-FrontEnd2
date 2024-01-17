@@ -18,6 +18,7 @@ import {getCurrentSupplierDetails} from "./redux/service/supplierService";
 import {useDispatch} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
     const dispatch =useDispatch()
@@ -41,8 +42,10 @@ function App() {
                 <Route path={"products"} element={<ShowListProduct/>}/>
                 <Route path={"add"} element={<AddProduct/>}/>
                 <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-                <Route path={"detail"} element={<DetailProductSupplier/>}/>
+                <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
+
             </Route>
+            <Route path={"cart"} element={<Cart/>}/>
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
 
