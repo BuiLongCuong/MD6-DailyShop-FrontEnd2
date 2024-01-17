@@ -76,8 +76,8 @@ export default function DetailMainBodyShowProductCustomer(){
                                     </ul>
                                 </div>
 
-                                <div className="purchase-info">
-                                    <input type="number" min="0" value="1"/>
+                                <div className="purchase-info-cover">
+                                    <input type="number" min="0" placeholder={"Nhập số lượng"}/>
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
                                             <button type="button" className="btn">
