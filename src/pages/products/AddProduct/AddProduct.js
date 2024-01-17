@@ -51,10 +51,10 @@ function AddProduct() {
 
     const handleChange = (e) => {
         const files = e.target.files;
-        const remainingSlots = 6 - photo.length;
+        const remainingSlots = 9 - photo.length;
 
         if (files.length > remainingSlots) {
-            alert("Bạn chỉ có thể thêm tối đa 6 ảnh.");
+            alert("Bạn chỉ có thể thêm tối đa 9 ảnh.");
             return;
         }
 

@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {signIn} from "../../../../redux/service/supplierService";
 import {useState} from "react";
 import * as React from "react";
+import {login} from "../../../../redux/service/customerService";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -17,41 +18,25 @@ export default function SignIn() {
     })
     const loginSchema = Yup.object().shape({
         account: Yup.string()
-            .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
-            .max(50, 'Tên tài khoản quá dài (tối đa 50 ký tự)!')
-            .matches(/^[a-zA-Z0-9_]+$/, 'Tên tài khoản không được chứa ký tự đặc biệt hoặc có dấu!')
             .required('Vui lòng nhập đủ thông tin!'),
         password: Yup.string()
-            .min(5, 'Mật khẩu quá ngắn (tối thiểu 5 ký tự)!')
-            .max(50, 'Mật khẩu quá dài (tối đa 50 ký tự)!')
-            .matches(/^[a-zA-Z0-9_]+$/, 'Mật khẩu không được chứa ký tự đặc biệt hoặc có dấu!')
             .required('Vui lòng nhập đủ thông tin!'),
     })
-    const handleSubmit = (values) => {
-        console.log("Nhà cung cấp đăng nhập thành công")
-        dispatch(signIn(values)).then(() => {
-            checkRoleForSupplier()
-        })
-    };
-
-    const checkRoleForSupplier = () => {
+    const checkProfile = () => {
         const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-        if (currentSupplier && currentSupplier.roles && currentSupplier.roles.length > 0) {
-            const isCustomerOrAdmin = currentSupplier.roles.some(role => role.authority === "ROLE_CUSTOMER" || role.authority === "ROLE_ADMIN");
-            if (isCustomerOrAdmin) {
-                alert("Tài khoản không tồn tại");
-                localStorage.clear();
-
-            } else {
-                console.log("Đăng nhập thành công");
-                if (currentSupplier.checkProfile === false) {
-                    navigate("/informationSupp");
-                } else {
-                    navigate("/supplier/products")
-                }
-            }
-        }else {
-            console.log("Không tìm thấy thông tin người dùng trong localStorage");
+        if (currentSupplier.checkProfile === false) {
+            navigate("/informationSupp")
+        } else {
+            navigate("/supplier/products")
+            // console.log("Chuyển đến giao diện của người dùng")
+        }
+    }
+    const handleSignIn= async (values)=>{
+        try {
+            await dispatch(signIn(values)).unwrap();
+            checkProfile()
+        }catch (e ){
+            alert(e.message)
         }
     }
 
@@ -105,7 +90,9 @@ export default function SignIn() {
                                             <Formik initialValues={{
                                                 account: "",
                                                 password: ""
-                                            }} onSubmit={handleSubmit}
+                                            }} onSubmit={(values) => {
+                                                handleSignIn(values)
+                                            }}
                                                     validationSchema={loginSchema}
                                             >
                                                 <Form>

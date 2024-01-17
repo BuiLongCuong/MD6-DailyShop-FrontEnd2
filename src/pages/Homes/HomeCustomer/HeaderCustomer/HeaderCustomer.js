@@ -17,7 +17,7 @@ export default function HeaderCustomer() {
     const customer = useSelector(state => state.customer.currentCustomerDetails)
 
     const logOut = () => {
-        localStorage.clear()
+        localStorage.removeItem("currentCustomer")
     }
 
     useEffect(() => {
