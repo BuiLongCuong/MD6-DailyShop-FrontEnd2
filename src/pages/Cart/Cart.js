@@ -1,9 +1,32 @@
 import HeaderSupplier from "../Homes/HomeSupplier/HeaderSupplier/HeaderSupplier";
 import "./Cart.css"
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {showOrderList} from "../../redux/service/oderService";
 
 export default function Cart() {
 
-}
+    const dispatch = useDispatch();
+    const cart = useSelector(({order}) => {
+        console.log(order.listOrder)
+        console.log(order)
+        return order.cart;
+    });
+    useEffect(() => {
+        dispatch(showOrderList())
+    }, []);
+
+    const [quantity, setQuantity] = useState(1);
+
+    const handleIncrease = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            setQuantity(prevQuantity => prevQuantity - 1);
+        }
+    };
 
     return(
         <>
@@ -16,34 +39,37 @@ export default function Cart() {
                                 Giỏ hàng
                             </div>
                         </div>
+                        {
+                            cart && cart.orderDetails && cart.orderDetails.map((itemDetails) => (
                         <div className="nameBody2">
                             <div className="col1Body">
                                 <div className="orderDetail">
                                     <div className="removeOrder">Xóa</div>
-                                    <div className="imageOrder"><img src="/images/img_2.png" alt="" style={{width: "96px",height: "69px"}}/></div>
+                                    <div className="imageOrder"><img src={itemDetails.product.photo[0]?.photoName} alt="" style={{width: "96px",height: "69px"}}/></div>
                                     <div className="infoOrder">
                                         <div className="infoPr">
-                                            <div className="namePr">Tv màn hình siêu mỏng</div>
-                                            <div className="categoryPro">Gia dụng</div>
+                                            <div className="namePr">{itemDetails.product.productName}</div>
+                                            <div className="categoryPro"> Loại: {itemDetails.product.category}</div>
                                         </div>
                                         <div className="pricePr">
-                                            123.000 VNĐ
+                                            {itemDetails.product.category}
                                         </div>
+
                                     </div>
                                     <div className="quantityPr">
-                                        <button className="minus" onClick={"decreaseQuantity()"}>-</button>;
-                                        <input type="text" id="quantityInput" value="1">;
-                                            <button className="plus" onClick={"increaseQuantity()"}>+</button>;
+                                        <button className={"btn1"} onClick={handleDecrease}>-</button>
+                                        <input type="text" value={quantity} readOnly />
+                                        <button className={"btn2"} onClick={handleIncrease}>+</button>
                                     </div>
                                 </div>
                             </div>
                             <div className="col2Body">
                                 <div className="row1OfCol2">
                                     <div className="paymentTittle">
-                                        Tổng tiền
+                                        Tổng tiền:
                                     </div>
                                     <div className="paymentTotal">
-                                        123.000.000 VNĐ
+                                        {cart.totalAmount}
                                     </div>
                                 </div>
                                 <div className="row2OfCol2">
@@ -57,8 +83,9 @@ export default function Cart() {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                            ))
+                        }
                     </div>
                 </div>
             </>

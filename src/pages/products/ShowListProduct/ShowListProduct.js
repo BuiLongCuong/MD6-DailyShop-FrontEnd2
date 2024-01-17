@@ -62,7 +62,10 @@ export default function ShowListProduct() {
 
 
                         <div className="content-product">
-                            <div className="search">
+                            <div className="searchManyInput">
+                                <div className="searchManyInput">
+
+                                </div>
                                 <div className="inputSearch">
                                     <input type="text"/>
                                 </div>

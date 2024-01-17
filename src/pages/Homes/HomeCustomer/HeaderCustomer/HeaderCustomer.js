@@ -52,9 +52,18 @@ export default function HeaderCustomer() {
                                         }
                                     </Link></span></li>
                                     </div>
-                                    <li><Link to={"/login"}>
-                                        <button onClick={logOut}>Log out</button></Link>
-                                    </li>
+                                    {
+                                        customer ? (
+                                            <li><Link to={"/login"}>
+                                                <button onClick={logOut}>Log out</button></Link>
+                                            </li>
+                                        ) : (
+                                            <li><Link to={"/login"}>
+                                                <button onClick={logOut}>Đăng nhập</button></Link>
+                                            </li>
+                                        )
+                                    }
+
                                 </ul>
                             </div>
                         </div>
