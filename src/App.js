@@ -20,6 +20,7 @@ import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 import Cart from "./pages/Cart/Cart";
 import {getCurrentCustomerDetails} from "./redux/service/customerService";
+import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
 
 function App() {
     const dispatch =useDispatch()
@@ -38,6 +39,8 @@ function App() {
           <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+          <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
+
 
 
             <Route path={"supplier"} element={<HomeSupplier/>}>
