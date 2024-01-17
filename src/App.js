@@ -19,12 +19,14 @@ import {useDispatch} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 import Cart from "./pages/Cart/Cart";
+import {getCurrentCustomerDetails} from "./redux/service/customerService";
 
 function App() {
     const dispatch =useDispatch()
-    // useEffect(() => {
-    //     dispatch(getCurrentSupplierDetails())
-    // }, []);
+    useEffect(() => {
+        dispatch(getCurrentSupplierDetails())
+        dispatch(getCurrentCustomerDetails())
+    }, []);
   return (
       <Routes>
         <Route path={'/'} element={<HomeSimple/>}>

@@ -1,16 +1,22 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAxios} from "./axios/getAxios";
+import {getAxios, getSupplierUrl} from "./axios/getAxios";
 
 export const signIn = createAsyncThunk(
     'supplier/signIn',
     async (supplier) => {
-        try {
-            const res = await getAxios().post("/login", supplier)
-            return res.data
-        }catch (e){
-            console.log(e)
-        }
+        return await getSupplierUrl().post("login", supplier).then(res => {
+            const roles = res.data.roles;
+            if (roles.length > 0) {
+                if (roles.some(role => role.authority === "ROLE_SUPPLIER")) {
+                    return res.data
+                }
+            }
+            throw new Error('Sai tài khoản hoặc mật khẩu')
+        }).catch(err => {
+            throw new Error('Sai tài khoản hoặc mật khẩu')
+        })
     }
+
 )
 
 export const editSupplier = createAsyncThunk(
@@ -18,7 +24,7 @@ export const editSupplier = createAsyncThunk(
     async (supplierEdit) => {
         try {
             console.log(supplierEdit)
-            const res = await getAxios().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
+            const res = await getSupplierUrl().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
             return res.data;
         } catch (e) {
             console.log(e)
@@ -30,19 +36,19 @@ export const editSupplier = createAsyncThunk(
 export const findSupplierByAccountId = createAsyncThunk(
     'supplier/findByAccountId',
     async (id) => {
-        const res = await getAxios().get("/suppliers/findByAccountId/" + id);
+        const res = await getSupplierUrl().get("/suppliers/findByAccountId/" + id);
         return res.data;
     }
 )
 export const getCurrentSupplierDetails= createAsyncThunk(
 "CURRENT_SUPPLIER_DETAILS",
     async () => {
-        const res = await getAxios().get("/suppliers/current");
+        const res = await getSupplierUrl().get("/suppliers/current");
         return res.data;
     }
 )
 
 
 export const signUp = (newSupplier) => {
-    return getAxios().post("suppliers/register", newSupplier)
+    return getSupplierUrl().post("suppliers/register", newSupplier)
 }
