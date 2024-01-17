@@ -20,6 +20,7 @@ import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 import Cart from "./pages/Cart/Cart";
 import {getCurrentCustomerDetails} from "./redux/service/customerService";
+import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
 
 function App() {
     const dispatch =useDispatch()
