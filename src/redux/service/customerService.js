@@ -1,17 +1,20 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAxios} from "./axios/getAxios";
+import {getAxios, getCustomerUrl} from "./axios/getAxios";
 
 export const login = createAsyncThunk(
     'customer/login',
     async (customer) => {
-
-        try {
-            console.log(customer)
-            const res = await getAxios().post("login", customer)
-            return res.data
-        }catch (e) {
-            console.log(e)
-        }
+            return await getCustomerUrl().post("login", customer).then(res => {
+                const roles = res.data.roles;
+                if (roles.length > 0) {
+                    if (roles.some(role => role.authority === "ROLE_CUSTOMER")) {
+                        return res.data
+                    }
+                }
+                throw new Error('Sai tài khoản hoặc mật khẩu')
+            }).catch(err => {
+                throw new Error('Sai tài khoản hoặc mật khẩu')
+            })
     }
 )
 
@@ -20,7 +23,7 @@ export const editCustomer = createAsyncThunk(
     async (customerEdit) => {
         try {
             console.log(customerEdit)
-            const res = await getAxios().put("/customer/edit/" + customerEdit.account.id, customerEdit)
+            const res = await getCustomerUrl().put("/customer/edit/" + customerEdit.account.id, customerEdit)
             return res.data
         } catch (e) {
             console.log(e)
@@ -31,7 +34,7 @@ export const editCustomer = createAsyncThunk(
 export const findCustomerByAccountId = createAsyncThunk(
     'customer/findByAccountId',
     async (id) => {
-        const res = await getAxios().get("/customer/findByAccountId/" + id);
+        const res = await getCustomerUrl().get("/customer/findByAccountId/" + id);
         console.log(res.data)
         return res.data;
     }
@@ -40,12 +43,12 @@ export const findCustomerByAccountId = createAsyncThunk(
 export const getCurrentCustomerDetails= createAsyncThunk(
     "CURRENT_CUSTOMER_DETAILS",
     async () => {
-        const res = await getAxios().get("/customer/current");
+        const res = await getCustomerUrl().get("/customer/current");
         return res.data;
     }
 )
 
 
 export const register = (newCustomer) => {
-    return getAxios().post("customer/register", newCustomer)
+    return getCustomerUrl().post("customer/register", newCustomer)
 }
