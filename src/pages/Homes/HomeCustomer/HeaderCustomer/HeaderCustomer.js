@@ -64,7 +64,10 @@ export default function HeaderCustomer() {
                         <div className="main">
                             <div className="main-left">
                                 <div className="logo-home">
-                                    <img src={logo} alt=''/>
+                                    <Link to={"/customer"}>
+                                        <img src={logo} alt=''/>
+                                    </Link>
+
                                 </div>
                             </div>
                             <div className="main-center">
