@@ -107,7 +107,7 @@ export default function HeaderCustomer() {
                                 <div className="header-cart">
                                     <ul>
                                         <li>
-                                            <Link to={"#"}><FiShoppingCart
+                                            <Link to={"/cart"}><FiShoppingCart
                                                 className={"color-white"}/><span>5</span></Link>
                                         </li>
                                     </ul>
