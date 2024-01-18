@@ -4,7 +4,7 @@ import {
     Delete,
 
     getAllByIdUser, getAllProduct, getAllProductWithoutLogin,
-    getProductById,
+    getProductById, getProductTop,
     search,
     updateForm,
     UpdateService
@@ -25,6 +25,10 @@ const productSlice = createSlice({
         builder.addCase(getAllProductWithoutLogin.fulfilled,(state,{payload}) => {
             state.list = payload ;
         })
+        // builder.addCase(getProductTop().fulfilled,(state,{payload}) =>{
+        //     state.list = payload;
+        // })
+
         builder.addCase(getAllProduct.fulfilled,(state,{payload}) =>{
             state.list = payload;
         })

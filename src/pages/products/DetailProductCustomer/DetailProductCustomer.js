@@ -6,7 +6,7 @@ import Footer from "../../../components/Footer/Footer";
 export default function DetailProductCustomer(){
     return(
         <>
-            <DetailHeaderProductCustomer/>
+            <HeaderCustomer/>
             <DetailBodyProductCustomer/>
             <Footer/>
         </>
