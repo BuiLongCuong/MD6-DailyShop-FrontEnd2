@@ -30,7 +30,7 @@ function App() {
     }, []);
   return (
       <Routes>
-        <Route path={'/'} element={<HomeSimple/>}>
+        <Route path={'/'} element={<HomeCustomer/>}>
         </Route>
           <Route path={"login"} element={<Login/>}/>
           <Route path={"register"} element={<Register/>}/>
