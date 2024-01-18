@@ -5,12 +5,12 @@ import {FaXTwitter} from "react-icons/fa6";
 import {FaRegUser} from "react-icons/fa6";
 import {IoMailUnreadOutline} from "react-icons/io5";
 import {FiShoppingCart} from "react-icons/fi";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCustomerDetails} from "../../../../redux/service/customerService";
+import {getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
 
 export default function HeaderCustomer() {
     const location = useLocation();
@@ -18,11 +18,7 @@ export default function HeaderCustomer() {
     // console.log(currentPath);
     const dispatch = useDispatch()
     const customer = useSelector(state => state.customer.currentCustomerDetails);
-    console.log(customer)
-
-    const logOut = () => {
-        localStorage.removeItem("currentCustomer")
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
@@ -32,7 +28,7 @@ export default function HeaderCustomer() {
     return (
         <>
             <>
-                <div className={`header-customer ${currentPath.includes("/products") ? "non-sticky" :""}`}>
+                <div className={`header-customer ${currentPath.includes("/products") ? "non-sticky" : ""}`}>
                     <div className="header-top-customer">
                         <div className="row">
                             <div className="col-6 header-top-left-customer">
@@ -49,25 +45,17 @@ export default function HeaderCustomer() {
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
                                     <li><Link to={"#"}><FaInstagram/></Link></li>
                                     <li><Link to={"#"}><FaXTwitter/></Link></li>
-                                    <div className="acc">
-                                    <li><Link to={"#"}><FaRegUser/></Link></li>
-                                    {/*<li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>*/}
-                                    <li><span><Link to={"/login"}>
-                                        {
-                                            customer?.customerName
-                                        }
-                                    </Link></span></li>
-                                    </div>
-                                    {
-                                        customer ? (
-                                            <li><Link to={"/login"}>
-                                                <button onClick={logOut}>Log out</button></Link>
-                                            </li>
-                                        ) : (
-                                            <li><Link to={"/login"}>
-                                                <button onClick={logOut}>Đăng nhập</button></Link>
-                                            </li>
-                                        )
+                                    {customer ?
+                                        <div className="acc">
+                                            <li><Link to={"#"}><FaRegUser/></Link></li>
+                                            <li><Link to={"/login"}><span>{customer?.customerName}</span></Link></li>
+                                            <li><span onClick={()=>{
+                                                dispatch(logout()).then(() => {
+                                                    navigate('/login')
+                                                })
+                                            }}> Đăng xuất</span></li>
+                                        </div>
+                                        : <li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>
                                     }
 
                                 </ul>
