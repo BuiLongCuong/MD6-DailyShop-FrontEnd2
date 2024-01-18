@@ -11,7 +11,8 @@ import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
-import {Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
+import {search} from "../../../../redux/service/productService";
 
 export default function HeaderCustomer() {
     const location = useLocation();
@@ -27,7 +28,6 @@ export default function HeaderCustomer() {
         console.log(values.nameSearch)
         dispatch(search(values.nameSearch))
     }
-    const customer = useSelector(state => state.customer.currentCustomerDetails);
     const navigate = useNavigate();
 
     useEffect(() => {
