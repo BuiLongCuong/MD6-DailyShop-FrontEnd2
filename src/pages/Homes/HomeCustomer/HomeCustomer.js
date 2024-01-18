@@ -8,6 +8,7 @@ export default function HomeCustomer(){
         <>
             <HeaderCustomer/>
             <BodyCustomer/>
+
         </>
     )
 }

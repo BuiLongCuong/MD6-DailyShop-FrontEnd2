@@ -30,7 +30,7 @@ function App() {
     }, []);
   return (
       <Routes>
-        <Route path={'/'} element={<HomeSimple/>}>
+        <Route path={'/'} element={<HomeCustomer/>}>
         </Route>
           <Route path={"login"} element={<Login/>}/>
           <Route path={"register"} element={<Register/>}/>
@@ -39,7 +39,7 @@ function App() {
           <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
-          <Route path={"category/:id"} element={<ShowListProductByCategory/>}></Route>
+          <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
 
 
 

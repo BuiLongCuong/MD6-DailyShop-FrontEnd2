@@ -17,7 +17,8 @@ export default function DetailMainBodyShowProductCustomer(){
     useEffect(() => {
         const fetchData = () => {
             dispatch(getProductById(id)).then(({payload}) => {
-                setActiveImg(payload.photo[0].photoName)
+                console.log(payload);
+                setActiveImg(payload.photo[0]?.photoName)
             });
         }
         fetchData();
@@ -76,8 +77,8 @@ export default function DetailMainBodyShowProductCustomer(){
                                     </ul>
                                 </div>
 
-                                <div className="purchase-info">
-                                    <input type="number" min="0" value="1"/>
+                                <div className="purchase-info-cover">
+                                    <input type="number" min="0" placeholder={"Nhập số lượng"}/>
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
                                             <button type="button" className="btn">

@@ -4,6 +4,7 @@ import categoryReducer from "../reducer/categoryReducer";
 import supplierReducer from "../reducer/supplierReducer";
 import customerReducer from "../reducer/customerReducer";
 import addressReducer from "../reducer/addressReducer";
+import orderReducer from "../reducer/orderReducer";
 
 
 export const store = configureStore({
@@ -13,5 +14,6 @@ export const store = configureStore({
         categories: categoryReducer,
         products: productReducer,
         address: addressReducer,
+        order: orderReducer
     }
 })
