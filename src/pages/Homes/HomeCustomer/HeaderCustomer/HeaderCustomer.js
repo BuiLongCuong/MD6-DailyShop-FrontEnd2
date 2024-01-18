@@ -5,7 +5,7 @@ import {FaXTwitter} from "react-icons/fa6";
 import {FaRegUser} from "react-icons/fa6";
 import {IoMailUnreadOutline} from "react-icons/io5";
 import {FiShoppingCart} from "react-icons/fi";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
@@ -13,6 +13,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCustomerDetails} from "../../../../redux/service/customerService";
 
 export default function HeaderCustomer() {
+    const location = useLocation();
+    const currentPath = location.pathname;
+    // console.log(currentPath);
     const dispatch = useDispatch()
     const customer = useSelector(state => state.customer.currentCustomerDetails);
     console.log(customer)
@@ -24,10 +27,12 @@ export default function HeaderCustomer() {
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
     }, []);
+
+
     return (
         <>
             <>
-                <div className="header-customer">
+                <div className={`header-customer ${currentPath.includes("/products") ? "non-sticky" :""}`}>
                     <div className="header-top-customer">
                         <div className="row">
                             <div className="col-6 header-top-left-customer">
@@ -94,6 +99,8 @@ export default function HeaderCustomer() {
                         </div>
                     </div>
                 </div>
+
+
             </>
         </>
     )
