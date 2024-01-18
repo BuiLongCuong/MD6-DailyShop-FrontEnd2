@@ -1,12 +1,30 @@
 import "./ShowListProduct.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {getAllByIdUser} from "../../../redux/service/productService";
+import {useEffect, useState} from "react";
+import {Delete, getAllByIdUser} from "../../../redux/service/productService";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
 
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 export default function ShowListProduct() {
+    const [open, setOpen] = useState(false);
     const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
     const listProducts = useSelector(({products}) => {
@@ -15,6 +33,20 @@ export default function ShowListProduct() {
     useEffect(() => {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const deleteProduct = () => {
+        dispatch(Delete()).then(() => {
+            setOpen(false);
+        })
+    };
 
     return (
         <>
@@ -146,17 +178,36 @@ export default function ShowListProduct() {
                                                         <Link to={"/supplier/detail/" + products.productID}>Xem
                                                             chi tiết</Link>
                                                         &nbsp; &nbsp;
-                                                        <Link to={"/edit/" + products.productID}>Xóa</Link>
+                                                        {/*<Link to={"/edit/" + products.productID}>Xóa</Link>*/}
+                                                        <Button onClick={handleOpen}>Xóa</Button>
                                                     </div>
                                                 </div>
                                             </>
                                         ))}
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+
+                {/*Hiển thị modal hỏi trước khi xóa*/}
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-title"
+                    aria-describedby="modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-title" variant="h6" component="h2">
+                            Xóa một sản phẩm khỏi danh sách.
+                        </Typography>
+                        <Typography id="modal-description" sx={{ mt: 2 }}>
+                            Bạn có chắc chắn muốn xóa sản phẩm này không ???
+                        </Typography>
+                        <Button onClick={deleteProduct}>Yes</Button>
+                        <Button onClick={handleClose}>No</Button>
+                    </Box>
+                </Modal>
 
         </>
     )

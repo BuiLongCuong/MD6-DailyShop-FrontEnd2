@@ -15,12 +15,7 @@ const orderSlice = createSlice({
             console.log(payload)
             state.cart = payload;
         })
-        builder.addCase(addProductToOrders.fulfilled, (state, {payload}) => {
-            console.log(payload)
-            // const {product, quantity} = payload;
-            // const existingItem = state.listOrder.find((item) => item.orderDetails.product.productId === product.id);
-            state.cart.or.push(payload);
-        })
+
     }
 
 })
