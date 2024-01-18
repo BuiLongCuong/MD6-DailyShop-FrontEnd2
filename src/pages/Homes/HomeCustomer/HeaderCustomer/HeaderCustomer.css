@@ -116,6 +116,10 @@ li button {
 
 
 }
+.form-search{
+    width: 860px;
+    height: 70px;
+}
 
 .main {
     width: 100%;
@@ -136,10 +140,11 @@ li button {
 .main .main-center {
     width: 60%;
     height: 100%;
-
+    padding-top: 30px;
     margin: 0 5px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .main .main-right {

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {findAllByCategoryId} from "../../../redux/service/productService";
 import "./ShowListProductByCategory.css"
+import HeaderCustomer from "../../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
 export default function ShowListProductByCategory() {
     const {id} = useParams();
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function ShowListProductByCategory() {
     }, [])
     return (
         <>
-            <Header/>
+            <HeaderCustomer/>
             <div className="content-category">
                 <div className="body-cate">
                     {
