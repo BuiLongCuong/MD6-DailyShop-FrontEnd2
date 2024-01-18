@@ -62,15 +62,42 @@ export default function ShowListProduct() {
 
 
                         <div className="content-product">
-                            <div className="searchManyInput">
+                            <div className="search">
                                 <div className="searchManyInput">
-
-                                </div>
-                                <div className="inputSearch">
-                                    <input type="text"/>
-                                </div>
-                                <div className="iconSearch">
-                                    <button><i className="fa-solid fa-magnifying-glass"></i></button>
+                                    <div className="row1Search">
+                                        <div className="col1OfRow1Search">
+                                            <div className="searchNamePr">
+                                               Nhập tên sản phẩm:
+                                            </div>
+                                            <div className="inputSearchNamePr">
+                                                <input type="text"/>
+                                            </div>
+                                        </div>
+                                        <div className="col2OfRow1Search">
+                                            <div className="searchCategoryPr">
+                                                Nhập loại sản phẩm:
+                                            </div>
+                                            <div className="inputSearchCategoryPr">
+                                                <input type="text"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row2Search">
+                                        <div className="tittlePrice">
+                                            Nhập giá:
+                                        </div>
+                                    </div>
+                                    <div className="row3Search">
+                                        <div className="inputMinPrice">
+                                            <input type="text" placeholder={"Nhập giá trị nhỏ nhất"}/>
+                                        </div>
+                                        <div className="between">
+                                            <i className="fa-solid fa-arrow-right"></i>
+                                        </div>
+                                        <div className="inputMaxPrice">
+                                            <input type="text" placeholder={"Nhập giá trị lớn nhất"}/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

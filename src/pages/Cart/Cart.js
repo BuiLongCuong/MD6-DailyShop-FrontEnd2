@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {showOrderList} from "../../redux/service/oderService";
 
 export default function Cart() {
-
     const dispatch = useDispatch();
     const cart = useSelector(({order}) => {
         console.log(order.listOrder)
@@ -28,9 +27,9 @@ export default function Cart() {
         }
     };
 
-    return(
+    return (
         <>
-        <HeaderSupplier/>
+            <HeaderSupplier/>
             <>
                 <div className="mainWindow">
                     <div className="bodyWindow">
@@ -39,31 +38,39 @@ export default function Cart() {
                                 Giỏ hàng
                             </div>
                         </div>
-                        {
-                            cart && cart.orderDetails && cart.orderDetails.map((itemDetails) => (
-                        <div className="nameBody2">
-                            <div className="col1Body">
-                                <div className="orderDetail">
-                                    <div className="removeOrder">Xóa</div>
-                                    <div className="imageOrder"><img src={itemDetails.product.photo[0]?.photoName} alt="" style={{width: "96px",height: "69px"}}/></div>
-                                    <div className="infoOrder">
-                                        <div className="infoPr">
-                                            <div className="namePr">{itemDetails.product.productName}</div>
-                                            <div className="categoryPro"> Loại: {itemDetails.product.category}</div>
-                                        </div>
-                                        <div className="pricePr">
-                                            {itemDetails.product.category}
-                                        </div>
 
+                        <div className="nameBody2">
+                            {
+                                cart && cart.orderDetails && cart.orderDetails.map((itemDetails) => (
+                                    <div className="col1Body">
+                                        <div className="orderDetail">
+                                            <div className="removeOrder">Xóa</div>
+                                            <div className="imageOrder"><img src={itemDetails.product.photo[0]?.photoName}
+                                                                             alt=""
+                                                                             style={{width: "96px", height: "69px"}}/></div>
+                                            <div className="infoOrder">
+                                                <div className="infoPr">
+                                                    <div className="namePr">{itemDetails.product.productName}</div>
+                                                    <div
+                                                        className="categoryPro"> Loại: {itemDetails.product.category.name}</div>
+                                                </div>
+                                                <div className="pricePr">
+                                                    {itemDetails.product.price}
+                                                </div>
+
+                                            </div>
+                                            <div className="quantityPr">
+                                                <button className={"btn1"} onClick={handleDecrease}>-</button>
+                                                <input type="text" value={quantity} readOnly/>
+                                                <button className={"btn2"} onClick={handleIncrease}>+</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="quantityPr">
-                                        <button className={"btn1"} onClick={handleDecrease}>-</button>
-                                        <input type="text" value={quantity} readOnly />
-                                        <button className={"btn2"} onClick={handleIncrease}>+</button>
-                                    </div>
-                                </div>
-                            </div>
+                                ))
+                            }
                             <div className="col2Body">
+                                {
+                                    cart && cart.orderDetails && cart.orderDetails.map((itemDetails) => (
                                 <div className="row1OfCol2">
                                     <div className="paymentTittle">
                                         Tổng tiền:
@@ -72,6 +79,8 @@ export default function Cart() {
                                         {cart.totalAmount}
                                     </div>
                                 </div>
+                                    ))
+                                }
                                 <div className="row2OfCol2">
                                     <div className="decisionBtn">
                                         <button>Tiến hành thanh toán</button>
@@ -84,8 +93,6 @@ export default function Cart() {
                                 </div>
                             </div>
                         </div>
-                            ))
-                        }
                     </div>
                 </div>
             </>

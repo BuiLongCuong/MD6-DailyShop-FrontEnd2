@@ -17,7 +17,8 @@ export default function DetailMainBodyShowProductCustomer(){
     useEffect(() => {
         const fetchData = () => {
             dispatch(getProductById(id)).then(({payload}) => {
-                setActiveImg(payload.photo[0].photoName)
+                console.log(payload);
+                setActiveImg(payload.photo[0]?.photoName)
             });
         }
         fetchData();

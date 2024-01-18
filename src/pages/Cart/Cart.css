@@ -44,6 +44,8 @@
     height: 100%;
     /*background-color: #e7403a;*/
     border-right: 1px solid #dbdbdb;
+    display: block;
+    /*flex-direction: column; */
 }
 
 .col2Body {
