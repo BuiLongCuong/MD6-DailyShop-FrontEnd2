@@ -3,8 +3,10 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
+import {addProductToOrders} from "../../../../../../redux/service/oderService";
 
 export default function DetailMainBodyShowProductCustomer(){
+    const [quantity, setQuantity] = useState(1);
     const [activeImg, setActiveImg] = useState(null);
     const {id} = useParams();
     const dispatch = useDispatch();
@@ -23,6 +25,24 @@ export default function DetailMainBodyShowProductCustomer(){
         }
         fetchData();
     }, []);
+
+    const handleQuantityChange = (e) => {
+        const newQuantity = parseInt(e.target.value, 10);
+        setQuantity(newQuantity);
+    };
+
+    const addOrder = () => {
+        let  order = {
+            quantity : quantity,
+            product : {
+                productID: product.productID
+            }
+        }
+
+        dispatch(addProductToOrders(order)).then(() => {
+            alert("Add OK")
+        })
+    }
     return(
         <>
             <div className="detail-main-body-show-product-customer">
@@ -78,10 +98,14 @@ export default function DetailMainBodyShowProductCustomer(){
                                 </div>
 
                                 <div className="purchase-info-cover">
-                                    <input type="number" min="0" placeholder={"Nhập số lượng"}/>
+                                    <input type="number"
+                                           value={quantity}
+                                           min="1"
+                                           onChange={handleQuantityChange}
+                                           placeholder={"Nhập số lượng"}/>
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
-                                            <button type="button" className="btn">
+                                            <button type="button" className="btn" onClick={addOrder}>
                                                 <i className="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
                                             </button>
                                         </Link>
