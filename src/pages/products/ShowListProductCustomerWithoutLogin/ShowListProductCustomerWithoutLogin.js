@@ -1,17 +1,30 @@
 import "./ShowListProductCustomerWithoutLogin.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getAllProduct, getAllProductWithoutLogin} from "../../../redux/service/productService";
-import {Link} from "react-router-dom";
+import {Link, useParams, useSearchParams} from "react-router-dom";
+import {forEach} from "react-bootstrap/ElementChildren";
+import {Pagination} from "./pagination/Pagination";
+import {current} from "@reduxjs/toolkit";
 export default function ShowListProductCustomerWithoutLogin(){
     const dispatch = useDispatch();
+
+    const [searchParam] = useSearchParams()
+    const [page,setPage]=useState(+searchParam.get('page'))
+
+    const changePage=(newPage)=>{
+        setPage(newPage)
+    }
+
     const listProducts = useSelector(({products}) => {
-        console.log(products.list)
         return products.list
     })
+    const totalPages =useSelector(({products} )=>{
+        return products.totalPages;
+    })
     useEffect(() => {
-        dispatch(getAllProductWithoutLogin())
-    }, []);
+        dispatch(getAllProductWithoutLogin(page))
+    }, [page]);
     return(
         <>
             <div className="show-list-product-customer-without-login">
@@ -41,11 +54,10 @@ export default function ShowListProductCustomerWithoutLogin(){
                                     </div>
                                 </Link>
                             {/*</Link>*/}
-
-
                         </>
                     )
                 )}
+                {page || totalPages? <Pagination total={totalPages} current={page} changePage={changePage}/>:""}
             </div>
 
 
