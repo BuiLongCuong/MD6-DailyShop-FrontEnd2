@@ -28,7 +28,7 @@ export const getAllProduct = createAsyncThunk(
 export const getProductById = createAsyncThunk(
     'products/getProductById',
     async (idProduct) =>{
-        let res = await getCustomerUrl().get("/products/" + idProduct);
+        let res = await getAxios().get("/products/" + idProduct);
         return res.data;
     }
 )
