@@ -27,24 +27,30 @@ export default function ShowListProduct() {
     const [open, setOpen] = useState(false);
     const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
+    const [productId,setProductId]=useState(null);
     const listProducts = useSelector(({products}) => {
+        console.log(products.list)
         return products.list
     })
+
     useEffect(() => {
         dispatch(getAllByIdUser(currentCustomer.id))
     }, []);
 
-    const handleOpen = () => {
+    const handleOpen = (id) => {
+        setProductId(id)
         setOpen(true);
     };
 
     const handleClose = () => {
+        setProductId(null);
         setOpen(false);
     };
 
     const deleteProduct = () => {
-        dispatch(Delete()).then(() => {
+        dispatch(Delete(productId)).then(() => {
             setOpen(false);
+            setProductId(null);
         })
     };
 
@@ -163,7 +169,7 @@ export default function ShowListProduct() {
                                                     <div className="check-he ma"><input type="checkbox"/></div>
                                                     <div className="name-he name-ma ma">
                                                         <img
-                                                            src={products.photo[0].photoName}
+                                                            src={products.photo[0]?.photoName}
                                                             alt=""/>
                                                         <div className="name-p">{products.productName}</div>
                                                     </div>
@@ -179,7 +185,7 @@ export default function ShowListProduct() {
                                                             chi tiết</Link>
                                                         &nbsp; &nbsp;
                                                         {/*<Link to={"/edit/" + products.productID}>Xóa</Link>*/}
-                                                        <Button onClick={handleOpen}>Xóa</Button>
+                                                        <Button onClick={()=>handleOpen(products.productID)}>Xóa</Button>
                                                     </div>
                                                 </div>
                                             </>
@@ -204,7 +210,7 @@ export default function ShowListProduct() {
                         <Typography id="modal-description" sx={{ mt: 2 }}>
                             Bạn có chắc chắn muốn xóa sản phẩm này không ???
                         </Typography>
-                        <Button onClick={deleteProduct}>Yes</Button>
+                        <Button onClick={()=>deleteProduct()}>Yes</Button>
                         <Button onClick={handleClose}>No</Button>
                     </Box>
                 </Modal>
