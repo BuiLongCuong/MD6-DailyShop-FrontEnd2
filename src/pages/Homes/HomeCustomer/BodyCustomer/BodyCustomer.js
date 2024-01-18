@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import ShowCategoryProductCustomer from "../ShowCategoryProductCustomer/ShowCategoryProductCustomer";
 import ShowAllProductCustomerLayout from "../ShowAllProductCustomer/ShowAllProductCustomerLayout";
 import {Outlet} from "react-router-dom";
+import Footer from "../../../../components/Footer/Footer";
 export default function BodyCustomer(){
     return(
         <>
@@ -61,6 +62,7 @@ export default function BodyCustomer(){
                 <Outlet/>
                 <ShowCategoryProductCustomer/>
                 <ShowAllProductCustomerLayout/>
+
             </div>
         </>
     )

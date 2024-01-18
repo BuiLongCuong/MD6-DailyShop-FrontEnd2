@@ -22,7 +22,7 @@ export default function ShowListProductCustomerWithoutLogin(){
                                     <div className="card-detail-show-product-without-login">
                                         <div className="card-detail-show-product-image-without-login">
                                             <img
-                                                src={products.photo[0]?.photoName}
+                                                src={products.photo.length>0 ? products.photo[0].photoName: ""}
                                                 alt=""/>
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">

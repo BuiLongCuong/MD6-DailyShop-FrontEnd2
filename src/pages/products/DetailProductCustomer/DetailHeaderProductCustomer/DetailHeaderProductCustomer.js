@@ -40,7 +40,10 @@ export default function DetailHeaderProductCustomer(){
                         <div className="main-detail-product-detail-product">
                             <div className="main-left-detail-product">
                                 <div className="logo-home-detail-product">
-                                    <img src={logo} alt=''/>
+                                    <Link to={"/customer"}>
+                                        <img src={logo} alt=''/>
+                                    </Link>
+
                                 </div>
                             </div>
                             <div className="main-center-detail-product">
