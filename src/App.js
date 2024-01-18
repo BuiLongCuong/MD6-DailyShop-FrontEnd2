@@ -21,6 +21,7 @@ import DetailProductCustomer from "./pages/products/DetailProductCustomer/Detail
 import Cart from "./pages/Cart/Cart";
 import {getCurrentCustomerDetails} from "./redux/service/customerService";
 import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
+import Pay from "./pages/Pay/Pay";
 
 function App() {
     const dispatch =useDispatch()
@@ -40,6 +41,7 @@ function App() {
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
           <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
+          <Route path={"/pay"} element={<Pay/>}/>
 
 
 
