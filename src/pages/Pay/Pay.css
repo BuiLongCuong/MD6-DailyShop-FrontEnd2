@@ -1,10 +1,10 @@
 .content-pay {
     width: 100%;
-    height: 900px;
+    height: auto;
     display: flex;
     justify-content: center;
     padding-top: 15px;
-
+    background-color: #ebebeb;
 }
 
 .body-pay {
@@ -14,8 +14,10 @@
 }
 
 .address-pay {
-    width: 100%;
+    width: 1200px;
     height: 100px;
+    background-color: white;
+
 }
 
 .address-product {
@@ -83,8 +85,9 @@
 }
 
 .form-prCus {
-    width: 1216px;
+    width: 1200px;
     height: 260px;
+    background-color: white;
 }
 
 .header-pr {
@@ -104,22 +107,37 @@
 .sp {
     width: 650px;
     height: 30px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #222222;
 }
 
 .pr {
+    padding-left: 37px;
     width: 112px;
     height: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #bbbbbb;
 }
 
 .Qt {
+    padding-left: 46px;
     width: 250px;
     height: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #bbbbbb;
 }
 
 .PO {
     width: 1216px;
     height: 50px;
     display: flex;
+
 }
 
 .name {
@@ -155,23 +173,24 @@
 }
 
 .img-pay {
-    width: 40px;
+    width: 80px;
     height: 40px;
     overflow: hidden;
 }
 
 .text-pay {
-    padding-left: 20px;
+    padding-left: 5px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    color: #222222;
 }
 
 .div1 {
-    padding-left: 15px;
+    padding-left: 20px;
     width: 195px;
     height: 55px;
     display: flex;
@@ -179,6 +198,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    color: #929292;
 }
 
 .div2 {
@@ -186,6 +206,10 @@
     height: 55px;
     display: flex;
     align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
 }
 
 .div3 {
@@ -194,15 +218,23 @@
     height: 55px;
     display: flex;
     align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222
 }
 
 .div5 {
-    padding-left: 140px;
+    padding-left: 119px;
     width: 228px;
     height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222
 }
 
 .totalAmount {
@@ -229,18 +261,32 @@
     align-items: center;
 }
 
+.sum-Pr {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #bbbbbb;
+    width: 190px;
+    height: 16px;
+    padding-left: 61px;
+}
+
 .sum-pr {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: rgba(0, 0, 0, 0.54);
-    width: 190px;
-    height: 16px;
+
 }
 .sum-cs{
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
     width: 135px;
     height: 40px;
     display: flex;
+    justify-content: center;
+    padding-right: 30px;
     align-items: center;
 }
