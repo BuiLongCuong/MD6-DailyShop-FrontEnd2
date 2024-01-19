@@ -24,7 +24,7 @@ export default function ShowCategoryProductCustomer(){
                         category && category.map((category) => {
                             return (
                                 <>
-                                    <Link to={"/category/" + category.id}>
+                                    <Link to={"/category/" + category.id} className={"category-text"}>
                                         <div className="form-category">
                                             <div className="image-category">
                                                 <div className="form-imageCate">
