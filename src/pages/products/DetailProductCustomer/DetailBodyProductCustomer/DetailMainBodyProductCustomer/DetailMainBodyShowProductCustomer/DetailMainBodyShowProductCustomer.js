@@ -42,7 +42,7 @@ export default function DetailMainBodyShowProductCustomer(){
         }
 
         dispatch(addProductToOrders(order)).then(() => {
-            toast.success('Thêm mới sản phẩm thành công!');
+            toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
         })
     }
     return(

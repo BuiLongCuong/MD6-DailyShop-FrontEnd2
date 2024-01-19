@@ -56,7 +56,8 @@ const productSlice = createSlice({
         builder.addCase(Delete.fulfilled,(state,{payload})=>{
             for (let i = 0; i < state.list.length; i++) {
                 if (state.list[i].id===payload){
-                    state.list.splice(i,1)
+                    state.list.splice(i,1);
+                    break;
                 }
             }
         })

@@ -79,12 +79,12 @@ export default function MainBodyAboveDetailProductSupplier() {
                             <div className="purchase-info">
                                 {/*<input type="number" min="0" value="1"/>*/}
                                 <h5>Số lượng hàng trong kho:{product?.stockQuantity}</h5>
-                                <Link to={"supplier"}>
+                                <Link to={"/supplier/products"}>
                                     <button type="button" className="btn">
                                         Trang chủ
                                     </button>
                                 </Link>
-                                <Link to={"/edit/" + product?.productID}>
+                                <Link to={"/supplier/edit/" + product?.productID}>
                                     <button type="button" className="btn">Chỉnh sửa</button>
                                 </Link>
                             </div>

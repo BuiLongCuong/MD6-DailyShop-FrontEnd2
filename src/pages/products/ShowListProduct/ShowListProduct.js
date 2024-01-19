@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import "./ShowListProduct.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
@@ -10,6 +11,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import * as React from "react";
 
 const style = {
     position: 'absolute',
@@ -27,7 +29,7 @@ export default function ShowListProduct() {
     const [open, setOpen] = useState(false);
     const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
-    const [productId,setProductId]=useState(null);
+    const [productId,setProductId] = useState(null);
     const listProducts = useSelector(({products}) => {
         console.log(products.list)
         return products.list
@@ -51,11 +53,16 @@ export default function ShowListProduct() {
         dispatch(Delete(productId)).then(() => {
             setOpen(false);
             setProductId(null);
+            toast.success('Xóa sản phẩm thành công!');
         })
     };
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             {
                 listProducts && listProducts.map((products) => (
                         <>
