@@ -28,7 +28,7 @@ export const getAllProduct = createAsyncThunk(
 export const getProductById = createAsyncThunk(
     'products/getProductById',
     async (idProduct) =>{
-        let res = await getSupplierUrl().get("/products/" + idProduct);
+        let res = await getAxios().get("/products/" + idProduct);
         return res.data;
     }
 )
@@ -80,5 +80,12 @@ export const search = createAsyncThunk(
     async (nameSearch)=>{
         let listProduct = await axios.get("/searchProduct?name=" + nameSearch)
         return listProduct.data
+    }
+)
+export const findAllByCategoryId = createAsyncThunk(
+    'product/findAllById',
+    async (id) => {
+        const res = await getAxios().get("/category/" + id)
+        return res.data
     }
 )

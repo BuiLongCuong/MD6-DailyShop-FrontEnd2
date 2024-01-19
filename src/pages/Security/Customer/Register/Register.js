@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import './Register.css'
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
@@ -36,6 +37,10 @@ export default function Register() {
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="main2">
                 <div className="headerRegister">
                     <div className="headerDetail">
@@ -74,7 +79,7 @@ export default function Register() {
                             }
                                     onSubmit={(values) => {
                                         register(values).then(() => {
-                                            console.log("đăng ký thành công")
+                                            toast.success('Đăng ký tài khoản thành công!');
                                             navigate("/login")
                                         })
                                     }}

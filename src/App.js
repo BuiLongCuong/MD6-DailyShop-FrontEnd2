@@ -20,6 +20,9 @@ import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 import Cart from "./pages/Cart/Cart";
 import {getCurrentCustomerDetails} from "./redux/service/customerService";
+import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
+import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
+import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp";
 
 function App() {
     const dispatch =useDispatch()
@@ -29,7 +32,7 @@ function App() {
     }, []);
   return (
       <Routes>
-        <Route path={'/'} element={<HomeSimple/>}>
+        <Route path={'/'} element={<HomeCustomer/>}>
         </Route>
           <Route path={"login"} element={<Login/>}/>
           <Route path={"register"} element={<Register/>}/>
@@ -38,6 +41,8 @@ function App() {
           <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+          <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
+
 
 
             <Route path={"supplier"} element={<HomeSupplier/>}>
@@ -45,9 +50,11 @@ function App() {
                 <Route path={"add"} element={<AddProduct/>}/>
                 <Route path={"edit/:id"} element={<UpdateProduct/>}/>
                 <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
+                <Route path={"editInfo/:id"} element={<EditInforSupp/>}/>
 
             </Route>
             <Route path={"cart"} element={<Cart/>}/>
+            <Route path={"history"} element={<TransactionHistory/>}/>
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
 

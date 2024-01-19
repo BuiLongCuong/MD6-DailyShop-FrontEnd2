@@ -5,12 +5,12 @@ import {FaXTwitter} from "react-icons/fa6";
 import {FaRegUser} from "react-icons/fa6";
 import {IoMailUnreadOutline} from "react-icons/io5";
 import {FiShoppingCart} from "react-icons/fi";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCustomerDetails} from "../../../../redux/service/customerService";
+import {getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
 
 export default function HeaderCustomer() {
     const location = useLocation();
@@ -18,11 +18,7 @@ export default function HeaderCustomer() {
     // console.log(currentPath);
     const dispatch = useDispatch()
     const customer = useSelector(state => state.customer.currentCustomerDetails);
-    console.log(customer)
-
-    const logOut = () => {
-        localStorage.removeItem("currentCustomer")
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
@@ -32,14 +28,14 @@ export default function HeaderCustomer() {
     return (
         <>
             <>
-                <div className={`header-customer ${currentPath.includes("/products") ? "non-sticky" :""}`}>
+                <div className={`header-customer ${currentPath.includes("/products") ? "non-sticky" : ""}`}>
                     <div className="header-top-customer">
                         <div className="row">
                             <div className="col-6 header-top-left-customer">
                                 <ul>
                                     <li style={{color: "white"}}><IoMailUnreadOutline/>dailyshop@gmail.com</li>
                                     <li style={{color: "white"}}>Support diliver</li>
-                                    <li><Link to={"/signUp"} style={{color: "white"}}>Kênh người bán</Link></li>
+                                    <li><Link to={"/signIn"} style={{color: "white"}}>Kênh người bán</Link></li>
 
                                 </ul>
                             </div>
@@ -47,6 +43,7 @@ export default function HeaderCustomer() {
                                 <ul>
                                     <span>Kết nối</span>
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
+<<<<<<< HEAD
                                     <li><Link to={"https://www.instagram.com/"}><FaInstagram/></Link></li>
                                     <li><Link to={"https://twitter.com/"}><FaXTwitter/></Link></li>
                                     <div className="acc">
@@ -61,6 +58,23 @@ export default function HeaderCustomer() {
                                     <li><Link to={"/login"}>
                                         <button onClick={logOut}>Log out</button></Link>
                                     </li>
+=======
+                                    <li><Link to={"#"}><FaInstagram/></Link></li>
+                                    <li><Link to={"#"}><FaXTwitter/></Link></li>
+                                    {customer ?
+                                        <div className="acc">
+                                            <li><Link to={"#"}><FaRegUser/></Link></li>
+                                            <li><Link to={"/login"} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
+                                            <li><span onClick={()=>{
+                                                dispatch(logout()).then(() => {
+                                                    navigate('/login')
+                                                })
+                                            }}> Đăng xuất</span></li>
+                                        </div>
+                                        : <li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>
+                                    }
+
+>>>>>>> bdc0f7be77851efb429366031d0cddbd4ca660e4
                                 </ul>
                             </div>
                         </div>
@@ -90,7 +104,7 @@ export default function HeaderCustomer() {
                                 <div className="header-cart">
                                     <ul>
                                         <li>
-                                            <Link to={"#"}><FiShoppingCart
+                                            <Link to={"/cart"}><FiShoppingCart
                                                 className={"color-white"}/><span>5</span></Link>
                                         </li>
                                     </ul>

@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -46,8 +47,13 @@ export function UpdateProduct() {
     const Update = (values) => {
         let productEdit = {...values}
             productEdit.photo = photoUpload
-            dispatch(UpdateService(productEdit))
-        navigate("/supplier/products")
+            dispatch(UpdateService(productEdit)).then(() => {
+                toast.success('Chỉnh sửa thông tin sản phẩm thành công!');
+                setTimeout(() => {
+                    navigate("/supplier/products");
+                },1000);
+            })
+
     }
     const handleChange = (e) => {
         const files = e.target.files
@@ -76,7 +82,10 @@ export function UpdateProduct() {
 
     return (
         <>
-
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="mainAddPr">
                 <Formik initialValues={product} onSubmit={Update}
                         validationSchema={updateSchema}

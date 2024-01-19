@@ -1,67 +1,112 @@
 import HeaderSupplier from "../Homes/HomeSupplier/HeaderSupplier/HeaderSupplier";
 import "./Cart.css"
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {showOrderList} from "../../redux/service/oderService";
+import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
 
 export default function Cart() {
-    // return(
-    //     <>
-    //         <HeaderSupplier/>
-    //         <>
-    //             <div className="mainWindow">
-    //                 <div className="bodyWindow">
-    //                     <div className="nameBody1">
-    //                         <div className="titleBody1">
-    //                             Giỏ hàng
-    //                         </div>
-    //                     </div>
-    //                     <div className="nameBody2">
-    //                         <div className="col1Body">
-    //                             <div className="orderDetail">
-    //                                 <div className="removeOrder">Xóa</div>
-    //                                 <div className="imageOrder"><img src="/images/img_2.png" alt="" style={{width: "96px",height: "69px"}}/></div>
-    //                                 <div className="infoOrder">
-    //                                     <div className="infoPr">
-    //                                         <div className="namePr">Tv màn hình siêu mỏng</div>
-    //                                         <div className="categoryPro">Gia dụng</div>
-    //                                     </div>
-    //                                     <div className="pricePr">
-    //                                         123.000 VNĐ
-    //                                     </div>
-    //                                 </div>
-    //                                 <div className="quantityPr">
-    //                                     <button className="minus" onClick={"decreaseQuantity()"}>-</button>;
-    //                                     <input type="text" id="quantityInput" value="1">;
-    //                                         <button className="plus" onClick={"increaseQuantity()"}>+</button>;
-    //                                 </div>
-    //                             </div>
-    //                         </div>
-    //                         <div className="col2Body">
-    //                             <div className="row1OfCol2">
-    //                                 <div className="paymentTittle">
-    //                                     Tổng tiền
-    //                                 </div>
-    //                                 <div className="paymentTotal">
-    //                                     123.000.000 VNĐ
-    //                                 </div>
-    //                             </div>
-    //                             <div className="row2OfCol2">
-    //                                 <div className="decisionBtn">
-    //                                     <button>Tiến hành thanh toán</button>
-    //                                 </div>
-    //                             </div>
-    //                             <div className="row3OfCol2">
-    //                                 <div className="linkBack">
-    //                                     <p><i class="fa fa-arrow-left "></i>&nbsp;Tiếp mục mua hàng</p>
-    //                                 </div>
-    //                             </div>
-    //                         </div>
-    //
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </>
-    //
-    //     </>
-    //  )
+    const dispatch = useDispatch();
+    const cart = useSelector(({order}) => {
+        console.log(order.listOrder)
+        console.log(order)
+        return order.cart;
+    });
+
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
+    useEffect(() => {
+        dispatch(showOrderList())
+    }, []);
+
+    const [quantity, setQuantity] = useState(1);
+
+    const handleIncrease = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            setQuantity(prevQuantity => prevQuantity - 1);
+        }
+    };
+
+    return (
+        <>
+            <HeaderCustomer/>
+            <>
+                <div className="mainWindow">
+                    <div className="bodyWindow">
+                        <div className="nameBody1">
+                            <div className="titleBody1">
+                                Giỏ hàng
+                            </div>
+                        </div>
+                        <div className="nameBody2">
+                            <div className="col1Body">
+                                {
+                                    cart && cart.cartDetails && cart.cartDetails.map((itemDetails) => (
+                                        <>
+                                            <div className="orderDetail">
+                                                <div className="removeOrder">Xóa</div>
+                                                <div className="imageOrder"><img
+                                                    src={itemDetails.product.photo[0]?.photoName} alt=""
+                                                    style={{width: "96px", height: "69px"}}/></div>
+                                                <div className="infoOrder">
+                                                    <div className="infoPr">
+                                                        <div className="namePr">{itemDetails.product.productName}</div>
+                                                        <div
+                                                            className="categoryPro"> Loại: {itemDetails.product.category.name}</div>
+                                                    </div>
+                                                    <div className="pricePr">
+                                                        {formatToCurrency(itemDetails.product.price)}
+                                                    </div>
+
+                                                </div>
+                                                <div className="quantityPr">
+                                                    <button className={"btn1"} onClick={handleDecrease}>-</button>
+                                                    <input type="text" value={
+                                                        itemDetails.quantity
+                                                    }/>
+                                                    <button className={"btn2"} onClick={handleIncrease}>+</button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ))
+                                }
+                            </div>
+                            <div className="col2Body">
+                                {
+                                    <div className="row1OfCol2">
+                                        <div className="paymentTittle">
+                                            Tổng tiền:
+                                        </div>
+                                        <div className="paymentTotal">
+                                            {formatToCurrency(cart && cart.totalAmount)}
+                                        </div>
+                                    </div>
+                                }
+                                <div className="row2OfCol2">
+                                    <div className="decisionBtn">
+                                        <button>Tiến hành thanh toán</button>
+                                    </div>
+                                </div>
+                                <div className="row3OfCol2">
+                                    <div className="linkBack">
+                                        <p><i class="fa fa-arrow-left "></i>&nbsp;Tiếp mục mua hàng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+
+        </>
+    )
 }
-
-

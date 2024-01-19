@@ -52,3 +52,10 @@ export const getCurrentCustomerDetails= createAsyncThunk(
 export const register = (newCustomer) => {
     return getCustomerUrl().post("customer/register", newCustomer)
 }
+export const logout= createAsyncThunk(
+    "LOGOUT",
+    async ()=>{
+        localStorage.removeItem("currentCustomer")
+        return null
+    }
+)

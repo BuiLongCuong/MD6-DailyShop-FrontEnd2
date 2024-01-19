@@ -3,13 +3,15 @@
 }
 
 .content-product .search {
-    height: 100px;
+    height: 190px;
     background-color: white;
     -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .content-product .products {
@@ -50,21 +52,27 @@
 }
 
 .cate-he {
-    width: 20%;
+    width: 15%;
 }
 
 .price-he {
-    width: 20%;
+    width: 15%;
 }
 
 .quantity-he {
-    width: 5%;
+    width: 10%;
 }
 
 .action {
-    width: 20%;
+    width: 25%;
     justify-content: center;
     display: flex;
+}
+
+.action button {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
 }
 
 .center {
@@ -78,13 +86,15 @@
 
 .name-ma {
     display: flex;
-
+    overflow-wrap: anywhere;
 }
 
 .ma {
     padding: 10px 0;
     font-size: 14px;
-
+    overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
 }
 .check-he input {
     width: 15px;
@@ -102,6 +112,11 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
+    word-wrap: break-word  ;
+    overflow-wrap: inherit ;
+    white-space: break-spaces;
+    max-width: 100%;
+    text-overflow: clip;
 }
 
 .nav-bar-product {
@@ -119,20 +134,145 @@
     height: 32px;
 }
 
-.search {
-
+.searchManyInput {
+    width: 1037px;
+    height:65%;
+    /*background-color: #3B5998;*/
+    margin-top: 15px;
 }
-.iconSearch {
+
+.row1Search {
+    display: flex;
+    justify-content: center;
+}
+
+.col1OfRow1Search {
+    display: flex;
+    justify-content: center;
+    margin-right: 97px;
+}
+
+.col1OfRow1Search input {
+    width: 303px !important;
+    border: 1px solid #dbdbdb;
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+}
+
+.col2OfRow1Search {
+    display: flex;
+    justify-content: center;
+}
+
+.col2OfRow1Search input {
+    width: 303px !important;
+    border: 1px solid #dbdbdb;
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+}
+
+.searchNamePr, .searchCategoryPr {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/*.inputSearchNamePr, .inputSearchCategoryPr{*/
+/*    height: 40px;*/
+/*    width: 300px;*/
+/*    border-radius: 5px 5px 5px 5px;*/
+/*}*/
+
+.inputSearchName {
+    /*margin-right: 10px;*/
+    height: 40px;
+    width: 300px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.inputSearchCategoryPr{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.inputSearchNamePr input, .inputSearchCategoryPr input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    padding-left: 10px;
+    outline: 1px solid #ccc
+}
+.row2Search {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.row3Search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.inputMinPrice, .inputMaxPrice {
+    height: 40px;
+    width: 300px;
+}
+.between {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 40px;
 }
-.search .iconSearch input{
-    border-radius: 5px 5px 5px 5px !important;
-}
-.iconSearch button {
+.inputMinPrice input , .inputMaxPrice input {
     width: 100%;
     height: 100%;
+    border-radius: 5px 5px 5px 5px;
     border: 1px solid #dbdbdb;
+    padding-left: 10px;
+    /*outline: 1px solid #ccc*/
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+
 }
+
+.quantity-he .ma {
+    word-wrap: break-word;
+}
+
+Link {
+
+}
+
+.edit , .detail {
+    text-decoration: none;
+}
+
+.findManyInput {
+    height: 35%;
+    width: 100%;
+    /*background-color: #e7403a;*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.findManyInput button{
+    width: 90px;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    background-color: #ff0000;
+    margin-right: 60px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+
 
 
