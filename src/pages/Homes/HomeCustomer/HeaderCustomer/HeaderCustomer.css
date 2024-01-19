@@ -170,6 +170,7 @@ li button {
     outline: none;
     padding: 0;
     background: none;
+    margin-left: 20px;
 }
 
 .search-cover button {
