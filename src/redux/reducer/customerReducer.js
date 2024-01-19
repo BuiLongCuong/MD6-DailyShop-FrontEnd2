@@ -9,7 +9,9 @@ import {
 
 const initialState = {
     currentCustomer : JSON.parse(localStorage.getItem("currentCustomer")),
-    currentCustomerDetails : null,
+    currentCustomerDetails : {
+
+    },
     customerDetails : {
 
     }

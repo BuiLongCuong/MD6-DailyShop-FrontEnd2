@@ -45,12 +45,16 @@ export function EditInforSupp() {
     }
 
     const EditSupplier = (values) => {
-        values.account = currentSupplier;
-        values.imageSupplier = photo;
-        console.log(values)
-        dispatch(editSupplier(values)).then(() => {
-            navigate("/supplier/products")
-        })
+        // values.account = currentSupplier;
+        // values.imageSupplier = photo;
+        // console.log(values)
+        // dispatch(editSupplier(values)).then(() => {
+        //     navigate("/supplier/products")
+        // })
+        const updatedValues = { ...values, account: currentSupplier, imageSupplier: photo };
+        dispatch(editSupplier(updatedValues)).then(() => {
+            navigate("/supplier/products");
+        });
     }
 
     const handleChange1 = async (e) => {
@@ -188,10 +192,11 @@ export function EditInforSupp() {
                                             {(photo) ? (
                                                 <div className="imageContainer">
                                                     <img src={photo ?? ''} alt="" style={{border: "50%"}}/>
+
                                                 </div>
                                             ) : (
                                                 <img
-                                                    src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
+                                                    src={supplier.imageSupplier}
                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}
