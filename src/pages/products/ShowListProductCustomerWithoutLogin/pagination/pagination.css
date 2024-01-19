@@ -17,7 +17,7 @@
 }
 
 .pagination-display .item {
-    padding: 0 20px;
+    padding: 0 10px;
     background-color: transparent;
     border: none;
     color: rgba(14, 13, 13, 0.4);
@@ -30,6 +30,7 @@
 
 .prev-next:active {
     color: #fd5d32 !important;
+
 }
 
 .pagination-display button:first-child, .pagination-display button:last-child{
@@ -37,4 +38,5 @@
 }
 .disabled{
     pointer-events: none;
+    opacity: 0.2 !important;
 }
