@@ -9,7 +9,12 @@ import {current} from "@reduxjs/toolkit";
 
 export default function ShowListProductCustomerWithoutLogin() {
     const dispatch = useDispatch();
-<<<<<<< HEAD
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
 
     const [searchParam] = useSearchParams()
     const [page, setPage] = useState(+searchParam.get('page'))
@@ -18,14 +23,6 @@ export default function ShowListProductCustomerWithoutLogin() {
         setPage(newPage)
     }
 
-=======
-    const formatToCurrency = (value) => {
-        return new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-        }).format(value);
-    };
->>>>>>> bdc0f7be77851efb429366031d0cddbd4ca660e4
     const listProducts = useSelector(({products}) => {
         return products.list
     })
@@ -41,15 +38,6 @@ export default function ShowListProductCustomerWithoutLogin() {
                 {listProducts && listProducts.map((products) => (
                         <>
                             {/*<Link to={"/customer/products/detail/" + products.productID}>*/}
-<<<<<<< HEAD
-                            <Link to={"/customer/products/detail/" + products.productID}
-                                  className="card-detail-show-product-cover-without-login">
-                                <div className="card-detail-show-product-without-login">
-                                    <div className="card-detail-show-product-image-without-login">
-                                        <img
-                                            src={products.photo.length > 0 ? products.photo[0].photoName : ""}
-                                            alt=""/>
-=======
                                 <Link to={"/customer/products/detail/" + products.productID} className="card-detail-show-product-cover-without-login">
                                     <div className="card-detail-show-product-without-login">
                                         <div className="card-detail-show-product-image-without-login">
@@ -67,21 +55,6 @@ export default function ShowListProductCustomerWithoutLogin() {
                                             <div className="card-detail-show-product-price-without-login">
                                                 <span style={{color: "red"}}>Giá : {formatToCurrency(products.price)}</span>
                                             </div>
-
-
-                                        </div>
->>>>>>> bdc0f7be77851efb429366031d0cddbd4ca660e4
-                                    </div>
-                                    <div className="card-detail-show-product-info-without-login">
-                                        <div className="card-detail-show-product-name-without-login">
-                                            {products.productName}, {products.category.name}
-                                        </div>
-                                        <div className="card-detail-show-product-blank-without-login">
-
-                                        </div>
-                                        <div className="card-detail-show-product-price-without-login">
-                                            <span style={{color: "red"}}>Giá : $ {products.price}</span>
-                                        </div>
 
 
                                     </div>
