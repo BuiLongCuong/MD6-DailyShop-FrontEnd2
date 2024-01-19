@@ -3,6 +3,7 @@ import "./Cart.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showOrderList} from "../../redux/service/oderService";
+import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
 
 export default function Cart() {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Cart() {
 
     return (
         <>
-            <HeaderSupplier/>
+            <HeaderCustomer/>
             <>
                 <div className="mainWindow">
                     <div className="bodyWindow">
@@ -41,7 +42,7 @@ export default function Cart() {
                         <div className="nameBody2">
                             <div className="col1Body">
                                 {
-                                    cart && cart.orderDetails && cart.orderDetails.map((itemDetails) => (
+                                    cart && cart.cartDetails && cart.cartDetails.map((itemDetails) => (
                                         <>
                                             <div className="orderDetail">
                                                 <div className="removeOrder">Xóa</div>
@@ -61,7 +62,9 @@ export default function Cart() {
                                                 </div>
                                                 <div className="quantityPr">
                                                     <button className={"btn1"} onClick={handleDecrease}>-</button>
-                                                    <input type="text" value={quantity} readOnly/>
+                                                    <input type="text" value={
+                                                        itemDetails.quantity
+                                                    }/>
                                                     <button className={"btn2"} onClick={handleIncrease}>+</button>
                                                 </div>
                                             </div>

@@ -60,7 +60,7 @@ export default function MainBodyAboveDetailProductSupplier() {
 
                             <div className="product-price">
                                 {/*<p className="last-price">Old Price: <span>$257.00</span></p>*/}
-                                <p className="new-price">Price: <span>${product?.price}</span></p>
+                                <p className="new-price">Giá: <span>${product?.price}</span></p>
                             </div>
 
                             <div className="product-detail">
@@ -68,23 +68,23 @@ export default function MainBodyAboveDetailProductSupplier() {
                                 <p> {product?.description}</p>
 
                                 <ul>
-                                    <li>Color: <span>Đa dạng</span></li>
-                                    <li>Available: <span>in stock</span></li>
-                                    <li>Category: <span>{product?.category?.name}</span></li>
-                                    <li>Shipping Area: <span>Toàn quốc</span></li>
-                                    <li>Shipping Fee: <span>Free</span></li>
+                                    <li>Màu sắc: <span>Đa dạng</span></li>
+                                    <li>Trạng thái: <span>Có sẵn</span></li>
+                                    <li>Loại: <span>{product?.category?.name}</span></li>
+                                    <li>Khu vực giao hàng: <span>Toàn quốc</span></li>
+                                    <li>Phí vận chuyển: <span>Tùy hứng</span></li>
                                 </ul>
                             </div>
 
                             <div className="purchase-info">
                                 {/*<input type="number" min="0" value="1"/>*/}
                                 <h5>Số lượng hàng trong kho:{product?.stockQuantity}</h5>
-                                <Link to={"supplier"}>
+                                <Link to={"/supplier/products"}>
                                     <button type="button" className="btn">
                                         Trang chủ
                                     </button>
                                 </Link>
-                                <Link to={"/edit/" + product?.productID}>
+                                <Link to={"/supplier/edit/" + product?.productID}>
                                     <button type="button" className="btn">Chỉnh sửa</button>
                                 </Link>
                             </div>

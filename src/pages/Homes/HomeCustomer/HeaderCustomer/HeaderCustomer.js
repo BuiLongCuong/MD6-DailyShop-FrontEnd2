@@ -35,7 +35,7 @@ export default function HeaderCustomer() {
                                 <ul>
                                     <li style={{color: "white"}}><IoMailUnreadOutline/>dailyshop@gmail.com</li>
                                     <li style={{color: "white"}}>Support diliver</li>
-                                    <li><Link to={"/signUp"} style={{color: "white"}}>Kênh người bán</Link></li>
+                                    <li><Link to={"/signIn"} style={{color: "white"}}>Kênh người bán</Link></li>
 
                                 </ul>
                             </div>
@@ -48,7 +48,7 @@ export default function HeaderCustomer() {
                                     {customer ?
                                         <div className="acc">
                                             <li><Link to={"#"}><FaRegUser/></Link></li>
-                                            <li><Link to={"/login"}><span>{customer?.customerName}</span></Link></li>
+                                            <li><Link to={"/login"} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
                                             <li><span onClick={()=>{
                                                 dispatch(logout()).then(() => {
                                                     navigate('/login')

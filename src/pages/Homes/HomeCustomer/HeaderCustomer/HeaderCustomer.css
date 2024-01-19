@@ -245,3 +245,9 @@ li button {
     list-style: none;
     padding: 0 10px;
 }
+
+.customerName {
+    text-decoration: none;
+    margin-left: -18px;
+    margin-top: 3px;
+}

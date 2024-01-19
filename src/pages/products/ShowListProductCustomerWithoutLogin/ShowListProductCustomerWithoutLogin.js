@@ -5,6 +5,12 @@ import {getAllProduct, getAllProductWithoutLogin} from "../../../redux/service/p
 import {Link} from "react-router-dom";
 export default function ShowListProductCustomerWithoutLogin(){
     const dispatch = useDispatch();
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
     const listProducts = useSelector(({products}) => {
         console.log(products.list)
         return products.list
@@ -27,13 +33,13 @@ export default function ShowListProductCustomerWithoutLogin(){
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">
                                             <div className="card-detail-show-product-name-without-login">
-                                                {products.productName}, {products.category.name}
+                                                Tên sản phẩm:{products.productName}
                                             </div>
                                             <div className="card-detail-show-product-blank-without-login">
-
+                                                Loại: {products.category.name}
                                             </div>
                                             <div className="card-detail-show-product-price-without-login">
-                                                <span style={{color: "red"}}>Giá : $ {products.price}</span>
+                                                <span style={{color: "red"}}>Giá : {formatToCurrency(products.price)}</span>
                                             </div>
 
 

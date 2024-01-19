@@ -81,7 +81,7 @@ export default function DetailMainBodyShowProductCustomer(){
 
                                 <div className="product-price">
                                     {/*<p className="last-price">Old Price: <span>$257.00</span></p>*/}
-                                    <p className="new-price">Price: <span>${product?.price}</span></p>
+                                    <p className="new-price">Giá: <span>${product?.price}</span></p>
                                 </div>
 
                                 <div className="product-detail">
@@ -89,11 +89,11 @@ export default function DetailMainBodyShowProductCustomer(){
                                     <p> {product?.description}</p>
 
                                     <ul>
-                                        <li>Color: <span>Đa dạng</span></li>
-                                        <li>Available: <span>in stock</span></li>
-                                        <li>Category: <span>{product?.category?.name}</span></li>
-                                        <li>Shipping Area: <span>Toàn quốc</span></li>
-                                        <li>Shipping Fee: <span>Free</span></li>
+                                        <li>Màu sắc: <span>Đa dạng</span></li>
+                                        <li>Trạng thái: <span>Có sẵn</span></li>
+                                        <li>Phân loại: <span>{product?.category?.name}</span></li>
+                                        <li>Khu vực vận chuyển: <span>Toàn quốc</span></li>
+                                        <li>Phí vận chuyển: <span>Đặt hàng đi rồi biết</span></li>
                                     </ul>
                                 </div>
 
