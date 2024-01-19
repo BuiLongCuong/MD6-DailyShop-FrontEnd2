@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import "./ShowListProduct.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
@@ -10,6 +11,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import * as React from "react";
 
 const style = {
     position: 'absolute',
@@ -25,8 +27,9 @@ const style = {
 
 export default function ShowListProduct() {
     const [open, setOpen] = useState(false);
-    const currentCustomer = JSON.parse(localStorage.getItem("currentSupplier"))
+    const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
     const dispatch = useDispatch();
+    const [productId,setProductId] = useState(null);
     const listProducts = useSelector(({products}) => {
         return products.list
     })
@@ -42,25 +45,34 @@ export default function ShowListProduct() {
     };
 
     useEffect(() => {
-        dispatch(getAllByIdUser(currentCustomer.id))
+        dispatch(getAllByIdUser(currentSupplier.id))
     }, []);
 
-    const handleOpen = () => {
+    const handleOpen = (id) => {
+        setProductId(id)
         setOpen(true);
     };
 
     const handleClose = () => {
+        setProductId(null);
         setOpen(false);
     };
 
     const deleteProduct = () => {
-        dispatch(Delete()).then(() => {
+        dispatch(Delete(productId)).then(() => {
             setOpen(false);
+            setProductId(null);
+            toast.success('Xóa sản phẩm thành công!');
+            dispatch(getAllByIdUser(currentSupplier.id))
         })
     };
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             {
                 listProducts && listProducts.map((products) => (
                         <>
@@ -183,7 +195,7 @@ export default function ShowListProduct() {
                                                             chi tiết</Link>
                                                         &nbsp; &nbsp;
                                                         {/*<Link to={"/edit/" + products.productID}>Xóa</Link>*/}
-                                                        <Button onClick={handleOpen}>Xóa</Button>
+                                                        <Button onClick={()=>handleOpen(products.productID)}>Xóa</Button>
                                                     </div>
                                                 </div>
                                             </>
@@ -208,7 +220,7 @@ export default function ShowListProduct() {
                         <Typography id="modal-description" sx={{ mt: 2 }}>
                             Bạn có chắc chắn muốn xóa sản phẩm này không ???
                         </Typography>
-                        <Button onClick={deleteProduct}>Yes</Button>
+                        <Button onClick={()=>deleteProduct()}>Yes</Button>
                         <Button onClick={handleClose}>No</Button>
                     </Box>
                 </Modal>

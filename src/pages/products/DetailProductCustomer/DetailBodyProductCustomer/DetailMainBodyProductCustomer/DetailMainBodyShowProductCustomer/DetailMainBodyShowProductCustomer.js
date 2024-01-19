@@ -1,9 +1,11 @@
+import toast, {Toaster} from "react-hot-toast";
 import "./DetailMainBodyShowProductCustomer.css"
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
 import {addProductToOrders} from "../../../../../../redux/service/oderService";
+
 
 export default function DetailMainBodyShowProductCustomer(){
     const [quantity, setQuantity] = useState(1);
@@ -40,11 +42,15 @@ export default function DetailMainBodyShowProductCustomer(){
         }
 
         dispatch(addProductToOrders(order)).then(() => {
-            alert("Add OK")
+            toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
         })
     }
     return(
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="detail-main-body-show-product-customer">
                 <div className="card-wrapper-detail-product-customer">
                         <div className="card">
@@ -102,7 +108,8 @@ export default function DetailMainBodyShowProductCustomer(){
                                            value={quantity}
                                            min="1"
                                            onChange={handleQuantityChange}
-                                           placeholder={"Nhập số lượng"}/>
+                                           placeholder={"Nhập số lượng"}
+                                    />
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
                                             <button type="button" className="btn" onClick={addOrder}>

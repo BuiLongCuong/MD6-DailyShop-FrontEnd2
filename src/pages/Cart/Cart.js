@@ -12,6 +12,14 @@ export default function Cart() {
         console.log(order)
         return order.cart;
     });
+
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
     useEffect(() => {
         dispatch(showOrderList())
     }, []);
@@ -56,7 +64,7 @@ export default function Cart() {
                                                             className="categoryPro"> Loại: {itemDetails.product.category.name}</div>
                                                     </div>
                                                     <div className="pricePr">
-                                                        {itemDetails.product.price} VNĐ
+                                                        {formatToCurrency(itemDetails.product.price)}
                                                     </div>
 
                                                 </div>
@@ -79,7 +87,7 @@ export default function Cart() {
                                             Tổng tiền:
                                         </div>
                                         <div className="paymentTotal">
-                                            {cart && cart.totalAmount} VNĐ
+                                            {formatToCurrency(cart && cart.totalAmount)}
                                         </div>
                                     </div>
                                 }
