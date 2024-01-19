@@ -11,13 +11,23 @@ import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
+import {Field, Form, Formik} from "formik";
+import {search} from "../../../../redux/service/productService";
 
 export default function HeaderCustomer() {
     const location = useLocation();
     const currentPath = location.pathname;
     // console.log(currentPath);
     const dispatch = useDispatch()
-    const customer = useSelector(state => state.customer.currentCustomerDetails);
+    const customer = useSelector(state => state.customer.currentCustomerDetails)
+
+    const logOut = () => {
+        localStorage.removeItem("currentCustomer")
+    }
+    const searchName = (values) => {
+        console.log(values.nameSearch)
+        dispatch(search(values.nameSearch))
+    }
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -73,16 +83,26 @@ export default function HeaderCustomer() {
                                 </div>
                             </div>
                             <div className="main-center">
-                                <div className="search-cover">
+                                <Formik initialValues={
+                                    {
+                                        nameSearch: ""
+                                    }
+                                } onSubmit={searchName}>
+                                    <Form className={"form-search"}>
+                                        <div className="search-cover">
 
-                                    <input type="text" placeholder={"Tìm kiếm..."}/>
-                                    <button><SearchIcon/></button>
+                                            <Field type="text" placeholder={"Tìm kiếm..."} name={"nameSearch"}/>
+                                            <button type={"submit"}><SearchIcon/></button>
 
 
-                                </div>
+                                        </div>
+                                    </Form>
+                                </Formik>
 
 
                             </div>
+
+
                             <div className="main-right">
                                 <div className="header-cart">
                                     <ul>

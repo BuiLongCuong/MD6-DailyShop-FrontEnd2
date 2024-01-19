@@ -78,7 +78,7 @@ export const Delete = createAsyncThunk(
 export const search = createAsyncThunk(
     'products/search',
     async (nameSearch)=>{
-        let listProduct = await axios.get("/searchProduct?name=" + nameSearch)
+        let listProduct = await getCustomerUrl().get("/account/searchProduct?name=" + nameSearch)
         return listProduct.data
     }
 )
