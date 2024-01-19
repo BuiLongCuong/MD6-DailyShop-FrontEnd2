@@ -47,8 +47,8 @@ export default function HeaderCustomer() {
                                 <ul>
                                     <span>Kết nối</span>
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
-                                    <li><Link to={"#"}><FaInstagram/></Link></li>
-                                    <li><Link to={"#"}><FaXTwitter/></Link></li>
+                                    <li><Link to={"https://www.instagram.com/"}><FaInstagram/></Link></li>
+                                    <li><Link to={"https://twitter.com/"}><FaXTwitter/></Link></li>
                                     <div className="acc">
                                     <li><Link to={"#"}><FaRegUser/></Link></li>
                                     {/*<li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>*/}
