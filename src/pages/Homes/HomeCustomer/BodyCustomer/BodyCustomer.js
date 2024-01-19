@@ -4,8 +4,9 @@ import ShowCategoryProductCustomer from "../ShowCategoryProductCustomer/ShowCate
 import ShowAllProductCustomerLayout from "../ShowAllProductCustomer/ShowAllProductCustomerLayout";
 import {Outlet} from "react-router-dom";
 import Footer from "../../../../components/Footer/Footer";
-export default function BodyCustomer(){
-    return(
+
+export default function BodyCustomer() {
+    return (
         <>
             <div className="Body-customer-cover">
                 <div className="body-customer-slider-cover">

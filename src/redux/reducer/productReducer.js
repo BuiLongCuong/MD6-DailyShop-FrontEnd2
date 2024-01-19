@@ -12,10 +12,10 @@ import {
 
 const initialState = {
     list: [],
+    totalPages:0,
     productEdit:{
 
     }
-
 
 }
 const productSlice = createSlice({
@@ -24,7 +24,8 @@ const productSlice = createSlice({
     extraReducers: builder => {
 
         builder.addCase(getAllProductWithoutLogin.fulfilled,(state,{payload}) => {
-            state.list = payload ;
+            state.list = payload.content ;
+            state.totalPages=payload.totalPages;
         })
         // builder.addCase(getProductTop().fulfilled,(state,{payload}) =>{
         //     state.list = payload;
