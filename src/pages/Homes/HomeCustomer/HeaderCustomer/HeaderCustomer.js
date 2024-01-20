@@ -19,7 +19,8 @@ export default function HeaderCustomer() {
     const currentPath = location.pathname;
     // console.log(currentPath);
     const dispatch = useDispatch();
-    const customer = useSelector(state => state.customer.customerBeforeLogin);
+    const customer = useSelector(state => state.customer.currentCustomerDetails);
+    console.log(customer)
 
     const searchName = (values) => {
         console.log(values.nameSearch)

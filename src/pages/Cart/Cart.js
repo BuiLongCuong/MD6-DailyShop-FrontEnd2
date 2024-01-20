@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showOrderList} from "../../redux/service/oderService";
 import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
+import {Link} from "react-router-dom";
 
 export default function Cart() {
     const dispatch = useDispatch();
@@ -98,7 +99,9 @@ export default function Cart() {
                                 </div>
                                 <div className="row3OfCol2">
                                     <div className="linkBack">
-                                        <p><i class="fa fa-arrow-left "></i>&nbsp;Tiếp mục mua hàng</p>
+                                        <Link className={"backShop"} to={"/customer"}>
+                                        <p><i className="fa fa-arrow-left "></i>&nbsp;Tiếp mục mua hàng</p>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

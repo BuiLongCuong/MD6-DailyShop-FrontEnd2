@@ -14,7 +14,6 @@ export function InformationSupplier() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier = useSelector(state => state.supplier.currentSupplierDetails)
     const [photo, setPhoto] = useState("");
 
@@ -24,6 +23,7 @@ export function InformationSupplier() {
     const wards = useSelector(state => state.address.listWard);
 
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
+    console.log(supplier)
 
     useEffect(() => {
         dispatch(getCurrentSupplierDetails())
@@ -86,7 +86,7 @@ export function InformationSupplier() {
                     </div>
                 </div>
                 <Formik initialValues={
-                        supplier
+                        currentSupplier
                 } onSubmit={EditSupplier}
 
                 >
