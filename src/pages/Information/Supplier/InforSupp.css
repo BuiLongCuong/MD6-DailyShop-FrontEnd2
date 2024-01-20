@@ -57,10 +57,17 @@
     box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
 }
 
-.contentInfo .infoDetails {
+.contentInfo .infoDetails1 {
     width: 70%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.contentInfo .infoDetails {
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -71,7 +78,7 @@
     align-items: center;
 }
 
-.infoDetails .item {
+.infoDetails1 .item {
     display: flex;
     padding: 20px;
 }
@@ -151,7 +158,7 @@ select {
     border-radius: 5px 5px 5px 5px;
     font-weight: 500;
     font-size: 14px;
-    color: #333333
+    color: white;
 }
 
 .input .save {
@@ -163,7 +170,7 @@ select {
     width: 100%;
     height: 100%;
     background-color: #ee4d2d;
-    border: 1px solid #dbdbdb;
+    /*border: 1px solid #dbdbdb;*/
     border-radius: 5px 5px 5px 5px;
     font-weight: 500;
     font-size: 14px;

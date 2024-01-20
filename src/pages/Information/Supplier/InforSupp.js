@@ -86,7 +86,6 @@ export function InformationSupplier() {
                     </div>
                 </div>
                 <Formik initialValues={
-
                         supplier
                 } onSubmit={EditSupplier}
 
@@ -94,7 +93,7 @@ export function InformationSupplier() {
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
-                                <div className="infoDetails">
+                                <div className="infoDetails1">
                                     <div>
                                         <div className="item">
                                             <div className={"title"}>Tên shop:</div>

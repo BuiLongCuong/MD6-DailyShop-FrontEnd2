@@ -25,7 +25,7 @@ export default function BodySideBarSupplier() {
                 </div>
                 <div className="item">
                     <i className="fa-brands fa-product-hunt"></i> <Link
-                    to={"/supplier/editInfo/" + supplier?.account.id} className={"link"}>
+                    to={"/supplier/editInfo/" + supplier?.account?.id} className={"link"}>
                     <span>Sửa thông tin</span></Link>
                 </div>
                 <div className="item">
