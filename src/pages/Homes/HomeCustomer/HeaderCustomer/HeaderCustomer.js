@@ -18,12 +18,9 @@ export default function HeaderCustomer() {
     const location = useLocation();
     const currentPath = location.pathname;
     // console.log(currentPath);
-    const dispatch = useDispatch()
-    const customer = useSelector(state => state.customer.currentCustomerDetails)
+    const dispatch = useDispatch();
+    const customer = useSelector(state => state.customer.customerBeforeLogin);
 
-    const logOut = () => {
-        localStorage.removeItem("currentCustomer")
-    }
     const searchName = (values) => {
         console.log(values.nameSearch)
         dispatch(search(values.nameSearch))
@@ -55,24 +52,10 @@ export default function HeaderCustomer() {
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
                                     <li><Link to={"https://www.instagram.com/"}><FaInstagram/></Link></li>
                                     <li><Link to={"https://twitter.com/"}><FaXTwitter/></Link></li>
-                                    <div className="acc">
-                                    <li><Link to={"#"}><FaRegUser/></Link></li>
-                                    {/*<li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>*/}
-                                    <li><span><Link to={"/login"}>
-                                        {
-                                            customer?.customerName
-                                        }
-                                    </Link></span></li>
-                                    </div>
-                                    <li><Link to={"/login"}>
-                                        <button onClick={logOut}>Log out</button></Link>
-                                    </li>
-                                    <li><Link to={"#"}><FaInstagram/></Link></li>
-                                    <li><Link to={"#"}><FaXTwitter/></Link></li>
                                     {customer ?
                                         <div className="acc">
                                             <li><Link to={"#"}><FaRegUser/></Link></li>
-                                            <li><Link to={"/login"} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
+                                            <li><Link to={""} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
                                             <li><span onClick={()=>{
                                                 dispatch(logout()).then(() => {
                                                     navigate('/login')
