@@ -27,9 +27,7 @@ const productSlice = createSlice({
             console.log(state.list)
         })
         builder.addCase(getAllProduct.fulfilled, (state, {payload}) => {
-            state.list = payload;            console.log(payload);
-
-            console.log(state.list)
+            state.list = payload;
         })
         builder.addCase(getProductById.fulfilled, (state, {payload}) => {
             state.productEdit = payload;
