@@ -1,9 +1,4 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-}
+
 .main-body-above-detail-product-supplier{
     line-height: 1.5;
 }
@@ -63,12 +58,13 @@ img{
 .product-link{
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 500!important;
+    /*font-size: 0.9rem;*/
+    font-size: 22px !important;
     display: inline-block;
     margin-bottom: 0.5rem;
-    background: #256eff;
-    color: #fff;
+    background: white!important;
+    color: #e7403a !important;
     padding: 0 0.3rem;
     transition: all 0.5s ease;
 }
@@ -127,7 +123,7 @@ img{
 .purchase-info{
     margin: 1.5rem 0;
 }
-.purchase-info input,
+ .purchase-info input,
 .purchase-info .btn{
     border: 2px solid #ddd;
     width: 160px;

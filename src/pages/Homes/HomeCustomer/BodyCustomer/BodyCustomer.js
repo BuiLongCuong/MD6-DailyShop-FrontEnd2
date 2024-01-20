@@ -2,8 +2,11 @@ import "./BodyCustomer.css"
 import Carousel from "react-bootstrap/Carousel";
 import ShowCategoryProductCustomer from "../ShowCategoryProductCustomer/ShowCategoryProductCustomer";
 import ShowAllProductCustomerLayout from "../ShowAllProductCustomer/ShowAllProductCustomerLayout";
-export default function BodyCustomer(){
-    return(
+import {Outlet} from "react-router-dom";
+import Footer from "../../../../components/Footer/Footer";
+
+export default function BodyCustomer() {
+    return (
         <>
             <div className="Body-customer-cover">
                 <div className="body-customer-slider-cover">
@@ -57,9 +60,9 @@ export default function BodyCustomer(){
 
                     </div>
                 </div>
+                <Outlet/>
                 <ShowCategoryProductCustomer/>
                 <ShowAllProductCustomerLayout/>
-
 
             </div>
         </>

@@ -1,5 +1,5 @@
 import './Login.css'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {login} from "../../../../redux/service/customerService";
@@ -11,45 +11,28 @@ export default function Login() {
     const [isShowPassword, setIsShowPassword] = useState();
     const loginSchema = Yup.object().shape({
         account: Yup.string()
-            .min(2, 'Tên tài khoản quá ngắn (tối thiểu 2 ký tự)!')
-            .max(50, 'Tên tài khoản quá dài (tối đa 50 ký tự)!')
-            .matches(/^[a-zA-Z0-9_]+$/, 'Tên tài khoản không được chứa ký tự số đặc biệt hoặc có dấu!')
             .required('Vui lòng nhập đủ thông tin!'),
         password: Yup.string()
-            .min(5, 'Mật khẩu quá ngắn (tối thiểu 5 ký tự)!')
-            .max(50, 'Mật khẩu quá dài (tối đa 50 ký tự)!')
-            .matches(/^[a-zA-Z0-9_]+$/, 'Mật khẩu không được chứa ký tự đặc biệt hoặc có dấu!')
             .required('Vui lòng nhập đủ thông tin!'),
     });
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const checkRole = () => {
+
+    const checkProfile = () => {
         const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
-
-        if (currentCustomer === undefined) {
-            alert("Tài khoản không tồn tại");
-            return;
+        if (currentCustomer.checkProfile === false) {
+            navigate("/informationCus")
+        } else {
+            navigate("/customer")
+            // console.log("Chuyển đến giao diện của người dùng")
         }
-
-        if (currentCustomer && currentCustomer.roles && currentCustomer.roles.length > 0) {
-            const isSupplierOrAdmin = currentCustomer.roles.some(role => role.authority === "ROLE_SUPPLIER" || role.authority === "ROLE_ADMIN");
-            if (isSupplierOrAdmin) {
-                alert("Tài khoản không tồn tại");
-                localStorage.clear();
-
-            } else {
-                console.log("Đăng nhập thành công")
-
-                if(currentCustomer.checkProfile === false) {
-                    navigate("/informationCus")
-                }else {
-                    navigate("/customer")
-                    // console.log("Chuyển đến giao diện của người dùng")
-                }
-            }
-        }else {
-
-            console.log("Không tìm thấy thông tin người dùng trong localStorage");
+    }
+    const handleLogin= async (values)=>{
+        try {
+           await dispatch(login(values)).unwrap();
+           checkProfile()
+        }catch (e ){
+            alert(e.message)
         }
     }
 
@@ -90,14 +73,9 @@ export default function Login() {
                                     password: ''
                                 }
                             } onSubmit={(values) => {
-                                console.log(values);
-                                dispatch(login(values)).then((res) => {
-                                    console.log(res);
-                                    checkRole()
-                                })
+                                handleLogin(values)
                             }}
                                     validationSchema={loginSchema}
-                                    enableReinitialize={true}
                             >
                                 <Form>
                                     <div className="usernameLogin">

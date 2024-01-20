@@ -1,18 +1,38 @@
 import "./ShowListProductCustomerWithoutLogin.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getAllProduct, getAllProductWithoutLogin} from "../../../redux/service/productService";
-import {Link, useParams} from "react-router-dom";
-export default function ShowListProductCustomerWithoutLogin(){
+import {Link, useParams, useSearchParams} from "react-router-dom";
+import {forEach} from "react-bootstrap/ElementChildren";
+import {Pagination} from "./pagination/Pagination";
+import {current} from "@reduxjs/toolkit";
+
+export default function ShowListProductCustomerWithoutLogin() {
     const dispatch = useDispatch();
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
+    const [searchParam] = useSearchParams()
+    const [page, setPage] = useState(+searchParam.get('page'))
+
+    const changePage = (newPage) => {
+        setPage(newPage)
+    }
+
     const listProducts = useSelector(({products}) => {
-        console.log(products.list)
         return products.list
     })
+    const totalPages = useSelector(({products}) => {
+        return products.totalPages;
+    })
     useEffect(() => {
-        dispatch(getAllProductWithoutLogin())
-    }, []);
-    return(
+        dispatch(getAllProductWithoutLogin(page))
+    }, [page]);
+    return (
         <>
             <div className="show-list-product-customer-without-login">
                 {listProducts && listProducts.map((products) => (
@@ -22,30 +42,29 @@ export default function ShowListProductCustomerWithoutLogin(){
                                     <div className="card-detail-show-product-without-login">
                                         <div className="card-detail-show-product-image-without-login">
                                             <img
-                                                src={products.photo[0]?.photoName}
+                                                src={products.photo.length>0 ? products.photo[0].photoName: ""}
                                                 alt=""/>
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">
                                             <div className="card-detail-show-product-name-without-login">
-                                                {products.productName}, {products.category.name}
+                                                Tên sản phẩm:{products.productName}
                                             </div>
                                             <div className="card-detail-show-product-blank-without-login">
-
+                                                Loại: {products.category.name}
                                             </div>
                                             <div className="card-detail-show-product-price-without-login">
-                                                <span style={{color: "red"}}>Giá : $ {products.price}</span>
+                                                <span style={{color: "red"}}>Giá : {formatToCurrency(products.price)}</span>
                                             </div>
 
 
-                                        </div>
                                     </div>
-                                </Link>
+                                </div>
+                            </Link>
                             {/*</Link>*/}
-
-
                         </>
                     )
                 )}
+                {page || totalPages ? <Pagination total={totalPages} current={page} changePage={changePage}/> : ""}
             </div>
 
 

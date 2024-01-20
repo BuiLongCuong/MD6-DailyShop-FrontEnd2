@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import * as React from 'react';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import './SignUp.css'
@@ -62,11 +63,16 @@ export default function SignUp() {
         // }
         
         signUp(values).then (() => {
+            toast.success('Đăng ký tài khoản thành công!');
             navigate('/signIn');
         });
     };
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="cont">
                 <div className="header-signup">
                     <div className="navbar-signup">

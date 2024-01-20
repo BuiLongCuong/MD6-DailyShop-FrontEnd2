@@ -1,18 +1,26 @@
 import axios from "axios";
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAxios} from "./axios/getAxios";
+import {getAxios, getCustomerUrl, getSupplierUrl} from "./axios/getAxios";
 
 export const getAllProductWithoutLogin = createAsyncThunk(
     'products/getAllProductWithoutLogin',
-    async () => {
-        let res = await getAxios().get("/getAllProduct");
+    async (page) => {
+        let res = await getAxios().get(`/getAllProductIsDeleted?page=${page}`);
         return res.data;
     }
 )
+export const getProductTop = createAsyncThunk(
+    'products/getProductTop',
+    async () => {
+        let res = await getAxios().get("/getProductTop");
+        return res.data;
+    }
+)
+
 export const getAllProduct = createAsyncThunk(
     'products/getAllProduct',
     async () => {
-        let res = await getAxios().get("/customer/getAllProduct");
+        let res = await getCustomerUrl().get("/customer/getAllProduct");
         return res.data;
     }
 )
@@ -20,14 +28,14 @@ export const getAllProduct = createAsyncThunk(
 export const getProductById = createAsyncThunk(
     'products/getProductById',
     async (idProduct) =>{
-        let res = await getAxios().get("/suppliers/findProductById/" + idProduct);
+        let res = await getAxios().get("/products/" + idProduct);
         return res.data;
     }
 )
 export const getAllByIdUser = createAsyncThunk(
     'products/getAllByIdUser',
     async (id) => {
-        let res = await getAxios().get("/suppliers/getProductByAccountId/" + id)
+        let res = await getSupplierUrl().get("/suppliers/getProductByAccountId/" + id)
         return res.data
     }
 )
@@ -36,7 +44,7 @@ export const add = createAsyncThunk(
     'products/add',
     async (newProduct) => {
         console.log(newProduct)
-        let res = await getAxios().post("/suppliers/createProduct", newProduct)
+        let res = await getSupplierUrl().post("/suppliers/createProduct", newProduct)
         return res.data
 
     }
@@ -45,7 +53,7 @@ export const add = createAsyncThunk(
 export const updateForm = createAsyncThunk(
     'products/editForm',
     async (id) => {
-        let res = await getAxios().get("/suppliers/findProductById/" + id)
+        let res = await getSupplierUrl().get("/suppliers/findProductById/" + id)
         return res.data
     }
 )
@@ -54,7 +62,7 @@ export const UpdateService = createAsyncThunk(
     'products/edit',
     async (productEdit) => {
         console.log(productEdit)
-        let res = await getAxios().put("/suppliers/editProduct/" + productEdit.productID, productEdit)
+        let res = await getSupplierUrl().put("/suppliers/editProduct/" + productEdit.productID, productEdit)
         return res.data
     }
 )
@@ -62,7 +70,7 @@ export const UpdateService = createAsyncThunk(
 export const Delete = createAsyncThunk(
     'products/delete',
     async (id) => {
-        await getAxios().delete("/suppliers/deleteProduct/" + id)
+        await getSupplierUrl().delete("/suppliers/deleteProduct/" + id)
         return id
     }
 )
@@ -70,7 +78,14 @@ export const Delete = createAsyncThunk(
 export const search = createAsyncThunk(
     'products/search',
     async (nameSearch)=>{
-        let listProduct = await axios.get("/searchProduct?name=" + nameSearch)
+        let listProduct = await getCustomerUrl().get("/account/searchProduct?name=" + nameSearch)
         return listProduct.data
+    }
+)
+export const findAllByCategoryId = createAsyncThunk(
+    'product/findAllById',
+    async (id) => {
+        const res = await getAxios().get("/category/" + id)
+        return res.data
     }
 )

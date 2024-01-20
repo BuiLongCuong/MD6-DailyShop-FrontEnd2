@@ -1,12 +1,21 @@
 import "./HeaderSupplier.css"
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getCurrentSupplierDetails, logout} from "../../../../redux/service/supplierService";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 export default function HeaderSupplier(){
-    const currentSupplier = useSelector(({supplier})=>{
-        return supplier.currentSupplierDetails;
-    })
+    // const supplier = useSelector(({supplier}) => {
+    //     return supplier.currentSupplierDetails;
+    // })
+    useEffect(() => {
+        dispatch(getCurrentSupplierDetails())
+    }, []);
 
-    // const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
+    const supplier = useSelector(state => state.supplier.currentSupplierDetails);
+    console.log(supplier)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     return(
         <>
             <div className="header_supplier">
@@ -17,14 +26,31 @@ export default function HeaderSupplier(){
                 <div className="right">
                     <div className="user">
                         <div className="avatar">
-                            <img src={currentSupplier.imageSupplier ? currentSupplier.imageSupplier: "https://leplateau.edu.vn/wp-content/uploads/2023/10/hinh-anh-con-gai-1.jpg"} alt=""/>
+                            <img src={ supplier &&
+                                supplier.imageSupplier ? supplier.imageSupplier : "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"} alt=""/>
                         </div>
                         <div className="username">
                             {
-                                currentSupplier.supplierName
+                                supplier?.supplierName
                             }
                         </div>
                     </div>
+                    <div className="logoutSupp">
+                        {
+                            supplier ? (
+                                <div className="logOutSupplier">
+                                        <button onClick={()=>{
+                                            dispatch(logout()).then(() => {
+                                                navigate('/signIn')
+                                            })
+                                        }}> Đăng xuất</button>
+                                </div>
+                            ) : (
+                                ""
+                            )
+                        }
+                    </div>
+
                     <div className="notification"><i className="fa-regular fa-bell"></i><div>2</div></div>
                 </div>
             </div>

@@ -1,0 +1,227 @@
+.mainWindow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyWindow {
+    margin-top: 72px;
+    width: 1140px;
+    height: auto;
+    /*background-color: #e7403a;*/
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
+    -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+}
+
+.nameBody1 {
+    width: 100%;
+    height: 70px;
+    /*background-color: #666666;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 10px;
+    align-items: center;
+    font-weight: 400;
+    font-size:32px;
+    line-height: 38px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.nameBody2 {
+    width: 100%;
+    height: 80%;
+    /*background-color: #3B5998;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.col1Body {
+    width: 70%;
+    height: 100%;
+    /*background-color: #e7403a;*/
+    border-right: 1px solid #dbdbdb;
+    display: block;
+    /*flex-direction: column; */
+}
+
+.col2Body {
+    width: 30%;
+    height: 100%;
+    /*background-color: #000000;*/
+
+}
+
+.paymentTotal {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: Roboto, sans-serif;;
+    color: #000000;
+}
+
+.row1OfCol2 {
+    width: 100%;
+    height: 58px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.row2OfCol2{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    /*background-color: #3B5998;*/
+}
+.decisionBtn {
+    width: 290px;
+    height: 37px;
+    /*background-color: #32ff31;*/
+}
+
+.paymentTittle{
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+}
+
+.decisionBtn button {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dbdbdb;
+    background-color: #ff5722;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    border-radius:5px 5px 5px 5px;
+
+}
+
+.row3OfCol2 {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.linkBack p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6c757d;
+}
+
+i, p {
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+i, p:hover {
+    transform: scale(1.1);
+}
+
+.orderDetail {
+    height:130px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.removeOrder{
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #d2d9e2;
+}
+
+.removeOrder:hover {
+    color: #dc3545;
+}
+
+.imageOrder{
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.infoOrder {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    /*background-color: #3B5998;*/
+}
+
+.infoPr {
+    width: 70%;
+    padding-left: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    word-wrap: break-word;
+}
+
+.categoryPro {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #898989;
+}
+
+.pricePr {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: Roboto, sans-serif;;
+    color: #000000;
+}
+
+.quantityPr {
+    width: 23%;
+    height: 100%;
+    /*background-color: #32ff31;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantityPr input {
+    width: 50px;
+    height: 30px;
+    border: 1px solid #dbdbdb;
+    outline: aliceblue;
+    border-radius: 0 !important
+}
+
+.quantityPr .btn1 , .quantityPr .btn2 {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 0 0 5px;
+}
+
+.quantityPr .btn2 {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dbdbdb;
+    border-radius: 0 5px 5px 0;
+}
+
+

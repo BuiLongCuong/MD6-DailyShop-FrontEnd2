@@ -8,7 +8,9 @@ export default function ShowAllProductCustomerLayout(){
         <>
             <div className="show-all-product-customer-cover">
                 <div className="show-all-name-product">
-                        <h3>Danh mục sản phẩm</h3>
+                        <h3>GỢI Ý HÔM NAY</h3>
+                    <div className="Border-line"></div>
+
                 </div>
                 <ShowListProductCustomerWithoutLogin/>
 

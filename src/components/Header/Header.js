@@ -18,7 +18,7 @@ export default function Header() {
                             <ul>
                                 <li><IoMailUnreadOutline/>dailyshop@gmail.com</li>
                                 <li>Support diliver</li>
-                                <li><Link to={"/signUp"}>Kênh người bán</Link></li>
+                                <li><Link to={"/signIn"}>Kênh người bán</Link></li>
 
                             </ul>
                         </div>

@@ -1,10 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
     add,
-    Delete,
+    Delete, findAllByCategoryId,
 
     getAllByIdUser, getAllProduct, getAllProductWithoutLogin,
-    getProductById,
+    getProductById, getProductTop,
     search,
     updateForm,
     UpdateService
@@ -12,9 +12,8 @@ import {
 
 const initialState = {
     list: [],
-    productEdit:{
-
-    }
+    totalPages: 0,
+    productEdit: {}
 
 }
 const productSlice = createSlice({
@@ -22,13 +21,20 @@ const productSlice = createSlice({
     initialState,
     extraReducers: builder => {
 
-        builder.addCase(getAllProductWithoutLogin.fulfilled,(state,{payload}) => {
-            state.list = payload ;
+        builder.addCase(getAllProductWithoutLogin.fulfilled, (state, {payload}) => {
+            state.list = payload.content;
+            state.totalPages = payload.totalPages;
+            console.log(state.list)
         })
-        builder.addCase(getAllProduct.fulfilled,(state,{payload}) =>{
+        // builder.addCase(getProductTop().fulfilled,(state,{payload}) =>{
+        //     state.list = payload;
+        // })
+
+        builder.addCase(getAllProduct.fulfilled, (state, {payload}) => {
             state.list = payload;
+            console.log(state.list)
         })
-        builder.addCase(getProductById.fulfilled,(state,{payload}) =>{
+        builder.addCase(getProductById.fulfilled, (state, {payload}) => {
             state.productEdit = payload;
         })
         builder.addCase(getAllByIdUser.fulfilled, (state, {payload}) => {
@@ -41,21 +47,25 @@ const productSlice = createSlice({
         builder.addCase(updateForm.fulfilled, (state, {payload}) => {
             state.productEdit = payload
         })
-        builder.addCase(UpdateService.fulfilled,(state,{payload})=>{
+        builder.addCase(UpdateService.fulfilled, (state, {payload}) => {
             for (let i = 0; i < state.list.length; i++) {
-                if (state.list[i].productID===payload.productID){
+                if (state.list[i].productID === payload.productID) {
                     state.list[i] = payload
                 }
             }
         })
-        builder.addCase(Delete.fulfilled,(state,{payload})=>{
+        builder.addCase(Delete.fulfilled, (state, {payload}) => {
             for (let i = 0; i < state.list.length; i++) {
-                if (state.list[i].id===payload){
-                    state.list.splice(i,1)
+                if (state.list[i].id === payload) {
+                    state.list.splice(i, 1);
+                    break;
                 }
             }
         })
-        builder.addCase(search.fulfilled,(state,{payload})=>{
+        builder.addCase(search.fulfilled, (state, {payload}) => {
+            state.list = payload
+        })
+        builder.addCase(findAllByCategoryId.fulfilled, (state, {payload}) => {
             state.list = payload
         })
 

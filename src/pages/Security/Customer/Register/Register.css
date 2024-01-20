@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.header {
+.headerRegister {
     /*height: 83px;*/
     width: 100%;
     display: flex;
@@ -22,38 +22,38 @@
     background-color: white;
 }
 
-.header .headerDetail {
+.headerRegister .headerDetail {
     width: 1153px;
     height: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.header .headerDetail .left {
+.headerRegister .headerDetail .left {
     height: 100%;
     width: 265px;
     display: flex;
     justify-items: center;
 }
 
-.header .headerDetail .right {
+.headerRegister .headerDetail .right {
     height: 100%;
     width: 115px;
 }
 
-.header .headerDetail .left .logo {
+.headerRegister .headerDetail .left .logo {
     height: 100%;
-    width: 220px;
+    width: 385px;
     background-color: crimson;
 }
 
-.header .headerDetail .left .logo img {
+.headerRegister .headerDetail .left .logo img {
     width: 100%;
     height: 100%;
 }
 
 
-.header .headerDetail .left .title {
+.headerRegister .headerDetail .left .title {
     font-weight: 400;
     font-size: 24px;
     line-height: 29px;
@@ -61,10 +61,10 @@
     margin-top: 30px;
     margin-left: 5px;
     font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
-    width: 190px;
+    width: 275px;
 }
 
-.header .headerDetail .right p {
+.headerRegister .headerDetail .right p {
     margin-top: 30px;
     font-weight: 400;
     font-size: 14px;
@@ -134,14 +134,6 @@
     margin-left: 35px;
 }
 
-/*.row2 .name .validate p {*/
-/*    font-size: 12px;*/
-/*}*/
-
-/*.row2 .address .validate p {*/
-/*    font-size: 12px;*/
-/*}*/
-
 .row2 .email .validate p {
     font-size: 12px;
 }
@@ -173,25 +165,21 @@
     margin-left: 35px;
 }
 
-/*.row2 .acc .usernameRegister input {*/
-/*    width: 140px;*/
-/*    margin-left: 20px;*/
-/*}*/
+.row2 .usernameOfRegister input {
+    height: 40px;
+    width: 310px;
+    padding: 0 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+}
 
-/*.row2 .acc .passwordRegister input {*/
-/*    width: 140px;*/
-/*    margin-right: 20px;*/
-/*}*/
-
-/*.row2 .infoPer .phone input {*/
-/*    width: 140px;*/
-/*    margin-left: 20px;*/
-/*}*/
-
-/*.row2 .infoPer .birthday input {*/
-/*    width: 140px;*/
-/*    margin-right: 20px;*/
-/*}*/
+.row2 .passwordOfRegister input {
+    height: 40px;
+    width: 310px;
+    padding: 0 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+}
 
 
 input {
@@ -199,6 +187,7 @@ input {
     width: 310px;
     padding: 0 20px;
     border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
 }
 
 .button {
@@ -353,7 +342,7 @@ input {
 
 .headerRegister .headerDetail .left {
     height: 100%;
-    width: 265px;
+    width: 340px;
     display: flex;
     justify-items: center;
 }
@@ -361,18 +350,6 @@ input {
 .headerRegister .headerDetail .right {
     height: 100%;
     width: 115px;
-}
-
-
-
-.headerRegister .headerDetail .left .title {
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 29.5px;
-    color: #222222;
-    margin-top: 30px;
-    margin-left: 5px;
-    font-family: "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;;
 }
 
 .headerRegister .headerDetail .right p {
@@ -423,45 +400,6 @@ input {
     justify-content: space-around;
     margin-top: 20px;
 }
-
-
-
-
-.row2 .acc .usernameRegister input {
-    width: 160px;
-    margin-left: 30px;
-    border: 1px solid #dbdbdb;
-}
-
-.row2 .acc .passwordRegister input {
-    width: 160px;
-    margin-right: 30px;
-    border: 1px solid #dbdbdb;
-}
-
-.row2 .infoPer .phone input {
-    width: 160px;
-    margin-left: 30px;
-}
-
-.row2 .infoPer .birthday input {
-    width: 160px;
-    margin-right: 30px;
-}
-
-
-.row2 .name input {
-    height: 40px;
-    width: 328px;
-    padding-left: 20px;
-}
-
-.row2 .address input {
-    height: 40px;
-    width: 328px;
-    padding-left: 20px;
-}
-
 .email {
     /*display: flex;*/
     /*justify-content: center;*/
@@ -472,6 +410,8 @@ input {
     height: 40px;
     width: 310px;
     padding-left: 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
 }
 
 .confirmPassword {
@@ -490,6 +430,8 @@ input {
     height: 40px;
     width: 310px;
     padding: 0 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
 }
 
 .buttonRegister {

@@ -1,28 +1,28 @@
+import toast, {Toaster} from "react-hot-toast";
 import "./DetailMainBodyShowProductCustomer.css"
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
-import {Formik} from "formik";
-import {addProductToOrders} from "../../../../../../redux/service/orderService";
+import {addProductToOrders} from "../../../../../../redux/service/oderService";
+
 
 export default function DetailMainBodyShowProductCustomer(){
+    const [quantity, setQuantity] = useState(1);
     const [activeImg, setActiveImg] = useState(null);
     const {id} = useParams();
     const dispatch = useDispatch();
 
     const product = useSelector(({products}) => {
+
         return products.productEdit;
     })
-
-    const [quantity, setQuantity] = useState(1);
-
-    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
 
     useEffect(() => {
         const fetchData = () => {
             dispatch(getProductById(id)).then(({payload}) => {
-                setActiveImg(payload.photo[0].photoName)
+                console.log(payload);
+                setActiveImg(payload.photo[0]?.photoName)
             });
         }
         fetchData();
@@ -31,13 +31,26 @@ export default function DetailMainBodyShowProductCustomer(){
     const handleQuantityChange = (e) => {
         const newQuantity = parseInt(e.target.value, 10);
         setQuantity(newQuantity);
-    }
+    };
 
     const addOrder = () => {
-        dispatch(addProductToOrders(product, quantity))
+        let  order = {
+            quantity : quantity,
+            product : {
+                productID: product.productID
+            }
+        }
+
+        dispatch(addProductToOrders(order)).then(() => {
+            toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
+        })
     }
     return(
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="detail-main-body-show-product-customer">
                 <div className="card-wrapper-detail-product-customer">
                         <div className="card">
@@ -49,7 +62,7 @@ export default function DetailMainBodyShowProductCustomer(){
                                     </div>
                                 </div>
                                 <div className="img-select">
-                                    {product.photo.map(image => (<div className="img-item">
+                                    {product.photo?.map(image => (<div className="img-item">
 
                                         <img key={image.photoID}
                                              src={image.photoName}
@@ -74,7 +87,7 @@ export default function DetailMainBodyShowProductCustomer(){
 
                                 <div className="product-price">
                                     {/*<p className="last-price">Old Price: <span>$257.00</span></p>*/}
-                                    <p className="new-price">Price: <span>${product?.price}</span></p>
+                                    <p className="new-price">Giá: <span>${product?.price}</span></p>
                                 </div>
 
                                 <div className="product-detail">
@@ -82,20 +95,25 @@ export default function DetailMainBodyShowProductCustomer(){
                                     <p> {product?.description}</p>
 
                                     <ul>
-                                        <li>Color: <span>Đa dạng</span></li>
-                                        <li>Available: <span>in stock</span></li>
-                                        <li>Category: <span>{product?.category?.name}</span></li>
-                                        <li>Shipping Area: <span>Toàn quốc</span></li>
-                                        <li>Shipping Fee: <span>Free</span></li>
+                                        <li>Màu sắc: <span>Đa dạng</span></li>
+                                        <li>Trạng thái: <span>Có sẵn</span></li>
+                                        <li>Phân loại: <span>{product?.category?.name}</span></li>
+                                        <li>Khu vực vận chuyển: <span>Toàn quốc</span></li>
+                                        <li>Phí vận chuyển: <span>Đặt hàng đi rồi biết</span></li>
                                     </ul>
                                 </div>
 
-                                <div className="purchase-info">
-                                    <input type="number" min="1" value={quantity} onChange={handleQuantityChange}/>
+                                <div className="purchase-info-cover">
+                                    <input type="number"
+                                           value={quantity}
+                                           min="1"
+                                           onChange={handleQuantityChange}
+                                           placeholder={"Nhập số lượng"}
+                                    />
                                     <div className="number-add-buy">
                                         <Link to={"#"}>
                                             <button type="button" className="btn" onClick={addOrder}>
-                                                Thêm vào giỏ hàng
+                                                <i className="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
                                             </button>
                                         </Link>
                                         <Link to={"#"}>
