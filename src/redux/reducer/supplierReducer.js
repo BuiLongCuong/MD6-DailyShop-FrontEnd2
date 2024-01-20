@@ -15,6 +15,7 @@ const initialState = {
     supplierDetails: {
 
     }
+
 }
 const userSlice = createSlice({
     name: "supplier/signIn",

@@ -19,7 +19,7 @@ export default function HeaderCustomer() {
     const currentPath = location.pathname;
     // console.log(currentPath);
     const dispatch = useDispatch();
-    const customer = useSelector(state => state.customer.currentCustomerDetails);
+    const customer = useSelector(state => state.customer.customerBeforeLogin);
 
     const searchName = (values) => {
         console.log(values.nameSearch)
@@ -55,7 +55,7 @@ export default function HeaderCustomer() {
                                     {customer ?
                                         <div className="acc">
                                             <li><Link to={"#"}><FaRegUser/></Link></li>
-                                            <li><Link to={"/login"} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
+                                            <li><Link to={""} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
                                             <li><span onClick={()=>{
                                                 dispatch(logout()).then(() => {
                                                     navigate('/login')

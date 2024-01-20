@@ -14,7 +14,8 @@ const initialState = {
     },
     customerDetails : {
 
-    }
+    },
+    customerBeforeLogin: null
 }
 const userSlice = createSlice ({
     name : "customer",
@@ -36,6 +37,7 @@ const userSlice = createSlice ({
         builder.addCase(logout.fulfilled,(state, {payload}) => {
             state.currentCustomerDetails = payload;
             state.currentCustomer= payload;
+            state.customerBeforeLogin = payload;
         })
     }
 })
