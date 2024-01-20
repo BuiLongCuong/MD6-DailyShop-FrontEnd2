@@ -18,12 +18,9 @@ export default function HeaderCustomer() {
     const location = useLocation();
     const currentPath = location.pathname;
     // console.log(currentPath);
-    const dispatch = useDispatch()
-    const customer = useSelector(state => state.customer.currentCustomerDetails)
+    const dispatch = useDispatch();
+    const customer = useSelector(state => state.customer.currentCustomerDetails);
 
-    const logOut = () => {
-        localStorage.removeItem("currentCustomer")
-    }
     const searchName = (values) => {
         console.log(values.nameSearch)
         dispatch(search(values.nameSearch))
