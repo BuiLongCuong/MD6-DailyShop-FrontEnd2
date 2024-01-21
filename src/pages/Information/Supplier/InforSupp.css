@@ -64,12 +64,6 @@
     align-items: center;
 }
 
-.contentInfo .infoDetails {
-    width: 70%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
 
 .contentInfo .imageSupp {
     width: 30%;

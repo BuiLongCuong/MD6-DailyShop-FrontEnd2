@@ -26,23 +26,26 @@ const productSlice = createSlice({
             state.totalPages = payload.totalPages;
             console.log(state.list)
         })
-        // builder.addCase(getProductTop().fulfilled,(state,{payload}) =>{
-        //     state.list = payload;
-        // })
-
         builder.addCase(getAllProduct.fulfilled, (state, {payload}) => {
             state.list = payload;
-            console.log(state.list)
         })
         builder.addCase(getProductById.fulfilled, (state, {payload}) => {
             state.productEdit = payload;
         })
         builder.addCase(getAllByIdUser.fulfilled, (state, {payload}) => {
+            // state.list = payload || [];
             state.list = payload;
+            console.log(state.list);
         })
         builder.addCase(add.fulfilled, (state, {payload}) => {
-            console.log(payload)
-            state.list.push(payload);
+            // console.log(payload)
+            // console.log(state.list)
+            if (!Array.isArray(state.list)) {
+                state.list = [];
+                state.list.push(payload);
+            }else {
+                state.list.push(payload);
+            }
         })
         builder.addCase(updateForm.fulfilled, (state, {payload}) => {
             state.productEdit = payload
