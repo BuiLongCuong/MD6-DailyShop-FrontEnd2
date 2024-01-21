@@ -8,21 +8,16 @@ import {
 } from "../service/customerService";
 
 const initialState = {
-    currentCustomer : JSON.parse(localStorage.getItem("currentCustomer")),
-    currentCustomerDetails : {
-
-    },
-    customerDetails : {
-
-    },
-    customerBeforeLogin: null
+    currentCustomer: JSON.parse(localStorage.getItem("currentCustomer")),
+    currentCustomerDetails: null,
+    customerDetails: {},
 }
-const userSlice = createSlice ({
-    name : "customer",
+const userSlice = createSlice({
+    name: "customer",
     initialState,
-    extraReducers : builder => {
-        builder.addCase(login.fulfilled, (state, {payload})=> {
-            localStorage.setItem("currentCustomer",JSON.stringify(payload))
+    extraReducers: builder => {
+        builder.addCase(login.fulfilled, (state, {payload}) => {
+            localStorage.setItem("currentCustomer", JSON.stringify(payload))
             state.currentCustomer = payload;
         })
         builder.addCase(editCustomer.fulfilled, (state, {payload}) => {
@@ -31,13 +26,12 @@ const userSlice = createSlice ({
         builder.addCase(findCustomerByAccountId.fulfilled, (state, {payload}) => {
             state.customerDetails = payload;
         })
-        builder.addCase(getCurrentCustomerDetails.fulfilled,(state, {payload}) => {
+        builder.addCase(getCurrentCustomerDetails.fulfilled, (state, {payload}) => {
             state.currentCustomerDetails = payload;
         })
-        builder.addCase(logout.fulfilled,(state, {payload}) => {
+        builder.addCase(logout.fulfilled, (state, {payload}) => {
             state.currentCustomerDetails = payload;
-            state.currentCustomer= payload;
-            state.customerBeforeLogin = payload;
+            state.currentCustomer = payload;
         })
     }
 })
