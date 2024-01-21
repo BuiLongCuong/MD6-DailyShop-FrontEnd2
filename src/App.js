@@ -24,6 +24,7 @@ import ShowListProductByCategory from "./pages/products/ShowListProductByCategor
 import Pay from "./pages/Pay/Pay";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
 import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp";
+import {EditInformationCustomer} from "./pages/Information/Customer/EditInforCus";
 
 function App() {
     const dispatch =useDispatch()
@@ -44,6 +45,7 @@ function App() {
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
           <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
           <Route path={"/pay"} element={<Pay/>}/>
+          <Route path={"/customer/edit"} element={<EditInformationCustomer/>}/>
 
 
 

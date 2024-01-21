@@ -1,8 +1,8 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {editSupplier, getCurrentSupplierDetails} from "../../../redux/service/supplierService";
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, useFormik} from "formik";
 import './InforSupp.css'
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../../firebase/firebase";
@@ -20,29 +20,33 @@ export function EditInforSupp() {
     const [photo, setPhoto] = useState("");
 
 
-    const provinces = useSelector(state => {
-        return state.address.listProvince
-    });
+    const provinces = useSelector(state => {return state.address.listProvince});
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
 
     useEffect(() => {
-        dispatch(getCurrentSupplierDetails())
-    }, []);
-
-    useEffect(() => {
+        dispatch(getCurrentSupplierDetails());
         dispatch(getAllProvince())
-    }, [])
+    }, [dispatch]);
 
-    const getDistricts = (event) => {
-        dispatch(getAllDistrict(event.target.value))
-    }
+    const handleProvinceChange = async (event) => {
+        await formik.setFieldValue("district.id", null)
+        await formik.setFieldValue("ward.id", null)
+        await formik.setFieldValue("province.id", parseInt(event.target.value));
+        dispatch(getAllDistrict(event.target.value));
+    };
 
-    const getWards = (event) => {
-        dispatch(getAllWard(event.target.value))
-    }
+    const handleDistrictChange = (event) => {
+        formik.setFieldValue("district.id", parseInt(event.target.value));
+        formik.setFieldValue("ward.id", "")
+        dispatch(getAllWard(event.target.value));
+    };
+
+    const handleWardChange = (event) => {
+        formik.setFieldValue("ward.id", parseInt(event.target.value));
+    };
 
     const EditSupplier = (values) => {
         // values.account = currentSupplier;
@@ -56,6 +60,32 @@ export function EditInforSupp() {
             navigate("/supplier/products");
         });
     }
+
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            id: supplier?.id,
+            account: {
+                id: supplier?.account?.id,
+            },
+            contactName: supplier?.contactName,
+            supplierName: supplier?.supplierName,
+            specificAddress: supplier?.specificAddress,
+            phone: supplier?.phone,
+            startDate: supplier?.startDate,
+            imageSupplier: supplier?.imageSupplier,
+            province: {
+                id: supplier?.province?.id || null,
+            },
+            district: {
+                id: supplier?.district?.id || null,
+            },
+            ward: {
+                id: supplier?.ward?.id || null,
+            },
+        },
+        onSubmit: EditSupplier,
+    });
 
     const handleChange1 = async (e) => {
         const file = e.target.files[0];
@@ -74,11 +104,21 @@ export function EditInforSupp() {
         <>
             <div className="main3">
                 <Formik
-                    initialValues={supplier}
-                    onSubmit={EditSupplier}
-                    enableReinitialize={true}
+                    // initialValues={{
+                    //     id: supplier?.id,
+                    //     account: {
+                    //         id: supplier?.account?.id,
+                    //     },
+                    //     contactName: supplier?.contactName,
+                    //     supplierName: supplier?.supplierName,
+                    //     specificAddress: supplier?.specificAddress,
+                    //     phone: supplier?.phone,
+                    //     startDate: supplier?.startDate,
+                    //     imageSupplier: supplier?.imageSupplier,
+                    // }}
+                    // enableReinitialize={true}
                 >
-                    <Form>
+                    <Form onSubmit={formik.handleSubmit}>
                         <div className="bodyInfo">
                             <div className="contentInfo">
                                 <div className="infoDetails">
@@ -86,7 +126,11 @@ export function EditInforSupp() {
                                         <div className="item">
                                             <div className={"title"}>Tên shop:</div>
                                             <div className="input">
-                                                <Field type="text" name="supplierName" placeholder={"Nhập tên shop"}/>
+                                                <Field type="text" name="supplierName" placeholder={"Nhập tên shop"}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("supplierName", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -94,7 +138,11 @@ export function EditInforSupp() {
                                                 Tên người bán:
                                             </div>
                                             <div className="input">
-                                                <Field type="text" name="contactName" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="text" name="contactName" placeholder={"Nhập họ và tên"}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("contactName", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -106,17 +154,15 @@ export function EditInforSupp() {
                                                     <Field
                                                         name={"province.id"}
                                                         as={"select"}
-                                                        onChange={getDistricts}
+                                                        onChange={handleProvinceChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Tỉnh/Thành phố</option>
                                                         {
-                                                            provinces.map((province) => {
-                                                                return <>
-                                                                    <option key={province.id} value={province.id}>
-                                                                        {province.provinceName}
-                                                                    </option>
-                                                                </>
-                                                            })
+                                                            provinces?.map((province) => (
+                                                                <option key={province.id} value={province.id}>
+                                                                    {province.provinceName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -124,16 +170,15 @@ export function EditInforSupp() {
                                                     <Field
                                                         as={"select"}
                                                         name={"district.id"}
-                                                        onChange={getWards}
+                                                        onChange={handleDistrictChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Quận/Huyện</option>
                                                         {
-                                                            districts.map((district) => {
-                                                                return <>
-                                                                    <option
-                                                                        value={district.id}>{district.districtName}</option>
-                                                                </>
-                                                            })
+                                                            districts?.map((district) => (
+                                                                <option key={district.id} value={district.id}>
+                                                                    {district.districtName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -141,14 +186,15 @@ export function EditInforSupp() {
                                                     <Field
                                                         as={"select"}
                                                         name={"ward.id"}
+                                                        onChange={handleWardChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Phường/Xã</option>
                                                         {
-                                                            wards.map((ward) => {
-                                                                return <>
-                                                                    <option value={ward.id}>{ward.wardName}</option>
-                                                                </>
-                                                            })
+                                                            wards?.map((ward) => (
+                                                                <option key={ward.id} value={ward.id}>
+                                                                    {ward.wardName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -159,7 +205,11 @@ export function EditInforSupp() {
                                             </div>
                                             <div className="input">
                                                 <Field type="text" name="specificAddress"
-                                                       placeholder={"Địa chỉ chi tiết..."}/>
+                                                       placeholder={"Số nhà, tên đường, thôn, xóm, làng, ấp..."}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("specificAddress", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -167,7 +217,11 @@ export function EditInforSupp() {
                                                 Số điện thoại:
                                             </div>
                                             <div className="input">
-                                                <Field type="text" name="phone" placeholder={"Nhập số điện thoại"}/>
+                                                <Field type="text" name="phone" placeholder={"Nhập số điện thoại"}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("phone", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -196,7 +250,7 @@ export function EditInforSupp() {
                                                 </div>
                                             ) : (
                                                 <img
-                                                    src={supplier.imageSupplier}
+                                                    src={supplier?.imageSupplier}
                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}

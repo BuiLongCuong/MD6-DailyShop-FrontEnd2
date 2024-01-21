@@ -27,9 +27,9 @@ const userSlice = createSlice({
         builder.addCase(editSupplier.fulfilled, (state, {payload}) => {
             state.currentSupplierDetails = payload;
         })
-        builder.addCase(findSupplierByAccountId.fulfilled, (state, {payload}) => {
-            state.supplierDetails = payload;
-        })
+        // builder.addCase(findSupplierByAccountId.fulfilled, (state, {payload}) => {
+        //     state.supplierDetails = payload;
+        // })
         builder.addCase(getCurrentSupplierDetails.fulfilled,(state, {payload}) => {
             state.currentSupplierDetails = payload;
         })

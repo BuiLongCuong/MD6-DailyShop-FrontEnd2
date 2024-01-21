@@ -23,7 +23,6 @@ export const editSupplier = createAsyncThunk(
     'supplier/editSupplier',
     async (supplierEdit) => {
         try {
-            console.log(supplierEdit)
             const res = await getSupplierUrl().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
             return res.data;
         } catch (e) {
@@ -33,17 +32,18 @@ export const editSupplier = createAsyncThunk(
     }
 )
 
-export const findSupplierByAccountId = createAsyncThunk(
-    'supplier/findByAccountId',
-    async (id) => {
-        const res = await getSupplierUrl().get("/suppliers/findByAccountId/" + id);
-        return res.data;
-    }
-)
+// export const findSupplierByAccountId = createAsyncThunk(
+//     'supplier/findByAccountId',
+//     async (id) => {
+//         const res = await getSupplierUrl().get("/suppliers/findByAccountId/" + id);
+//         return res.data;
+//     }
+// )
 export const getCurrentSupplierDetails= createAsyncThunk(
 "CURRENT_SUPPLIER_DETAILS",
     async () => {
         const res = await getSupplierUrl().get("/suppliers/current");
+        console.log(res.data)
         return res.data;
     }
 )

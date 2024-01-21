@@ -1,4 +1,4 @@
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
 import './InforCus.css'
 import React, {useEffect, useState} from "react";
@@ -10,7 +10,7 @@ import {storage} from "../../../firebase/firebase";
 import {v4} from "uuid";
 
 
-export function InformationCustomer() {
+export function EditInformationCustomer() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -24,33 +24,60 @@ export function InformationCustomer() {
 
     const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
     useEffect(() => {
-        dispatch(getCurrentCustomerDetails())
-    }, []);
+        dispatch(getCurrentCustomerDetails());
+        dispatch(getAllProvince());
+    }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllProvince())
-    }, [])
+    const handleProvinceChange = async (event) => {
+        await formik.setFieldValue("district.id", null)
+        await formik.setFieldValue("ward.id", null)
+        await formik.setFieldValue("province.id", parseInt(event.target.value));
+        dispatch(getAllDistrict(event.target.value));
+    };
 
-    const getDistricts = (event) => {
-        console.log(event.target.value)
-        dispatch(getAllDistrict(event.target.value))
-    }
+    const handleDistrictChange = (event) => {
+        formik.setFieldValue("district.id", parseInt(event.target.value));
+        formik.setFieldValue("ward.id", "")
+        dispatch(getAllWard(event.target.value));
+    };
 
-    const getWards = (event) => {
-        console.log(event.target.value)
-        dispatch(getAllWard(event.target.value))
-    }
+    const handleWardChange = (event) => {
+        formik.setFieldValue("ward.id", parseInt(event.target.value));
+    };
 
     const EditCustomer = (values) => {
         values.account = currentCustomer;
         values.imageCustomer = image;
         dispatch(editCustomer(values)).then (() => {
-            navigate("/customer")
+            // navigate("/customer")
             console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
         })
     }
 
-
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            id: customer?.id,
+            account: {
+                id: customer?.account?.id,
+            },
+            customerName: customer?.customerName,
+            dateOfBirth: customer?.dateOfBirth,
+            specificAddress: customer?.specificAddress,
+            phone: customer?.phone,
+            imageCustomer: customer?.imageCustomer,
+            province: {
+                id: customer?.province?.id || null,
+            },
+            district: {
+                id: customer?.district?.id || null,
+            },
+            ward: {
+                id: customer?.ward?.id || null,
+            },
+        },
+        onSubmit: EditCustomer,
+    });
 
     const handleChange2 = (e) => {
         const file = e.target.files[0];
@@ -88,10 +115,8 @@ export function InformationCustomer() {
                         </div>
                     </div>
                 </div>
-                <Formik initialValues={
-                        customer
-                } onSubmit={EditCustomer} enableReinitialize={true}>
-                    <Form>
+                <Formik>
+                    <Form onSubmit={formik.handleSubmit}>
                         <div className="bodyInfo">
                             <div className="contentInfo">
                                 <div className="infoDetails">
@@ -99,7 +124,11 @@ export function InformationCustomer() {
                                         <div className="item">
                                             <div className={"title"}>Họ và tên:</div>
                                             <div className="input">
-                                                <Field type="text" name="customerName" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="text" name="customerName" placeholder={"Nhập họ và tên"}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("customerName", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -111,17 +140,15 @@ export function InformationCustomer() {
                                                     <Field
                                                         name={"province.id"}
                                                         as={"select"}
-                                                        onChange={getDistricts}
+                                                        onChange={handleProvinceChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Tỉnh/Thành phố</option>
                                                         {
-                                                            provinces.map((province) => {
-                                                                return <>
-                                                                    <option key={province.id} value={province.id}>
-                                                                        {province.provinceName}
-                                                                    </option>
-                                                                </>
-                                                            })
+                                                            provinces?.map((province) => (
+                                                                <option key={province.id} value={province.id}>
+                                                                    {province.provinceName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -129,15 +156,15 @@ export function InformationCustomer() {
                                                     <Field
                                                         as={"select"}
                                                         name={"district.id"}
-                                                        onChange={getWards}
+                                                        onChange={handleDistrictChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Quận/Huyện</option>
                                                         {
-                                                            districts.map((district) => {
-                                                                return <>
-                                                                    <option value={district.id}>{district.districtName}</option>
-                                                                </>
-                                                            })
+                                                            districts?.map((district) => (
+                                                                <option key={district.id} value={district.id}>
+                                                                    {district.districtName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -145,14 +172,15 @@ export function InformationCustomer() {
                                                     <Field
                                                         as={"select"}
                                                         name={"ward.id"}
+                                                        onChange={handleWardChange}
                                                     >
                                                         <option value="" selected={true}>Chọn Phường/Xã</option>
                                                         {
-                                                            wards.map((ward) => {
-                                                                return <>
-                                                                    <option value={ward.id}>{ward.wardName}</option>
-                                                                </>
-                                                            })
+                                                            wards?.map((ward) => (
+                                                                <option key={ward.id} value={ward.id}>
+                                                                    {ward.wardName}
+                                                                </option>
+                                                            ))
                                                         }
                                                     </Field>
                                                 </div>
@@ -163,7 +191,11 @@ export function InformationCustomer() {
                                             </div>
                                             <div className="input">
                                                 <Field type="text" name="specificAddress"
-                                                       placeholder={"Địa chỉ chi tiết..."}/>
+                                                       placeholder={"Số nhà, tên đường, thôn, xóm, làng, ấp..."}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("specificAddress", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -171,7 +203,11 @@ export function InformationCustomer() {
                                                 Số điện thoại:
                                             </div>
                                             <div className="input">
-                                                <Field type="text" name="phone" placeholder={"Nhập số điện thoại"}/>
+                                                <Field type="text" name="phone" placeholder={"Nhập số điện thoại"}
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("phone", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">
@@ -179,7 +215,11 @@ export function InformationCustomer() {
                                                 Ngày sinh:
                                             </div>
                                             <div className="input">
-                                                <Field type="date" name="dateOfBirth" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="date" name="dateOfBirth"
+                                                       onChange={(event) => {
+                                                           formik.setFieldValue("dateOfBirth", event.target.value)
+                                                       }}
+                                                />
                                             </div>
                                         </div>
                                         <div className="item">

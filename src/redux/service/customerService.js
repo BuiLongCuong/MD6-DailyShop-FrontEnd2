@@ -44,6 +44,7 @@ export const getCurrentCustomerDetails= createAsyncThunk(
     "CURRENT_CUSTOMER_DETAILS",
     async () => {
         const res = await getCustomerUrl().get("/customer/current");
+        console.log(res.data)
         return res.data;
     }
 )
