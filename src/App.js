@@ -25,6 +25,7 @@ import Pay from "./pages/Pay/Pay";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
 import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp";
 import {EditInformationCustomer} from "./pages/Information/Customer/EditInforCus";
+import OrderListForSupplier from "./pages/order/supplier/list/orderList";
 
 function App() {
     const dispatch =useDispatch()
@@ -55,6 +56,7 @@ function App() {
                 <Route path={"edit/:id"} element={<UpdateProduct/>}/>
                 <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
                 <Route path={"editInfo/:id"} element={<EditInforSupp/>}/>
+                <Route path={"orderListForSupplier"} element={<OrderListForSupplier/>}/>
 
             </Route>
             <Route path={"cart"} element={<Cart/>}/>
