@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAxios, getCustomerUrl} from "./axios/getAxios";
+import {getAxios, getCustomerUrl, getSupplierUrl} from "./axios/getAxios";
 
 export const addProductToOrders = createAsyncThunk(
     'order/addProductToOrders',
@@ -14,5 +14,13 @@ export const showOrderList = createAsyncThunk(
     async () => {
         let res = await getCustomerUrl().get("/customer/cart");
         return res.data;
+    }
+)
+
+export const orderListForSupplier = createAsyncThunk(
+    'order/orderListForSupplier',
+    async () => {
+        let res = await getSupplierUrl().get("/suppliers/orderSupplier");
+        return res.data
     }
 )

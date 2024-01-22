@@ -47,7 +47,7 @@ export default function ShowListProductCustomerWithoutLogin() {
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">
                                             <div className="card-detail-show-product-name-without-login">
-                                                Tên sản phẩm:{products.productName}
+                                                {products.productName}
                                             </div>
                                             <div className="card-detail-show-product-blank-without-login">
                                                 Loại: {products.category.name}
