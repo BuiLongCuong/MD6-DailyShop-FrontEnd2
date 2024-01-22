@@ -27,7 +27,7 @@ export default function ShowListProductByCategory() {
                                     <Link to={"/customer/products/detail/" + product.productID} className={"text-none"}>
                                         <div className="form-productCate">
                                             <div className="imgCate">
-                                                <img src={product.photo[0].photoName} alt=""/>
+                                                <img src={product.photo[0]?.photoName} alt=""/>
                                             </div>
                                             <div className="card-cate">
                                                 <div className="name-cate">
@@ -37,7 +37,7 @@ export default function ShowListProductByCategory() {
                                                 </div>
                                                 <div className="price-cate">
                                                     {
-                                                        `Giá : $ ${product.price} `
+                                                        `Giá : ${product.price} `
                                                     }
                                                 </div>
                                             </div>

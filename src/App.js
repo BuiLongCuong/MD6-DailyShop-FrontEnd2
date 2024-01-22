@@ -43,7 +43,7 @@ function App() {
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
           <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
-          <Route path={"/pay"} element={<Pay/>}/>
+          <Route path={"pay"} element={<Pay/>}/>
 
 
 

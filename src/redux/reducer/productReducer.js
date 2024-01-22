@@ -69,7 +69,7 @@ const productSlice = createSlice({
             state.list = payload
         })
         builder.addCase(findAllByCategoryId.fulfilled, (state, {payload}) => {
-            state.list = payload
+            state.list = payload  || [];
         })
 
     }

@@ -2,9 +2,10 @@ import HeaderSupplier from "../Homes/HomeSupplier/HeaderSupplier/HeaderSupplier"
 import "./Cart.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showOrderList} from "../../redux/service/oderService";
+import {removeProductInOrder, showOrderList, updateQuantity, updateTotalAmount} from "../../redux/service/oderService";
 import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {getProductById} from "../../redux/service/productService";
 
 export default function Cart() {
     const dispatch = useDispatch();
@@ -13,6 +14,29 @@ export default function Cart() {
         console.log(order)
         return order.cart;
     });
+
+    const [quantity, setQuantity] = useState(1);
+
+    const handleIncrease = (productId, price) => {
+        setQuantity((prevQuantity) => prevQuantity + 1);
+        dispatch(updateQuantity(productId, quantity + 1));
+        dispatch(updateTotalAmount(price * (quantity + 1))); // Thêm hành động cập nhật tổng tiền
+    };
+
+    const handleDecrease = (productId, price) => {
+        if (quantity > 1) {
+            setQuantity((prevQuantity) => prevQuantity - 1);
+            dispatch(updateQuantity(productId, quantity - 1));
+            dispatch(updateTotalAmount(price * (quantity - 1))); // Thêm hành động cập nhật tổng tiền
+        }
+    };
+
+    const deleteProductInCart = (id) => {
+        dispatch(removeProductInOrder(id)).then(() =>{
+            console.log("Xóa sản phẩm thành công");
+            dispatch(showOrderList())
+        })
+    }
 
     const formatToCurrency = (value) => {
         return new Intl.NumberFormat('vi-VN', {
@@ -25,17 +49,6 @@ export default function Cart() {
         dispatch(showOrderList())
     }, []);
 
-    const [quantity, setQuantity] = useState(1);
-
-    const handleIncrease = () => {
-        setQuantity(prevQuantity => prevQuantity + 1);
-    };
-
-    const handleDecrease = () => {
-        if (quantity > 1) {
-            setQuantity(prevQuantity => prevQuantity - 1);
-        }
-    };
 
     return (
         <>
@@ -54,7 +67,7 @@ export default function Cart() {
                                     cart && cart.cartDetails && cart.cartDetails.map((itemDetails) => (
                                         <>
                                             <div className="orderDetail">
-                                                <div className="removeOrder">Xóa</div>
+                                                <div className="removeOrder" onClick={()=>deleteProductInCart(itemDetails.id)}>Xóa</div>
                                                 <div className="imageOrder"><img
                                                     src={itemDetails.product.photo[0]?.photoName} alt=""
                                                     style={{width: "96px", height: "69px"}}/></div>
@@ -70,11 +83,9 @@ export default function Cart() {
 
                                                 </div>
                                                 <div className="quantityPr">
-                                                    <button className={"btn1"} onClick={handleDecrease}>-</button>
-                                                    <input type="text" value={
-                                                        itemDetails.quantity
-                                                    }/>
-                                                    <button className={"btn2"} onClick={handleIncrease}>+</button>
+                                                    <button className={"btn1"} onClick={() => handleDecrease(itemDetails.product.productID, itemDetails.product.price)}>-</button>
+                                                    <input type="text" value={itemDetails.quantity} readOnly />
+                                                    <button className={"btn2"} onClick={() => handleIncrease(itemDetails.product.productID, itemDetails.product.price)}>+</button>
                                                 </div>
                                             </div>
                                         </>

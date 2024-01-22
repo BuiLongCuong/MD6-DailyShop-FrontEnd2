@@ -87,7 +87,7 @@ export default function DetailMainBodyShowProductCustomer(){
 
                                 <div className="product-price">
                                     {/*<p className="last-price">Old Price: <span>$257.00</span></p>*/}
-                                    <p className="new-price">Giá: <span>${product?.price}</span></p>
+                                    <p className="new-price">Giá: <span>{product?.price}</span></p>
                                 </div>
 
                                 <div className="product-detail">
