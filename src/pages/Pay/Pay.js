@@ -14,25 +14,21 @@ export default function Pay() {
 
     })
     console.log(payments)
-    const length_detail = () => {
-        for (let i = 0; i < payments.length - i; i++) {
-            // console.log(payments[i].orderDetails)
-            if (payments.length === 1) {
-                return (payments[i].orderDetails.length)
-            } else {
-                return (payments[i].orderDetails.length + payments[i + 1].orderDetails.length)
-            }
-        }
-    }
+    let sum_pr = 0
+    let length_od = 0
     const sum = () => {
-        for (let i = 0; i < payments.length - i; i++) {
-            if (payments.length === 1) {
-                return (payments[i].totalMoney)
-            } else {
-                return (payments[i].totalMoney + payments[i + 1].totalMoney)
-            }
+        for (let i = 0; i < payments?.length; i++) {
+            sum_pr += payments[i]?.totalMoney
         }
+        return sum_pr
     }
+    const length_detail = () => {
+        for (let i = 0; i < payments?.length; i++) {
+            length_od += payments[i]?.orderDetails?.length
+        }
+        return length_od
+    }
+
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails());
@@ -137,8 +133,10 @@ export default function Pay() {
                         <div className="totalAmount">
                             <div className="body-amount">
                                 <div className="total">
-                                    <div className="sum-pr">Tổng số tiền ({length_detail()} sản phẩm):</div>
-                                    <span className={"sum-cs"}>₫ {sum() && sum()}</span>
+                                    <div className="sum-pr">Tổng số tiền ({length_detail()} Đơn
+                                        Hàng):
+                                    </div>
+                                    <span className={"sum-cs"}>₫ {sum()}</span>
                                 </div>
                             </div>
                         </div>
