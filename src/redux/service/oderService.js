@@ -61,3 +61,15 @@ export const updateTotalAmount = (totalAmount) => ({
     type: 'UPDATE_TOTAL_AMOUNT',
     payload: { totalAmount },
 });
+export const payment = createAsyncThunk(
+    'payment/order',
+    async () => {
+        try {
+            const res = await getCustomerUrl().get("/getOrderCustomer")
+            return res.data
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+)

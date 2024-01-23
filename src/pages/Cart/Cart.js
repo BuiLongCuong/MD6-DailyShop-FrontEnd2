@@ -16,8 +16,8 @@ import {getProductById} from "../../redux/service/productService";
 export default function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector(({order}) => {
-        console.log(order.listOrder)
-        console.log(order)
+        // console.log(order.listOrder)
+        // console.log(order)
         return order.cart;
     });
 
@@ -112,7 +112,9 @@ export default function Cart() {
                                 }
                                 <div className="row2OfCol2">
                                     <div className="decisionBtn">
-                                        <button>Tiến hành thanh toán</button>
+                                        <Link to={"/pay"}>
+                                            <button>Tiến hành thanh toán</button>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="row3OfCol2">
