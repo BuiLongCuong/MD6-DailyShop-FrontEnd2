@@ -220,8 +220,8 @@ export default function ShowListProduct() {
                         <Typography id="modal-description" sx={{ mt: 2 }}>
                             Bạn có chắc chắn muốn xóa sản phẩm này không ???
                         </Typography>
-                        <Button onClick={()=>deleteProduct()}>Yes</Button>
-                        <Button onClick={handleClose}>No</Button>
+                        <Button onClick={()=>deleteProduct()}>Đồng ý</Button>
+                        <Button onClick={handleClose}>Quay lại</Button>
                     </Box>
                 </Modal>
 

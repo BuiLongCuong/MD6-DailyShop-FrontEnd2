@@ -24,3 +24,12 @@ export const orderListForSupplier = createAsyncThunk(
         return res.data
     }
 )
+
+export const supplierRights = createAsyncThunk(
+    'order/supplierRights',
+    async (data) => {
+        console.log(data.orderId, data.stringg)
+        let res = await getSupplierUrl().patch("/suppliers/updateOrder/" + data.orderId, data.stringg);
+        return res.data
+    }
+)
