@@ -4,8 +4,8 @@ import {getAxios, getCustomerUrl, getSupplierUrl} from "./axios/getAxios";
 
 export const getAllProductWithoutLogin = createAsyncThunk(
     'products/getAllProductWithoutLogin',
-    async () => {
-        let res = await getAxios().get("/getAllProduct");
+    async (page) => {
+        let res = await getAxios().get(`/getAllProductIsDeleted?page=${page}`);
         return res.data;
     }
 )
@@ -27,7 +27,7 @@ export const getAllProduct = createAsyncThunk(
 
 export const getProductById = createAsyncThunk(
     'products/getProductById',
-    async (idProduct) =>{
+    async (idProduct) => {
         let res = await getAxios().get("/products/" + idProduct);
         return res.data;
     }
@@ -77,7 +77,7 @@ export const Delete = createAsyncThunk(
 
 export const search = createAsyncThunk(
     'products/search',
-    async (nameSearch)=>{
+    async (nameSearch) => {
         let listProduct = await getCustomerUrl().get("/account/searchProduct?name=" + nameSearch)
         return listProduct.data
     }

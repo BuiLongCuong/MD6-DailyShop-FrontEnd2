@@ -22,6 +22,8 @@ import Cart from "./pages/Cart/Cart";
 import {getCurrentCustomerDetails} from "./redux/service/customerService";
 import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
 import Pay from "./pages/Pay/Pay";
+import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
+import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp";
 
 function App() {
     const dispatch =useDispatch()
@@ -41,7 +43,7 @@ function App() {
           <Route path={"informationCus"} element={<InformationCustomer/>}/>
           <Route path={"informationSupp"} element={<InformationSupplier/>}/>
           <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
-          <Route path={"/pay"} element={<Pay/>}/>
+          <Route path={"pay"} element={<Pay/>}/>
 
 
 
@@ -50,9 +52,11 @@ function App() {
                 <Route path={"add"} element={<AddProduct/>}/>
                 <Route path={"edit/:id"} element={<UpdateProduct/>}/>
                 <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
+                <Route path={"editInfo/:id"} element={<EditInforSupp/>}/>
 
             </Route>
             <Route path={"cart"} element={<Cart/>}/>
+            <Route path={"history"} element={<TransactionHistory/>}/>
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
 

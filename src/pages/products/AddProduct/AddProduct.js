@@ -1,3 +1,4 @@
+import toast, {Toaster} from "react-hot-toast";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -10,6 +11,7 @@ import {getAllCategories} from "../../../redux/service/categoryService";
 import "./AddProduct.css"
 import * as Yup from "yup";
 import * as React from "react";
+
 
 function AddProduct() {
     const accountSupplier = JSON.parse(localStorage.getItem("currentSupplier"))
@@ -42,7 +44,10 @@ function AddProduct() {
         values.photo = photo;
         try {
             dispatch(add(values)).then(()=>{
-                navigate("/supplier/products")
+                toast.success('Thêm mới sản phẩm thành công!');
+                setTimeout(() => {
+                    navigate("/supplier/products");
+                },1000);
             })
         } catch (e) {
             console.log(e)
@@ -78,6 +83,10 @@ function AddProduct() {
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="mainAddPr">
                 <Formik initialValues={{
                     productName: "",

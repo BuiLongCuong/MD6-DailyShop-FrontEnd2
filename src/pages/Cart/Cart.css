@@ -5,7 +5,7 @@
 }
 
 .bodyWindow {
-    margin-top: 100px;
+    margin-top: 72px;
     width: 1140px;
     height: auto;
     /*background-color: #e7403a;*/
@@ -222,6 +222,10 @@ i, p:hover {
     height: 30px;
     border: 1px solid #dbdbdb;
     border-radius: 0 5px 5px 0;
+}
+
+.backShop {
+    text-decoration: none;
 }
 
 

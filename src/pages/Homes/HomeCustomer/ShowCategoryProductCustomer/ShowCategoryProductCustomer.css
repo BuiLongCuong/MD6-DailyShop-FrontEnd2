@@ -67,3 +67,8 @@
     line-height: 20px;
     Color: rgba(0, 0, 0, 0.8)
 }
+
+.linkCategory {
+    text-decoration: none;
+    color: black;
+}

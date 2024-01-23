@@ -22,6 +22,7 @@
 .header_supplier .left .currentPage {
     font-size: 18px;
     font-weight: 400;
+    background-color: white !important;
 }
 
 .header_supplier .right {
@@ -38,6 +39,17 @@
     border-radius: 20px;
     transition: background-color 1s;
 }
+
+.logoutSupp button{
+    /*border: 1px solid white;*/
+    border: none;
+    background-color: white;
+    /*font-weight: 100;*/
+    font-size: 14px;
+}
+
+
+
 .user:hover {
     background-color: #e8e6e6;
 }

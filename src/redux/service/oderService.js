@@ -16,3 +16,35 @@ export const showOrderList = createAsyncThunk(
         return res.data;
     }
 )
+
+export const removeProductInOrder = createAsyncThunk(
+    'order/removeProductInOrder',
+    async (id) => {
+        await getCustomerUrl().delete("/account/removeOrderDetails/" + id)
+        console.log(id)
+        return id;
+    }
+)
+
+
+export const updateQuantity = (productId, quantity) => ({
+    type: 'UPDATE_QUANTITY',
+    payload: { productId, quantity },
+});
+
+export const updateTotalAmount = (totalAmount) => ({
+    type: 'UPDATE_TOTAL_AMOUNT',
+    payload: { totalAmount },
+});
+export const payment = createAsyncThunk(
+    'payment/order',
+    async () => {
+        try {
+            const res = await getCustomerUrl().get("/getOrderCustomer")
+            return res.data
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+)

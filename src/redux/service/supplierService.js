@@ -48,7 +48,13 @@ export const getCurrentSupplierDetails= createAsyncThunk(
     }
 )
 
-
+export const logout= createAsyncThunk(
+    "LOGOUT",
+    async ()=>{
+        localStorage.removeItem("currentSupplier")
+        return null
+    }
+)
 export const signUp = (newSupplier) => {
     return getSupplierUrl().post("suppliers/register", newSupplier)
 }

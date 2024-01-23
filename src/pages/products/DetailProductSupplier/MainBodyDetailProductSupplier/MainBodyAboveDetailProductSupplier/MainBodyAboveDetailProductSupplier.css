@@ -58,12 +58,13 @@ img{
 .product-link{
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 500!important;
+    /*font-size: 0.9rem;*/
+    font-size: 22px !important;
     display: inline-block;
     margin-bottom: 0.5rem;
-    background: #256eff;
-    color: #fff;
+    background: white!important;
+    color: #e7403a !important;
     padding: 0 0.3rem;
     transition: all 0.5s ease;
 }

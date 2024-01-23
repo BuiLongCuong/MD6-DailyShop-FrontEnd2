@@ -9,21 +9,24 @@ import {storage} from "../../../firebase/firebase";
 import {v4} from "uuid";
 import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 
-export function InformationSupplier() {
+export function EditInforSupp() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // doi tuong supplier tim duoc thong qua id cua doi tuong trong local storage
     const supplier = useSelector(state => state.supplier.currentSupplierDetails)
+    console.log(supplier)
     const [photo, setPhoto] = useState("");
 
 
-    const provinces = useSelector(state => {return state.address.listProvince});
+    const provinces = useSelector(state => {
+        return state.address.listProvince
+    });
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
     const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-    console.log(supplier)
 
     useEffect(() => {
         dispatch(getCurrentSupplierDetails())
@@ -42,12 +45,16 @@ export function InformationSupplier() {
     }
 
     const EditSupplier = (values) => {
-        values.account = currentSupplier;
-        values.imageSupplier = photo;
-        console.log(values)
-        dispatch(editSupplier(values)).then(() => {
-            navigate("/supplier/products")
-        })
+        // values.account = currentSupplier;
+        // values.imageSupplier = photo;
+        // console.log(values)
+        // dispatch(editSupplier(values)).then(() => {
+        //     navigate("/supplier/products")
+        // })
+        const updatedValues = { ...values, account: currentSupplier, imageSupplier: photo };
+        dispatch(editSupplier(updatedValues)).then(() => {
+            navigate("/supplier/products");
+        });
     }
 
     const handleChange1 = async (e) => {
@@ -66,34 +73,15 @@ export function InformationSupplier() {
     return (
         <>
             <div className="main3">
-                <div className="headerInfo">
-                    <div className="left">
-                        <div className="logo">
-                            <img src="/images/img_8.png" alt=""/>
-                        </div>
-                        <div className="title">
-                            <p>Thông tin của nhà cung cấp</p>
-                        </div>
-                    </div>
-                    <div className="right">
-                        <div className="account">
-                            <p><i className="fa-solid fa-user"></i>
-                                {
-                                    currentSupplier.account
-                                }
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <Formik initialValues={
-                        currentSupplier
-                } onSubmit={EditSupplier}
-
+                <Formik
+                    initialValues={supplier}
+                    onSubmit={EditSupplier}
+                    enableReinitialize={true}
                 >
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
-                                <div className="infoDetails1">
+                                <div className="infoDetails">
                                     <div>
                                         <div className="item">
                                             <div className={"title"}>Tên shop:</div>
@@ -188,7 +176,7 @@ export function InformationSupplier() {
                                             <div className="input">
                                                 <div className="decision">
                                                     <div className="cancel">
-                                                        <button type={"submit"}>Hủy</button>
+                                                        <button type={"button"}>Hủy</button>
                                                     </div>
                                                     <div className="save">
                                                         <button type={"submit"}>Lưu</button>
@@ -204,9 +192,11 @@ export function InformationSupplier() {
                                             {(photo) ? (
                                                 <div className="imageContainer">
                                                     <img src={photo ?? ''} alt="" style={{border: "50%"}}/>
+
                                                 </div>
                                             ) : (
-                                                <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
+                                                <img
+                                                    src={supplier.imageSupplier}
                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}

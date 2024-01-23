@@ -1,32 +1,30 @@
-import {Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
-import {editSupplier, getCurrentSupplierDetails} from "../../../redux/service/supplierService";
 import {Field, Form, Formik} from "formik";
-import './InforSupp.css'
+import {useNavigate} from "react-router-dom";
+import './InforCus.css'
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {editCustomer, getCurrentCustomerDetails} from "../../../redux/service/customerService";
+import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../../firebase/firebase";
 import {v4} from "uuid";
-import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
 
-export function InformationSupplier() {
 
+export function InformationCustomer() {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const supplier = useSelector(state => state.supplier.currentSupplierDetails)
-    const [photo, setPhoto] = useState("");
+    const customer = useSelector(state => state.customer.currentCustomerDetails)
+    const [image, setImage] = useState("");
 
 
     const provinces = useSelector(state => {return state.address.listProvince});
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
-    const currentSupplier = JSON.parse(localStorage.getItem("currentSupplier"));
-    console.log(supplier)
-
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
     useEffect(() => {
-        dispatch(getCurrentSupplierDetails())
+        dispatch(getCurrentCustomerDetails())
     }, []);
 
     useEffect(() => {
@@ -34,34 +32,37 @@ export function InformationSupplier() {
     }, [])
 
     const getDistricts = (event) => {
+        console.log(event.target.value)
         dispatch(getAllDistrict(event.target.value))
     }
 
     const getWards = (event) => {
+        console.log(event.target.value)
         dispatch(getAllWard(event.target.value))
     }
 
-    const EditSupplier = (values) => {
-        values.account = currentSupplier;
-        values.imageSupplier = photo;
-        console.log(values)
-        dispatch(editSupplier(values)).then(() => {
-            navigate("/supplier/products")
+    const EditCustomer = (values) => {
+        values.account = currentCustomer;
+        values.imageCustomer = image;
+        dispatch(editCustomer(values)).then (() => {
+            navigate("/customer")
+            console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
         })
     }
 
-    const handleChange1 = async (e) => {
+
+
+    const handleChange2 = (e) => {
         const file = e.target.files[0];
         if (file) {
             const photoRef = ref(storage, `image/${file.name + v4()}`);
-            await uploadBytes(photoRef, file).then((snapshot) => {
+            uploadBytes(photoRef, file).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    setPhoto(url);
+                    setImage(url);
                 });
             });
         }
     };
-
 
     return (
         <>
@@ -72,41 +73,33 @@ export function InformationSupplier() {
                             <img src="/images/img_8.png" alt=""/>
                         </div>
                         <div className="title">
-                            <p>Thông tin của nhà cung cấp</p>
+                            <div className="detail">
+                                <p>Thông tin của khách hàng</p>
+                            </div>
                         </div>
                     </div>
                     <div className="right">
                         <div className="account">
                             <p><i className="fa-solid fa-user"></i>
                                 {
-                                    currentSupplier.account
+                                    currentCustomer.account
                                 }
                             </p>
                         </div>
                     </div>
                 </div>
                 <Formik initialValues={
-                        currentSupplier
-                } onSubmit={EditSupplier}
-
-                >
+                        customer
+                } onSubmit={EditCustomer} enableReinitialize={true}>
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
-                                <div className="infoDetails1">
+                                <div className="infoDetails">
                                     <div>
                                         <div className="item">
-                                            <div className={"title"}>Tên shop:</div>
+                                            <div className={"title"}>Họ và tên:</div>
                                             <div className="input">
-                                                <Field type="text" name="supplierName" placeholder={"Nhập tên shop"}/>
-                                            </div>
-                                        </div>
-                                        <div className="item">
-                                            <div className="title">
-                                                Tên người bán:
-                                            </div>
-                                            <div className="input">
-                                                <Field type="text" name="contactName" placeholder={"Nhập họ và tên"}/>
+                                                <Field type="text" name="customerName" placeholder={"Nhập họ và tên"}/>
                                             </div>
                                         </div>
                                         <div className="item">
@@ -142,8 +135,7 @@ export function InformationSupplier() {
                                                         {
                                                             districts.map((district) => {
                                                                 return <>
-                                                                    <option
-                                                                        value={district.id}>{district.districtName}</option>
+                                                                    <option value={district.id}>{district.districtName}</option>
                                                                 </>
                                                             })
                                                         }
@@ -184,6 +176,14 @@ export function InformationSupplier() {
                                         </div>
                                         <div className="item">
                                             <div className="title">
+                                                Ngày sinh:
+                                            </div>
+                                            <div className="input">
+                                                <Field type="date" name="dateOfBirth" placeholder={"Nhập họ và tên"}/>
+                                            </div>
+                                        </div>
+                                        <div className="item">
+                                            <div className="title">
                                             </div>
                                             <div className="input">
                                                 <div className="decision">
@@ -201,22 +201,22 @@ export function InformationSupplier() {
                                 <div className="imageSupp">
                                     <div>
                                         <div className="avatarOfSupp">
-                                            {(photo) ? (
+                                            {(image) ? (
                                                 <div className="imageContainer">
-                                                    <img src={photo ?? ''} alt="" style={{border: "50%"}}/>
+                                                    <img src={image ?? ''} alt="" style={{border: "50%"}}/>
                                                 </div>
                                             ) : (
                                                 <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
-                                                    alt="Default Avatar" style={{border: "50%"}}/>
+                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}
                                         </div>
                                         <div className="chooseAvtSupp">
                                             <input
-                                                name="imageSupplier"
+                                                name="imageCustomer"
                                                 type="file"
                                                 multiple
-                                                onChange={handleChange1}
+                                                onChange={handleChange2}
                                                 placeholder="Enter Photo"
                                             />
                                         </div>

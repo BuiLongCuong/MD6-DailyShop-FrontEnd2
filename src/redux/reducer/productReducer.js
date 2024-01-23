@@ -12,10 +12,8 @@ import {
 
 const initialState = {
     list: [],
-    productEdit:{
-
-    }
-
+    totalPages: 0,
+    productEdit: {}
 
 }
 const productSlice = createSlice({
@@ -23,48 +21,55 @@ const productSlice = createSlice({
     initialState,
     extraReducers: builder => {
 
-        builder.addCase(getAllProductWithoutLogin.fulfilled,(state,{payload}) => {
-            state.list = payload ;
+        builder.addCase(getAllProductWithoutLogin.fulfilled, (state, {payload}) => {
+            state.list = payload.content;
+            state.totalPages = payload.totalPages;
+            console.log(state.list)
         })
-        // builder.addCase(getProductTop().fulfilled,(state,{payload}) =>{
-        //     state.list = payload;
-        // })
-
-        builder.addCase(getAllProduct.fulfilled,(state,{payload}) =>{
+        builder.addCase(getAllProduct.fulfilled, (state, {payload}) => {
             state.list = payload;
         })
-        builder.addCase(getProductById.fulfilled,(state,{payload}) =>{
+        builder.addCase(getProductById.fulfilled, (state, {payload}) => {
             state.productEdit = payload;
         })
         builder.addCase(getAllByIdUser.fulfilled, (state, {payload}) => {
+            // state.list = payload || [];
             state.list = payload;
+            console.log(state.list);
         })
         builder.addCase(add.fulfilled, (state, {payload}) => {
-            console.log(payload)
-            state.list.push(payload);
+            // console.log(payload)
+            // console.log(state.list)
+            if (!Array.isArray(state.list)) {
+                state.list = [];
+                state.list.push(payload);
+            }else {
+                state.list.push(payload);
+            }
         })
         builder.addCase(updateForm.fulfilled, (state, {payload}) => {
             state.productEdit = payload
         })
-        builder.addCase(UpdateService.fulfilled,(state,{payload})=>{
+        builder.addCase(UpdateService.fulfilled, (state, {payload}) => {
             for (let i = 0; i < state.list.length; i++) {
-                if (state.list[i].productID===payload.productID){
+                if (state.list[i].productID === payload.productID) {
                     state.list[i] = payload
                 }
             }
         })
-        builder.addCase(Delete.fulfilled,(state,{payload})=>{
+        builder.addCase(Delete.fulfilled, (state, {payload}) => {
             for (let i = 0; i < state.list.length; i++) {
-                if (state.list[i].id===payload){
-                    state.list.splice(i,1)
+                if (state.list[i].id === payload) {
+                    state.list.splice(i, 1);
+                    break;
                 }
             }
         })
-        builder.addCase(search.fulfilled,(state,{payload})=>{
+        builder.addCase(search.fulfilled, (state, {payload}) => {
             state.list = payload
         })
         builder.addCase(findAllByCategoryId.fulfilled, (state, {payload}) => {
-            state.list = payload
+            state.list = payload  || [];
         })
 
     }
