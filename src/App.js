@@ -7,12 +7,12 @@ import HomeSimple from "./pages/HomeSimple";
 import ListProduct from "./pages/products/ListProduct/ListProduct";
 import HomeSupplier from "./pages/Homes/HomeSupplier/HomeSupplier";
 import {UpdateProduct} from "./pages/products/UpdateProduct/UpdateProduct";
-import {InformationCustomer} from "./pages/Information/Customer/InforCus";
+import {InformationCustomer} from "./pages/Information/Customer/LoginFirst/InforCus";
 import AddProduct from "./pages/products/AddProduct/AddProduct";
 import DetailProduct from "./pages/products/DetailProduct/DetailProduct";
 import ShowListProduct from "./pages/products/ShowListProduct/ShowListProduct";
 import DetailProductSupplier from "./pages/products/DetailProductSupplier/DetailProductSupplier";
-import {InformationSupplier} from "./pages/Information/Supplier/InforSupp";
+import {InformationSupplier} from "./pages/Information/Supplier/SignInFirst/InforSupp";
 import {useEffect} from "react";
 import {getCurrentSupplierDetails} from "./redux/service/supplierService";
 import {useDispatch} from "react-redux";
@@ -23,7 +23,10 @@ import {getCurrentCustomerDetails} from "./redux/service/customerService";
 import ShowListProductByCategory from "./pages/products/ShowListProductByCategory/ShowListProductByCategory";
 import Pay from "./pages/Pay/Pay";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
-import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp";
+import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp/EditInforSupp";
+import {EditInforCus} from "./pages/Information/Customer/EditInforCus/EditInforCus";
+import BasicMenu from "./pages/Cart/TestHeaderCustomer";
+import OrderListForSupplier from "./pages/OrderManagement/OrderManagement";
 
 function App() {
     const dispatch =useDispatch()
@@ -51,14 +54,17 @@ function App() {
                 <Route path={"products"} element={<ShowListProduct/>}/>
                 <Route path={"add"} element={<AddProduct/>}/>
                 <Route path={"edit/:id"} element={<UpdateProduct/>}/>
+                <Route path={"orderManagement"} element={<OrderListForSupplier/>}/>
                 <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
-                <Route path={"editInfo/:id"} element={<EditInforSupp/>}/>
+                <Route path={"editInfoSupp/:id"} element={<EditInforSupp/>}/>
 
             </Route>
             <Route path={"cart"} element={<Cart/>}/>
-            <Route path={"history"} element={<TransactionHistory/>}/>
+            <Route path={"test"} element={<BasicMenu/>}/>
+            <Route path={"history/:id"} element={<TransactionHistory/>}/>
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
+            <Route path={"editInfoCus/:id"} element={<EditInforCus/>}/>
 
 
         </Routes>

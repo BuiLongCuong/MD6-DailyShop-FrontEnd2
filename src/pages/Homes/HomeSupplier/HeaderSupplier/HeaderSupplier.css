@@ -38,6 +38,7 @@
     padding: 5px 15px;
     border-radius: 20px;
     transition: background-color 1s;
+    height: 38px;
 }
 
 .logoutSupp button{

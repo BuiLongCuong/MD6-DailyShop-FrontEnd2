@@ -10,23 +10,60 @@ import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
+import {editCustomer, getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
 import {Field, Form, Formik} from "formik";
 import {search} from "../../../../redux/service/productService";
+import {countCartDetails} from "../../../../redux/service/oderService";
+import BasicMenu from "../../../Cart/TestHeaderCustomer";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import Button from "@mui/material/Button";
+import * as React from 'react';
 
 export default function HeaderCustomer() {
     const location = useLocation();
     const currentPath = location.pathname;
     // console.log(currentPath);
     const dispatch = useDispatch();
-    const customer = useSelector(state => state.customer.currentCustomerDetails);
+    const navigate = useNavigate();
+
+    const customer = useSelector(state => state.customer.currentCustomerLogin);
     console.log(customer)
+
+
+    const countOrderInCart = useSelector(state => state.order.countCartDetails)
+    console.log(countOrderInCart);
+
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    useEffect(() => {
+        dispatch(getCurrentCustomerDetails())
+    }, []);
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const kickOut = () => {
+        dispatch(logout()).then(() => {
+            navigate('/login')
+        })
+    };
+
+
+
+    useEffect(() => {
+        dispatch(countCartDetails())
+    }, []);
 
     const searchName = (values) => {
         console.log(values.nameSearch)
         dispatch(search(values.nameSearch))
     }
-    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
@@ -55,13 +92,52 @@ export default function HeaderCustomer() {
                                     <li><Link to={"https://twitter.com/"}><FaXTwitter/></Link></li>
                                     {customer ?
                                         <div className="acc">
-                                            <li><Link to={"#"}><FaRegUser/></Link></li>
-                                            <li><Link to={""} className={"customerName"}><span>{customer?.customerName}</span></Link></li>
-                                            <li><span onClick={()=>{
-                                                dispatch(logout()).then(() => {
-                                                    navigate('/login')
-                                                })
-                                            }}> Đăng xuất</span></li>
+                                            <div className="user">
+                                                <div className="avatar">
+                                                    <img src={ customer.imageCustomer} alt=""/>
+                                                </div>
+
+                                                    <li><Link to={""} className={"customerName"}>
+                                                        <div className={"account"}>
+                                                            <Button
+                                                                id="basic-button"
+                                                                aria-controls={open ? 'basic-menu' : undefined}
+                                                                aria-haspopup="true"
+                                                                aria-expanded={open ? 'true' : undefined}
+                                                                onClick={handleClick}
+                                                                style={{color: "white"}}
+                                                            >
+                                                                {customer?.customerName}
+                                                            </Button>
+                                                            <Menu
+                                                                id="basic-menu"
+                                                                anchorEl={anchorEl}
+                                                                open={open}
+                                                                onClose={handleClose}
+                                                                MenuListProps={{
+                                                                    'aria-labelledby': 'basic-button',
+                                                                }}
+                                                            >
+                                                                <Link className={"buttonInfor"} to={"/editInfoCus/" + customer.account.id}>
+                                                                    <MenuItem><i className="fa-solid fa-file-invoice"></i> &nbsp;Thông tin
+                                                                        của tôi</MenuItem></Link>
+                                                                <Link className={"buttonInfor"} to={"/history/" + customer.account.id}>
+                                                                    <MenuItem><i className="fa-solid fa-border-all"></i> &nbsp;Đơn
+                                                                        hàng của tôi</MenuItem></Link>
+                                                                <MenuItem onClick={kickOut}><i
+                                                                    className="fa-solid fa-right-from-bracket"></i> &nbsp;Đăng
+                                                                    xuất</MenuItem>
+                                                            </Menu>
+                                                        </div>
+                                                    </Link></li>
+
+                                            </div>
+
+                                            {/*<li><span onClick={() => {*/}
+                                            {/*    dispatch(logout()).then(() => {*/}
+                                            {/*        navigate('/login')*/}
+                                            {/*    })*/}
+                                            {/*}}> Đăng xuất</span></li>*/}
                                         </div>
                                         : <li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>
                                     }
@@ -106,7 +182,11 @@ export default function HeaderCustomer() {
                                     <ul>
                                         <li>
                                             <Link to={"/cart"}><FiShoppingCart
-                                                className={"color-white"}/><span>5</span></Link>
+                                                className={"color-white"}/><span>
+                                                {
+                                                    countOrderInCart
+                                                }
+                                            </span></Link>
                                         </li>
                                     </ul>
                                 </div>

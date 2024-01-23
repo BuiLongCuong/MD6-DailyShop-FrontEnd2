@@ -28,6 +28,15 @@
     justify-content: center;
 }
 
+.internet-signup {
+    margin-bottom: 10px;
+}
+
+.trademark-signup {
+    margin-bottom: 10px;
+}
+
+
 .left-signup .logo-signup {
     width: 200px;
     height: 100%;

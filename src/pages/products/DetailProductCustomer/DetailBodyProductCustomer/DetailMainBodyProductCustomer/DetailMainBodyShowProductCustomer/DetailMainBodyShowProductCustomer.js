@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
-import {addProductToOrders} from "../../../../../../redux/service/oderService";
+import {addProductToOrders, countCartDetails} from "../../../../../../redux/service/oderService";
 
 
 export default function DetailMainBodyShowProductCustomer(){
@@ -17,6 +17,14 @@ export default function DetailMainBodyShowProductCustomer(){
         
         return products.productEdit;
     })
+
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
 
     useEffect(() => {
         const fetchData = () => {
@@ -34,6 +42,7 @@ export default function DetailMainBodyShowProductCustomer(){
     };
 
     const addOrder = () => {
+
         let  order = {
             quantity : quantity,
             product : {
@@ -43,7 +52,9 @@ export default function DetailMainBodyShowProductCustomer(){
 
         dispatch(addProductToOrders(order)).then(() => {
             toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
+            dispatch(countCartDetails());
         })
+
     }
     return(
         <>
@@ -87,7 +98,7 @@ export default function DetailMainBodyShowProductCustomer(){
 
                                 <div className="product-price">
                                     {/*<p className="last-price">Old Price: <span>$257.00</span></p>*/}
-                                    <p className="new-price">Giá: <span>{product?.price}</span></p>
+                                    <p className="new-price">Giá: <span>{formatToCurrency(product?.price)}</span></p>
                                 </div>
 
                                 <div className="product-detail">

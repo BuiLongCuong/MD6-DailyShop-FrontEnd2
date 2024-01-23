@@ -1,0 +1,306 @@
+.content-product {
+    background-color: #f6f6f6;
+}
+
+.content-product .search {
+    height: 190px;
+    background-color: white;
+    -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content-product .products {
+    height: 1000px;
+    background-color: white;
+    margin-top: 20px;
+    -webkit-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    box-shadow: 3px 0px 24px -1px rgba(219, 216, 219, 1);
+    padding: 20px 20px;
+}
+
+.table-product {
+    width: 100%;
+    border: 1px solid #d3d1d1;
+    margin-top: 10px;
+}
+
+.table-product .header-table {
+    height: 80px;
+    background-color: #f6f6f6;
+    display: flex;
+}
+
+.table-product .main-table {
+    display: flex;
+}
+
+.check-he {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-he {
+    width: 30%;
+}
+
+.cate-he {
+    width: 19%;
+}
+
+.cate-he-time {
+    width: 20%;
+}
+
+.price-he {
+    width: 15%;
+}
+
+.quantity-he {
+    width: 10%;
+}
+
+.action {
+    width: 20%;
+    justify-content: center;
+    display: flex;
+}
+
+.action button {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 24px;
+    color: #595d62;
+    justify-content: center;
+}
+
+.center2 {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 24px;
+    color: #595d62;
+    justify-content: flex-end;
+}
+
+.center1 {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 24px;
+    color: #595d62;
+}
+
+.name-ma {
+    display: flex;
+    overflow-wrap: anywhere;
+}
+
+.ma {
+    padding: 10px 0;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ma1 {
+    padding: 10px 0;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.check-he input {
+    width: 15px;
+    height: 15px;
+}
+
+.name-ma img {
+    width: 50px;
+    height: 50px;
+}
+
+.name-p {
+    box-sizing: border-box;
+    padding: 5px 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    word-wrap: break-word  ;
+    overflow-wrap: inherit ;
+    white-space: break-spaces;
+    max-width: 100%;
+    text-overflow: clip;
+}
+
+.nav-bar-product {
+    position: relative;
+}
+.nav-bar-product button {
+    position: absolute;
+    top: -9px;
+    right: 0;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+
+.title-product {
+    height: 32px;
+}
+
+.searchManyInput {
+    width: 1037px;
+    height:65%;
+    /*background-color: #3B5998;*/
+    margin-top: 15px;
+}
+
+.row1Search {
+    display: flex;
+    justify-content: center;
+}
+
+.col1OfRow1Search {
+    display: flex;
+    justify-content: center;
+    margin-right: 97px;
+}
+
+.col1OfRow1Search input {
+    width: 303px !important;
+    border: 1px solid #dbdbdb;
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+}
+
+.col2OfRow1Search {
+    display: flex;
+    justify-content: center;
+}
+
+.col2OfRow1Search input {
+    width: 303px !important;
+    border: 1px solid #dbdbdb;
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+}
+
+.searchNamePr, .searchCategoryPr {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/*.inputSearchNamePr, .inputSearchCategoryPr{*/
+/*    height: 40px;*/
+/*    width: 300px;*/
+/*    border-radius: 5px 5px 5px 5px;*/
+/*}*/
+
+.inputSearchName {
+    /*margin-right: 10px;*/
+    height: 40px;
+    width: 300px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.inputSearchCategoryPr{
+    height: 40px;
+    width: 300px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.inputSearchNamePr input, .inputSearchCategoryPr input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    padding-left: 10px;
+    outline: 1px solid #ccc
+}
+.row2Search {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.row3Search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.inputMinPrice, .inputMaxPrice {
+    height: 40px;
+    width: 300px;
+}
+.between {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+}
+.inputMinPrice input , .inputMaxPrice input {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    padding-left: 10px;
+    /*outline: 1px solid #ccc*/
+    outline: 1px solid #ccc; /* Màu và kiểu viền tùy chọn */
+    outline-offset: -1px;
+
+}
+
+.quantity-he .ma {
+    word-wrap: break-word;
+}
+
+Link {
+
+}
+
+.edit , .detail {
+    text-decoration: none;
+}
+
+.findManyInput {
+    height: 35%;
+    width: 100%;
+    /*background-color: #e7403a;*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.findManyInput button{
+    width: 90px;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #dbdbdb;
+    background-color: #ff0000;
+    margin-right: 60px;
+    color: white;
+    margin-bottom: 10px;
+}

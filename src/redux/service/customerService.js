@@ -48,6 +48,14 @@ export const getCurrentCustomerDetails= createAsyncThunk(
     }
 )
 
+export const getCurrentCustomerLogin= createAsyncThunk(
+    "CURRENT_CUSTOMER_LOGIN",
+    async () => {
+        const res = await getCustomerUrl().get("/customer/current");
+        return res.data;
+    }
+)
+
 
 export const register = (newCustomer) => {
     return getCustomerUrl().post("customer/register", newCustomer)

@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAxios, getCustomerUrl} from "./axios/getAxios";
+import {getAxios, getCustomerUrl, getSupplierUrl} from "./axios/getAxios";
 
 export const addProductToOrders = createAsyncThunk(
     'order/addProductToOrders',
@@ -23,6 +23,31 @@ export const removeProductInOrder = createAsyncThunk(
         await getCustomerUrl().delete("/account/removeOrderDetails/" + id)
         console.log(id)
         return id;
+    }
+)
+
+export const countCartDetails = createAsyncThunk(
+    'customer/countCartDetails',
+    async () => {
+        let res = await getCustomerUrl().get("/customer/countCartDetails")
+        console.log(res.data);
+        return res.data;
+    }
+)
+
+export const transactionHistory = createAsyncThunk(
+    'TransactionHistory',
+        async () => {
+            let res = await getCustomerUrl().get("/getOrderCustomer")
+            return res.data;
+        }
+)
+
+export const orderListForSupplier = createAsyncThunk(
+    'order/orderListForSupplier',
+    async () => {
+        let res = await getSupplierUrl().get("/suppliers/orderSupplier");
+        return res.data
     }
 )
 

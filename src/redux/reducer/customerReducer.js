@@ -2,14 +2,15 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     editCustomer,
     findCustomerByAccountId,
-    getCurrentCustomerDetails,
+    getCurrentCustomerDetails, getCurrentCustomerLogin,
     login,
     logout
 } from "../service/customerService";
 
 const initialState = {
     currentCustomer: JSON.parse(localStorage.getItem("currentCustomer")),
-    currentCustomerDetails: null,
+    currentCustomerLogin: null,
+    currentCustomerDetails: {},
     customerDetails: {},
 }
 const userSlice = createSlice({
@@ -20,14 +21,18 @@ const userSlice = createSlice({
             localStorage.setItem("currentCustomer", JSON.stringify(payload))
             state.currentCustomer = payload;
         })
+        builder.addCase(getCurrentCustomerDetails.fulfilled, (state, {payload}) => {
+            state.currentCustomerDetails = payload;
+            state.currentCustomerLogin = state.currentCustomerDetails
+        })
+        builder.addCase(getCurrentCustomerLogin.fulfilled, (state, {payload}) => {
+            state.currentCustomerLogin = payload;
+        })
         builder.addCase(editCustomer.fulfilled, (state, {payload}) => {
             state.currentCustomerDetails = payload;
         })
         builder.addCase(findCustomerByAccountId.fulfilled, (state, {payload}) => {
             state.customerDetails = payload;
-        })
-        builder.addCase(getCurrentCustomerDetails.fulfilled, (state, {payload}) => {
-            state.currentCustomerDetails = payload;
         })
         builder.addCase(logout.fulfilled, (state, {payload}) => {
             state.currentCustomerDetails = payload;

@@ -101,7 +101,7 @@ export default function SignUp() {
                                 </div>
                                 <div className="internet-signup">
                                     <div className="logo-signup">
-                                        <img src="" alt=""/>
+
                                     </div>
                                     <div className="text-signup">
                                         Nền tảng thương mại điện tử hàng đầu Đông Nam Á và Đài Loan
@@ -109,7 +109,7 @@ export default function SignUp() {
                                 </div>
                                 <div className="trademark-signup">
                                     <div className="logo-signup">
-                                        <img src="" alt=""/>
+
                                     </div>
                                     <div className="text-signup">
                                         Phát triển trở thành thương hiệu toàn cầu
@@ -117,7 +117,7 @@ export default function SignUp() {
                                 </div>
                                 <div className="vn-signup">
                                     <div className="logo-signup">
-                                        <img src="" alt=""/>
+
                                     </div>
                                     <div className="text-signup">
                                         Dẫn đầu lượng người dùng trên ứng dụng mua sắm tại Việt Nam

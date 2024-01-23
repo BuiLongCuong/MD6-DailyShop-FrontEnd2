@@ -11,6 +11,7 @@ import {getAllCategories} from "../../../redux/service/categoryService";
 import "./AddProduct.css"
 import * as Yup from "yup";
 import * as React from "react";
+import {countCartDetails} from "../../../redux/service/oderService";
 
 
 function AddProduct() {
@@ -40,6 +41,11 @@ function AddProduct() {
     const categories = useSelector(({categories}) => {
         return categories.list
     })
+
+    // useEffect(() => {
+    //     dispatch(countCartDetails())
+    // }, [add]);
+
     const Create = (values) => {
         values.photo = photo;
         try {

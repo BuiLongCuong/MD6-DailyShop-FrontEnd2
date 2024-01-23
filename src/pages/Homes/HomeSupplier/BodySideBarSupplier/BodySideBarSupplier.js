@@ -26,10 +26,12 @@ export default function BodySideBarSupplier() {
                 <div className="item">
                     <i className="fa-brands fa-product-hunt"></i> <Link
                     to={"/supplier/editInfo/" + supplier?.account?.id} className={"link"}>
-                    <span>Sửa thông tin</span></Link>
+                    <span>Thông tin cá nhân</span></Link>
                 </div>
                 <div className="item">
-                    <i className="fa-brands fa-product-hunt"></i> <span>Quản lý đơn hàng</span>
+                    <i className="fa-brands fa-product-hunt"></i> <Link
+                    to={"/supplier/orderManagement"} className={"link"}>
+                    <span>Quản lí đơn hàng</span></Link>
                 </div>
                 <div className="item">
                     <i className="fa-brands fa-product-hunt"></i> <span>Quản lý đơn hàng</span>

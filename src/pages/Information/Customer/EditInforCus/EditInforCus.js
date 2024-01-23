@@ -1,20 +1,21 @@
 import {Field, Form, Formik} from "formik";
-import {useNavigate} from "react-router-dom";
-import './InforCus.css'
+import {Link, useNavigate} from "react-router-dom";
+import './EditInforCus.css'
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editCustomer, getCurrentCustomerDetails} from "../../../redux/service/customerService";
-import {getAllDistrict, getAllProvince, getAllWard} from "../../../redux/service/addressService";
+import {editCustomer, getCurrentCustomerDetails} from "../../../../redux/service/customerService";
+import {getAllDistrict, getAllProvince, getAllWard} from "../../../../redux/service/addressService";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
-import {storage} from "../../../firebase/firebase";
+import {storage} from "../../../../firebase/firebase";
 import {v4} from "uuid";
 
 
-export function InformationCustomer() {
+export function EditInforCus() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const customer = useSelector(state => state.customer.currentCustomerDetails)
+    console.log(customer)
     const [image, setImage] = useState("");
 
 
@@ -22,27 +23,42 @@ export function InformationCustomer() {
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
-    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
+
+    const [address, setAddress] = useState(
+        {province: "", district: "", ward: ""}
+    );
+
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
+        dispatch(getAllProvince())
     }, []);
 
     useEffect(() => {
-        dispatch(getAllProvince())
-    }, [])
+        dispatch(getAllDistrict(customer?.province?.id));
+        dispatch(getAllWard(customer?.district?.id));
+        setAddress({province: customer?.province?.id, district: customer?.district?.id, ward: customer?.ward?.id})
+    }, [customer]);
 
-    const getDistricts = (event) => {
-        console.log(event.target.value)
-        dispatch(getAllDistrict(event.target.value))
-    }
+    const handleProvinceChange = async (event) => {
+        dispatch(getAllDistrict(event.target.value));
+        setAddress({...address, province: event.target.value})
+    };
 
-    const getWards = (event) => {
-        console.log(event.target.value)
-        dispatch(getAllWard(event.target.value))
-    }
+    const handleDistrictChange = (event) => {
+        dispatch(getAllWard(event.target.value));
+        setAddress({...address, district: event.target.value})
+    };
+
+    const handleWardChange = (event) => {
+        setAddress({...address, ward: event.target.value})
+    };
 
     const EditCustomer = (values) => {
-        values.account = currentCustomer;
+        values = {...values}
+        values.province = {id: address.province}
+        values.district = {id : address.district}
+        values.ward = {id: address.ward}
         values.imageCustomer = image;
         dispatch(editCustomer(values)).then (() => {
             navigate("/customer")
@@ -88,15 +104,14 @@ export function InformationCustomer() {
                         </div>
                     </div>
                 </div>
-                <Formik initialValues={
-                    {
-                        customer
-                    }
-                } onSubmit={EditCustomer}>
+                <Formik
+                    initialValues={customer}
+                    onSubmit={EditCustomer}
+                    enableReinitialize={true}>
                     <Form>
                         <div className="bodyInfo">
                             <div className="contentInfo">
-                                <div className="infoDetails">
+                                <div className="infoDetails4">
                                     <div>
                                         <div className="item">
                                             <div className={"title"}>Họ và tên:</div>
@@ -110,53 +125,40 @@ export function InformationCustomer() {
                                             </div>
                                             <div className="input">
                                                 <div className="select">
-                                                    <Field
-                                                        name={"province.id"}
-                                                        as={"select"}
-                                                        onChange={getDistricts}
-                                                    >
+                                                    <select name={"province"} onChange={handleProvinceChange} value={address.province}>
                                                         <option value="" selected={true}>Chọn Tỉnh/Thành phố</option>
                                                         {
-                                                            provinces.map((province) => {
-                                                                return <>
-                                                                    <option key={province.id} value={province.id}>
-                                                                        {province.provinceName}
-                                                                    </option>
-                                                                </>
-                                                            })
+                                                            provinces?.map((province) => (
+                                                                <option key={province.id} value={province.id}>
+                                                                    {province.provinceName}
+                                                                </option>
+                                                            ))
                                                         }
-                                                    </Field>
+                                                    </select>
                                                 </div>
                                                 <div className="select">
-                                                    <Field
-                                                        as={"select"}
-                                                        name={"district.id"}
-                                                        onChange={getWards}
-                                                    >
+                                                    <select name={"district"} onChange={handleDistrictChange} value={address.district}>
                                                         <option value="" selected={true}>Chọn Quận/Huyện</option>
                                                         {
-                                                            districts.map((district) => {
-                                                                return <>
-                                                                    <option value={district.id}>{district.districtName}</option>
-                                                                </>
-                                                            })
+                                                            districts?.map((district) => (
+                                                                <option key={district.id} value={district.id}>
+                                                                    {district.districtName}
+                                                                </option>
+                                                            ))
                                                         }
-                                                    </Field>
+                                                    </select>
                                                 </div>
                                                 <div className="select">
-                                                    <Field
-                                                        as={"select"}
-                                                        name={"ward.id"}
-                                                    >
+                                                    <select name={"ward"} onChange={handleWardChange} value={address.ward}>
                                                         <option value="" selected={true}>Chọn Phường/Xã</option>
                                                         {
-                                                            wards.map((ward) => {
-                                                                return <>
-                                                                    <option value={ward.id}>{ward.wardName}</option>
-                                                                </>
-                                                            })
+                                                            wards?.map((ward) => (
+                                                                <option key={ward.id} value={ward.id}>
+                                                                    {ward.wardName}
+                                                                </option>
+                                                            ))
                                                         }
-                                                    </Field>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,7 +192,9 @@ export function InformationCustomer() {
                                             <div className="input">
                                                 <div className="decision">
                                                     <div className="cancel">
-                                                        <button type={"submit"}>Hủy</button>
+                                                        <Link to={"/customer"}>
+                                                        <button type={"button"}>Hủy</button>
+                                                        </Link>
                                                     </div>
                                                     <div className="save">
                                                         <button type={"submit"}>Lưu</button>
@@ -208,8 +212,7 @@ export function InformationCustomer() {
                                                     <img src={image ?? ''} alt="" style={{border: "50%"}}/>
                                                 </div>
                                             ) : (
-                                                <img src={"https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"}
-                                                     alt="Default Avatar" style={{border: "50%"}}/>
+                                                <img src={customer.imageCustomer} style={{border: "50%"}}/>
 
                                             )}
                                         </div>

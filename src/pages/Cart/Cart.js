@@ -2,7 +2,13 @@ import HeaderSupplier from "../Homes/HomeSupplier/HeaderSupplier/HeaderSupplier"
 import "./Cart.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {removeProductInOrder, showOrderList, updateQuantity, updateTotalAmount} from "../../redux/service/oderService";
+import {
+    countCartDetails,
+    removeProductInOrder,
+    showOrderList,
+    updateQuantity,
+    updateTotalAmount
+} from "../../redux/service/oderService";
 import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
 import {Link, useParams} from "react-router-dom";
 import {getProductById} from "../../redux/service/productService";
@@ -35,6 +41,7 @@ export default function Cart() {
         dispatch(removeProductInOrder(id)).then(() =>{
             console.log("Xóa sản phẩm thành công");
             dispatch(showOrderList())
+            dispatch(countCartDetails())
         })
     }
 

@@ -1,0 +1,190 @@
+/*body {*/
+/*    background-color: #f6f6f6;*/
+/*}*/
+
+.headerInfo {
+    height: 56px;
+    /*background-color: #ee4d2d;*/
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    -moz-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+}
+
+.bodyInfo {
+    display: flex;
+    background-color: #f6f6f6;
+    min-height: 800px;
+    justify-content: center;
+}
+
+.headerInfo .left {
+    margin-left: 50px;
+    display: flex;
+}
+
+.headerInfo .left .title {
+    display: flex;
+    align-items: flex-end;
+}
+
+.headerInfo .left .title p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.headerInfo .right {
+    display: flex;
+    align-items: flex-end;
+}
+
+.headerInfo .right p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.contentInfo {
+    width: 1290px;
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+    height: 700px;
+    -webkit-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    -moz-box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+    box-shadow: 0px 5px 3px 0.5px rgba(199, 189, 199, 1);
+}
+
+.contentInfo .infoDetails2 {
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.contentInfo .imageSupp {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoDetails2 .item {
+    display: flex;
+    padding: 20px;
+}
+
+.item .title {
+    width: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.item .input {
+    display: flex;
+    flex-grow: 1;
+    width: 450px;
+    height: 45px;
+}
+
+.item .input input {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px;
+}
+
+
+select {
+    border: 1px solid #dbdbdb;
+    width: 190px;
+    height: 42.5px;
+    border-radius: 5px 5px;
+}
+
+.select {
+    padding: 0 5px;
+}
+
+.input .select:first-child {
+    padding-left: 0;
+}
+
+.avatarOfSupp {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    border: 1px solid darkred;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatarOfSupp img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chooseAvtSupp input {
+    border: none;
+}
+
+.chooseAvtSupp {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.input .cancel {
+    width: 120px;
+    height: 40px;
+}
+
+.input .cancel button {
+    width: 100%;
+    height: 100%;
+    background-color: #ee4d2d;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.input .save {
+    width: 120px;
+    height: 40px;
+}
+
+.input .save button {
+    width: 100%;
+    height: 100%;
+    background-color: #ee4d2d;
+    /*border: 1px solid #dbdbdb;*/
+    border-radius: 5px 5px 5px 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.decision {
+    width: 308px;
+    display: flex;
+    justify-content: space-around;
+}
+
+Link {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+

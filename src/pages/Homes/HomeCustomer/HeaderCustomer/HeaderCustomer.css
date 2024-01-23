@@ -245,15 +245,36 @@ li button {
 
 .col-6 ul {
     display: flex;
+    align-items: center;
 }
 
 .col-6 ul li {
     list-style: none;
-    padding: 0 10px;
+    padding: 10px 10px;
 }
 
 .customerName {
     text-decoration: none;
     margin-left: -18px;
     margin-top: 3px;
+}
+
+.account {
+    margin-left: 24px;
+    margin-top: -9px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.buttonInfor {
+    text-decoration: none;
+    color: black;
+}
+.avatar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.account button {
+    padding-top: 10px;
 }

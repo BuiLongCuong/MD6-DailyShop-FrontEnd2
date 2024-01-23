@@ -25,6 +25,7 @@ export const editSupplier = createAsyncThunk(
         try {
             console.log(supplierEdit)
             const res = await getSupplierUrl().put("/suppliers/edit/" + supplierEdit.account.id, supplierEdit)
+            console.log(res.data)
             return res.data;
         } catch (e) {
             console.log(e)
