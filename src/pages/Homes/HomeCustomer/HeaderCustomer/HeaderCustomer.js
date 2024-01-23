@@ -17,16 +17,13 @@ import {search} from "../../../../redux/service/productService";
 export default function HeaderCustomer() {
     const location = useLocation();
     const currentPath = location.pathname;
-    // console.log(currentPath);
     const dispatch = useDispatch();
     const customer = useSelector(state => state.customer.currentCustomerDetails);
-    console.log(customer)
+    const navigate = useNavigate();
 
     const searchName = (values) => {
-        console.log(values.nameSearch)
-        dispatch(search(values.nameSearch))
+        navigate(`/customer/products/search?name=${values.nameSearch}`)
     }
-    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails())
@@ -83,7 +80,8 @@ export default function HeaderCustomer() {
                             <div className="main-center">
                                 <Formik initialValues={
                                     {
-                                        nameSearch: ""
+                                        nameSearch: "",
+
                                     }
                                 } onSubmit={searchName}>
                                     <Form className={"form-search"}>

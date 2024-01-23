@@ -77,11 +77,51 @@ export const Delete = createAsyncThunk(
 
 export const search = createAsyncThunk(
     'products/search',
-    async (nameSearch)=>{
-        let listProduct = await getCustomerUrl().get("/account/searchProduct?name=" + nameSearch)
-        return listProduct.data
+    async (res)=>{
+
+        if (res.minPrice!==null && res.maxPrice!==null){
+            let listProduct = await getAxios().get(`/searchProduct?name=${res.nameSearch}&minPrice=${res.minPrice||0}&maxPrice=${res.maxPrice||0}`)
+            console.log(listProduct)
+            return listProduct.data
+        }else {
+            let listProduct = await getAxios().get(`/searchProduct?name=${res.nameSearch}`)
+            console.log(listProduct)
+            return listProduct.data
+        }
+
     }
 )
+
+export const searchIncresePrice = createAsyncThunk(
+    'products/search/incresePrice',
+    async (res)=>{
+        try {
+            let listProduct = await getAxios().get(`/searchProductByNamePrice?name=${res}`)
+            console.log(listProduct.data)
+            return listProduct.data
+        }catch (e){
+            console.log(e)
+        }
+
+    }
+)
+
+export const searchDecresePrice = createAsyncThunk(
+    'products/search/decresePrice',
+    async (res)=>{
+        try {
+            let listProduct = await getAxios().get(`/searchProductByName?name=${res}`)
+            console.log(listProduct.data)
+            return listProduct.data
+        }catch (e){
+            console.log(e)
+        }
+
+    }
+)
+
+
+
 export const findAllByCategoryId = createAsyncThunk(
     'product/findAllById',
     async (id) => {
