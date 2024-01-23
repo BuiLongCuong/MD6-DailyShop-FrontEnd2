@@ -78,15 +78,15 @@ export default function HeaderCustomer() {
                         <div className="row">
                             <div className="col-6 header-top-left-customer">
                                 <ul>
-                                    <li style={{color: "white"}}><IoMailUnreadOutline/>dailyshop@gmail.com</li>
-                                    <li style={{color: "white"}}>Support diliver</li>
-                                    <li><Link to={"/signIn"} style={{color: "white"}}>Kênh người bán</Link></li>
+                                    <li style={{color: "white", marginTop: "4px"}}><IoMailUnreadOutline/>dailyshop@gmail.com</li>
+                                    <li style={{color: "white", marginTop: "4px"}}>Support diliver</li>
+                                    <li style={{marginTop: "4px"}}><Link className={"supplier"} to={"/signIn"} style={{color: "white"}}>Kênh người bán</Link></li>
 
                                 </ul>
                             </div>
                             <div className="col-6  header-top-right-customer">
                                 <ul>
-                                    <span>Kết nối</span>
+                                    <span style={{marginTop: "4px"}}>Kết nối</span>
                                     <li><Link to={"https://web.facebook.com/"}><FaFacebook/></Link></li>
                                     <li><Link to={"https://www.instagram.com/"}><FaInstagram/></Link></li>
                                     <li><Link to={"https://twitter.com/"}><FaXTwitter/></Link></li>
@@ -130,7 +130,6 @@ export default function HeaderCustomer() {
                                                             </Menu>
                                                         </div>
                                                     </Link></li>
-
                                             </div>
 
                                             {/*<li><span onClick={() => {*/}
@@ -139,7 +138,7 @@ export default function HeaderCustomer() {
                                             {/*    })*/}
                                             {/*}}> Đăng xuất</span></li>*/}
                                         </div>
-                                        : <li><span><Link to={"/login"}>Đăng Nhập</Link></span></li>
+                                        : <li style={{marginTop: "4px", marginLeft: "2px"}}><span><Link className={"Login"} to={"/login"}>Đăng Nhập</Link></span></li>
                                     }
 
                                 </ul>

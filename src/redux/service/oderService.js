@@ -38,7 +38,7 @@ export const countCartDetails = createAsyncThunk(
 export const transactionHistory = createAsyncThunk(
     'TransactionHistory',
         async () => {
-            let res = await getCustomerUrl().get("/getOrderCustomer")
+            let res = await getCustomerUrl().get("/account/order")
             return res.data;
         }
 )

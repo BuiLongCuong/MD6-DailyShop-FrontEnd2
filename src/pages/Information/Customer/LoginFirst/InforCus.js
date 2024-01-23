@@ -147,7 +147,7 @@ export function InformationCustomer() {
                                     <div>
                                         <div className="item">
                                             <div className={"title"}>Họ và tên:</div>
-                                            <div className="input1">
+                                            <div className="input">
                                                 <Field type="text" name="customerName" placeholder={"Nhập họ và tên"}
                                                        onChange={(event) => {
                                                            formik.setFieldValue("customerName", event.target.value)

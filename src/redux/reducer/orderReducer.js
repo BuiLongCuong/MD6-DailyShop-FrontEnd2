@@ -1,5 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {payment, removeProductInOrder, showOrderList,orderListForSupplier,countCartDetails} from "../service/oderService";
+import {
+    payment,
+    removeProductInOrder,
+    showOrderList,
+    orderListForSupplier,
+    countCartDetails,
+    transactionHistory
+} from "../service/oderService";
 
 const initialState = {
     cart: null,
@@ -57,6 +64,9 @@ const orderSlice = createSlice({
         })
         builder.addCase(orderListForSupplier.fulfilled, (state, {payload}) => {
             state.listOrderForSupplier = payload;
+        })
+        builder.addCase(transactionHistory.fulfilled, (state, {payload}) => {
+            state.transactionHistory = payload;
         })
     }
 

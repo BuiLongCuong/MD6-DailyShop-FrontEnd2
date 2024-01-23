@@ -78,9 +78,12 @@ export default function Register() {
                                 }
                             }
                                     onSubmit={(values) => {
-                                        register(values).then(() => {
-                                            toast.success('Đăng ký tài khoản thành công!');
-                                            navigate("/login")
+                                        register(values).then( () => {
+                                            setTimeout(() => {
+                                                toast.success('Đăng ký tài khoản thành công!');
+                                                navigate("/login")
+                                            },2000)
+
                                         })
                                     }}
                                     validationSchema={registerSchema}

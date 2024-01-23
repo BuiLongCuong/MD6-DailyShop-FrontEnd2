@@ -29,7 +29,7 @@ export default function ShowCategoryProductCustomer(){
                                             <div className="image-category">
                                                 <div className="form-imageCate">
                                                     <img
-                                                        src="https://lavenderstudio.com.vn/wp-content/uploads/2019/09/chup-hinh-san-pham-my-pham-spa-15-839x1024.jpg"
+                                                        src={category.photoCategory}
                                                         alt=""/>
                                                 </div>
                                             </div>
