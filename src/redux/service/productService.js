@@ -79,8 +79,8 @@ export const search = createAsyncThunk(
     'products/search',
     async (res)=>{
 
-        if (res.minPrice!==null && res.maxPrice!==null){
-            let listProduct = await getAxios().get(`/searchProduct?name=${res.nameSearch}&minPrice=${res.minPrice||0}&maxPrice=${res.maxPrice||0}`)
+        if (res.minPrice && res.maxPrice){
+            let listProduct = await getAxios().get(`/searchProduct?name=${res.nameSearch}&minPrice=${res.minPrice}&maxPrice=${res.maxPrice}`)
             console.log(listProduct)
             return listProduct.data
         }else {
