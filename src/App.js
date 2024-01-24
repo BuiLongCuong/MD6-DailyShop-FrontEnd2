@@ -24,9 +24,8 @@ import ShowListProductByCategory from "./pages/products/ShowListProductByCategor
 import Pay from "./pages/Pay/Pay";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
 import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp/EditInforSupp";
-import {EditInforCus} from "./pages/Information/Customer/EditInforCus/EditInforCus";
-import BasicMenu from "./pages/Cart/TestHeaderCustomer";
-import OrderListForSupplier from "./pages/OrderManagement/OrderManagement";
+
+
 
 function App() {
     const dispatch =useDispatch()
@@ -65,6 +64,11 @@ function App() {
             <Route path={"customer"} element={<HomeCustomer/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
             <Route path={"editInfoCus/:id"} element={<EditInforCus/>}/>
+          <Route path={"customer/products/search"} element={<SearchProduct/>}/>
+          <Route path={"customer/products/search/look"} element={<SearchProductByPrice/>}/>
+
+
+
 
 
         </Routes>

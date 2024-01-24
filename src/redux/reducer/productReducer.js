@@ -5,7 +5,7 @@ import {
 
     getAllByIdUser, getAllProduct, getAllProductWithoutLogin,
     getProductById, getProductTop,
-    search,
+    search, searchDecresePrice, searchIncresePrice,
     updateForm,
     UpdateService
 } from "../service/productService.js";
@@ -13,7 +13,8 @@ import {
 const initialState = {
     list: [],
     totalPages: 0,
-    productEdit: {}
+    productEdit: {},
+    filterList :[]
 
 }
 const productSlice = createSlice({
@@ -23,6 +24,7 @@ const productSlice = createSlice({
 
         builder.addCase(getAllProductWithoutLogin.fulfilled, (state, {payload}) => {
             state.list = payload.content;
+            state.filterList = state.list;
             state.totalPages = payload.totalPages;
             console.log(state.list)
         })
@@ -68,8 +70,14 @@ const productSlice = createSlice({
         builder.addCase(search.fulfilled, (state, {payload}) => {
             state.list = payload
         })
+        builder.addCase(searchIncresePrice.fulfilled,(state,{payload}) =>{
+            state.list = payload
+        })
         builder.addCase(findAllByCategoryId.fulfilled, (state, {payload}) => {
             state.list = payload  || [];
+        })
+        builder.addCase(searchDecresePrice.fulfilled,(state,{payload}) =>{
+            state.list = payload
         })
 
     }

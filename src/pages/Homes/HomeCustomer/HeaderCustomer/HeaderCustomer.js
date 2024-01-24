@@ -2,7 +2,6 @@ import "./HeaderCustomer.css"
 import {FaFacebook} from "react-icons/fa";
 import {FaInstagram} from "react-icons/fa6";
 import {FaXTwitter} from "react-icons/fa6";
-import {FaRegUser} from "react-icons/fa6";
 import {IoMailUnreadOutline} from "react-icons/io5";
 import {FiShoppingCart} from "react-icons/fi";
 import {Link, useLocation, useNavigate} from "react-router-dom";
@@ -12,9 +11,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {editCustomer, getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
 import {Field, Form, Formik} from "formik";
-import {search} from "../../../../redux/service/productService";
 import {countCartDetails} from "../../../../redux/service/oderService";
-import BasicMenu from "../../../Cart/TestHeaderCustomer";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
@@ -60,9 +57,9 @@ export default function HeaderCustomer() {
         dispatch(countCartDetails())
     }, []);
 
+
     const searchName = (values) => {
-        console.log(values.nameSearch)
-        dispatch(search(values.nameSearch))
+        navigate(`/customer/products/search?name=${values.nameSearch}`)
     }
 
     useEffect(() => {
@@ -158,7 +155,8 @@ export default function HeaderCustomer() {
                             <div className="main-center">
                                 <Formik initialValues={
                                     {
-                                        nameSearch: ""
+                                        nameSearch: "",
+
                                     }
                                 } onSubmit={searchName}>
                                     <Form className={"form-search"}>
