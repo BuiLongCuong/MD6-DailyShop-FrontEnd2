@@ -120,21 +120,21 @@ export default function ShowListProduct() {
                     <div className="list-product">
                         <div className="table-product">
                             <div className="header-table">
-                                <div className="check-he center"><input type="checkbox"/></div>
+                                {/*<div className="check-he center"><input type="checkbox"/></div>*/}
                                 <div className="name-he center">Tên sản phẩm</div>
                                 <div className="cate-he center">Loại sản phẩm</div>
                                 <div className="price-he center">
                                     Giá (VNĐ)
                                 </div>
                                 <div className="quantity-he center"> Kho hàng</div>
-                                <div className="action center">Thao tác</div>
+                                <div className="action2 center">Thao tác</div>
                             </div>
 
                             {listProducts && listProducts.map((products) => (
                                 <>
                                     <div className="main-table">
-                                        <div className="check-he ma"><input type="checkbox"/></div>
-                                        <div className="name-he name-ma ma">
+                                        {/*<div className="check-he ma"><input type="checkbox"/></div>*/}
+                                        <div className="name-he name-ma ma2">
                                             <img
                                                 src={products.photo[0]?.photoName}
                                                 alt=""/>
@@ -146,7 +146,7 @@ export default function ShowListProduct() {
                                         </div>
                                         <div
                                             className="quantity-he ma"> {formatToNumberWithCommas(products.stockQuantity)}</div>
-                                        <div className="action ma">
+                                        <div className="action2 ma">
                                             <Link className={"edit"} to={"/supplier/edit/" + products.productID}>Chỉnh
                                                 sửa</Link>
                                             &nbsp; &nbsp;

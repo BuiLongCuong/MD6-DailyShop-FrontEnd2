@@ -12,6 +12,12 @@ export default function SearchProduct() {
     const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate();
 
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
 
     useEffect(() => {
         const searchContent = {
@@ -135,7 +141,7 @@ export default function SearchProduct() {
                                                 Loại: {products.category.name}
                                             </div>
                                             <div className="card-detail-show-product-price-without-login">
-                                                <span style={{color: "red"}}>Giá : {(products.price)}</span>
+                                                <span style={{color: "red"}}>Giá : {formatToCurrency(products.price)}</span>
                                             </div>
 
 

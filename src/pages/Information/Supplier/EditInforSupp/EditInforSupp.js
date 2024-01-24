@@ -56,7 +56,6 @@ export function EditInforSupp() {
 
     const EditSupplier = (values) => {
         values = {...values}
-        values.imageSupplier = photo;
         values.province = {id: address.province}
         values.district = {id : address.district}
         values.ward = {id: address.ward}
@@ -204,7 +203,7 @@ export function EditInforSupp() {
                                                 </div>
                                             ) : (
                                                 <img
-                                                    src={supplier.imageSupplier}
+                                                    src={supplier?.imageSupplier}
                                                     alt="Default Avatar" style={{border: "50%"}}/>
 
                                             )}

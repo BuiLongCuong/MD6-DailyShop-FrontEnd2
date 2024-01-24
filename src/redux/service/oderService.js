@@ -37,10 +37,10 @@ export const countCartDetails = createAsyncThunk(
 
 export const transactionHistory = createAsyncThunk(
     'TransactionHistory',
-        async () => {
-            let res = await getCustomerUrl().get("/account/order")
-            return res.data;
-        }
+    async () => {
+        let res = await getCustomerUrl().get("/account/order")
+        return res.data;
+    }
 )
 
 export const orderListForSupplier = createAsyncThunk(
@@ -51,15 +51,27 @@ export const orderListForSupplier = createAsyncThunk(
     }
 )
 
+export const supplierRights = createAsyncThunk(
+    'order/supplierRights',
+    async (data) => {
+        console.log(data)
+        let res = await getSupplierUrl().put("/suppliers/updateOrder/" + data.orderId, data);
+        return res.data
+    }
+)
 
-export const updateQuantity = (productId, quantity) => ({
-    type: 'UPDATE_QUANTITY',
-    payload: { productId, quantity },
-});
+
+export const updateQuantityCart = createAsyncThunk(
+    'UPDATE_QUANTITY',
+    async (cartDetail) => {
+        let res = await getCustomerUrl().put(`/account/updateCartDetail/${cartDetail.id}?quantity=${cartDetail.quantity}`);
+        return cartDetail;
+    }
+);
 
 export const updateTotalAmount = (totalAmount) => ({
     type: 'UPDATE_TOTAL_AMOUNT',
-    payload: { totalAmount },
+    payload: {totalAmount},
 });
 export const payment = createAsyncThunk(
     'payment/order',

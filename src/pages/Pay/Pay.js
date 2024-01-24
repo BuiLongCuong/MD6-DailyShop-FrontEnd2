@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getCurrentCustomerDetails} from "../../redux/service/customerService";
-import {payment} from "../../redux/service/oderService";
+import {countCartDetails, payment} from "../../redux/service/oderService";
 
 export default function Pay() {
     const dispatch = useDispatch();
@@ -29,10 +29,21 @@ export default function Pay() {
         return length_od
     }
 
+    const formatToNumberWithCommas = (value) => {
+        return new Intl.NumberFormat('vi-VN').format(value);
+    };
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
 
     useEffect(() => {
         dispatch(getCurrentCustomerDetails());
         dispatch(payment())
+        dispatch(countCartDetails())
     }, [])
 
     return (
@@ -56,9 +67,9 @@ export default function Pay() {
                                 {/*Thôn Dương Cốc Đồng Quang, Xã Đồng Quang, Huyện Quốc Oai, Hà Nội*/}
                                 {user?.specificAddress}
                             </div>
-                            <div className="edit-cus">
-                                <Link to={"#"}>Thay Đổi</Link>
-                            </div>
+                            {/*<div className="edit-cus">*/}
+                            {/*    <Link to={"#"}>Thay Đổi</Link>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                     <div className="pay">
@@ -104,13 +115,13 @@ export default function Pay() {
                                                                         <span>Loại: {od?.product?.category?.name}</span>
                                                                     </div>
                                                                     <div className="div2">
-                                                                        <span>₫ {od?.product?.price}</span>
+                                                                        <span> {formatToCurrency(od?.product?.price)}</span>
                                                                     </div>
                                                                     <div className="div3">
-                                                                        <span>{od?.quantity}</span>
+                                                                        <span>{formatToNumberWithCommas(od?.quantity)}</span>
                                                                     </div>
                                                                     <div className="div5">
-                                                                        <span>₫ {od?.product?.price * od?.quantity}</span>
+                                                                        <span>{formatToCurrency(od?.product?.price * od?.quantity)}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -133,10 +144,9 @@ export default function Pay() {
                         <div className="totalAmount">
                             <div className="body-amount">
                                 <div className="total">
-                                    <div className="sum-pr">Tổng số tiền ({length_detail()} Đơn
-                                        Hàng):
+                                    <div className="sum-pr">Tổng số tiền ({length_detail()} Sản phẩm):
                                     </div>
-                                    <span className={"sum-cs"}>₫ {sum()}</span>
+                                    <span className={"sum-cs"}>{formatToCurrency(sum())}</span>
                                 </div>
                             </div>
                         </div>

@@ -236,9 +236,9 @@ export function InformationSupplier() {
                                             </div>
                                             <div className="input">
                                                 <div className="decision">
-                                                    <div className="cancel">
-                                                        <button type={"submit"}>Hủy</button>
-                                                    </div>
+                                                    {/*<div className="cancel">*/}
+                                                    {/*    <button type={"submit"}>Hủy</button>*/}
+                                                    {/*</div>*/}
                                                     <div className="save">
                                                         <button type={"submit"}>Lưu</button>
                                                     </div>

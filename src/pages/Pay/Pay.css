@@ -80,8 +80,9 @@
 
 .pay {
     width: 1200px;
-    height: 790px;
+    height: auto;
     padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .form-prCus {

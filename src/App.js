@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import Login from "./pages/Security/Customer/Login/Login";
 import Register from "./pages/Security/Customer/Register/Register";
 import SignIn from "./pages/Security/Supplier/SignIn/SignIn";
@@ -15,7 +15,7 @@ import DetailProductSupplier from "./pages/products/DetailProductSupplier/Detail
 import {InformationSupplier} from "./pages/Information/Supplier/SignInFirst/InforSupp";
 import {useEffect} from "react";
 import {getCurrentSupplierDetails} from "./redux/service/supplierService";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import HomeCustomer from "./pages/Homes/HomeCustomer/HomeCustomer";
 import DetailProductCustomer from "./pages/products/DetailProductCustomer/DetailProductCustomer";
 import Cart from "./pages/Cart/Cart";
@@ -31,51 +31,65 @@ import SearchProduct from "./pages/products/Search/SearchProduct";
 import SearchProductByPrice from "./pages/products/Search/SearchProductByprice/SearchProductByPrice";
 
 
-
 function App() {
-    const dispatch =useDispatch()
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCurrentSupplierDetails())
         dispatch(getCurrentCustomerDetails())
     }, []);
-  return (
-      <Routes>
-        <Route path={'/'} element={<HomeCustomer/>}>
-        </Route>
-          <Route path={"login"} element={<Login/>}/>
-          <Route path={"register"} element={<Register/>}/>
-          <Route path={"signIn"} element={<SignIn/>}/>
-          <Route path={"signUp"} element={<SignUp/>}/>
-          <Route path={"supplier/products/detail/:id"} element={<DetailProductSupplier/>}/>
-          <Route path={"informationCus"} element={<InformationCustomer/>}/>
-          <Route path={"informationSupp"} element={<InformationSupplier/>}/>
-          <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
-          <Route path={"pay"} element={<Pay/>}/>
+    const currentCustomer = useSelector(state => state.customer.currentCustomer);
+    const currentSupplier = useSelector(state => state.supplier.currentSupplier);
 
+    return (
+        <Routes>
 
-
-            <Route path={"supplier"} element={<HomeSupplier/>}>
-                <Route path={"products"} element={<ShowListProduct/>}/>
-                <Route path={"add"} element={<AddProduct/>}/>
-                <Route path={"edit/:id"} element={<UpdateProduct/>}/>
-                <Route path={"orderManagement"} element={<OrderListForSupplier/>}/>
-                <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
-                <Route path={"editInfoSupp/:id"} element={<EditInforSupp/>}/>
-
-            </Route>
-            <Route path={"cart"} element={<Cart/>}/>
-            <Route path={"test"} element={<BasicMenu/>}/>
-            <Route path={"history/:id"} element={<TransactionHistory/>}/>
-            <Route path={"customer"} element={<HomeCustomer/>}/>
+            <Route path={'/'} element={<HomeCustomer/>}/>
+            <Route path={'/customer'} element={<HomeCustomer/>}/>
+            <Route path={"login"} element={<Login/>}/>
+            <Route path={"register"} element={<Register/>}/>
+            <Route path={"category/:id"} element={<ShowListProductByCategory/>}/>
             <Route path={"customer/products/detail/:id"} element={<DetailProductCustomer/>}/>
-            <Route path={"editInfoCus/:id"} element={<EditInforCus/>}/>
-          <Route path={"customer/products/search"} element={<SearchProduct/>}/>
-          <Route path={"customer/products/search/look"} element={<SearchProductByPrice/>}/>
+            {
+                currentCustomer ? (
+                    <>
+                        <Route path={"/customer"} element={<HomeCustomer/>}/>
 
+                        <Route path={"editInfoCus/:id"} element={<EditInforCus/>}/>
+                        <Route path={"customer/products/search"} element={<SearchProduct/>}/>
+                        <Route path={"customer/products/search/look"} element={<SearchProductByPrice/>}/>
+                        <Route path={"informationCus"} element={<InformationCustomer/>}/>
+                        <Route path={"history/:id"} element={<TransactionHistory/>}/>
+                        <Route path={"cart"} element={<Cart/>}/>
+                        <Route path={"pay"} element={<Pay/>}/>
+                    </>
+                ) : (
+                    <>
+                        <Route path={'*'} element={<Navigate to={"/"}/>}/>
+                    </>
+                )
+            }
 
-
-
-
+            <Route path={"signIn"} element={<SignIn/>}/>
+            <Route path={"signUp"} element={<SignUp/>}/>
+            {
+                currentSupplier ? (
+                    <>
+                        <Route path={"supplier"} element={<HomeSupplier/>}>
+                            <Route path={"products"} element={<ShowListProduct/>}/>
+                            <Route path={"add"} element={<AddProduct/>}/>
+                            <Route path={"edit/:id"} element={<UpdateProduct/>}/>
+                            <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
+                            <Route path={"editInfoSupp/:id"} element={<EditInforSupp/>}/>
+                            <Route path={"informationSupp"} element={<InformationSupplier/>}/>
+                            <Route path={"orderManagement"} element={<OrderListForSupplier/>}/>
+                        </Route>
+                    </>
+                ) : (
+                    <>
+                        <Route path={"*"} element={<Navigate to={"/"}/>}/>
+                    </>
+                )
+            }
         </Routes>
     );
 }

@@ -6,7 +6,7 @@ import {
     countCartDetails,
     removeProductInOrder,
     showOrderList,
-    updateQuantity,
+    updateQuantity, updateQuantityCart,
     updateTotalAmount
 } from "../../redux/service/oderService";
 import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
@@ -16,26 +16,17 @@ import {getProductById} from "../../redux/service/productService";
 export default function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector(({order}) => {
-        // console.log(order.listOrder)
-        // console.log(order)
+        console.log(order.cart)
         return order.cart;
     });
 
-    const [quantity, setQuantity] = useState(1);
-
-    const handleIncrease = (productId, price) => {
-        setQuantity((prevQuantity) => prevQuantity + 1);
-        dispatch(updateQuantity(productId, quantity + 1));
-        dispatch(updateTotalAmount(price * (quantity + 1))); // Thêm hành động cập nhật tổng tiền
+    const handleQuantityPr = (orderCart) => {
+        let newQuantity = +orderCart.quantity;
+        newQuantity++;
+        let obj = {...orderCart, quantity: newQuantity};
+        dispatch(updateQuantityCart(obj));
     };
 
-    const handleDecrease = (productId, price) => {
-        if (quantity > 1) {
-            setQuantity((prevQuantity) => prevQuantity - 1);
-            dispatch(updateQuantity(productId, quantity - 1));
-            dispatch(updateTotalAmount(price * (quantity - 1))); // Thêm hành động cập nhật tổng tiền
-        }
-    };
 
     const deleteProductInCart = (id) => {
         dispatch(removeProductInOrder(id)).then(() =>{
@@ -73,6 +64,7 @@ export default function Cart() {
                                 {
                                     cart && cart.cartDetails && cart.cartDetails.map((itemDetails) => (
                                         <>
+                                            {console.log(itemDetails)}
                                             <div className="orderDetail">
                                                 <div className="removeOrder" onClick={()=>deleteProductInCart(itemDetails.id)}>Xóa</div>
                                                 <div className="imageOrder"><img
@@ -90,9 +82,9 @@ export default function Cart() {
 
                                                 </div>
                                                 <div className="quantityPr">
-                                                    <button className={"btn1"} onClick={() => handleDecrease(itemDetails.product.productID, itemDetails.product.price)}>-</button>
-                                                    <input type="text" value={itemDetails.quantity} readOnly />
-                                                    <button className={"btn2"} onClick={() => handleIncrease(itemDetails.product.productID, itemDetails.product.price)}>+</button>
+                                                    <button className={"btn1"} onClick={() => handleQuantityPr(itemDetails)}>-</button>
+                                                    <input type="text" value={+itemDetails.quantity} />
+                                                    <button className={"btn2"} onClick={() => handleQuantityPr(itemDetails)}>+</button>
                                                 </div>
                                             </div>
                                         </>

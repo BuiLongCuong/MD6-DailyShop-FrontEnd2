@@ -15,19 +15,6 @@ export function InformationCustomer() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const infoSchema = Yup.object().shape({
-        customerName: Yup.string()
-            .required('Vui lòng nhập đủ thông tin!'),
-        specificAddress: Yup.string()
-            .required('Vui lòng nhập đủ thông tin!'),
-        phone: Yup.number()
-            .required('Vui lòng nhập đủ thông tin!'),
-            // .matches(/^[0-9]*$/, 'Số điện thoại chỉ được chứa chữ số'),
-        dateOfBirth: Yup.string()
-            .required('Vui lòng nhập đủ thông tin!')
-            .matches(/^\d{4}-\d{2}-\d{2}$/, 'Ngày sinh không đúng định dạng YYYY-MM-DD'),
-    });
-
     const customer = useSelector(state => state.customer.currentCustomerDetails)
     const [image, setImage] = useState("");
 
@@ -138,7 +125,6 @@ export function InformationCustomer() {
                 //         customer
                 //     }
                 // } onSubmit={EditCustomer}
-                    validationSchema={infoSchema}
                 >
                     <Form onSubmit={formik.handleSubmit}>
                         <div className="bodyInfo">
@@ -153,9 +139,6 @@ export function InformationCustomer() {
                                                            formik.setFieldValue("customerName", event.target.value)
                                                        }}
                                                 />
-                                                <div className="validate">
-                                                    <p style={{color: "red"}}> <ErrorMessage name={"customerName"}/></p>
-                                                </div>
                                             </div>
                                         </div>
                                         <div className="item">
@@ -212,9 +195,6 @@ export function InformationCustomer() {
                                                     </Field>
                                                 </div>
                                             </div>
-                                            <div className="validate">
-                                                <p style={{ color: "red" }}> <ErrorMessage name="selectOption" /></p>
-                                            </div>
                                         </div>
                                         <div className="item">
                                             <div className="title">
@@ -226,39 +206,30 @@ export function InformationCustomer() {
                                                            formik.setFieldValue("specificAddress", event.target.value)
                                                        }}
                                                 />
-                                                <div className="validate">
-                                                    <p style={{color: "red"}}> <ErrorMessage name={"specificAddress"}/></p>
-                                                </div>
                                             </div>
                                         </div>
                                         <div className="item">
                                             <div className="title">
                                                 Số điện thoại:
                                             </div>
-                                            <div className="input1">
+                                            <div className="input">
                                                 <Field type="text" name="phone" placeholder={"Nhập số điện thoại"}
                                                        onChange={(event) => {
                                                            formik.setFieldValue("phone", event.target.value)
                                                        }}
                                                 />
-                                                <div className="validate">
-                                                    <p style={{color: "red"}}> <ErrorMessage name={"phone"}/></p>
-                                                </div>
                                             </div>
                                         </div>
                                         <div className="item">
                                             <div className="title">
                                                 Ngày sinh:
                                             </div>
-                                            <div className="input1">
+                                            <div className="input">
                                                 <Field type="date" name="dateOfBirth"
                                                        onChange={(event) => {
                                                            formik.setFieldValue("dateOfBirth", event.target.value)
                                                        }}
                                                 />
-                                                <div className="validate">
-                                                    <p style={{color: "red"}}> <ErrorMessage name={"dateOfBirth"}/></p>
-                                                </div>
                                             </div>
                                         </div>
                                         <div className="item">
@@ -266,9 +237,9 @@ export function InformationCustomer() {
                                             </div>
                                             <div className="input">
                                                 <div className="decision">
-                                                    <div className="cancel">
-                                                        <button type={"submit"}>Hủy</button>
-                                                    </div>
+                                                    {/*<div className="cancel">*/}
+                                                    {/*    <button type={"submit"}>Hủy</button>*/}
+                                                    {/*</div>*/}
                                                     <div className="save">
                                                         <button type={"submit"}>Lưu</button>
                                                     </div>

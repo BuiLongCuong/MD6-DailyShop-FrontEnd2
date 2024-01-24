@@ -63,13 +63,13 @@
     width: 10%;
 }
 
-.action {
-    width: 25%;
+.action2 {
+    width: 30%;
     justify-content: center;
     display: flex;
 }
 
-.action button {
+.action2 button {
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
@@ -95,6 +95,16 @@
     overflow-wrap: anywhere;
     display: flex;
     align-items: center;
+}
+
+.ma2 {
+    padding: 10px 0;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 5px;
 }
 .check-he input {
     width: 15px;

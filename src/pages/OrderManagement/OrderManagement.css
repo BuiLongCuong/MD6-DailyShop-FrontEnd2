@@ -48,7 +48,7 @@
 }
 
 .name-he {
-    width: 30%;
+    width: 25%;
 }
 
 .cate-he {
@@ -127,7 +127,7 @@
     overflow-wrap: anywhere;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 .check-he input {
     width: 15px;
@@ -303,4 +303,125 @@ Link {
     margin-right: 60px;
     color: white;
     margin-bottom: 10px;
+}
+
+.col1Table {
+    display: flex;
+    flex-direction: column;
+}
+
+.row1ofCol1Table {
+    display: flex;
+    flex-direction: row;
+}
+
+.imgAndNamePr {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    margin-left: 10px;
+    /*margin-top: 10px;*/
+    align-content: center;
+}
+
+.nameDetail {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 5px 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    word-wrap: break-word;
+    overflow-wrap: inherit;
+    white-space: break-spaces;
+    max-width: 100%;
+    text-overflow: clip;
+}
+
+.priceProduct {
+    width: 150px;
+    /*height: 50px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantityProduct {
+    width: 100px;
+    /*height: 50px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.totalProduct {
+    width: 150px;
+    /*height: 50px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.row2ofCol1Table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #dbdbdb;
+    height: 40px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.noteTotal {
+    width: 50px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.detailPrice {
+    width: 150px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.col2Table {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #dbdbdb    ;
+}
+
+.timeOrder {
+    width: 200px;
+    /*height: 50px;*/
+}
+
+.col1of2Table {
+    display: flex;
+    align-items: center;
+}
+
+.orderStatus {
+    width: 100px;
+    /*height: 20px;*/
+}
+
+.col2of2Table {
+    display: flex;
+    align-items: center;
+}
+
+.col3of2Table {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.actionDecision {
+    width: 188px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
 }

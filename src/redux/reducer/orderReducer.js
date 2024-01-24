@@ -5,7 +5,7 @@ import {
     showOrderList,
     orderListForSupplier,
     countCartDetails,
-    transactionHistory
+    transactionHistory, updateQuantityCart
 } from "../service/oderService";
 
 const initialState = {
@@ -19,30 +19,6 @@ const initialState = {
 const orderSlice = createSlice({
     name: 'order',
     initialState,
-    reducers: {
-        updateQuantity: (state, action) => {
-            const { productId, quantity } = action.payload;
-            const cartDetails = state.cart.cartDetails.map((item) => {
-                if (item.product.productID === productId) {
-                    return {
-                        ...item,
-                        quantity,
-                    };
-                }
-                return item;
-            });
-            state.cart = {
-                ...state.cart,
-                cartDetails,
-            };
-        },
-        updateTotalAmount: (state, action) => {
-            state.cart = {
-                ...state.cart,
-                totalAmount: action.payload.totalAmount,
-            };
-        },
-    },
     extraReducers: builder => {
         builder.addCase(showOrderList.fulfilled, (state, {payload}) => {
             state.cart = payload;
@@ -67,6 +43,16 @@ const orderSlice = createSlice({
         })
         builder.addCase(transactionHistory.fulfilled, (state, {payload}) => {
             state.transactionHistory = payload;
+        })
+
+        builder.addCase(updateQuantityCart.fulfilled, (state, {payload}) => {
+            for (let i = 0; i < state.cart.cartDetails.length ; i++) {
+                if(state.cart.cartDetails[i].id === payload.id){
+                    state.cart.cartDetails[i] = payload;
+                    state.cart.totalAmount += payload.price;
+                    break
+                }
+            }
         })
     }
 

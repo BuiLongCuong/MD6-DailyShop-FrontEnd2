@@ -1,10 +1,11 @@
 import toast, {Toaster} from "react-hot-toast";
 import "./DetailMainBodyShowProductCustomer.css"
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductById} from "../../../../../../redux/service/productService";
 import {addProductToOrders, countCartDetails} from "../../../../../../redux/service/oderService";
+import {Alert} from "@mui/material";
 
 
 export default function DetailMainBodyShowProductCustomer(){
@@ -12,7 +13,8 @@ export default function DetailMainBodyShowProductCustomer(){
     const [activeImg, setActiveImg] = useState(null);
     const {id} = useParams();
     const dispatch = useDispatch();
-
+    const customer =useSelector(state => state.customer.currentCustomerLogin);
+    console.log(customer)
     const product = useSelector(({products}) => {
         
         return products.productEdit;
@@ -42,18 +44,21 @@ export default function DetailMainBodyShowProductCustomer(){
     };
 
     const addOrder = () => {
-
-        let  order = {
-            quantity : quantity,
-            product : {
-                productID: product.productID
+        if (customer === null) {
+            toast.error("Bạn cần phải đăng nhập !")
+        }else {
+            let  order = {
+                quantity : quantity,
+                product : {
+                    productID: product.productID
+                }
             }
-        }
 
-        dispatch(addProductToOrders(order)).then(() => {
-            toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
-            dispatch(countCartDetails());
-        })
+            dispatch(addProductToOrders(order)).then(() => {
+                toast.success('Thêm sản phẩm vào giỏ hàng thành công!');
+                dispatch(countCartDetails());
+            })
+        }
 
     }
     return(
