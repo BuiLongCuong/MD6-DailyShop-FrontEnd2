@@ -1,17 +1,17 @@
 import HeaderSupplier from "../Homes/HomeSupplier/HeaderSupplier/HeaderSupplier";
 import "./Cart.css"
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    countCartDetails,
+    countCartDetails, decreasingQuantityCart, increasingQuantityCart,
     removeProductInOrder,
-    showOrderList,
-    updateQuantity, updateQuantityCart,
-    updateTotalAmount
+    showOrderList, updateQuantityCart,
 } from "../../redux/service/oderService";
 import HeaderCustomer from "../Homes/HomeCustomer/HeaderCustomer/HeaderCustomer";
-import {Link, useParams} from "react-router-dom";
-import {getProductById} from "../../redux/service/productService";
+import {Link} from "react-router-dom";
+import toast, {Toaster} from "react-hot-toast";
+import * as React from "react";
+
 
 export default function Cart() {
     const dispatch = useDispatch();
@@ -20,11 +20,22 @@ export default function Cart() {
         return order.cart;
     });
 
-    const handleQuantityPr = (orderCart) => {
+    const handleIncreasing = (orderCart) => {
         let newQuantity = +orderCart.quantity;
         newQuantity++;
         let obj = {...orderCart, quantity: newQuantity};
-        dispatch(updateQuantityCart(obj));
+        dispatch(increasingQuantityCart(obj));
+    };
+
+    const handleDecreasing = async (orderCart) => {
+        try {
+             let newQuantity = +orderCart.quantity;
+            newQuantity= Math.max(1, newQuantity - 1);
+            let obj = {...orderCart, quantity: newQuantity};
+            await dispatch(decreasingQuantityCart(obj));
+        }catch (e) {
+            toast.error(e.message)
+        }
     };
 
 
@@ -47,11 +58,18 @@ export default function Cart() {
         dispatch(showOrderList())
     }, []);
 
+    const resetCard = () => {
+        dispatch(countCartDetails())
+    }
 
     return (
         <>
             <HeaderCustomer/>
             <>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                />
                 <div className="mainWindow">
                     <div className="bodyWindow">
                         <div className="nameBody1">
@@ -82,9 +100,9 @@ export default function Cart() {
 
                                                 </div>
                                                 <div className="quantityPr">
-                                                    <button className={"btn1"} onClick={() => handleQuantityPr(itemDetails)}>-</button>
+                                                    <button className={"btn1"} onClick={() => handleDecreasing(itemDetails)}>-</button>
                                                     <input type="text" value={+itemDetails.quantity} />
-                                                    <button className={"btn2"} onClick={() => handleQuantityPr(itemDetails)}>+</button>
+                                                    <button className={"btn2"} onClick={() => handleIncreasing(itemDetails)}>+</button>
                                                 </div>
                                             </div>
                                         </>
@@ -105,7 +123,7 @@ export default function Cart() {
                                 <div className="row2OfCol2">
                                     <div className="decisionBtn">
                                         <Link to={"/pay"}>
-                                            <button>Tiến hành thanh toán</button>
+                                            <button onClick={() => resetCard()} >Tiến hành thanh toán</button>
                                         </Link>
                                     </div>
                                 </div>

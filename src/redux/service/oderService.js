@@ -61,18 +61,33 @@ export const supplierRights = createAsyncThunk(
 )
 
 
-export const updateQuantityCart = createAsyncThunk(
-    'UPDATE_QUANTITY',
+export const increasingQuantityCart = createAsyncThunk(
+    'INCREASING_QUANTITY',
     async (cartDetail) => {
         let res = await getCustomerUrl().put(`/account/updateCartDetail/${cartDetail.id}?quantity=${cartDetail.quantity}`);
+        console.log(res.data);
         return cartDetail;
     }
 );
 
-export const updateTotalAmount = (totalAmount) => ({
-    type: 'UPDATE_TOTAL_AMOUNT',
-    payload: {totalAmount},
-});
+export const decreasingQuantityCart = createAsyncThunk(
+    'DECREASING_QUANTITY',
+    async (cartDetail) => {
+     return  await getCustomerUrl().put(`/account/updateCartDetail/${cartDetail.id}?quantity=${cartDetail.quantity}`).then(res => {
+         if(cartDetail.quantity < 0 || cartDetail.quantity === 0) {
+             throw new Error('Số lượng sản phẩm không được về 0')
+         }else {
+             console.log(res.data);
+             return cartDetail;
+         }
+     }).catch(err => {
+         throw new Error('Số lượng sản phẩm không được về 0')
+     })
+
+
+    }
+);
+
 export const payment = createAsyncThunk(
     'payment/order',
     async () => {

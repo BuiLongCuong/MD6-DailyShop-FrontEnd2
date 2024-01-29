@@ -11,7 +11,7 @@ import {format} from "date-fns";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {orderListForSupplier, supplierRights} from "../../redux/service/oderService";
+import {orderListForSupplier, supplierRights, transactionHistory} from "../../redux/service/oderService";
 
 const style = {
     position: 'absolute',
@@ -27,7 +27,7 @@ const style = {
 
 export default function OrderListForSupplier() {
     const [open, setOpen] = useState(false);
-    const [orderId,setOrderId] = useState();
+    const [orderId, setOrderId] = useState();
     const dispatch = useDispatch();
     const orderList = useSelector(({order}) => {
         console.log(order.listOrderForSupplier)
@@ -66,21 +66,21 @@ export default function OrderListForSupplier() {
             case 'Paid':
                 return (
                     <>
-                        <aside style={{backgroundColor: '#52f705'}}>Chốt đơn</aside>
+                        <aside style={{color: '#52f705', fontWeight: "bolder"}}>Chốt đơn</aside>
                     </>
                 )
                 break;
             case 'Unpaid':
                 return (
                     <>
-                        <aside style={{backgroundColor: '#02f7eb'}}>Đang chờ</aside>
+                        <aside style={{color: 'orange', fontWeight: "bolder"}}>Đang chờ</aside>
                     </>
                 )
                 break;
             case 'Cancel':
                 return (
                     <>
-                        <aside style={{backgroundColor: '#fc0505'}}>Đã hủy</aside>
+                        <aside style={{color: 'red', fontWeight: "bolder"}}>Đã hủy</aside>
                     </>
                 )
                 break;
@@ -93,22 +93,23 @@ export default function OrderListForSupplier() {
 
     const supplierPaid = (id) => {
         let data = {
-            orderId:id,
-            orderStatus:"Paid"
+            orderId: id,
+            orderStatus: "Paid"
         }
         console.log(data)
         dispatch(supplierRights(data)).then(() => {
             toast.success('Chốt đơn thành công!!!');
             setTimeout(() => {
                 dispatch(orderListForSupplier())
+                dispatch(transactionHistory())
             }, 1000)
         })
     }
 
     const supplierCancel = () => {
         let data = {
-            orderId:orderId,
-            orderStatus:"Cancel"
+            orderId: orderId,
+            orderStatus: "Cancel"
         }
         console.log(data)
         dispatch(supplierRights(data)).then(() => {
@@ -116,10 +117,10 @@ export default function OrderListForSupplier() {
             toast.success('Hủy đơn thành công!!!');
             setTimeout(() => {
                 dispatch(orderListForSupplier())
+                dispatch(transactionHistory())
             }, 1000)
         })
     }
-
 
 
     return (
@@ -136,30 +137,33 @@ export default function OrderListForSupplier() {
                     <div className="header-table">
                         {/*<div className="check-he center"><input type="checkbox"/></div>*/}
                         <div className="name-he center">Tên sản phẩm</div>
-                        <div className="cate-he center">Đơn giá (VNĐ)</div>
+                        <div className="cate-he center">Đơn giá</div>
                         <div className="quantity-he center">Số lượng</div>
                         <div className="price-he center">
-                            Tổng giá (VNĐ)
+                            Tổng giá
                         </div>
                         <div className="cate-he-time center">Thời gian đặt hàng</div>
-                        <div className="cate-he center">Trạng thái</div>
+                        <div className="cate-he-status center">Trạng thái</div>
                         <div className="action center">Thao tác</div>
                     </div>
 
 
-                        <>
-                            <div className="order-list">
+                    <>
+                        <div className="order-list">
 
-                                    <>
-                                        {orderList && orderList.map((order) =>(
-                                        <div className="main-table">
-                                            <div className="col1Table">
-                                                {order.orderDetails && order.orderDetails.map((orderDetails) => (
+                            <>
+                                {orderList && orderList.map((order) => (
+                                    <div className="main-table">
+                                        <div className="col1Table">
+                                            {order.orderDetails && order.orderDetails.map((orderDetails) => (
                                                 <div className="row1ofCol1Table">
                                                     <div className="imgAndNamePr">
-                                                        <img src={orderDetails.product.photo[0]?.photoName} alt="" style={{width: "80px", height: "80px"}}/>
+                                                        <img src={orderDetails.product.photo[0]?.photoName} alt=""
+                                                             style={{width: "80px", height: "80px"}}/>
                                                         <div className="nameDetail">
-                                                            <Link to={"/supplier/detail/" + orderDetails.product.productID} style={{textDecoration: 'none'}}>
+                                                            <Link
+                                                                to={"/supplier/detail/" + orderDetails.product.productID}
+                                                                style={{textDecoration: 'none'}}>
                                                                 {orderDetails.product.productName}
                                                             </Link>
                                                         </div>
@@ -167,56 +171,73 @@ export default function OrderListForSupplier() {
                                                     <div className="priceProduct">
                                                         {formatToCurrency(orderDetails.price)}
                                                     </div>
-                                                    <div className="quantityProduct"> {formatToNumberWithCommas(orderDetails.quantity)}</div>
-                                                    <div className="totalProduct">{formatToCurrency(parseInt(orderDetails.price * orderDetails.quantity))}</div>
+                                                    <div
+                                                        className="quantityProduct"> {formatToNumberWithCommas(orderDetails.quantity)}</div>
+                                                    <div
+                                                        className="totalProduct">{formatToCurrency(parseInt(orderDetails.price * orderDetails.quantity))}</div>
                                                 </div>
-                                                ))}
-                                                <div className="row2ofCol1Table">
-                                                        <div className="noteTotal">Tổng:</div>
-                                                        <div className="detailPrice">
-                                                            {formatToCurrency(order.totalMoney)}
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div className="col2Table">
-                                                <div className="col1of2Table">
-                                                    <div className="timeOrder">{formatLocalDateTime(order.orderDate)}</div>
-                                                </div>
-                                                <div className="col2of2Table">
-                                                    <div className="orderStatus">{checkStatus(order.orderStatus)}</div>
-                                                </div>
-                                                <div className="col3of2Table">
-                                                    <div className="actionDecision">
-                                                        {order.orderStatus && order.orderStatus === 'Paid' || order.orderStatus === 'Cancel' ?
-                                                            <>
-                                                                <Button style={{pointerEvents: 'none', color: 'gray', textDecoration: 'none',cursor: 'not-allowed', borderColor: 'gray'}}
-                                                                        onClick={() => supplierPaid(order.orderId)}>Xác nhận</Button>
-                                                                <Button style={{pointerEvents: 'none', color: 'gray', textDecoration: 'none',cursor: 'not-allowed', borderColor: 'gray'}}
-                                                                        onClick={() => handleOpen(order.orderId)}>Hủy đơn</Button>
-                                                            </> :
-                                                            <>
-                                                                <Button onClick={() => supplierPaid(order.orderId)}>Xác nhận</Button>
-                                                                <Button onClick={() => handleOpen(order.orderId)}>Hủy đơn</Button>
-                                                            </>
-                                                        }
-                                                    </div>
+                                            ))}
+                                            <div className="row2ofCol1Table">
+                                                <div className="noteTotal">Tổng:</div>
+                                                <div className="detailPrice">
+                                                    {formatToCurrency(order.totalMoney)}
                                                 </div>
                                             </div>
-
-
-
-                                            {/*<div className="orderProperty">*/}
-                                            {/*    */}
-                                            {/*    */}
-
-                                            {/*    */}
-                                            {/*</div>*/}
-
                                         </div>
-                                        ))}
-                                    </>
-                            </div>
-                        </>
+                                        <div className="col2Table">
+                                            <div className="col1of2Table">
+                                                <div className="timeOrder">{formatLocalDateTime(order.orderDate)}</div>
+                                            </div>
+                                            <div className="col2of2Table">
+                                                <div className="orderStatus">{checkStatus(order.orderStatus)}</div>
+                                            </div>
+                                            <div className="col3of2Table">
+                                                <div className="actionDecision">
+                                                    {order.orderStatus && order.orderStatus === 'Paid' || order.orderStatus === 'Cancel' ?
+                                                        <>
+                                                            <Button style={{
+                                                                pointerEvents: 'none',
+                                                                color: 'gray',
+                                                                textDecoration: 'none',
+                                                                cursor: 'not-allowed',
+                                                                borderColor: 'gray'
+                                                            }}
+                                                                    onClick={() => supplierPaid(order.orderId)}>Xác
+                                                                nhận</Button>
+                                                            <Button style={{
+                                                                pointerEvents: 'none',
+                                                                color: 'gray',
+                                                                textDecoration: 'none',
+                                                                cursor: 'not-allowed',
+                                                                borderColor: 'gray'
+                                                            }}
+                                                                    onClick={() => handleOpen(order.orderId)}>Hủy
+                                                                đơn</Button>
+                                                        </> :
+                                                        <>
+                                                            <Button onClick={() => supplierPaid(order.orderId)}>Xác
+                                                                nhận</Button>
+                                                            <Button onClick={() => handleOpen(order.orderId)}>Hủy
+                                                                đơn</Button>
+                                                        </>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        {/*<div className="orderProperty">*/}
+                                        {/*    */}
+                                        {/*    */}
+
+                                        {/*    */}
+                                        {/*</div>*/}
+
+                                    </div>
+                                ))}
+                            </>
+                        </div>
+                    </>
                 </div>
             </div>
 
@@ -231,7 +252,7 @@ export default function OrderListForSupplier() {
                     <Typography id="modal-title" variant="h6" component="h2">
                         Hủy đơn hàng!!!
                     </Typography>
-                    <Typography id="modal-description" sx={{ mt: 2 }}>
+                    <Typography id="modal-description" sx={{mt: 2}}>
                         Bạn có chắc chắn muốn hủy đơn này không ???
                     </Typography>
                     <Button onClick={() => supplierCancel()}>Đồng ý</Button>

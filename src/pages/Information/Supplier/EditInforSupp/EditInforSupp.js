@@ -56,6 +56,7 @@ export function EditInforSupp() {
 
     const EditSupplier = (values) => {
         values = {...values}
+        values.imageSupplier = photo
         values.province = {id: address.province}
         values.district = {id : address.district}
         values.ward = {id: address.ward}

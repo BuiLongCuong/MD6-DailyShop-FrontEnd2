@@ -74,38 +74,6 @@ export default function ShowListProduct() {
                 reverseOrder={false}
             />
             <div className="content-product">
-                <div className="search">
-                    <div className="searchManyInput">
-                        <div className="row1Search">
-                            <div className="col1OfRow1Search">
-                                <input type="text" placeholder={"Nhập tên sản phẩm"}/>
-                            </div>
-                            <div className="col2OfRow1Search">
-                                <input type="text" placeholder={"Nhập loại sản phẩm"}/>
-                            </div>
-                        </div>
-                        <div className="row2Search">
-                            <div className="tittlePrice">
-                                Khoảng giá:
-                            </div>
-                        </div>
-                        <div className="row3Search">
-                            <div className="inputMinPrice">
-                                <input type="text" placeholder={"Nhập giá trị nhỏ nhất"}/>
-                            </div>
-                            <div className="between">
-                                <i className="fa-solid fa-arrow-right"></i>
-                            </div>
-                            <div className="inputMaxPrice">
-                                <input type="text" placeholder={"Nhập giá trị lớn nhất"}/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="findManyInput">
-                        <button>Tìm</button>
-                    </div>
-                </div>
-
                 <div className="products">
                     <div className="nav-bar-product">
                         <Link to={"/supplier/add"}>
@@ -120,7 +88,6 @@ export default function ShowListProduct() {
                     <div className="list-product">
                         <div className="table-product">
                             <div className="header-table">
-                                {/*<div className="check-he center"><input type="checkbox"/></div>*/}
                                 <div className="name-he center">Tên sản phẩm</div>
                                 <div className="cate-he center">Loại sản phẩm</div>
                                 <div className="price-he center">
@@ -133,7 +100,6 @@ export default function ShowListProduct() {
                             {listProducts && listProducts.map((products) => (
                                 <>
                                     <div className="main-table">
-                                        {/*<div className="check-he ma"><input type="checkbox"/></div>*/}
                                         <div className="name-he name-ma ma2">
                                             <img
                                                 src={products.photo[0]?.photoName}
@@ -153,7 +119,6 @@ export default function ShowListProduct() {
                                             <Link className={"detail"} to={"/supplier/detail/" + products.productID}>Xem
                                                 chi tiết</Link>
                                             &nbsp; &nbsp;
-                                            {/*<Link to={"/edit/" + products.productID}>Xóa</Link>*/}
                                             <Button onClick={() => handleOpen(products.productID)}>Xóa</Button>
                                         </div>
                                     </div>

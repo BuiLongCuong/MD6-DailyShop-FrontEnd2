@@ -15,6 +15,14 @@ export default function ShowListProductByCategory() {
     useEffect(() => {
         dispatch(findAllByCategoryId(id))
     }, [])
+
+    const formatToCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        }).format(value);
+    };
+
     return (
         <>
             <HeaderCustomer/>
@@ -37,7 +45,7 @@ export default function ShowListProductByCategory() {
                                                 </div>
                                                 <div className="price-cate">
                                                     {
-                                                        `Giá : ${product.price} `
+                                                        `Giá : ${formatToCurrency(product.price)} `
                                                     }
                                                 </div>
                                             </div>

@@ -5,7 +5,6 @@ import './SignUp.css'
 import {Link, useNavigate} from "react-router-dom";
 import * as Yup from "yup";
 import {signUp} from "../../../../redux/service/supplierService";
-import {getAxios} from "../../../../redux/service/axios/getAxios";
 import {useState} from "react";
 
 
@@ -32,41 +31,6 @@ export default function SignUp() {
             .oneOf([Yup.ref('password'), null], 'Xác nhận mật khẩu không khớp!')
             .required('Vui lòng nhập đủ thông tin!'),
     });
-
-    // Hàm kiểm tra email đã tồn tại hay chưa
-    // const checkEmailExist = async (email) => {
-    //     try {
-    //         // Gọi API endpoint để kiểm tra email
-    //         const response = await getAxios().get(`suppliers/check-email?email=${email}`);
-    //
-    //         // Kiểm tra xem email đã tồn tại hay không
-    //         // Nếu response.data.emailExist === true, tức là email đã tồn tại
-    //         // Ngược lại, nếu response.data.emailExist === false, tức là email không tồn tại
-    //         return response.data.emailExist;
-    //     } catch (error) {
-    //         // Xử lý lỗi nếu có
-    //         console.error('Lỗi khi kiểm tra email:', error);
-    //         // Trả về false nếu có lỗi (bạn có thể xử lý tùy ý)
-    //         return false;
-    //     }
-    // };
-
-    const handleSubmit = async (values) => {
-        // const isEmailExist = await checkEmailExist(values.email);
-        // if (isEmailExist) {
-        //     alert('Email đã tồn tại!');
-        // }else {
-        //     await signUp(values).then (() => {
-        //         navigate('/signIn');
-        //     });
-        //
-        // }
-        
-        signUp(values).then (() => {
-            toast.success('Đăng ký tài khoản thành công!');
-            navigate('/signIn');
-        });
-    };
     return (
         <>
             <Toaster
@@ -131,6 +95,10 @@ export default function SignUp() {
                                     <span>Đăng Ký</span>
                                 </div>
                                 <div className="forme">
+                                    <Toaster
+                                        position="top-center"
+                                        reverseOrder={false}
+                                    />
                                     <Formik initialValues={
                                         {
                                             account: "",
@@ -138,7 +106,15 @@ export default function SignUp() {
                                             confirmPassword: "",
                                             email: ""
                                         }
-                                    } onSubmit={handleSubmit}
+                                    }  onSubmit={(values) => {
+                                        signUp(values).then( () => {
+                                            toast.success('Đăng ký tài khoản thành công!');
+                                            setTimeout(() => {
+                                                navigate("/signIn")
+                                            },500)
+
+                                        })
+                                    }}
                                             validationSchema={signUpSchema}>
                                         <Form>
                                             <div className="text5">

@@ -5,13 +5,13 @@ import {
     showOrderList,
     orderListForSupplier,
     countCartDetails,
-    transactionHistory, updateQuantityCart
+    transactionHistory, updateQuantityCart, increasingQuantityCart, decreasingQuantityCart
 } from "../service/oderService";
 
 const initialState = {
     cart: null,
     payment_detail: [],
-    countCartDetails : 0,
+    countCartDetails: 0,
     transactionHistory: [],
     listOrderForSupplier: []
 
@@ -24,8 +24,8 @@ const orderSlice = createSlice({
             state.cart = payload;
         })
         builder.addCase(removeProductInOrder.fulfilled, (state, {payload}) => {
-            for (let i = 0; i < state.cart.cartDetails.length ; i++) {
-                if(state.cart.cartDetails[i].id === payload){
+            for (let i = 0; i < state.cart.cartDetails.length; i++) {
+                if (state.cart.cartDetails[i].id === payload) {
                     state.cart.cartDetails.splice(i, 1)
                     break
                 }
@@ -45,12 +45,21 @@ const orderSlice = createSlice({
             state.transactionHistory = payload;
         })
 
-        builder.addCase(updateQuantityCart.fulfilled, (state, {payload}) => {
-            for (let i = 0; i < state.cart.cartDetails.length ; i++) {
-                if(state.cart.cartDetails[i].id === payload.id){
+        builder.addCase(increasingQuantityCart.fulfilled, (state, {payload}) => {
+            for (let i = 0; i < state.cart.cartDetails.length; i++) {
+                if (state.cart.cartDetails[i].id === payload.id) {
                     state.cart.cartDetails[i] = payload;
                     state.cart.totalAmount += payload.price;
-                    break
+                    break;
+                }
+            }
+        })
+        builder.addCase(decreasingQuantityCart.fulfilled, (state, {payload}) => {
+            for (let i = 0; i < state.cart.cartDetails.length; i++) {
+                if (state.cart.cartDetails[i].id === payload.id) {
+                    state.cart.cartDetails[i] = payload;
+                    state.cart.totalAmount -= payload.price;
+                    break;
                 }
             }
         })
@@ -58,6 +67,6 @@ const orderSlice = createSlice({
 
 })
 
-export const { updateQuantity, updateTotalAmount } = orderSlice.actions;
+export const {updateQuantity, updateTotalAmount} = orderSlice.actions;
 
 export default orderSlice.reducer;

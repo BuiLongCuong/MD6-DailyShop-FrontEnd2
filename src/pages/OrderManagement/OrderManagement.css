@@ -34,6 +34,10 @@
     height: 80px;
     background-color: #f6f6f6;
     display: flex;
+    /*border: 1px solid black;*/
+    font-weight: 500;
+    font-size:18px;
+    /*line-height: 50px;*/
 }
 
 .table-product .main-table {
@@ -51,12 +55,12 @@
     width: 25%;
 }
 
-.cate-he {
-    width: 19%;
+.cate-he-status {
+    width: 11%;
 }
 
 .cate-he-time {
-    width: 20%;
+    width: 15%;
 }
 
 .price-he {
@@ -64,7 +68,7 @@
 }
 
 .quantity-he {
-    width: 10%;
+    width: 12%;
 }
 
 .action {
@@ -87,6 +91,7 @@
     line-height: 24px;
     color: #595d62;
     justify-content: center;
+    /*border-right: 1px solid black;*/
 }
 
 .center2 {
@@ -308,15 +313,17 @@ Link {
 .col1Table {
     display: flex;
     flex-direction: column;
+
 }
 
 .row1ofCol1Table {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
 .imgAndNamePr {
-    width: 200px;
+    width: 232px;
     height: 80px;
     display: flex;
     margin-left: 10px;
@@ -340,7 +347,7 @@ Link {
 }
 
 .priceProduct {
-    width: 150px;
+    width: 147px;
     /*height: 50px;*/
     display: flex;
     justify-content: center;
@@ -348,7 +355,7 @@ Link {
 }
 
 .quantityProduct {
-    width: 100px;
+    width: 116px;
     /*height: 50px;*/
     display: flex;
     justify-content: center;
@@ -378,6 +385,10 @@ Link {
     width: 50px;
     height: 20px;
     margin-left: 10px;
+    color: #e7403a;
+    font-weight: 500;
+    font-size:16px;
+
 }
 
 .detailPrice {
@@ -390,27 +401,36 @@ Link {
 .col2Table {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #dbdbdb    ;
+    border-bottom: 1px solid #dbdbdb;
+    margin-top: 10px;
 }
 
 .timeOrder {
-    width: 200px;
+    width: 85px;
     /*height: 50px;*/
+    display: flex;
+    justify-content: center;
 }
 
 .col1of2Table {
     display: flex;
     align-items: center;
+    width: 142px;
+    justify-content: center;
 }
 
 .orderStatus {
     width: 100px;
     /*height: 20px;*/
+    display: flex;
+    justify-content: center;
 }
 
 .col2of2Table {
     display: flex;
     align-items: center;
+    width: 106px;
+    justify-content: center;
 }
 
 .col3of2Table {
@@ -418,6 +438,7 @@ Link {
     justify-content: center;
     align-content: center;
     align-items: center;
+    width: 195px;
 }
 .actionDecision {
     width: 188px;

@@ -69,6 +69,10 @@ export default function Register() {
                             </div>
                         </div>
                         <div className="row2">
+                            <Toaster
+                                position="top-center"
+                                reverseOrder={false}
+                            />
                             <Formik initialValues={
                                 {
                                     account: '',
@@ -79,10 +83,10 @@ export default function Register() {
                             }
                                     onSubmit={(values) => {
                                         register(values).then( () => {
+                                            toast.success('Đăng ký tài khoản thành công!');
                                             setTimeout(() => {
-                                                toast.success('Đăng ký tài khoản thành công!');
                                                 navigate("/login")
-                                            },2000)
+                                            },500)
 
                                         })
                                     }}

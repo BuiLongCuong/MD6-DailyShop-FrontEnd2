@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import logo from "../../../../assets/images/Logo-final.svg"
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editCustomer, getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
+import { getCurrentCustomerDetails, logout} from "../../../../redux/service/customerService";
 import {Field, Form, Formik} from "formik";
 import {countCartDetails} from "../../../../redux/service/oderService";
 import MenuItem from "@mui/material/MenuItem";

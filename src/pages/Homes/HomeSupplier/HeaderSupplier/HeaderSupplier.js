@@ -27,7 +27,7 @@ export default function HeaderSupplier(){
                     <div className="user">
                         <div className="avatar">
                             <img src={ supplier &&
-                                supplier.imageSupplier ? supplier.imageSupplier : "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"} alt=""/>
+                                supplier.imageSupplier ? supplier?.imageSupplier : "https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg"} alt=""/>
                         </div>
                         <div className="username">
                             {

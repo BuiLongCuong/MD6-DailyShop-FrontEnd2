@@ -47,11 +47,11 @@ export default function ShowListProductCustomerWithoutLogin() {
                                         </div>
                                         <div className="card-detail-show-product-info-without-login">
                                             <div className="card-detail-show-product-name-without-login">
-                                                Tên sản phẩm:{products.productName}
+                                                {products.productName}
                                             </div>
-                                            <div className="card-detail-show-product-blank-without-login">
-                                                Loại: {products.category.name}
-                                            </div>
+                                            {/*<div className="card-detail-show-product-blank-without-login">*/}
+                                            {/*    Loại: {products.category.name}*/}
+                                            {/*</div>*/}
                                             <div className="card-detail-show-product-price-without-login">
                                                 <span style={{color: "red"}}>Giá : {formatToCurrency(products.price)}</span>
                                             </div>

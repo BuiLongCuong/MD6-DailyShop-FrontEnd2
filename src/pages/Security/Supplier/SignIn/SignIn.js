@@ -7,6 +7,7 @@ import {signIn} from "../../../../redux/service/supplierService";
 import {useState} from "react";
 import * as React from "react";
 import {login} from "../../../../redux/service/customerService";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -28,7 +29,6 @@ export default function SignIn() {
             navigate("/informationSupp")
         } else {
             navigate("/supplier/products")
-            // console.log("Chuyển đến giao diện của người dùng")
         }
     }
     const handleSignIn= async (values)=>{
@@ -36,7 +36,7 @@ export default function SignIn() {
             await dispatch(signIn(values)).unwrap();
             checkProfile()
         }catch (e ){
-            alert(e.message)
+            toast.error(e.message)
         }
     }
 
@@ -87,6 +87,10 @@ export default function SignIn() {
                                 <div className="content-login">
                                     <div className="body-login">
                                         <div className="input">
+                                            <Toaster
+                                                position="top-center"
+                                                reverseOrder={false}
+                                            />
                                             <Formik initialValues={{
                                                 account: "",
                                                 password: ""

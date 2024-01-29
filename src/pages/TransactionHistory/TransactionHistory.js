@@ -3,6 +3,8 @@ import './TransactionHistory.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {transactionHistory} from "../../redux/service/oderService";
+import * as React from "react";
+import {Link} from "react-router-dom";
 
 export default function TransactionHistory() {
     const dispatch = useDispatch();
@@ -18,6 +20,31 @@ export default function TransactionHistory() {
             currency: 'VND',
         }).format(value);
     };
+    const checkStatus = (value) => {
+        switch (value) {
+            case 'Paid':
+                return (
+                    <>
+                        <aside style={{color: '#52f705', fontWeight: "bolder"}}> Đã chốt đơn</aside>
+                    </>
+                )
+                break;
+            case 'Unpaid':
+                return (
+                    <>
+                        <aside style={{color: 'orange', fontWeight: "bolder"}}>Đang chờ</aside>
+                    </>
+                )
+                break;
+            case 'Cancel':
+                return (
+                    <>
+                        <aside style={{color: 'red', fontWeight: "bolder"}}>Đã hủy đơn</aside>
+                    </>
+                )
+                break;
+        }
+    }
 
     useEffect(() => {
         dispatch(transactionHistory())
@@ -36,12 +63,12 @@ export default function TransactionHistory() {
                                         {item.supplier.supplierName}
                                     </div>
                                     <div className="col2Notification">
-                                        <div className="tittleNoti">
-                                            <i className="fa-solid fa-truck"></i> &nbsp;
-                                            Đơn hàng đã được giao thành công
-                                        </div>
+                                        {/*<div className="tittleNoti">*/}
+                                        {/*    <i className="fa-solid fa-truck"></i> &nbsp;*/}
+                                        {/*    Đơn hàng đã được giao thành công*/}
+                                        {/*</div>*/}
                                         <div className="finish">
-                                            &nbsp;| {item.orderStatus}
+                                            {checkStatus(item.orderStatus)}
                                         </div>
                                     </div>
 
@@ -68,7 +95,6 @@ export default function TransactionHistory() {
                                                 </div>
                                             </div>
                                             <div className="col3Price">
-                                                {/*123.000 VNĐ*/}
                                                 {formatToCurrency(orderDetail.price)}
                                             </div>
 
@@ -82,18 +108,19 @@ export default function TransactionHistory() {
                                             Thành tiền:
                                         </div>
                                         <div className="numberTotal">
-                                            {/*789.000 VNĐ*/}
                                             {formatToCurrency(item.totalMoney)}
                                         </div>
                                     </div>
-                                    <div className="function">
-                                        <div className="repurchase">
-                                            <button>Mua lại</button>
-                                        </div>
-                                        <div className="contact">
-                                            <button>Liên hệ người bán</button>
-                                        </div>
-                                    </div>
+                                    {/*<div className="function">*/}
+                                    {/*    <div className="repurchase">*/}
+                                    {/*        <Link to={`customer/products/detail/}`}>*/}
+                                    {/*        <button>Mua lại</button>*/}
+                                    {/*        </Link>*/}
+                                    {/*    </div>*/}
+                                    {/*    <div className="contact">*/}
+                                    {/*        <button>Liên hệ người bán</button>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                         </div>

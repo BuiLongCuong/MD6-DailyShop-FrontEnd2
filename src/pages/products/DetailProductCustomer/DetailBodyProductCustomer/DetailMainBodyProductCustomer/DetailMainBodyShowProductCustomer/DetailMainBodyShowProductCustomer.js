@@ -115,7 +115,7 @@ export default function DetailMainBodyShowProductCustomer(){
                                         <li>Trạng thái: <span>Có sẵn</span></li>
                                         <li>Phân loại: <span>{product?.category?.name}</span></li>
                                         <li>Khu vực vận chuyển: <span>Toàn quốc</span></li>
-                                        <li>Phí vận chuyển: <span>Đặt hàng đi rồi biết</span></li>
+                                        <li>Phí vận chuyển: <span>Miễn phí</span></li>
                                     </ul>
                                 </div>
 

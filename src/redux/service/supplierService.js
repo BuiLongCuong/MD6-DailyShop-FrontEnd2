@@ -4,7 +4,7 @@ import {getAxios, getSupplierUrl} from "./axios/getAxios";
 export const signIn = createAsyncThunk(
     'supplier/signIn',
     async (supplier) => {
-        return await getSupplierUrl().post("login", supplier).then(res => {
+        return await getSupplierUrl().post("/login", supplier).then(res => {
             const roles = res.data.roles;
             if (roles.length > 0) {
                 if (roles.some(role => role.authority === "ROLE_SUPPLIER")) {
@@ -57,5 +57,5 @@ export const logout= createAsyncThunk(
     }
 )
 export const signUp = (newSupplier) => {
-    return getSupplierUrl().post("suppliers/register", newSupplier)
+    return getSupplierUrl().post("/suppliers/register", newSupplier)
 }

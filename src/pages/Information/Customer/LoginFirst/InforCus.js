@@ -23,7 +23,8 @@ export function InformationCustomer() {
     const districts = useSelector(state => state.address.listDistrict);
     const wards = useSelector(state => state.address.listWard);
 
-    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"))
+    const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
+    console.log(currentCustomer);
 
 
     useEffect(() => {
@@ -54,7 +55,6 @@ export function InformationCustomer() {
         values.imageCustomer = image;
         dispatch(editCustomer(values)).then (() => {
             navigate("/customer")
-            console.log("Lấy thông tin người dùng login lần đầu tiên thành công")
         })
     }
 
@@ -119,13 +119,7 @@ export function InformationCustomer() {
                         </div>
                     </div>
                 </div>
-                <Formik
-                //     initialValues={
-                //     {
-                //         customer
-                //     }
-                // } onSubmit={EditCustomer}
-                >
+                <Formik>
                     <Form onSubmit={formik.handleSubmit}>
                         <div className="bodyInfo">
                             <div className="contentInfo">
@@ -152,7 +146,7 @@ export function InformationCustomer() {
                                                         as={"select"}
                                                         onChange={handleProvinceChange}
                                                     >
-                                                        <option value="option1" selected={true}>Chọn Tỉnh/Thành phố</option>
+                                                        <option value="" selected={true}>Chọn Tỉnh/Thành phố</option>
                                                         {
                                                             provinces?.map((province) => (
                                                                 <option key={province.id} value={province.id}>
@@ -168,7 +162,7 @@ export function InformationCustomer() {
                                                         name={"district.id"}
                                                         onChange={handleDistrictChange}
                                                     >
-                                                        <option value="option2" selected={true}>Chọn Quận/Huyện</option>
+                                                        <option value="" selected={true}>Chọn Quận/Huyện</option>
                                                         {
                                                             districts?.map((district) => (
                                                                 <option key={district.id} value={district.id}>
@@ -184,7 +178,7 @@ export function InformationCustomer() {
                                                         name={"ward.id"}
                                                         onChange={handleWardChange}
                                                     >
-                                                        <option value="option3" selected={true}>Chọn Phường/Xã</option>
+                                                        <option value="" selected={true}>Chọn Phường/Xã</option>
                                                         {
                                                             wards?.map((ward) => (
                                                                 <option key={ward.id} value={ward.id}>
@@ -199,7 +193,7 @@ export function InformationCustomer() {
                                         <div className="item">
                                             <div className="title">
                                             </div>
-                                            <div className="input1">
+                                            <div className="input5">
                                                 <Field type="text" name="specificAddress"
                                                        placeholder={"Vui lòng nhập địa chỉ chi tiết"}
                                                        onChange={(event) => {
@@ -237,9 +231,6 @@ export function InformationCustomer() {
                                             </div>
                                             <div className="input">
                                                 <div className="decision">
-                                                    {/*<div className="cancel">*/}
-                                                    {/*    <button type={"submit"}>Hủy</button>*/}
-                                                    {/*</div>*/}
                                                     <div className="save">
                                                         <button type={"submit"}>Lưu</button>
                                                     </div>

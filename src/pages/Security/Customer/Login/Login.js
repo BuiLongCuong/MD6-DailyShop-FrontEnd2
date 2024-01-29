@@ -6,6 +6,7 @@ import {login} from "../../../../redux/service/customerService";
 import * as Yup from "yup";
 import {useState} from "react";
 import * as React from "react";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function Login() {
     const [isShowPassword, setIsShowPassword] = useState();
@@ -32,7 +33,7 @@ export default function Login() {
            await dispatch(login(values)).unwrap();
            checkProfile()
         }catch (e ){
-            alert(e.message)
+            toast.error(e.message)
         }
     }
 
@@ -67,6 +68,10 @@ export default function Login() {
                         </div>
 
                         <div className="row2">
+                            <Toaster
+                                position="top-center"
+                                reverseOrder={false}
+                            />
                             <Formik initialValues={
                                 {
                                     account: '',

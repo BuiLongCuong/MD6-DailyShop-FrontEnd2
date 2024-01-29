@@ -25,7 +25,6 @@ import Pay from "./pages/Pay/Pay";
 import TransactionHistory from "./pages/TransactionHistory/TransactionHistory";
 import {EditInforSupp} from "./pages/Information/Supplier/EditInforSupp/EditInforSupp";
 import OrderListForSupplier from "./pages/OrderManagement/OrderManagement";
-import BasicMenu from "./pages/Cart/TestHeaderCustomer";
 import {EditInforCus} from "./pages/Information/Customer/EditInforCus/EditInforCus";
 import SearchProduct from "./pages/products/Search/SearchProduct";
 import SearchProductByPrice from "./pages/products/Search/SearchProductByprice/SearchProductByPrice";
@@ -74,13 +73,13 @@ function App() {
             {
                 currentSupplier ? (
                     <>
+                        <Route path={"informationSupp"} element={<InformationSupplier/>}/>
                         <Route path={"supplier"} element={<HomeSupplier/>}>
                             <Route path={"products"} element={<ShowListProduct/>}/>
                             <Route path={"add"} element={<AddProduct/>}/>
                             <Route path={"edit/:id"} element={<UpdateProduct/>}/>
                             <Route path={"detail/:id"} element={<DetailProductSupplier/>}/>
                             <Route path={"editInfoSupp/:id"} element={<EditInforSupp/>}/>
-                            <Route path={"informationSupp"} element={<InformationSupplier/>}/>
                             <Route path={"orderManagement"} element={<OrderListForSupplier/>}/>
                         </Route>
                     </>
